@@ -1,6 +1,8 @@
 # nstep-storytelling
 Storytelling App (NSTEP) [CSL]
 
+Project pre-description: https://docs.google.com/document/d/1R5QzF8yd94gcnl3_X7jlfQh8h3sW01CKNH-hi--m7Qg/edit
+
 Figma: https://www.figma.com/file/sCU02vhillkgMWg5saDRbR/Untitled?node-id=0%3A1
 
 Questions for first meeting: https://docs.google.com/document/d/1zbBzibI2mCuZNHg6KLPZswtfQKDSQnFcjb03q-VA8n8/edit?usp=sharing
