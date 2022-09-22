@@ -1,6 +1,6 @@
 AUTHOR = 'Storytelling Develepment Group'
 SITENAME = 'Storytelling Documentation'
-SITEURL = 'https://ualberta-cmput401.github.io/'
+SITEURL = 'https://ualberta-cmput401.github.io/nstep-storytelling/'
 
 PATH = 'content'
 
@@ -12,7 +12,7 @@ DEFAULT_LANG = 'en'
 FEED_ALL_ATOM = None
 CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
-AUTHOR_FEED_ATOM = None
+# AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
 
 # Blogroll
