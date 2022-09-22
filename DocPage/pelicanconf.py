@@ -1,6 +1,6 @@
 AUTHOR = 'Storytelling Develepment Group'
 SITENAME = 'Storytelling Documentation'
-SITEURL = ''
+SITEURL = 'https://ualberta-cmput401.github.io/'
 
 PATH = 'content'
 
