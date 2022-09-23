@@ -138,7 +138,7 @@ Acceptance Tests:
 - User can access the website on their phone
 - Features of the website are usable on mobile devices
 
-**Similar Products**
+## Similar Products
 
 [Google Forms](https://www.google.ca/forms/about/)
 
@@ -160,7 +160,7 @@ Acceptance Tests:
 - Offers form creation, templates, etc
 - May be used as inspiration for designing simple, usable forms
 
-**Open-source Products**
+## Open-source Products
 
 [Plotly Dash](https://dash.plotly.com/)
 
@@ -180,7 +180,7 @@ Acceptance Tests:
 - May be useful for handling form creation
 - Functionalities include but are not limited to input validation, formatting, masking, arrays, and error handling
 
-**Technical Resources**
+## Technical Resources
 
 General:
 
