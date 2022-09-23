@@ -41,6 +41,9 @@ As an Admin, I want to be able to search for stories by timeline and/or program,
 **US 1.07**  
 As an Admin, I want to get feedback in its original form as well as a translated version, so that I can retain authentic feedback but also be able to understand the feedback if it is not in English.
 
+**US 1.08**  
+As an Admin, I want to be able to generate a custom QR code for each program survey, so that users can easily access the feedback page for the program without typing a URL.
+
 **US 2.01**  
 As a Super Admin, I want to be able to create accounts, so that I may give other staff members access to admin privileges.
 
@@ -66,15 +69,12 @@ As a User, I want to be able to leave feedback anonymously, so that I can still 
 As a User, I want the web app to support multiple languages, so that I am able to comfortably navigate the website and leave feedback.
 
 **US 3.07**  
-As a User, I want to be able to scan a QR code, so that I can quickly access a feedback page.
-
-**US 3.08**  
 As a User, I want to be able to make my story publicly visible, so that I may share my experience with others.
 
-**US 3.09**  
+**US 3.08**  
 As a User, I want to be able to share my story by email, so that I can recommend a program to someone else.
 
-**US 3.10**  
+**US 3.09**  
 As a User, I want to be able to use my phone to navigate the website and give feedback, so that I do not need to access a desktop.
 
 ## Similar Products
