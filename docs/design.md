@@ -4,7 +4,7 @@ This page includes a short description of the overall architecture style of the 
 ## Architecture Diagram
 This is a short description of the architecture.
 
-![Architecture](img/architecture2.png)
+![Architecture](img/Architecture.png)
 
 
 ## UML Class Diagram
