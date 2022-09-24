@@ -20,3 +20,9 @@ Multiple sequence diagrams depicting the most important scenarios.
 
 ### User Sequence
 ![User Sequence](img/User%20Sequence.png)
+
+
+## Low-Fidelity User interface
+At this stage, it’s important to show the overall look and feel of your app, as well as the high-level user-interaction design. Low-fidelity wireframes are usually black and white Looking at the wireframes, anyone should be able to get an idea of what will be developed.
+
+![Storyboard](img/Storyboard.png)
