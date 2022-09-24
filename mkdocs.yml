@@ -1,0 +1,5 @@
+site_name: NSTEP-Stoytelling Documentations
+site_url: https://ualberta-cmput401.github.io/nstep-storytelling/
+nav:
+    - Project Requirements: index.md
+    - Software Design: about.md
