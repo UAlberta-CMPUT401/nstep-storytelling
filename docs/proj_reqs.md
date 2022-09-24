@@ -149,11 +149,13 @@ Acceptance Tests:
 - US 3.02
 - US 3.03
 - US 3.09  
+
 **Should Have**
 - US 1.03
 - US 2.01
 - US 2.02
 - US 3.05  
+
 **Could Have**
 - US 1.04
 - US 1.05
@@ -161,6 +163,7 @@ Acceptance Tests:
 - US 1.08
 - US 3.04
 - US 3.06  
+
 **Would Like But Won't Get**
 - US 3.07
 - US 3.08
