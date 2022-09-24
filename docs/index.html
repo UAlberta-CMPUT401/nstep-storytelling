@@ -1,212 +1,356 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="writer-html5" lang="en" >
 <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="generator" content="Pelican" />
-        <title>Storytelling Documentation</title>
-        <link rel="stylesheet" href="https://ualberta-cmput401.github.io/nstep-storytelling/theme/css/main.css" />
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="None" /><link rel="canonical" href="https://ualberta-cmput401.github.io/nstep-storytelling/" />
+      <link rel="shortcut icon" href="img/favicon.ico" />
+    <title>NSTEP-Stoytelling Docs</title>
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Project Requirements";
+        var mkdocs_page_input_path = "index.md";
+        var mkdocs_page_url = "/nstep-storytelling/";
+      </script>
+    
+    <script src="js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/rust.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
 </head>
 
-<body id="index" class="home">
-        <header id="banner" class="body">
-                <h1><a href="https://ualberta-cmput401.github.io/nstep-storytelling/">Storytelling Documentation</a></h1>
-                <nav><ul>
-                    <li><a href="https://ualberta-cmput401.github.io/nstep-storytelling/category/teamwork.html">Teamwork</a></li>
-                </ul></nav>
-        </header><!-- /#banner -->
+<body class="wy-body-for-nav" role="document">
 
-            <aside id="featured" class="body">
-                <article>
-                    <h1 class="entry-title"><a href="https://ualberta-cmput401.github.io/nstep-storytelling/belbin-role.html">Belbin role</a></h1>
-<footer class="post-info">
-        <abbr class="published" title="2022-09-22T15:00:00-06:00">
-                Published: Thu 22 September 2022
-        </abbr>
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="." class="icon icon-home"> NSTEP-Stoytelling Docs
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
 
-        <address class="vcard author">
-                By                         <a class="url fn" href="https://ualberta-cmput401.github.io/nstep-storytelling/author/storytelling-develepment-group.html">Storytelling Develepment Group</a>
-        </address>
-<p>In <a href="https://ualberta-cmput401.github.io/nstep-storytelling/category/teamwork.html">Teamwork</a>.</p>
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href=".">Project Requirements</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#executive-summary">Executive Summary</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#project-glossary">Project Glossary</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#user-stories">User Stories</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#moscow">MoSCoW</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#similar-products">Similar Products</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#open-source-products">Open-source Products</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#technical-resources">Technical Resources</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="design/">Software Design</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="project%20management/">Project Management</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="teamwork/">Teamwork</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
 
-</footer><!-- /.post-info --><p>Source:<a href="https://www.belbin.com/about/belbin-team-roles">https://www.belbin.com/about/belbin-team-roles</a>.</p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Preferred Roles</th>
-<th>Manageable Roles</th>
-<th>Least Preferred Roles</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Mohammed</td>
-<td>TW, SP, CF</td>
-<td>RI, IMP, CO</td>
-<td>ME, PL, SH</td>
-</tr>
-<tr>
-<td>Asad Idrees</td>
-<td>CO, IMP, RI</td>
-<td>SH, ME, CF</td>
-<td>PL, TW, SP</td>
-</tr>
-<tr>
-<td>Jason</td>
-<td>ME, IMP, CF</td>
-<td>PL, TW, SP</td>
-<td>RI, SH, CO</td>
-</tr>
-<tr>
-<td>Théo</td>
-<td>RI, CF, PL</td>
-<td>TW, CO, SP</td>
-<td>SH, ME, IMP</td>
-</tr>
-<tr>
-<td>Jinglong</td>
-<td>IMP, SP, ME</td>
-<td>SH, RI, CF</td>
-<td>CO, PL, TW</td>
-</tr>
-<tr>
-<td>Favour</td>
-<td>CO, SH, PL</td>
-<td>RI, CF, TW</td>
-<td>IMP, ME, SP</td>
-</tr>
-</tbody>
-</table>
-<h3></h3>
-<h3><strong>Thinking Roles</strong></h3>
-<h4><strong>PL (Plant)</strong></h4>
-<p>Tends to be highly creative and good at solving problems in unconventional ways.</p>
-<ol>
-<li>Favour (preferred)</li>
-<li>Théo (preferred)</li>
-<li>Jason (manageable)</li>
-</ol>
-<h4><strong>ME (Monitor Evaluator)</strong></h4>
-<p>Provides a logical eye, making impartial judgements where required and weighs up the team's options in a dispassionate way.</p>
-<ol>
-<li>Jinglong (preferred)</li>
-<li>Asad Idrees (manageable)</li>
-<li>Jason (preferred)</li>
-</ol>
-<h4><strong>SP (Specialist)</strong></h4>
-<p>Brings in-depth knowledge of a key area to the team.</p>
-<ol>
-<li>Mohammed Azad (prefered)</li>
-<li>Jinglong (preferred)</li>
-<li>Théo (manageable)</li>
-<li>Jason (manageable)</li>
-</ol>
-<h3><strong>Action Roles</strong></h3>
-<h4><strong>SH (Shaper)</strong></h4>
-<p>Provides the necessary drive to ensure that the team keeps moving and does not lose focus or momentum.</p>
-<ol>
-<li>Favour (preferred)</li>
-<li>Jinglong (manageable)</li>
-<li>Asad Idrees (manageable)</li>
-</ol>
-<h4><strong>IMP (Implementer)</strong></h4>
-<p>Needed to plan a workable strategy and carry it out as efficiently as possible.</p>
-<ol>
-<li>Asad Idrees (preferred)</li>
-<li>Jinglong (preferred)</li>
-<li>Mohammed Azad(manageable)</li>
-<li>Jason (preferred)</li>
-</ol>
-<h4><strong>CF (Completer Finisher)</strong></h4>
-<p>Most effectively used at the end of tasks to polish and scrutinise the work for errors, subjecting it to the highest standards of quality control.</p>
-<ol>
-<li>Mohammed Azad (prefered)</li>
-<li>Théo (preferred)</li>
-<li>Jason (preferred)</li>
-<li>Jinglong (manageable)</li>
-<li>Favour (manageable)</li>
-<li>Asad Idrees (manageable)</li>
-</ol>
-<h3><strong>People Roles</strong></h3>
-<h4><strong>RI (Resource Investigator)</strong></h4>
-<p>Uses their inquisitive nature to find ideas to bring back to the team.</p>
-<ol>
-<li>Asad Idrees (preferred)</li>
-<li>Théo (preferred)</li>
-<li>Mohammed Azad(manageable)</li>
-<li>Favour (manageable)</li>
-<li>Jinglong (manageable)</li>
-</ol>
-<h4><strong>TW (Teamworker)</strong></h4>
-<p>Helps the team to gel, using their versatility to identify the work required and complete it on behalf of the team.</p>
-<ol>
-<li>Mohammed Azad (prefered)</li>
-<li>Theo (manageable)</li>
-<li>Jason (manageable)</li>
-<li>Favour (manageable)</li>
-</ol>
-<p><strong>CO (Co-ordinator)</strong></p>
-<p>Needed to focus on the team's objectives, draw out team members and delegate work appropriately.</p>
-<ol>
-<li>Asad Idrees (preferred)</li>
-<li>Favour (preferred)</li>
-<li>Theo (manageable)</li>
-<li>Mohammed Azad(manageable)</li>
-</ol>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href=".">NSTEP-Stoytelling Docs</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>Project Requirements</li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://github.com/UAlberta-CMPUT401/nstep-storytelling/edit/master/docs/index.md"
+          class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="project-requirements">Project Requirements</h1>
+<h2 id="executive-summary">Executive Summary</h2>
+<p>This web application will allow NSTEP to hear the stories of their diverse group of clients by enabling them to share their experiences with NSTEP, and give NSTEP a qualitative measure of assessment by which to evaluate the quality of their programs and report to funding agencies. The application will support multiple languages and allow clients to give feedback in various formats (text, audio, video, etc), as well as allow admins to set up questionnaires and view stories. Users of the system will consist of two distinct groups - NSTEP program participants and NSTEP employees monitoring responses on the administrative side of the application.</p>
+<h2 id="project-glossary">Project Glossary</h2>
+<p><strong>Story</strong></p>
+<ul>
+<li>An experience or feedback that is shared by a <strong>client</strong></li>
+</ul>
+<p><strong>Language</strong></p>
+<ul>
+<li>A natural language (not a programming language)</li>
+</ul>
+<p><strong>Client</strong></p>
+<ul>
+<li>Children, their parents and grandparents, teachers and community agency program leaders</li>
+</ul>
+<h2 id="user-stories">User Stories</h2>
+<p><strong>US 1.01 - 3pts</strong><br />
+As an Admin, I want to be able to securely log in, so that I can have private access to administrative functionalities of the system.  <br />
+Acceptance Tests:
+- Admin can login to their account with correct credentials
+- Admin can provide an email and password to login
+- Admin cannot login with incorrect credentials</p>
+<p><strong>US 1.02 - 8pts</strong><br />
+As an Admin, I want to be able to set up a program-specific questionnaire, so that I can define the kind of feedback I want to collect.  <br />
+Acceptance Tests:
+- Admin can create a custom questionnaire
+- Admin can assign a questionnaire to a specific program
+- Admin cannot create a questionnaire without specifying a program</p>
+<p><strong>US 1.03 - 2pts</strong><br />
+As an Admin, I want to be able to create unique URLs for each feedback form of a particular program, so that I can let respondents quickly access the feedback form for the program they attended.  <br />
+Acceptance Tests:
+- Admin can generate a unique URL for each feedback form they create
+- Each unique URL links to the correct form</p>
+<p><strong>US 1.04 - 5pts</strong><br />
+As an Admin, I want some way to grasp the general sentiment of the feedback, so that I can understand how people largely feel about the programs.  <br />
+Acceptance Tests:
+- Admin can view general feedback sentiment
+- Feedback sentiment is accurate</p>
+<p><strong>US 1.05 - 5pts</strong><br />
+As an Admin, I want to export feedback, if the format of the feedback allows it, so that I may share the results to funders.  <br />
+Acceptance Tests:
+- Admin can export feedback in csv format
+- File contains the correct information</p>
+<p><strong>US 1.06 - 3pts</strong><br />
+As an Admin, I want to be able to search for stories by timeline and/or program, so that I can view feedback for a particular program or time of submission.  <br />
+Acceptance Tests:
+- Admin can search and view stories by timeline
+- Admin can search and view stories by program</p>
+<p><strong>US 1.07 - 8pts</strong><br />
+As an Admin, I want to get feedback in its original form as well as a translated version, so that I can retain authentic feedback but also be able to understand the feedback if it is not in English.  <br />
+Acceptance Tests:
+- Admin can view feedback in its original form
+- Admin can view translated feedback
+- Original and translated versions of feedback are accurate</p>
+<p><strong>US 1.08 - 2pts</strong><br />
+As an Admin, I want to be able to generate a custom QR code for each program survey, so that users can easily access the feedback page for the program without typing a URL.  <br />
+Acceptance Tests:
+- Admin can generate a unique QR code for each feedback form
+- Each unique QR code is associated with the correct form</p>
+<p><strong>US 2.01 - 3pts</strong><br />
+As a Super Admin, I want to be able to create accounts, so that I may give other staff members access to admin privileges.  <br />
+Acceptance Tests:
+- Super Admin can create admin accounts
+- Can login to created accounts
+- Created accounts have access to administrative functions</p>
+<p><strong>US 2.02 - 2pts</strong><br />
+As a Super Admin, I want to be able to remove accounts, so that I am able to take away admin privileges.  <br />
+Acceptance Tests:
+- Super Admin can delete admin accounts
+- Cannot login to deleted accounts</p>
+<p><strong>US 3.01 - 1pts</strong><br />
+As a User, I want to be able to leave feedback in text, so that I may type my response to a questionnaire.  <br />
+Acceptance Tests:
+- User can type answers to questions
+- User can submit their typed response</p>
+<p><strong>US 3.02 - 5pts</strong><br />
+As a User, I want to be able to leave feedback in a voice recording, so that I can express verbally.  <br />
+Acceptance Tests:
+- User can record their voice to respond to questions
+- User can submit their voice recording</p>
+<p><strong>US 3.03 - 5pts</strong><br />
+As a User, I want to be able to leave feedback in video format, so that I can express myself comfortably.  <br />
+Acceptance Tests:
+- User can record a video to respond to questions
+- User can submit their video recording</p>
+<p><strong>US 3.04 - 2pts</strong><br />
+As a User, I want to be able to select from various emojis as feedback, so that I can easily express my feelings.  <br />
+Acceptance Tests:
+- User can select an emoji in a feedback form
+- User can submit their selected emoji</p>
+<p><strong>US 3.05 - 1pts</strong><br />
+As a User, I want to be able to leave feedback anonymously, so that I can still leave feedback if I do not wish to share my identity.  <br />
+Acceptance Tests:
+- User can give feedback without providing personal information
+- User can submit their feedback</p>
+<p><strong>US 3.06 - 5pts</strong><br />
+As a User, I want the web app to support multiple languages, so that I am able to comfortably navigate the website and leave feedback.  <br />
+Acceptance Tests:
+- User can select a language
+- User can view the content of the web app in their chosen language
+- Translations are accurate and coherent</p>
+<p><strong>US 3.07 - 3pts</strong><br />
+As a User, I want to be able to make my story publicly visible, so that I may share my experience with others.  <br />
+Acceptance Tests:
+- User can determine the public visibility of their story
+- Story is only visible to others if marked as public</p>
+<p><strong>US 3.08 - 5pts</strong><br />
+As a User, I want to be able to share my story by email, so that I can recommend a program to someone else.  <br />
+Acceptance Tests:
+- User can share their story through email
+- Shared story is received by the intended recipient(s)</p>
+<p><strong>US 3.09 - 3pts</strong><br />
+As a User, I want to be able to use my phone to navigate the website and give feedback, so that I do not need to access a desktop.  <br />
+Acceptance Tests:
+- User can access the website on their phone
+- Features of the website are usable on mobile devices</p>
+<h2 id="moscow">MoSCoW</h2>
+<p><strong>Must Have</strong>
+- US 1.01
+- US 1.02
+- US 1.06
+- US 3.01
+- US 3.02
+- US 3.03
+- US 3.09  </p>
+<p><strong>Should Have</strong>
+- US 1.03
+- US 2.01
+- US 2.02
+- US 3.05  </p>
+<p><strong>Could Have</strong>
+- US 1.04
+- US 1.05
+- US 1.07
+- US 1.08
+- US 3.04
+- US 3.06  </p>
+<p><strong>Would Like But Won't Get</strong>
+- US 3.07
+- US 3.08</p>
+<h2 id="similar-products">Similar Products</h2>
+<p><a href="https://www.google.ca/forms/about/">Google Forms</a></p>
+<ul>
+<li>Offers form creation, templates, real-time results analysis, etc</li>
+<li>May be used as inspiration for designing user-friendly, functional forms</li>
+</ul>
+<p><a href="http://wordclouds.com/">WordClouds.com</a></p>
+<ul>
+<li>Word cloud generator</li>
+<li>May be used as inspiration for the appearance of in-app word clouds</li>
+</ul>
+<p><a href="http://typeform.com/">Typeform</a></p>
+<ul>
+<li>Offers form creation, templates, etc</li>
+<li>May be used as inspiration for designing beautiful, interactive forms</li>
+</ul>
+<p><a href="http://jotform.com/">Jotform</a></p>
+<ul>
+<li>Offers form creation, templates, etc</li>
+<li>May be used as inspiration for designing simple, usable forms</li>
+</ul>
+<h2 id="open-source-products">Open-source Products</h2>
+<p><a href="https://dash.plotly.com/">Plotly Dash</a></p>
+<ul>
+<li>Python framework for building data apps</li>
+<li>May be used for coding the admin dashboard</li>
+<li>Ties modern UI elements like dropdowns, sliders, and graphs directly to your analytical Python code</li>
+</ul>
+<p><a href="https://www.npmjs.com/package/node-nlp">NLP.js</a></p>
+<ul>
+<li>Natural language utility for Node</li>
+<li>May be useful for capturing emotions from feedback</li>
+<li>Functionalities include but are not limited to sentiment analysis and language guessing for phrases</li>
+</ul>
+<p><a href="https://formik.org/">Formik</a></p>
+<ul>
+<li>React form library</li>
+<li>May be useful for handling form creation</li>
+<li>Functionalities include but are not limited to input validation, formatting, masking, arrays, and error handling</li>
+</ul>
+<h2 id="technical-resources">Technical Resources</h2>
+<p>General:</p>
+<ul>
+<li><a href="https://stackoverflow.com/">Stack Overflow</a></li>
+<li><a href="https://www.geeksforgeeks.org/">GeeksforGeeks</a></li>
+</ul>
+<p>Frontend: React.js + React Router + Material UI</p>
+<ul>
+<li><a href="https://reactjs.org/docs/getting-started.html">React Documentation</a></li>
+<li><a href="https://v5.reactrouter.com/web/guides/quick-start">React Router Documentation</a></li>
+<li><a href="https://mui.com/material-ui/getting-started/overview/">Material UI Documentation</a></li>
+</ul>
+<p>Backend: Django + MySQL</p>
+<ul>
+<li><a href="https://docs.djangoproject.com/en/4.1/">Django Documentation</a></li>
+<li><a href="https://dev.mysql.com/doc/">MySQL Documentation</a></li>
+</ul>
+<p>Deployment: Cybera RAC</p>
+<ul>
+<li><a href="https://wiki.cybera.ca/display/RAC">Cybera RAC Documentation</a></li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="design/" class="btn btn-neutral float-right" title="Software Design">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
 
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="https://ualberta-cmput401.github.io/nstep-storytelling/team-canvas.html" rel="bookmark"
-                           title="Permalink to Team Canvas">Team Canvas</a></h1>
-                </header>
+  <hr/>
 
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2022-09-21T12:00:00-06:00">
-                Published: Wed 21 September 2022
-        </abbr>
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
 
-        <address class="vcard author">
-                By                         <a class="url fn" href="https://ualberta-cmput401.github.io/nstep-storytelling/author/storytelling-develepment-group.html">Storytelling Develepment Group</a>
-        </address>
-<p>In <a href="https://ualberta-cmput401.github.io/nstep-storytelling/category/teamwork.html">Teamwork</a>.</p>
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
 
-</footer><!-- /.post-info -->                <p><a href="RackMultipart20220922-1-t1bx26_html_36b4657710438f37.png"></a></p>
-                <a class="readmore" href="https://ualberta-cmput401.github.io/nstep-storytelling/team-canvas.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-                </ol><!-- /#posts-list -->
-                </section><!-- /#content -->
-        <section id="extras" class="body">
-                <div class="blogroll">
-                        <h2>links</h2>
-                        <ul>
-                            <li><a href="https://github.com/UAlberta-CMPUT401/nstep-storytelling">Github Repo</a></li>
-                            <li><a href="https://drive.google.com/drive/folders/0ABa3HdbGL_ESUk9PVA">Resource drive</a></li>
-                        </ul>
-                </div><!-- /.blogroll -->
-                <div class="social">
-                        <h2>social</h2>
-                        <ul>
+    </section>
 
-                            <li><a href="https://discord.gg/ZRVDuqgT">Discord</a></li>
-                        </ul>
-                </div><!-- /.social -->
-        </section><!-- /#extras -->
+  </div>
 
-        <footer id="contentinfo" class="body">
-                <address id="about" class="vcard body">
-                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
-                </address><!-- /#about -->
-
-                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
-        </footer><!-- /#contentinfo -->
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/UAlberta-CMPUT401/nstep-storytelling" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+    
+      <span><a href="design/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '.';</script>
+    <script src="js/theme_extra.js" defer></script>
+    <script src="js/theme.js" defer></script>
+      <script src="search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
 
 </body>
 </html>
+
+<!--
+MkDocs version : 1.3.1
+Build Date UTC : 2022-09-24 04:00:22.059411+00:00
+-->
