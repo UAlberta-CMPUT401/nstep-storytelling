@@ -122,8 +122,6 @@ via Google Meet
 
 Théo, Mohammed, Favour, Jinglong, Jason, Asad, Brandon, Melissa, Darlene, Teresa
 
-**Minutes**
-
 **Agenda**
 
 - Meet clients
@@ -182,8 +180,6 @@ via Discord voice channel
 
 Théo, Mohammed, Favour, Jinglong, Asad, Jason
 
-**Minutes**
-
 **Agenda**
 
 - Review notes from Client's meeting
@@ -239,8 +235,6 @@ CSC B-10
 **Attendees**
 
 Théo, Mohammed, Favour, Jinglong, Asad, Jason
-
-**Minutes**
 
 **Agenda**
 
@@ -301,8 +295,6 @@ via Discord voice channel
 
 Théo, Favour, Jason
 
-**Minutes**
-
 **Agenda**
 
 - Continue the wireframe design
@@ -339,8 +331,6 @@ via Discord voice channel
 **Attendees**
 
 Théo, Mohammed, Favour, Jason
-
-**Minutes**
 
 **Agenda**
 
