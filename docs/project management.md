@@ -59,9 +59,13 @@ Due October 29
 
 | **User story** | **Story points** |
 | --- | --- |
-| | |
+| US 1.06 | 3 |
+| US 3.02 | 5 |
+| US 3.03 | 5 |
+| US 3.09 | 3 |
+| US 3.04 | 2 |
 
-Estimated sprint velocity: ...
+Estimated sprint velocity: **18**
 
 **Tasks**
 
@@ -77,9 +81,13 @@ Due November 19
 
 | **User story** | **Story points** |
 | --- | --- |
-| | |
+| US 1.03 | 2 |
+| US 2.02 | 2 |
+| US 3.05 | 1 |
+| US 2.01 | 3 |
+| US 1.07 | 8 |
 
-Estimated sprint velocity: ...
+Estimated sprint velocity: **16**
 
 **Tasks**
 
@@ -95,9 +103,12 @@ Due December 3
 
 | **User story** | **Story points** |
 | --- | --- |
-| | |
+| US 1.04 | 5 |
+| US 1.05 | 5 |
+| US 3.06 | 5 |
+| US 1.08 | 2 |
 
-Estimated sprint velocity: ...
+Estimated sprint velocity: **17**
 
 **Tasks**
 
