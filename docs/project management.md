@@ -3,7 +3,7 @@
 This page provides a general overview of the assigned tasks and roles for the duration of five sprints (subject to change).
 
 ## Story Map
-![Storymap](img/Storymap.png)
+![Storymap](img/storymap2.png)
 
 ## Project Plan
 
@@ -46,8 +46,8 @@ Estimated sprint velocity: **15**
 | User authentication | US 1.01 | Mohammed | Oct 8 |
 | JSX/CSS for login | US 1.01 | Mohammed | Oct 11 |
 | Dashboard JSX/CSS | US 1.01 | Théo | Oct 12 |
-| JSX for creating questionnaires | US 1.02 |TBA| Oct 13 |
-| CSS for creating questionnaires | US 1.02 |TBA| Oct 14 |
+| JSX for creating questionnaires | US 1.02 | Favour | Oct 13 |
+| CSS for creating questionnaires | US 1.02 | Jason | Oct 14 |
 | REST API endpoints for creating questionnaires | US 1.02 | Théo | Oct 14 |
 | Text feedback | US 3.01 | Jinglong | Oct 15 |
 
@@ -61,7 +61,7 @@ Due October 29
 | --- | --- |
 | | |
 
-Estimated sprint velocity:...
+Estimated sprint velocity: ...
 
 **Tasks**
 
@@ -79,7 +79,7 @@ Due November 19
 | --- | --- |
 | | |
 
-Estimated sprint velocity:...
+Estimated sprint velocity: ...
 
 **Tasks**
 
@@ -97,7 +97,7 @@ Due December 3
 | --- | --- |
 | | |
 
-Estimated sprint velocity:...
+Estimated sprint velocity: ...
 
 **Tasks**
 
