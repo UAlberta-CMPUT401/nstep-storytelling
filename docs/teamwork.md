@@ -1,4 +1,4 @@
-# Teamwroks
+# Teamwork
 
 ## **Team Canvas**
 
@@ -61,7 +61,7 @@ Needed to plan a workable strategy and carry it out as efficiently as possible.
 
 1. Asad Idrees (preferred)
 2. Jinglong (preferred)
-3. Mohammed Azad(manageable)
+3. Mohammed Azad (manageable)
 4. Jason (preferred)
 
 **CF (Completer Finisher)**
@@ -83,7 +83,7 @@ Uses their inquisitive nature to find ideas to bring back to the team.
 
 1. Asad Idrees (preferred)
 2. Théo (preferred)
-3. Mohammed Azad(manageable)
+3. Mohammed Azad (manageable)
 4. Favour (manageable)
 5. Jinglong (manageable)
 
@@ -103,4 +103,4 @@ Needed to focus on the team's objectives, draw out team members and delegate wor
 1. Asad Idrees (preferred)
 2. Favour (preferred)
 3. Theo (manageable)
-4. Mohammed Azad(manageable)
+4. Mohammed Azad (manageable)
