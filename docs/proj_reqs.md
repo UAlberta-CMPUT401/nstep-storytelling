@@ -32,6 +32,7 @@ As an Admin, I want to be able to set up a program-specific questionnaire, so th
 Acceptance Tests:
 - Admin can create a custom questionnaire
 - Admin can assign a questionnaire to a specific program
+- Admin cannot create a questionnaire without specifying a program
 
 **US 1.03 - 2pts**  
 As an Admin, I want to be able to create unique URLs for each feedback form of a particular program, so that I can let respondents quickly access the feedback form for the program they attended.    
