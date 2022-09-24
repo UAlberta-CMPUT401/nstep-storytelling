@@ -22,6 +22,7 @@ This web application will allow NSTEP to hear the stories of their diverse group
 
 ### **US 1.01 - 3pts**  
 !!! note ""
+
     As an Admin, I want to be able to securely log in, so that I can have private access to administrative functionalities of the system.    
 
     Acceptance Tests:
