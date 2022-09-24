@@ -105,7 +105,7 @@ Needed to focus on the team's objectives, draw out team members and delegate wor
 3. Theo (manageable)
 4. Mohammed Azad (manageable)
 
-### **Scrum Roles**  
+## **Scrum Roles**  
 **Sprint 1**  
 Product Owner: Théo  
 Scrum Master: Favour  
@@ -113,6 +113,8 @@ Scrum Master: Favour
 **Sprint 3**  
 **Sprint 4**  
 **Sprint 5**  
+
+# Meeting Minutes
 
 ## Sep 16, 2022, 7:00pm
 
