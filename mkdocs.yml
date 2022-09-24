@@ -5,5 +5,10 @@ nav:
     - Software Design: design.md
     - Project Management: project management.md
     - Teamwork: teamwork.md
-theme: readthedocs
 repo_url: https://github.com/UAlberta-CMPUT401/nstep-storytelling
+theme:
+    name: readthedocs
+    highlightjs: true
+    hljs_languages:
+        - yaml
+        - rust

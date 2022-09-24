@@ -1,8 +1,10 @@
-# **Team Canvas**
+# Teamwroks
 
-![](RackMultipart20220924-1-qxzzqp_html_928908c5f7e1828.png)
+## **Team Canvas**
 
-# **Belbin Roles**
+![Team Canvas](img/Team%20canvas.png)
+
+## **Belbin Roles**
 
 Source: [https://www.belbin.com/about/belbin-team-roles](https://www.belbin.com/about/belbin-team-roles).
 
@@ -15,7 +17,7 @@ Source: [https://www.belbin.com/about/belbin-team-roles](https://www.belbin.com/
 | Jinglong | IMP, SP, ME | SH, RI, CF | CO, PL, TW |
 | Favour | CO, SH, PL | RI, CF, TW | IMP, ME, SP |
 
-## **Thinking Roles**
+### **Thinking Roles**
 
 
 **PL (Plant)**
@@ -43,7 +45,7 @@ Brings in-depth knowledge of a key area to the team.
 3. Théo (manageable)
 4. Jason (manageable)
 
-## **Action Roles**
+### **Action Roles**
 
 **SH (Shaper)**
 
@@ -73,7 +75,7 @@ Most effectively used at the end of tasks to polish and scrutinise the work for 
 5. Favour (manageable)
 6. Asad Idrees (manageable)
 
-## **People Roles**
+### **People Roles**
 
 **RI (Resource Investigator)**
 
