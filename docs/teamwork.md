@@ -114,7 +114,7 @@ Scrum Master: Favour
 **Sprint 4**  
 **Sprint 5**  
 
-# Meeting Minutes
+## **Meeting Minutes**
 
 ## Sep 16, 2022, 7:00pm
 
