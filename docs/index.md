@@ -32,6 +32,7 @@ As an Admin, I want to be able to set up a program-specific questionnaire, so th
 Acceptance Tests:
 - Admin can create a custom questionnaire
 - Admin can assign a questionnaire to a specific program
+- Admin cannot create a questionnaire without specifying a program
 
 **US 1.03 - 2pts**  
 As an Admin, I want to be able to create unique URLs for each feedback form of a particular program, so that I can let respondents quickly access the feedback form for the program they attended.    
@@ -137,6 +138,35 @@ As a User, I want to be able to use my phone to navigate the website and give fe
 Acceptance Tests:
 - User can access the website on their phone
 - Features of the website are usable on mobile devices
+
+## MoSCoW
+
+**Must Have**
+- US 1.01
+- US 1.02
+- US 1.06
+- US 3.01
+- US 3.02
+- US 3.03
+- US 3.09  
+
+**Should Have**
+- US 1.03
+- US 2.01
+- US 2.02
+- US 3.05  
+
+**Could Have**
+- US 1.04
+- US 1.05
+- US 1.07
+- US 1.08
+- US 3.04
+- US 3.06  
+
+**Would Like But Won't Get**
+- US 3.07
+- US 3.08
 
 ## Similar Products
 
