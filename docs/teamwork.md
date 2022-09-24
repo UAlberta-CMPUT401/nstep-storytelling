@@ -315,15 +315,6 @@ Continue the wireframe design:
 - Théo:
   - Brainstorm ideas for wireframe
 
-##
-
-
-##
-
-
-##
-
-
 ## Sep 21, 2022, 12:00pm
 
 via Discord voice channel
