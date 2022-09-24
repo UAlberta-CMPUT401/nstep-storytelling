@@ -1,5 +1,9 @@
-site_name: NSTEP-Stoytelling Documentations
+site_name: NSTEP-Stoytelling Docs
 site_url: https://ualberta-cmput401.github.io/nstep-storytelling/
 nav:
     - Project Requirements: index.md
-    - Software Design: about.md
+    - Software Design: design.md
+    - Project Management: project management.md
+    - Teamwork: teamwork.md
+theme: readthedocs
+repo_url: https://github.com/UAlberta-CMPUT401/nstep-storytelling
