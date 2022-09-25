@@ -11,6 +11,8 @@ Our avability: https://www.when2meet.com/?16791053-YeUkS
 
 Meeting docs: https://docs.google.com/document/d/1c_W0tOaP98JUS-gsrBwuFPaaa71EeMf9tL9Llpx9sVs/edit
 
-our plan folder: https://drive.google.com/drive/folders/0ABa3HdbGL_ESUk9PVA
+Our plan folder: https://drive.google.com/drive/folders/0ABa3HdbGL_ESUk9PVA
 
-resource folder: https://drive.google.com/drive/folders/1c2zdN352DYkGnhQ3NpwlA14r2Ccgo2a7
+Resource folder: https://drive.google.com/drive/folders/1c2zdN352DYkGnhQ3NpwlA14r2Ccgo2a7
+
+Our project docs: https://ualberta-cmput401.github.io/nstep-storytelling/
