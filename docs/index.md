@@ -218,31 +218,31 @@ This web application will allow NSTEP to hear the stories of their diverse group
 ## MoSCoW
 
 ### **Must Have**
-- US 1.01
-- US 1.02
-- US 1.06
-- US 3.01
-- US 3.02
-- US 3.03
-- US 3.09  
+- US 1.01 - Admin login
+- US 1.02 - Create questionnaire
+- US 1.06 - Search stories
+- US 3.01 - Submit text feedback
+- US 3.02 - Submit voice feedback
+- US 3.03 - Submit video feedback
+- US 3.09 - Mobile support
 
 ### **Should Have**
-- US 1.03
-- US 2.01
-- US 2.02
-- US 3.05  
+- US 1.03 - Create unique URL
+- US 2.01 - Create Admin accounts
+- US 2.02 - Delete accounts
+- US 3.05 - Submit anonymous feedback
 
 ### **Could Have**
-- US 1.04
-- US 1.05
-- US 1.07
-- US 1.08
-- US 3.04
-- US 3.06  
+- US 1.04 - Summarize feedback
+- US 1.05 - Export feedback
+- US 1.07 - Get translated feedback
+- US 1.08 - Create QR codes
+- US 3.04 - Submit emoji feedback
+- US 3.06 - Select website language
 
 ### **Would Like But Won't Get**
-- US 3.07
-- US 3.08
+- US 3.07 - Make feedback public
+- US 3.08 - Share story by email
 
 ## Similar Products
 
