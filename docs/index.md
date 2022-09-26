@@ -20,7 +20,7 @@ This web application will allow NSTEP to hear the stories of their diverse group
 
 ## User Stories
 
-### **US 1.01 - 3pts**  
+### **US 1.01 - Admin login (3pts)**  
 !!! note ""
 
     As an Admin, I want to be able to securely log in, so that I can have private access to administrative functionalities of the system.    
@@ -31,7 +31,7 @@ This web application will allow NSTEP to hear the stories of their diverse group
     * Admin can provide an email and password to login
     * Admin cannot login with incorrect credentials
 
-### **US 1.02 - 8pts**  
+### **US 1.02 - Create questionnaire (8pts)**  
 !!! note ""
 
     As an Admin, I want to be able to set up a program-specific questionnaire, so that I can define the kind of feedback I want to collect.    
@@ -42,7 +42,7 @@ This web application will allow NSTEP to hear the stories of their diverse group
     - Admin can assign a questionnaire to a specific program
     - Admin cannot create a questionnaire without specifying a program
 
-### **US 1.03 - 2pts**  
+### **US 1.03 - Create unique URL (2pts)**  
 !!! note ""
 
     As an Admin, I want to be able to create unique URLs for each feedback form of a particular program, so that I can let respondents quickly access the feedback form for the program they attended.    
@@ -52,7 +52,7 @@ This web application will allow NSTEP to hear the stories of their diverse group
     - Admin can generate a unique URL for each feedback form they create
     - Each unique URL links to the correct form
 
-### **US 1.04 - 5pts**  
+### **US 1.04 - Summarize feedback (5pts)**  
 !!! note ""
 
     As an Admin, I want some way to grasp the general sentiment of the feedback, so that I can understand how people largely feel about the programs.    
@@ -62,7 +62,7 @@ This web application will allow NSTEP to hear the stories of their diverse group
     - Admin can view general feedback sentiment
     - Feedback sentiment is accurate
 
-### **US 1.05 - 5pts**  
+### **US 1.05 - Export feedback (5pts)**  
 !!! note ""
 
     As an Admin, I want to export feedback, if the format of the feedback allows it, so that I may share the results to funders.    
@@ -72,7 +72,7 @@ This web application will allow NSTEP to hear the stories of their diverse group
     - Admin can export feedback in csv format
     - File contains the correct information
 
-### **US 1.06 - 3pts**  
+### **US 1.06 - Search stories (3pts)**  
 !!! note ""
 
     As an Admin, I want to be able to search for stories by timeline and/or program, so that I can view feedback for a particular program or time of submission.    
@@ -82,7 +82,7 @@ This web application will allow NSTEP to hear the stories of their diverse group
     - Admin can search and view stories by timeline
     - Admin can search and view stories by program
 
-### **US 1.07 - 8pts**  
+### **US 1.07 - Get translated feedback (8pts)**  
 !!! note ""
 
     As an Admin, I want to get feedback in its original form as well as a translated version, so that I can retain authentic feedback but also be able to understand the feedback if it is not in English.    
@@ -93,7 +93,7 @@ This web application will allow NSTEP to hear the stories of their diverse group
     - Admin can view translated feedback
     - Original and translated versions of feedback are accurate
 
-### **US 1.08 - 2pts**  
+### **US 1.08 - Create QR codes (2pts)**  
 !!! note ""
 
     As an Admin, I want to be able to generate a custom QR code for each program survey, so that users can easily access the feedback page for the program without typing a URL.    
@@ -103,7 +103,7 @@ This web application will allow NSTEP to hear the stories of their diverse group
     - Admin can generate a unique QR code for each feedback form
     - Each unique QR code is associated with the correct form
 
-### **US 2.01 - 3pts**  
+### **US 2.01 - Create Admin accounts (3pts)**  
 !!! note ""
 
     As a Super Admin, I want to be able to create accounts, so that I may give other staff members access to admin privileges.    
@@ -114,7 +114,7 @@ This web application will allow NSTEP to hear the stories of their diverse group
     - Can login to created accounts
     - Created accounts have access to administrative functions
 
-### **US 2.02 - 2pts**  
+### **US 2.02 - Delete accounts (2pts)**  
 !!! note ""
 
     As a Super Admin, I want to be able to remove accounts, so that I am able to take away admin privileges.    
@@ -124,7 +124,7 @@ This web application will allow NSTEP to hear the stories of their diverse group
     - Super Admin can delete admin accounts
     - Cannot login to deleted accounts
 
-### **US 3.01 - 1pts**  
+### **US 3.01 - Submit text feedback (1pts)**  
 !!! note ""
 
     As a User, I want to be able to leave feedback in text, so that I may type my response to a questionnaire.    
@@ -134,7 +134,7 @@ This web application will allow NSTEP to hear the stories of their diverse group
     - User can type answers to questions
     - User can submit their typed response
 
-### **US 3.02 - 5pts**  
+### **US 3.02 - Submit voice feedback (5pts)**  
 !!! note ""
 
     As a User, I want to be able to leave feedback in a voice recording, so that I can express verbally.    
@@ -144,7 +144,7 @@ This web application will allow NSTEP to hear the stories of their diverse group
     - User can record their voice to respond to questions
     - User can submit their voice recording
 
-### **US 3.03 - 5pts**  
+### **US 3.03 - Submit video feedback (5pts)**  
 !!! note ""
 
     As a User, I want to be able to leave feedback in video format, so that I can express myself comfortably.    
@@ -154,7 +154,7 @@ This web application will allow NSTEP to hear the stories of their diverse group
     - User can record a video to respond to questions
     - User can submit their video recording
 
-### **US 3.04 - 2pts**  
+### **US 3.04 - Submit emoji feedback (2pts)**  
 !!! note ""
 
     As a User, I want to be able to select from various emojis as feedback, so that I can easily express my feelings.    
@@ -164,7 +164,7 @@ This web application will allow NSTEP to hear the stories of their diverse group
     - User can select an emoji in a feedback form
     - User can submit their selected emoji
 
-### **US 3.05 - 1pts**  
+### **US 3.05 - Submit anonymous feedback (1pts)**  
 !!! note ""
 
     As a User, I want to be able to leave feedback anonymously, so that I can still leave feedback if I do not wish to share my identity.    
@@ -174,7 +174,7 @@ This web application will allow NSTEP to hear the stories of their diverse group
     - User can give feedback without providing personal information
     - User can submit their feedback
 
-### **US 3.06 - 5pts**  
+### **US 3.06 - Select website language (5pts)**  
 !!! note ""
 
     As a User, I want the web app to support multiple languages, so that I am able to comfortably navigate the website and leave feedback.    
@@ -185,7 +185,7 @@ This web application will allow NSTEP to hear the stories of their diverse group
     - User can view the content of the web app in their chosen language
     - Translations are accurate and coherent
 
-### **US 3.07 - 3pts**  
+### **US 3.07 - Make feedback public (3pts)**  
 !!! note ""
 
     As a User, I want to be able to make my story publicly visible, so that I may share my experience with others.    
@@ -195,7 +195,7 @@ This web application will allow NSTEP to hear the stories of their diverse group
     - User can determine the public visibility of their story
     - Story is only visible to others if marked as public
 
-### **US 3.08 - 5pts**  
+### **US 3.08 - Share story by email (5pts)**  
 !!! note ""
 
     As a User, I want to be able to share my story by email, so that I can recommend a program to someone else.    
@@ -205,7 +205,7 @@ This web application will allow NSTEP to hear the stories of their diverse group
     - User can share their story through email
     - Shared story is received by the intended recipient(s)
 
-### **US 3.09 - 3pts**  
+### **US 3.09 - Mobile support (3pts)**  
 !!! note ""
 
     As a User, I want to be able to use my phone to navigate the website and give feedback, so that I do not need to access a desktop.    
