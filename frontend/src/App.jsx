@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import Form from './components/Form';
 
 function App() {
@@ -27,7 +28,7 @@ function App() {
             />
             <div>
               {forms.map((form) => {
-                return (<Form key={form.id} name={form.name} role={form.role} />);
+                return (<Form key={uuidv4()} name={form.name} role={form.role} />);
               })}
             </div>
           </>
