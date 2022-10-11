@@ -40,4 +40,7 @@ module.exports = {
       template: path.resolve('./index.html'),
     }),
   ],
+  devServer: {
+    historyApiFallback: true,
+  },
 };
