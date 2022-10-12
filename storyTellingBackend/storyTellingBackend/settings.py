@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'questionnaire',
     'drf_yasg',
     'user',
+    'event',
 ]
 
 MIDDLEWARE = [
