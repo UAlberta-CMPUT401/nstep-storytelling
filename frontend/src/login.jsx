@@ -7,7 +7,7 @@ const AdminLoginPage = (props) => {
         <header data-role="Header" className="admin-login-page-header">
           <img
             alt="logo"
-            src="frontend\assets\NSTEP_Horizontal-Logo_Color_WithTagline.png"
+            src="/playground_assets/nstephorizontallogocolor12729-4rdg-1500h.png"
             className="admin-login-page-image"
           />
           <div className="admin-login-page-container1">
@@ -260,6 +260,9 @@ const AdminLoginPage = (props) => {
             justify-content: center;
           }
           .admin-login-page-button {
+            width: 134px;
+            height: 66px;
+            font-size: 40px;
             align-self: center;
           }
           @media (max-width: 1200px) {
