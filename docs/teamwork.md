@@ -110,6 +110,8 @@ Needed to focus on the team's objectives, draw out team members and delegate wor
 Product Owner: Théo  
 Scrum Master: Favour  
 **Sprint 2**  
+Product Owner: Théo  
+Scrum Master: Favour 
 **Sprint 3**  
 **Sprint 4**  
 **Sprint 5**  
