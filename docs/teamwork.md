@@ -120,4 +120,4 @@ Scrum Master: Favour
 
 ## **Meeting Minutes**
 
-Hosted on Google docs: [https://docs.google.com/document/d/1c_W0tOaP98JUS-gsrBwuFPaaa71EeMf9tL9Llpx9sVs/edit](# Click here)
+Hosted on Google docs: [Click here](https://docs.google.com/document/d/1c_W0tOaP98JUS-gsrBwuFPaaa71EeMf9tL9Llpx9sVs/edit)
