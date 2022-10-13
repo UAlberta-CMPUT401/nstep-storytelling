@@ -8,7 +8,7 @@ class Answer(models.Model):
     name = models.CharField(max_length=200)
     description = models.TextField(max_length=1000)
     url = models.CharField(max_length=200,default='',blank=True,null=True)    
-    author = models.ForeignKey(User, on_delete=models.CASCADE,default='unknown')
+    author = models.ForeignKey(User, on_delete=models.CASCADE,null=True)
 
 class Question(models.Model):
     id = models.UUIDField(primary_key = True , auto_created = True , default = uuid.uuid4)
