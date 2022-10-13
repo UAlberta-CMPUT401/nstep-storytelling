@@ -1,0 +1,17 @@
+.navbar-name {
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 2rem;
+    color: #414143;
+    align-self: center;
+}
+
+.navbar-logo {
+    width: 20%;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 12px;
+}
