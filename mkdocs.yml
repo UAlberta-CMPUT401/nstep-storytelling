@@ -24,7 +24,11 @@ markdown_extensions:
   - pymdownx.superfences
   - def_list
   - pymdownx.tasklist:
-      custom_checkbox: true
+        custom_checkbox: true
 
 plugins:
   - glightbox
+  - search:
+        separator: '[\s\-\.]+'
+        min_search_length: 2
+

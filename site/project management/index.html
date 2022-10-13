@@ -24,14 +24,24 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/rust.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
-<link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>html.glightbox-open { overflow: initial; height: 100%; }</style><script src="../assets/javascripts/glightbox.min.js"></script></head>
+<link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gdesc-inner { font-size: 0.75rem; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            </style><script src="../assets/javascripts/glightbox.min.js"></script></head>
 <body class="wy-body-for-nav" role="document">
 <div class="wy-grid-for-nav">
 <nav class="wy-nav-side stickynav" data-toggle="wy-nav-shift">
 <div class="wy-side-scroll">
 <div class="wy-side-nav-search">
 <a class="icon icon-home" href=".."> NSTEP-Storytelling Docs
-        </a>
+        </a><div role="search">
+<form action="../search.html" class="wy-form" id="rtd-search-form" method="get">
+<input name="q" placeholder="Search docs" title="Type search term here" type="text"/>
+</form>
+</div>
 </div>
 <div aria-label="Navigation menu" class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation">
 <ul>
@@ -100,7 +110,7 @@
 <h1 id="project-management">Project Management</h1>
 <p>This page provides a general overview of the assigned tasks and roles for the duration of five sprints (subject to change).</p>
 <h2 id="story-map">Story Map</h2>
-<p><a class="glightbox" href="../img/Storymap.png"><img alt="Storymap" src="../img/Storymap.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../img/Storymap.png"><img alt="Storymap" src="../img/Storymap.png"/></a></p>
 <h2 id="project-plan">Project Plan</h2>
 <h3 id="sprint-1">Sprint 1</h3>
 <p>Due September 24</p>
@@ -434,10 +444,11 @@
 <script>var base_url = '..';</script>
 <script defer="" src="../js/theme_extra.js"></script>
 <script defer="" src="../js/theme.js"></script>
+<script defer="" src="../search/main.js"></script>
 <script defer="">
         window.onload = function () {
             SphinxRtdTheme.Navigation.enable(true);
         };
     </script>
-<script>const lightbox = GLightbox({"touchNavigation": true, "loop": false, "width": "100%", "height": "auto", "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom"});</script></body>
+<script>const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom"});</script></body>
 </html>
