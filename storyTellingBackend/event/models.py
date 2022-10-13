@@ -3,7 +3,7 @@ import uuid
 from user.models import User
 
 # Create your models here.
-class event(models.Model):
+class Event(models.Model):
     class type(models.TextChoices):
         LOG='LOG'
         EVENT='EVENT'
