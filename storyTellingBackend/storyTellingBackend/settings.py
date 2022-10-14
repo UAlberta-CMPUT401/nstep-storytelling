@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'questionnaire',
     'drf_yasg',
     'user',
+    'event',
 ]
 
 MIDDLEWARE = [
@@ -78,10 +79,15 @@ WSGI_APPLICATION = 'storyTellingBackend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+# settings.py
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'nstep_database',
+        'USER': 'root',
+        'PASSWORD': 'Dragon123!',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
