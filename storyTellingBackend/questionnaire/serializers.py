@@ -1,20 +1,7 @@
-from django.db.models import fields
 from rest_framework import serializers
-from questionnaire.models import *
-
-class AnswerSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Answer
-        fields = ['id','name','description','url']
-
-
-class QuestionSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Answer
-        fields = ['id','name','description','url','answers']
-
+from .models import Questionnaire
 
 class QuestionnaireSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Answer
-        fields = ['id','questions','url']
+        model = Questionnaire
+        fields = ('id', 'url', 'questions')

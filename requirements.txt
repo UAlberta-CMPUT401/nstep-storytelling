@@ -2,3 +2,5 @@ Django==4.1.1
 djangorestframework
 django-cors-headers
 drf-yasg
+pymysql
+Pillow
