@@ -17,14 +17,16 @@ from django.contrib import admin
 from django.urls import path
 from django.contrib import admin
 from django.urls import path,re_path
-from user import views
+from user import views as uv
+from questionnaire import views as qv
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/users',views.UserList.as_view(),name='UserList'),
-    re_path(r'api/users/(?P<pk>[(-z)]{36})/', views.UserDetail.as_view(),name='SingleUser'),
+    path('api/users',uv.UserList.as_view(),name='UserList'),
+    re_path(r'api/user/(?P<pk>[(-z)]{36})/', uv.UserDetail.as_view(),name='SingleUser'),
+    path('api/questionnaires',qv.QuestionnaireDetail.as_view(),name='QuestionnaireDetail'),
 
 ]
