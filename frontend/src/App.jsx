@@ -1,11 +1,17 @@
-import React from 'react';
+/* eslint-disable quotes */
+import React from "react";
+import { Route, Routes } from "react-router-dom";
+import Welcome from "./welcome";
+import Login from "./login";
+import Dashboard from "./dashboard";
+import "./styles/App.css";
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <h1>Hello Jashwanth!</h1>
-    </div>
+    <Routes>
+      <Route path="/" element={<Welcome />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/dashboard" element={<Dashboard />} />
+    </Routes>
   );
 }
-
-export default App;
