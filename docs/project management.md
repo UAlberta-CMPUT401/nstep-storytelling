@@ -36,7 +36,7 @@ Due October 15
 
 Estimated sprint velocity: **15**
 
-**Tasks**
+#### **Tasks**
 
 | **Task** | **Related US** | **Assigned To** | **Due Date** |
 | --- | --- | --- | --- |
@@ -55,7 +55,7 @@ Estimated sprint velocity: **15**
 
 Due October 29
 
-**User stories**
+#### **User stories**
 
 | **User story** | **Story points** |
 | --- | --- |
@@ -66,7 +66,7 @@ Due October 29
 
 Estimated sprint velocity: **17**
 
-**Tasks**
+#### **Tasks**
 
 | **Task** | **Related US** | **Assigned To** | **Due Date** |
 | --- | --- | --- | --- |
@@ -81,7 +81,7 @@ Estimated sprint velocity: **17**
 
 Due November 19
 
-**User stories**
+#### **User stories**
 
 | **User story** | **Story points** |
 | --- | --- |
@@ -93,7 +93,7 @@ Due November 19
 
 Estimated sprint velocity: **16**
 
-**Tasks**
+#### **Tasks**
 
 | **Task** | **Related US** | **Assigned To** | **Due Date** |
 | --- | --- | --- | --- |
@@ -103,7 +103,7 @@ Estimated sprint velocity: **16**
 
 Due December 3
 
-**User stories**
+#### **User stories**
 
 | **User story** | **Story points** |
 | --- | --- |
@@ -114,7 +114,7 @@ Due December 3
 
 Estimated sprint velocity: **17**
 
-**Tasks**
+#### **Tasks**
 
 | **Task** | **Related US** | **Assigned To** | **Due Date** |
 | --- | --- | --- | --- |
