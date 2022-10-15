@@ -4,4 +4,4 @@ from .models import Questionnaire
 class QuestionnaireSerializer(serializers.ModelSerializer):
     class Meta:
         model = Questionnaire
-        fields = ('id', 'url', 'questions')
+        fields = ['id', 'url', 'questions']
