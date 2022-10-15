@@ -51,7 +51,7 @@ Estimated sprint velocity: **15**
 | REST API endpoints for creating questionnaires | US 1.02 | Théo | Oct 14 |
 | Text feedback | US 3.01 | Jinglong | Oct 15 |
 
-## Sprint 3
+### Sprint 3
 
 Due October 29
 
@@ -77,7 +77,7 @@ Estimated sprint velocity: **17**
 | Text feedback | US 3.01 | Théo | Oct 23 |
 | JSX/CSS for creating questionnaires | US 1.02 | Jason, Favour | Oct 22 |
 
-## Sprint 4
+### Sprint 4
 
 Due November 19
 
@@ -99,7 +99,7 @@ Estimated sprint velocity: **16**
 | --- | --- | --- | --- |
 | | | | |
 
-## Sprint 5
+### Sprint 5
 
 Due December 3
 
