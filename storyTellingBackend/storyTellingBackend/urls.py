@@ -41,4 +41,7 @@ urlpatterns = [
     path('api/users',uv.UserList.as_view(),name='UserList'),
     path('api/user', uv.UserDetail.as_view(),name='UserList'),
     re_path(r'api/user/(?P<pk>[(-z)]{36})/', uv.UserDetail.as_view(),name='SingleUser'),
+    path('api/questionnaires',qv.QuestionnaireDetail.as_view(),name='QuestionnaireDetail'),
+    path(r'api/question/(?P<pk>[(-z)]{36})/feedbacks/',qv.Feedbacks.as_view(),name='Feedbacks'),
+
 ]
