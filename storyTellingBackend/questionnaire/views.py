@@ -1,8 +1,9 @@
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import api_view
-from .models import Questionnaire
-from .serializers import QuestionnaireSerializer
+from .models import Questionnaire,Answer,Question
+from .serializers import *
+from rest_framework.views import APIView
 
 @api_view(['GET', 'POST'])
 def questionnaire_list(request, format=None):
@@ -45,10 +46,10 @@ class Feedbacks(APIView):
     """
     List all feedbacks, or create a new feedback.
     """
-    def get(self, request, format=None):
+    def get(self, request, pk):
         # pk = self.kwargs['pk']
         # question = Question.objects.filter(pk=pk)         
-        answers = Answer.objects.all()
+        answers = Answer.objects.filter(question = pk)
 
         serializer = AnswerInListSerializer(answers, many=True)
         response = serializer.data
