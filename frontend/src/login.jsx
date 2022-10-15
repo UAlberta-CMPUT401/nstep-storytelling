@@ -1,4 +1,7 @@
-import React from 'react'
+/* eslint-disable jsx-a11y/img-redundant-alt */
+/* eslint-disable react/self-closing-comp */
+import React from "react";
+import { Link } from "react-router-dom";
 
 const AdminLoginPage = (props) => {
   return (
@@ -106,7 +109,9 @@ const AdminLoginPage = (props) => {
           </a>
         </div>
         <div className="admin-login-page-container6">
-          <button className="admin-login-page-button button">Login</button>
+          <Link to="/dashboard">
+            <button className="admin-login-page-button button">Login</button>
+          </Link>
         </div>
       </div>
       <style jsx>
@@ -332,7 +337,7 @@ const AdminLoginPage = (props) => {
         `}
       </style>
     </>
-  )
-}
+  );
+};
 
-export default AdminLoginPage
+export default AdminLoginPage;
