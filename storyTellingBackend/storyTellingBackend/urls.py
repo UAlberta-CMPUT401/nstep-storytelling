@@ -26,6 +26,7 @@ from drf_yasg import openapi
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/users',uv.UserList.as_view(),name='UserList'),
+    path('api/user', uv.UserDetail.as_view(),name='UserList'),
     re_path(r'api/user/(?P<pk>[(-z)]{36})/', uv.UserDetail.as_view(),name='SingleUser'),
     path('api/questionnaires',qv.QuestionnaireDetail.as_view(),name='QuestionnaireDetail'),
 
