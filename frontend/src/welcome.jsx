@@ -9,7 +9,7 @@ export default function Welcome() {
     <div>
       <Navbar />
       <Selection />
-      <Link to="/login" style={{ float: 'right' }}>
+      <Link to="/login" style={{ float: 'right', paddingRight: '12px' }}>
         Admin Login
       </Link>
     </div>

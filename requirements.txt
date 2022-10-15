@@ -1,6 +1,6 @@
 Django==4.1.1
-djangorestframework
+djangorestframework==3.14.0
+drf_yasg==1.21.4
+PyMySQL==1.0.2
 django-cors-headers
-drf-yasg
-pymysql
 Pillow
