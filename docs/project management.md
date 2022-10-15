@@ -3,7 +3,7 @@
 This page provides a general overview of the assigned tasks and roles for the duration of five sprints (subject to change).
 
 ## Story Map
-![Storymap](img/Storymap.png)
+![Storymap](img/storymap_revised.png)
 
 ## Project Plan
 
