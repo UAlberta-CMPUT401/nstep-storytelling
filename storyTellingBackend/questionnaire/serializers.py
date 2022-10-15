@@ -28,4 +28,4 @@ class AnswerInListSerializer(serializers.ModelSerializer):
 class AddAnswerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Answer
-        fields = ['name','description',"content_type"]
+        fields = ['name','description',"content_type",'question']
