@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Tabs, Tab } from "@mui/material";
-import Navbar from "./Navbar";
+import Navbar from "./components/Navbar";
 import Forms from "./forms";
 import Feedback from "./feedback";
 import "./styles/App.css";
