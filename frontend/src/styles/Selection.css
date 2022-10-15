@@ -6,3 +6,17 @@
     padding: 12px;
     min-height: 700px;
 }
+
+.selection-bg {
+    /* width: 100%; */
+    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('../../assets/infant-school-teacher-showing-a-book-to-a-group-of-ZXR9KNF.JPG');
+    background-position: center;
+    background-size: cover;
+    /* background-attachment: fixed; */
+    /* min-height: 600px; */
+}
+
+* {
+    margin: 0px
+}
+

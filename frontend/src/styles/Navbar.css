@@ -3,7 +3,6 @@
     text-decoration: none;
     font-size: 2rem;
     color: #414143;
-    align-self: center;
 }
 
 .navbar-logo {
@@ -14,4 +13,6 @@
     display: flex;
     justify-content: space-evenly;
     padding: 12px;
+    align-items: center;
+    margin-bottom: 16px;
 }
