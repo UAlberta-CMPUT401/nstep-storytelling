@@ -1,12 +1,12 @@
-import React from 'react';
-import Navbar from './Navbar';
-import './styles/App.css';
+import React from "react";
+import Navbar from "./components/Navbar";
+import "./styles/App.css";
 
 export default function Login() {
   return (
     <div>
       <Navbar />
-      <h1 style={{ textAlign: 'center' }}>login</h1>
+      <h1 style={{ textAlign: "center" }}>login</h1>
     </div>
   );
 }

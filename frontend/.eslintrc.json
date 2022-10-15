@@ -25,7 +25,8 @@
         "react/destructuring-assignment":0,
         "arrow-body-style":0,
         "no-unused-vars":0,
-        "react/button-has-type":0
+        "react/button-has-type":0,
+        "quotes":0
     },
     "overrides": [
     {
