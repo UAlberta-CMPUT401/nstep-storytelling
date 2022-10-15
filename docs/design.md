@@ -15,11 +15,14 @@ This is a short description of logical entities of the domain in a UML diagram.
 ## Sequence Diagrams
 Multiple sequence diagrams depicting the most important scenarios.
 
+### Super Admin Sequence
+![Super Admin Sequence](img/SuperAdminSequence.png)
+
 ### Admin Sequence
-![Admin Sequence](img/Admin%20Sequence.png)
+![Admin Sequence](img/AdminSequence.png)
 
 ### User Sequence
-![User Sequence](img/User%20Sequence.png)
+![User Sequence](img/UserSequence.png)
 
 
 ## Low-Fidelity User interface

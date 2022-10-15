@@ -3,7 +3,7 @@
 This page provides a general overview of the assigned tasks and roles for the duration of five sprints (subject to change).
 
 ## Story Map
-![Storymap](img/Storymap.png)
+![Storymap](img/storymap_revised.png)
 
 ## Project Plan
 
@@ -36,7 +36,7 @@ Due October 15
 
 Estimated sprint velocity: **15**
 
-**Tasks**
+#### **Tasks**
 
 | **Task** | **Related US** | **Assigned To** | **Due Date** |
 | --- | --- | --- | --- |
@@ -51,33 +51,37 @@ Estimated sprint velocity: **15**
 | REST API endpoints for creating questionnaires | US 1.02 | Théo | Oct 14 |
 | Text feedback | US 3.01 | Jinglong | Oct 15 |
 
-## Sprint 3
+### Sprint 3
 
 Due October 29
 
-**User stories**
+#### **User stories**
 
 | **User story** | **Story points** |
 | --- | --- |
-| US 1.06 | 3 |
+| US 1.06 | 5 |
 | US 3.02 | 5 |
 | US 3.03 | 5 |
-| US 3.09 | 3 |
 | US 3.04 | 2 |
 
-Estimated sprint velocity: **18**
+Estimated sprint velocity: **17**
 
-**Tasks**
+#### **Tasks**
 
 | **Task** | **Related US** | **Assigned To** | **Due Date** |
 | --- | --- | --- | --- |
-| | | | |
+| Search for stories by program | US 1.06 | Jason, Asad | Oct 27 |
+| Search for stories by time | US 1.06 | Jayden, Favour | Oct 27 |
+| Audio feedback | US 3.02 | Théo, Asad | Oct 24 |
+| Video feedback | US 3.03 | Mohammed, Jayden | Oct 25 |
+| Text feedback | US 3.01 | Théo | Oct 23 |
+| JSX/CSS for creating questionnaires | US 1.02 | Jason, Favour | Oct 22 |
 
-## Sprint 4
+### Sprint 4
 
 Due November 19
 
-**User stories**
+#### **User stories**
 
 | **User story** | **Story points** |
 | --- | --- |
@@ -89,17 +93,17 @@ Due November 19
 
 Estimated sprint velocity: **16**
 
-**Tasks**
+#### **Tasks**
 
 | **Task** | **Related US** | **Assigned To** | **Due Date** |
 | --- | --- | --- | --- |
 | | | | |
 
-## Sprint 5
+### Sprint 5
 
 Due December 3
 
-**User stories**
+#### **User stories**
 
 | **User story** | **Story points** |
 | --- | --- |
@@ -110,7 +114,7 @@ Due December 3
 
 Estimated sprint velocity: **17**
 
-**Tasks**
+#### **Tasks**
 
 | **Task** | **Related US** | **Assigned To** | **Due Date** |
 | --- | --- | --- | --- |
