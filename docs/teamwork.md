@@ -115,6 +115,9 @@ Product Owner: Théo
 Scrum Master: Favour 
 
 **Sprint 3**  
+Product Owner: Mo  
+Scrum Master: Jason 
+
 **Sprint 4**  
 **Sprint 5**  
 

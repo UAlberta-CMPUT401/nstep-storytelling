@@ -10,11 +10,22 @@ class AnswerSerializer(serializers.ModelSerializer):
 
 class QuestionSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Answer
+        model = Question
         fields = ['id','name','description','url','answers']
 
 
 class QuestionnaireSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Answer
+        model = Questionnaire
         fields = ['id','questions','url']
+
+class AnswerInListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Answer
+        fields = ['name','description','url',"content_type"]
+
+
+class AddAnswerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Answer
+        fields = ['name','description',"content_type"]

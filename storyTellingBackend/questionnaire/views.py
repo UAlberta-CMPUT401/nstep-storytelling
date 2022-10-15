@@ -35,3 +35,27 @@ class QuestionnaireDetail(APIView):
                         }
             return Response(response, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class Feedbacks(APIView):
+    """
+    List all feedbacks, or create a new feedback.
+    """
+    def get(self, request, format=None):
+        content_type = self.kwargs['content_type']
+        answers = Answer.objects.filter(content_type=content_type)
+        serializer = AnswerInListSerializer(answers, many=True)
+        response = serializer.data
+        return Response(response)
+
+    def post(self, request, format=None):
+        serializer = AddAnswerSerializer(data=request.data)
+        if serializer.is_valid():
+            result = serializer.save()
+            response = {
+                        "status": 0,
+                        "message": "added",
+                        "id": result.id
+                        }
+            return Response(response, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
