@@ -114,7 +114,10 @@ Scrum Master: Favour
 Product Owner: Théo  
 Scrum Master: Favour 
 
-**Sprint 3**  
+**Sprint 3**
+Product Owner: Mohammed  
+Scrum Master: Théo 
+
 **Sprint 4**  
 **Sprint 5**  
 
