@@ -4,8 +4,8 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Button from '@mui/material/Button';
-import './styles/Selection.css';
-import bg from '../assets/infant-school-teacher-showing-a-book-to-a-group-of-ZXR9KNF.jpg';
+import '../styles/Selection.css';
+import bg from '../../assets/infant-school-teacher-showing-a-book-to-a-group-of-ZXR9KNF.jpg';
 
 export default function Selection() {
   const [age, setAge] = React.useState('');
