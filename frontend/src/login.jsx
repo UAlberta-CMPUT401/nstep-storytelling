@@ -2,6 +2,7 @@
 /* eslint-disable react/self-closing-comp */
 import React from "react";
 import { Link } from "react-router-dom";
+import logo from '../assets/NSTEP_Horizontal-Logo_Color_WithTagline.png';
 
 const AdminLoginPage = (props) => {
   return (
@@ -10,8 +11,9 @@ const AdminLoginPage = (props) => {
         <header data-role="Header" className="admin-login-page-header">
           <img
             alt="logo"
-            src="/playground_assets/nstephorizontallogocolor12729-4rdg-1500h.png"
+            src={logo}
             className="admin-login-page-image"
+            style={{ width: 300, height: 100 }}
           />
           <div className="admin-login-page-container1">
             <div className="admin-login-page-icon-group">
