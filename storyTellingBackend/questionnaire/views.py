@@ -46,7 +46,7 @@ class Feedbacks(APIView):
     """
     List all feedbacks, or create a new feedback.
     """
-    def get(self, request, format=None):
+    def get(self, request,pk, format=None):
         # pk = self.kwargs['pk']
         # question = Question.objects.filter(pk=pk)         
         answers = Answer.objects.all()
@@ -55,29 +55,33 @@ class Feedbacks(APIView):
         response = serializer.data
         return Response(response)
 
-    def post(self, request):
-        pk = self.kwargs['pk']
+    def post(self, request,pk):
         question = Question.objects.filter(pk=pk)  
-        request.data['question'] = question
+        request.data['question'] = pk
 
-        if request.data['content_type'] == "text":
-            self.post_text(request.data)
-        elif request.data['content_type'] == "voice":
+        if request.data['content_type'].lower() == "text":
+            result,condition = self.post_text(request.data)
+        elif request.data['content_type'].lower() == "voice":
             self.post_voice(request.data)
-        elif request.data['content_type'] == "video":
+        elif request.data['content_type'].lower() == "video":
             self.post_video(request.data)
+
+        if condition:
+            response = {
+            "status": 0,
+            "message": "added",
+            "id": result.id
+            }
+            return Response(response, status=status.HTTP_201_CREATED)
+        return Response(result.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def post_text(self, data):       
         serializer = AddAnswerSerializer(data=data)
         if serializer.is_valid():
             result = serializer.save()
-            response = {
-                        "status": 0,
-                        "message": "added",
-                        "id": result.id
-                        }
-            return Response(response, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+            return result,True
+        return serializer,False
 
     def post_voice(self, data):       
         pass

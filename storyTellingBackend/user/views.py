@@ -22,6 +22,18 @@ class UserList(APIView):
 
         return Response(response)
     
+    def post(self, request, format=None):
+        serializer = UserSerializer(data=request.data)
+        if serializer.is_valid():
+            result = serializer.save()
+            response = {
+                        "status": 0,
+                        "message": "User created",
+                        "id": result.id,
+                        }
+            return Response(response)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
     
 class UserDetail(APIView):
     """
