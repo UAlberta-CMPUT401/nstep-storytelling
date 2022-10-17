@@ -6,10 +6,10 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['id','name','host','url','profileImage']
+        fields = ['username','profileImage']
 
 
 class UserInListSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id','name','host','url','profileImage']
+        fields = ['username','profileImage']
