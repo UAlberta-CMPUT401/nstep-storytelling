@@ -7,6 +7,7 @@ import Button from '@mui/material/Button';
 import '../styles/Selection.css';
 import { styled } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
+import { Link } from "react-router-dom";
 
 export default function Selection() {
   const [age, setAge] = React.useState('');
@@ -65,7 +66,9 @@ export default function Selection() {
           }}
           variant="contained"
         >
-          OK
+          <Link to="/newForm">
+            OK
+          </Link>
         </Button>
       </div>
     </div>

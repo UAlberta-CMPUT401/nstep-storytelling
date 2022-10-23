@@ -1,7 +1,9 @@
 import React from 'react';
-import '../styles/Navbar.css';
+import TextInput from './TextInput';
 
 export default function ElementSelector() {
+  const [isToggled, setIsToggled] = React.useState(false);
+
   return (
     <>
       <div style={{ textAlign: "center" }}>
@@ -11,6 +13,11 @@ export default function ElementSelector() {
           <option value="c++">Video</option>
         </select>
       </div>
+      <button onClick={() => setIsToggled(true)}>
+        Add
+      </button>
+
+      {isToggled && <TextInput />}
     </>
   );
 }

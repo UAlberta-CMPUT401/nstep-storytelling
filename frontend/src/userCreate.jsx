@@ -4,23 +4,19 @@ import ElementSelector from "./components/ElementSelector";
 import Navbar from "./components/Navbar";
 import "./styles/App.css";
 
-export default function Create() {
-  const [isToggled, setIsToggled] = React.useState(false);
-
+export default function UserCreate() {
   return (
     <>
       <Navbar />
       <div style={{ textAlign: "center" }}>
-        <button onClick={() => setIsToggled(!isToggled)}>
-          Add form element +
-        </button>
-
-        {isToggled && <ElementSelector />}
+        <input placeholder="First name" />
+      </div>
+      <div style={{ textAlign: "center" }}>
 
         <div style={{ textAlign: "center" }}>
           <button>
-            <Link to="/dashboard" style={{ textDecoration: "none" }}>
-              Save & Return
+            <Link to="/submitted" style={{ textDecoration: "none" }}>
+              Submit
             </Link>
           </button>
         </div>
