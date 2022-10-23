@@ -2,8 +2,9 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
-from .models import Questionnaire, Question, Answer
-from .serializers import QuestionnaireSerializer, AnswerInListSerializer, AddAnswerSerializer
+from .models import Program, Questionnaire, Question, Answer
+from .serializers import ProgramSerializer, QuestionnaireSerializer, AnswerInListSerializer, AddAnswerSerializer
+from django.http import Http404
 
 @api_view(['GET', 'POST'])
 def questionnaire_list(request, format=None):
@@ -88,3 +89,79 @@ class Feedbacks(APIView):
 
     def post_video(self, data):       
         pass
+    
+    
+class ProgramList(APIView):
+    '''
+    List of all the programs available
+    '''
+    def get(self, request, format=None):
+        program = Program.objects.all()
+        serializer = ProgramSerializer(program, many=True)
+        response = {'total': len(serializer.data),
+                    'programs': serializer.data,
+                    }
+
+        return Response(response)
+
+
+class ProgramDetail(APIView):
+    def get_object(self, pk):
+        try:
+            return Program.objects.get(pk=pk)
+        except Program.DoesNotExist:
+            raise Http404
+
+    def get(self, request, pk, format=None):
+        program = self.get_object(pk)
+        serializer = ProgramSerializer(program)
+        return Response(serializer.data)
+
+    def post(self, request, pk, format=None):
+        serializer = ProgramSerializer(data=request.data)
+        if serializer.is_valid():
+            result = serializer.save()
+            response = {
+                        "status": 0,
+                        "message": "program created",
+                        "id": result.id,
+                        }
+            return Response(response)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def put(self, request, pk, format=None):
+        program = self.get_object(pk)
+        serializer = ProgramSerializer(program, data=request.data)
+
+        if serializer.is_valid():
+            serializer.save()
+            response = {
+                        "status": 0,
+                        "message": "program updated"
+                        }
+            return Response(response)
+        
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def patch(self, request, pk, format=None):
+        program = self.get_object(pk)
+
+        serializer = ProgramSerializer(program, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            response = {
+                        "status": 0,
+                        "message": "program modified"
+                        }
+            return Response(response)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+    def delete(self, request, pk, format=None):
+        program = self.get_object(pk)
+        program.delete()
+        response = {
+            "status": 0,
+            "message": "program deleted"
+            }
+        return Response(response)

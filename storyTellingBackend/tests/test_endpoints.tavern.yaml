@@ -1,0 +1,565 @@
+---
+test_name: Endpoints _ 1. Add New User
+
+includes:
+  - !include includes.yaml
+
+strict:
+  - json:off
+
+stages:
+  - name: Add new user
+
+    request:
+      url: http://{host:s}:{port:d}/api/user
+      follow_redirects: true
+      method: POST
+      json:
+        name: "New user"
+
+    response:
+      status_code: [200, 201]
+      save:
+        json:
+          user_id: id
+
+
+  - name: Delete the user
+
+    request:
+      url: http://{host:s}:{port:d}/api/user/{user_id}
+      follow_redirects: true
+      method: DELETE
+      timeout: 1.0
+
+    response:
+      status_code: [200, 201]
+      json:
+        status: 0
+        message: "User deleted"
+
+---
+test_name: Endpoints _ 2. Fetch New User
+
+includes:
+  - !include includes.yaml
+
+strict:
+  - json:off
+
+stages:
+  - name: Add new User
+
+    request:
+      url: http://{host:s}:{port:d}/api/user
+      follow_redirects: true
+      method: POST
+      json:
+        name: "New user"
+
+    response:
+      status_code: [200, 201]
+      save:
+        json:
+          user_id: id
+
+  - name: Fetch new user
+
+    request:
+      url: http://{host:s}:{port:d}/api/user/{user_id}
+      follow_redirects: true
+      method: GET
+      timeout: 1.0
+
+    response:
+      status_code: 200
+      json:
+        name: "New user"
+
+  - name: Delete the user
+
+    request:
+      url: http://{host:s}:{port:d}/api/user/{user_id}
+      follow_redirects: true
+      method: DELETE
+      timeout: 1.0
+
+    response:
+      status_code: [200, 201]
+      json:
+        status: 0
+        message: "User deleted"
+
+---
+test_name: Endpoints _ 4. Update user
+
+includes:
+  - !include includes.yaml
+
+strict:
+  - json:off
+
+stages:
+  - name: Add new user
+
+    request:
+      url: http://{host:s}:{port:d}/api/user
+      follow_redirects: true
+      method: POST
+      json:
+        name: "Test user"
+
+    response:
+      status_code: [200, 201]
+      save:
+        json:
+          user_id: id
+
+  - name: Update user
+
+    request:
+      url: http://{host:s}:{port:d}/api/user/{user_id}
+      follow_redirects: true
+      method: PUT
+      json:
+        name: "Updated test user"
+      timeout: 1.0
+
+    response:
+      status_code: [200, 201]
+      json:
+        status: 0
+        message: "User updated"
+
+  - name: Retrieve the updated user
+
+    request:
+      url: http://{host:s}:{port:d}/api/user/{user_id}
+      follow_redirects: true
+      method: GET
+      timeout: 1.0
+
+    response:
+      status_code: 200
+      json:
+        name: "Updated test user"
+
+  - name: Delete the user
+
+    request:
+      url: http://{host:s}:{port:d}/api/user/{user_id}
+      follow_redirects: true
+      method: DELETE
+      timeout: 1.0
+
+    response:
+      status_code: [200, 201]
+      json:
+        status: 0
+        message: "User deleted"
+
+---
+test_name: Endpoints _ 5. Modify user
+
+includes:
+  - !include includes.yaml
+
+strict:
+  - json:off
+
+stages:
+  - name: Add new user
+
+    request:
+      url: http://{host:s}:{port:d}/api/user
+      follow_redirects: true
+      method: POST
+      json:
+        name: "Test user"
+
+    response:
+      status_code: [200, 201]
+      save:
+        json:
+          user_id: id
+
+  - name: Modify user
+
+    request:
+      url: http://{host:s}:{port:d}/api/user/{user_id}
+      follow_redirects: true
+      method: PATCH
+      json:
+        name: "Modified user name"
+      timeout: 1.0
+
+    response:
+      status_code: [200, 201]
+      json:
+        status: 0
+        message: "User modified"
+
+  - name: Retrieve the modified user
+
+    request:
+      url: http://{host:s}:{port:d}/api/user/{user_id}
+      follow_redirects: true
+      method: GET
+      timeout: 1.0
+
+    response:
+      status_code: 200
+      json:
+        name: "Modified user name"
+
+
+  - name: Delete the user
+
+    request:
+      url: http://{host:s}:{port:d}/api/user/{user_id}
+      follow_redirects: true
+      method: DELETE
+      timeout: 1.0
+
+    response:
+      status_code: [200, 201]
+      json:
+        status: 0
+        message: "User deleted"
+
+---
+test_name: Endpoints _ 6. Delete user
+
+includes:
+  - !include includes.yaml
+
+strict:
+  - json:off
+
+stages:
+  - name: Add new user
+
+    request:
+      url: http://{host:s}:{port:d}/api/user
+      follow_redirects: true
+      method: POST
+      json:
+        name: "Test user"
+
+    response:
+      status_code: [200, 201]
+      save:
+        json:
+          user_id: id
+
+  - name: Delete the user
+
+    request:
+      url: http://{host:s}:{port:d}/api/user/{user_id}
+      follow_redirects: true
+      method: DELETE
+      timeout: 1.0
+
+    response:
+      status_code: [200, 201]
+      json:
+        status: 0
+        message: "User deleted"
+
+  - name: Retrieve the deleted user
+
+    request:
+      url: http://{host:s}:{port:d}/api/user/{user_id}
+      follow_redirects: true
+      method: GET
+      timeout: 1.0
+
+    response:
+      status_code: [404]
+
+
+
+
+
+
+
+
+
+---
+test_name: Endpoints _ 1. Add New Program
+
+includes:
+  - !include includes.yaml
+
+strict:
+  - json:off
+
+stages:
+  - name: Add new Program
+
+    request:
+      url: http://{host:s}:{port:d}/api/program
+      follow_redirects: true
+      method: POST
+      json:
+        name: "New program"
+
+    response:
+      status_code: [200, 201]
+      save:
+        json:
+          program_id: id
+
+
+  - name: Delete the program
+
+    request:
+      url: http://{host:s}:{port:d}/api/program/{program_id}
+      follow_redirects: true
+      method: DELETE
+      timeout: 1.0
+
+    response:
+      status_code: [200, 201]
+      json:
+        status: 0
+        message: "Program deleted"
+
+---
+test_name: Endpoints _ 2. Fetch New Program
+
+includes:
+  - !include includes.yaml
+
+strict:
+  - json:off
+
+stages:
+  - name: Add new Program
+
+    request:
+      url: http://{host:s}:{port:d}/api/program
+      follow_redirects: true
+      method: POST
+      json:
+        name: "New Program"
+
+    response:
+      status_code: [200, 201]
+      save:
+        json:
+          program_id: id
+
+  - name: Fetch new Program
+
+    request:
+      url: http://{host:s}:{port:d}/api/Program/{program_id}
+      follow_redirects: true
+      method: GET
+      timeout: 1.0
+
+    response:
+      status_code: 200
+      json:
+        name: "New program"
+
+  - name: Delete the program
+
+    request:
+      url: http://{host:s}:{port:d}/api/program/{program_id}
+      follow_redirects: true
+      method: DELETE
+      timeout: 1.0
+
+    response:
+      status_code: [200, 201]
+      json:
+        status: 0
+        message: "program deleted"
+
+---
+test_name: Endpoints _ 4. Update program
+
+includes:
+  - !include includes.yaml
+
+strict:
+  - json:off
+
+stages:
+  - name: Add new program
+
+    request:
+      url: http://{host:s}:{port:d}/api/program
+      follow_redirects: true
+      method: POST
+      json:
+        name: "Test program"
+
+    response:
+      status_code: [200, 201]
+      save:
+        json:
+          program_id: id
+
+  - name: Update program
+
+    request:
+      url: http://{host:s}:{port:d}/api/program/{program_id}
+      follow_redirects: true
+      method: PUT
+      json:
+        name: "Updated test program"
+      timeout: 1.0
+
+    response:
+      status_code: [200, 201]
+      json:
+        status: 0
+        message: "program updated"
+
+  - name: Retrieve the updated program
+
+    request:
+      url: http://{host:s}:{port:d}/api/program/{program_id}
+      follow_redirects: true
+      method: GET
+      timeout: 1.0
+
+    response:
+      status_code: 200
+      json:
+        name: "Updated test program"
+
+  - name: Delete the program
+
+    request:
+      url: http://{host:s}:{port:d}/api/program/{program_id}
+      follow_redirects: true
+      method: DELETE
+      timeout: 1.0
+
+    response:
+      status_code: [200, 201]
+      json:
+        status: 0
+        message: "program deleted"
+
+---
+test_name: Endpoints _ 5. Modify program
+
+includes:
+  - !include includes.yaml
+
+strict:
+  - json:off
+
+stages:
+  - name: Add new program
+
+    request:
+      url: http://{host:s}:{port:d}/api/program
+      follow_redirects: true
+      method: POST
+      json:
+        name: "Test program"
+
+    response:
+      status_code: [200, 201]
+      save:
+        json:
+          program_id: id
+
+  - name: Modify program
+
+    request:
+      url: http://{host:s}:{port:d}/api/program/{program_id}
+      follow_redirects: true
+      method: PATCH
+      json:
+        name: "Modified program name"
+      timeout: 1.0
+
+    response:
+      status_code: [200, 201]
+      json:
+        status: 0
+        message: "program modified"
+
+  - name: Retrieve the modified program
+
+    request:
+      url: http://{host:s}:{port:d}/api/program/{program_id}
+      follow_redirects: true
+      method: GET
+      timeout: 1.0
+
+    response:
+      status_code: 200
+      json:
+        name: "Modified program name"
+
+
+  - name: Delete the program
+
+    request:
+      url: http://{host:s}:{port:d}/api/program/{program_id}
+      follow_redirects: true
+      method: DELETE
+      timeout: 1.0
+
+    response:
+      status_code: [200, 201]
+      json:
+        status: 0
+        message: "program deleted"
+
+---
+test_name: Endpoints _ 6. Delete program
+
+includes:
+  - !include includes.yaml
+
+strict:
+  - json:off
+
+stages:
+  - name: Add new program
+
+    request:
+      url: http://{host:s}:{port:d}/api/program
+      follow_redirects: true
+      method: POST
+      json:
+        name: "Test program"
+
+    response:
+      status_code: [200, 201]
+      save:
+        json:
+          program_id: id
+
+  - name: Delete the program
+
+    request:
+      url: http://{host:s}:{port:d}/api/program/{program_id}
+      follow_redirects: true
+      method: DELETE
+      timeout: 1.0
+
+    response:
+      status_code: [200, 201]
+      json:
+        status: 0
+        message: "program deleted"
+
+  - name: Retrieve the deleted program
+
+    request:
+      url: http://{host:s}:{port:d}/api/program/{program_id}
+      follow_redirects: true
+      method: GET
+      timeout: 1.0
+
+    response:
+      status_code: [404]
