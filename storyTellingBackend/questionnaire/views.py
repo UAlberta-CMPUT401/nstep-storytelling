@@ -1,15 +1,9 @@
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import api_view
-<<<<<<< HEAD
 from .models import Questionnaire,Answer,Question
 from .serializers import *
 from rest_framework.views import APIView
-=======
-from rest_framework.views import APIView
-from .models import Questionnaire, Question, Answer
-from .serializers import QuestionnaireSerializer, AnswerInListSerializer, AddAnswerSerializer
->>>>>>> 0e96fbe141dd848014d01387d33be16c6140e0d4
 
 @api_view(['GET', 'POST'])
 def questionnaire_list(request, format=None):
