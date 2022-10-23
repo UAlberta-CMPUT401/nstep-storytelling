@@ -4,6 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import Welcome from "./welcome";
 import Login from "./login";
 import Dashboard from "./dashboard";
+import Create from "./create";
 import "./styles/App.css";
 
 export default function App() {
@@ -12,6 +13,7 @@ export default function App() {
       <Route path="/" element={<Welcome />} />
       <Route path="/login" element={<Login />} />
       <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/create" element={<Create />} />
     </Routes>
   );
 }
