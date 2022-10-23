@@ -39,7 +39,7 @@ export default function Selection() {
   return (
     <div className="selection-bg">
       <div className="selection">
-        <FormControl sx={{ m: 1, minWidth: 600 }}>
+        <FormControl sx={{ m: 1, width: '35%' }}>
           <InputLabel id="selection-label">Program</InputLabel>
           <Select
             labelId="demo-simple-select-autowidth-label"
