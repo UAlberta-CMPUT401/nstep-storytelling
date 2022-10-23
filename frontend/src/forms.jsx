@@ -1,10 +1,11 @@
 import React from 'react';
-import './styles/App.css';
+import Button from '@mui/material/Button';
+import './styles/Forms.css';
 
 export default function Forms() {
   return (
-    <div>
-      <button>+ Create Form</button>
+    <div className="forms">
+      <Button variant="contained">+ Create Form</Button>
       <ul>
         <li>Program 1 survey</li>
         <li>Program 2 survey</li>
