@@ -16,3 +16,12 @@
     align-items: center;
     margin-bottom: 16px;
 }
+
+@media (max-width: 1280px) {
+    .navbar-logo {
+        width: 150px;
+    }
+    .navbar-name {
+        font-size: 1.5rem;
+    }
+}
