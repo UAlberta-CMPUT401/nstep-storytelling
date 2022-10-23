@@ -16,6 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,re_path
 from questionnaire import views
+from user import views as uv
+from questionnaire import views as qv
+from django.conf.urls import include
+from django.urls import re_path
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 from rest_framework import permissions
@@ -41,9 +45,12 @@ urlpatterns = [
     path('questionnaire/<int:pk>/', views.questionnaire_detail),
     path('docs', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('api/users',uv.UserList.as_view(),name='UserList'),
-    path('api/user', uv.UserDetail.as_view(),name='UserList'),
+    # path('api/user', uv.UserDetail.as_view(),name='UserList'),
     re_path(r'api/user/(?P<pk>[(-z)]{36})/', uv.UserDetail.as_view(),name='SingleUser'),
+<<<<<<< HEAD
     path('api/questionnaires',qv.questionnaire_detail,name='QuestionnaireDetail'),
+=======
+>>>>>>> 0e96fbe141dd848014d01387d33be16c6140e0d4
     re_path(r'api/question/(?P<pk>[(-z)]{36})/feedbacks/',qv.Feedbacks.as_view(),name='Feedbacks'),
 
 ]

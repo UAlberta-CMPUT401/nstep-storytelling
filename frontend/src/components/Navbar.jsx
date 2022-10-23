@@ -1,6 +1,6 @@
 import React from 'react';
-import './styles/Navbar.css';
-import logo from '../assets/NSTEP_Horizontal-Logo_Color_WithTagline.png';
+import '../styles/Navbar.css';
+import logo from '../../assets/NSTEP_Horizontal-Logo_Color_WithTagline.png';
 
 const Navbar = () => (
   <div className="navbar">

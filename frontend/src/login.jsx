@@ -1,4 +1,8 @@
-import React from 'react'
+/* eslint-disable jsx-a11y/img-redundant-alt */
+/* eslint-disable react/self-closing-comp */
+import React from "react";
+import { Link } from "react-router-dom";
+import logo from '../assets/NSTEP_Horizontal-Logo_Color_WithTagline.png';
 
 const AdminLoginPage = (props) => {
   return (
@@ -7,8 +11,9 @@ const AdminLoginPage = (props) => {
         <header data-role="Header" className="admin-login-page-header">
           <img
             alt="logo"
-            src="/playground_assets/nstephorizontallogocolor12729-4rdg-1500h.png"
+            src={logo}
             className="admin-login-page-image"
+            style={{ width: 300, height: 100 }}
           />
           <div className="admin-login-page-container1">
             <div className="admin-login-page-icon-group">
@@ -106,7 +111,9 @@ const AdminLoginPage = (props) => {
           </a>
         </div>
         <div className="admin-login-page-container6">
-          <button className="admin-login-page-button button">Login</button>
+          <Link to="/dashboard">
+            <button className="admin-login-page-button button">Login</button>
+          </Link>
         </div>
       </div>
       <style jsx>
@@ -332,7 +339,7 @@ const AdminLoginPage = (props) => {
         `}
       </style>
     </>
-  )
-}
+  );
+};
 
-export default AdminLoginPage
+export default AdminLoginPage;

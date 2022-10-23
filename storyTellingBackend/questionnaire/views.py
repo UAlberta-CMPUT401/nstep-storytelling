@@ -1,9 +1,15 @@
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import api_view
+<<<<<<< HEAD
 from .models import Questionnaire,Answer,Question
 from .serializers import *
 from rest_framework.views import APIView
+=======
+from rest_framework.views import APIView
+from .models import Questionnaire, Question, Answer
+from .serializers import QuestionnaireSerializer, AnswerInListSerializer, AddAnswerSerializer
+>>>>>>> 0e96fbe141dd848014d01387d33be16c6140e0d4
 
 @api_view(['GET', 'POST'])
 def questionnaire_list(request, format=None):
@@ -46,7 +52,11 @@ class Feedbacks(APIView):
     """
     List all feedbacks, or create a new feedback.
     """
+<<<<<<< HEAD
     def get(self, request, pk):
+=======
+    def get(self, request,pk, format=None):
+>>>>>>> 0e96fbe141dd848014d01387d33be16c6140e0d4
         # pk = self.kwargs['pk']
         # question = Question.objects.filter(pk=pk)         
         answers = Answer.objects.filter(question = pk)
@@ -55,29 +65,33 @@ class Feedbacks(APIView):
         response = serializer.data
         return Response(response)
 
-    def post(self, request):
-        pk = self.kwargs['pk']
+    def post(self, request,pk):
         question = Question.objects.filter(pk=pk)  
-        request.data['question'] = question
+        request.data['question'] = pk
 
-        if request.data['content_type'] == "text":
-            self.post_text(request.data)
-        elif request.data['content_type'] == "voice":
+        if request.data['content_type'].lower() == "text":
+            result,condition = self.post_text(request.data)
+        elif request.data['content_type'].lower() == "voice":
             self.post_voice(request.data)
-        elif request.data['content_type'] == "video":
+        elif request.data['content_type'].lower() == "video":
             self.post_video(request.data)
+
+        if condition:
+            response = {
+            "status": 0,
+            "message": "added",
+            "id": result.id
+            }
+            return Response(response, status=status.HTTP_201_CREATED)
+        return Response(result.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def post_text(self, data):       
         serializer = AddAnswerSerializer(data=data)
         if serializer.is_valid():
             result = serializer.save()
-            response = {
-                        "status": 0,
-                        "message": "added",
-                        "id": result.id
-                        }
-            return Response(response, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+            return result,True
+        return serializer,False
 
     def post_voice(self, data):       
         pass

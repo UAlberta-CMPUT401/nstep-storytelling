@@ -74,7 +74,7 @@ Estimated sprint velocity: **17**
 | Search for stories by time | US 1.06 | Jayden, Favour | Oct 27 |
 | Audio feedback | US 3.02 | Théo, Asad | Oct 24 |
 | Video feedback | US 3.03 | Mohammed, Jayden | Oct 25 |
-| Text feedback | US 3.01 | Théo | Oct 23 |
+| Text feedback | US 3.01 | Théo, Mohammed | Oct 23 |
 | JSX/CSS for creating questionnaires | US 1.02 | Jason, Favour | Oct 22 |
 
 ### Sprint 4
