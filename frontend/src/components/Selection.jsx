@@ -7,6 +7,7 @@ import Button from '@mui/material/Button';
 import '../styles/Selection.css';
 import { styled } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
+import { Link } from "react-router-dom";
 
 export default function Selection() {
   const [age, setAge] = React.useState('');
@@ -38,7 +39,7 @@ export default function Selection() {
   return (
     <div className="selection-bg">
       <div className="selection">
-        <FormControl sx={{ m: 1, minWidth: 600 }}>
+        <FormControl sx={{ m: 1, width: '35%' }}>
           <InputLabel id="selection-label">Program</InputLabel>
           <Select
             labelId="demo-simple-select-autowidth-label"
@@ -65,7 +66,9 @@ export default function Selection() {
           }}
           variant="contained"
         >
-          OK
+          <Link to="/newForm">
+            OK
+          </Link>
         </Button>
       </div>
     </div>

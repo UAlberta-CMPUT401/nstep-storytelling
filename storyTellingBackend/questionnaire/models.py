@@ -28,3 +28,9 @@ class Questionnaire(models.Model):
     url = models.CharField(max_length=200,default='',blank=True,null=True)
 
 
+
+class Program(models.Model):
+    id = models.UUIDField(primary_key = True , auto_created = True , default = uuid.uuid4)
+    name = models.CharField(max_length=200)
+    date = models.CharField(max_length=200)
+    description = models.TextField(max_length=1000)

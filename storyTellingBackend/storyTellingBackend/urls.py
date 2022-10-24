@@ -41,10 +41,12 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('questionnaire/', views.questionnaire_list),
-    path('questionnaire/<int:pk>/', views.questionnaire_detail),
+    path('api/questionnaire/', views.questionnaire_list),
+    path('api/questionnaire/<int:pk>/', views.questionnaire_detail),
     path('docs', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('api/users',uv.UserList.as_view(),name='UserList'),
+    path('api/programs',qv.ProgramList.as_view(),name='ProgramList'),
+    re_path(r'api/program/(?P<pk>[(-z)]{36})/', qv.ProgramDetail.as_view(),name='SingleProgram'),
     # path('api/user', uv.UserDetail.as_view(),name='UserList'),
     re_path(r'api/user/(?P<pk>[(-z)]{36})/', uv.UserDetail.as_view(),name='SingleUser'),
 <<<<<<< HEAD
