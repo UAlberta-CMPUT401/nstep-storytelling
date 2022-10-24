@@ -1,7 +1,10 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const NodePolyfillPlugin = require("node-polyfill-webpack-plugin")
+const webpack = require("webpack")
 
 module.exports = {
+  target: 'node',
   mode: 'development',
   entry: './src/index.jsx',
   output: {
@@ -36,6 +39,8 @@ module.exports = {
     ],
   },
   plugins: [
+    new webpack.ContextReplacementPlugin(/@google-cloud/),
+    new NodePolyfillPlugin(),
     new HtmlWebpackPlugin({
       template: path.resolve('./index.html'),
     }),

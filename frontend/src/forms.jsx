@@ -2,11 +2,12 @@ import React from 'react';
 import Button from '@mui/material/Button';
 import './styles/Forms.css';
 import { Link } from "react-router-dom";
+import { createForm } from "./service";
 
 export default function Forms() {
   return (
     <div className="forms">
-      <Button variant="contained">
+      <Button variant="contained" onClick={createForm}>
         <Link to="/create" style={{ textDecoration: "none" }}>
           + Create Form
         </Link>

@@ -1,13 +1,13 @@
-const path = require('path');
-const google = require('@googleapis/forms');
-const { authenticate } = require('@google-cloud/local-auth');
+import path from 'path';
+import { forms } from '@googleapis/forms';
+import { authenticate } from '@google-cloud/local-auth';
 
-async function runSample(query) {
+async function createForm(query) {
   const authClient = await authenticate({
     keyfilePath: path.join(__dirname, 'nstep-storytelling-b013cf86302f.json'),
     scopes: 'https://www.googleapis.com/auth/drive',
   });
-  const forms = google.forms({
+  const gforms = forms({
     version: 'v1',
     auth: authClient,
   });
@@ -16,7 +16,7 @@ async function runSample(query) {
       title: 'Creating a new form in Node',
     },
   };
-  const res = await forms.forms.create({
+  const res = await gforms.forms.create({
     requestBody: newForm,
   });
     console.log(res.data);
@@ -24,7 +24,6 @@ async function runSample(query) {
 }
 
 if (module === require.main) {
-  runSample().catch(console.error);
+  createForm().catch(console.error);
 }
-
-export { runSample };
+export { createForm };
