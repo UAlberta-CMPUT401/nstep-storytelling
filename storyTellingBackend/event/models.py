@@ -11,6 +11,6 @@ class Event(models.Model):
     id = models.UUIDField(primary_key = True , auto_created = True , default = uuid.uuid4)
     title = models.CharField(max_length=200)
     content = models.CharField(max_length=1000)
-    url = models.CharField(max_length=200,default='',blank=True,null=True)
+    object_id = models.UUIDField(null=True)
     type = models.CharField(max_length=20,choices=type.choices , default=type.EVENT)
     author = models.ForeignKey(User, on_delete=models.CASCADE,null=True)
