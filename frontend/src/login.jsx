@@ -22,6 +22,7 @@ const AdminLoginPage = (props) => {
             <TextField
               id="outlined-required"
               label="Email"
+              type="email"
             />
           </div>
           <div className="admin-login-page-container5">

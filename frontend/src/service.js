@@ -19,7 +19,7 @@ async function runSample(query) {
   const res = await forms.forms.create({
     requestBody: newForm,
   });
-    console.log(res.data);
+  console.log(res.data);
   return res.data;
 }
 

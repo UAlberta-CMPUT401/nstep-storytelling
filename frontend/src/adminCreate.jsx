@@ -2,10 +2,15 @@ import React from "react";
 import { Link } from "react-router-dom";
 import ElementSelector from "./components/ElementSelector";
 import Navbar from "./components/Navbar";
+import TextInput from "./components/TextInput";
 import "./styles/App.css";
 
 export default function AdminCreate() {
-  const [isToggled, setIsToggled] = React.useState(false);
+  // const [isToggled, setIsToggled] = React.useState(false);
+  const [questionList, setQuestionList] = React.useState([]);
+  // const [questionCount, setQuestionCount] = React.useState(0);
+  React.useEffect(() => {
+  }, [questionList]);
 
   return (
     <>
@@ -14,11 +19,19 @@ export default function AdminCreate() {
         <input placeholder="Form name" />
       </div>
       <div style={{ textAlign: "center" }}>
-        <button onClick={() => setIsToggled(!isToggled)}>
+        <button onClick={() => {
+          const newQuestionList = questionList;
+          newQuestionList.push({ question: 1 });
+          setQuestionList(newQuestionList);
+          console.log(questionList);
+        }}
+        >
           Add form element +
         </button>
-
-        {isToggled && <ElementSelector />}
+        <div>
+          {questionList.map((question) => <TextInput />)}
+        </div>
+        {/* {isToggled && <ElementSelector />} */}
 
         <div style={{ textAlign: "center" }}>
           <button>
