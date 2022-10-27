@@ -9,8 +9,6 @@ export default function AdminCreate() {
   // const [isToggled, setIsToggled] = React.useState(false);
   const [questionList, setQuestionList] = React.useState([]);
   // const [questionCount, setQuestionCount] = React.useState(0);
-  React.useEffect(() => {
-  }, [questionList]);
 
   return (
     <>
@@ -20,8 +18,8 @@ export default function AdminCreate() {
       </div>
       <div style={{ textAlign: "center" }}>
         <button onClick={() => {
-          const newQuestionList = questionList;
-          newQuestionList.push({ question: 1 });
+          const newQuestionList = [...questionList];
+          newQuestionList.push({ question: "" });
           setQuestionList(newQuestionList);
           console.log(questionList);
         }}

@@ -7,7 +7,7 @@ export default function TextInput() {
   return (
     <>
       <div>
-        <TextField id="standard-basic" label="Enter a question" variant="standard" />
+        <TextField id="standard-basic" placeholder="Enter a question" variant="standard" />
         <button>
           Delete
         </button>
