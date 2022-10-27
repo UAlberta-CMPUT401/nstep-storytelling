@@ -7,7 +7,7 @@ export default function Forms() {
   return (
     <div className="forms">
       <Button variant="contained">
-        <Link to="/create" style={{ textDecoration: "none" }}>
+        <Link to="/create" style={{ textDecoration: "none", color: "white" }}>
           + Create Form
         </Link>
       </Button>

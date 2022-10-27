@@ -1,33 +1,47 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import TextField from "@mui/material/TextField";
+import Button from '@mui/material/Button';
 import ElementSelector from "./components/ElementSelector";
 import Navbar from "./components/Navbar";
-import "./styles/App.css";
+import TextInput from "./components/TextInput";
+import "./styles/adminCreate.css";
 
 export default function AdminCreate() {
-  const [isToggled, setIsToggled] = React.useState(false);
+  // const [isToggled, setIsToggled] = React.useState(false);
+  const [questionList, setQuestionList] = React.useState([{ question: "" }]);
+  // const [questionCount, setQuestionCount] = React.useState(0);
 
   return (
-    <>
+    <div className="admin-create">
       <Navbar />
-      <div style={{ textAlign: "center" }}>
-        <input placeholder="Form name" />
-      </div>
-      <div style={{ textAlign: "center" }}>
-        <button onClick={() => setIsToggled(!isToggled)}>
-          Add form element +
-        </button>
-
-        {isToggled && <ElementSelector />}
-
+      <div className="admin-create-body">
         <div style={{ textAlign: "center" }}>
-          <button>
-            <Link to="/dashboard" style={{ textDecoration: "none" }}>
-              Save & Return
-            </Link>
-          </button>
+          <TextField id="filled-basic" label="Form title" variant="filled" />
+        </div>
+        <div>
+          {questionList.map((question) => <TextInput />)}
+        </div>
+        {/* {isToggled && <ElementSelector />} */}
+        <div className="add-element">
+          <Button
+            variant="text"
+            onClick={() => {
+              const newQuestionList = [...questionList];
+              newQuestionList.push({ question: "" });
+              setQuestionList(newQuestionList);
+              console.log(questionList);
+            }}
+          >
+            + Add form element
+          </Button>
+        </div>
+        <div style={{ textAlign: "center" }} className="save-and-return">
+          <a href="/dashboard" className="admin-save-button">
+            <Button variant="contained">Save & Return</Button>
+          </a>
         </div>
       </div>
-    </>
+    </div>
   );
 }

@@ -66,9 +66,9 @@ export default function Selection() {
           }}
           variant="contained"
         >
-          <Link to="/newForm">
+          <a className="program-select-button" href="/newForm">
             OK
-          </Link>
+          </a>
         </Button>
       </div>
     </div>
