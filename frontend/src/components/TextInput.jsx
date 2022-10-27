@@ -2,22 +2,31 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import '../styles/TextInput.css';
 
 export default function TextInput() {
   return (
-    <>
-      <div>
-        <TextField id="standard-basic" placeholder="Enter a question" variant="standard" />
-        <button>
-          Delete
-        </button>
+    <div className="text-input">
+      <Button
+        className="delete-button"
+        variant="text"
+        color="error"
+      >
+        X
+      </Button>
+      <div className="question-field">
+        <TextField id="standard-basic" placeholder="Enter a question" variant="standard" fullWidth />
       </div>
-      <TextField
-        id="outlined-textarea"
-        placeholder="Answer"
-        multiline
-        disabled
-      />
-    </>
+      <div>
+        <TextField
+          id="answer-field"
+          placeholder="Answer"
+          multiline
+          disabled
+          fullWidth
+        />
+      </div>
+    </div>
   );
 }
