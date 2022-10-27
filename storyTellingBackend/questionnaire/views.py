@@ -3,7 +3,7 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 from .models import Questionnaire,Answer,Question
 from .serializers import *
-from rest_framework.views import APIView
+from rest_framework.views import APIView, ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from .models import Program, Questionnaire, Question, Answer
 from .serializers import ProgramSerializer, QuestionnaireSerializer, AnswerInListSerializer, AddAnswerSerializer
 from django.http import Http404
@@ -45,7 +45,7 @@ def questionnaire_detail(request, pk, format=None):
         snippet.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-class Feedbacks(APIView):
+class Feedbacks(ListCreateAPIView):
     """
     List all feedbacks, or create a new feedback.
     """
@@ -93,7 +93,7 @@ class Feedbacks(APIView):
         pass
     
     
-class ProgramList(APIView):
+class ProgramList(ListCreateAPIView):
     '''
     List of all the programs available
     '''
@@ -106,20 +106,7 @@ class ProgramList(APIView):
 
         return Response(response)
 
-
-class ProgramDetail(APIView):
-    def get_object(self, pk):
-        try:
-            return Program.objects.get(pk=pk)
-        except Program.DoesNotExist:
-            raise Http404
-
-    def get(self, request, pk, format=None):
-        program = self.get_object(pk)
-        serializer = ProgramSerializer(program)
-        return Response(serializer.data)
-
-    def post(self, request, pk, format=None):
+    def post(self, request, format=None):
         serializer = ProgramSerializer(data=request.data)
         if serializer.is_valid():
             result = serializer.save()
@@ -130,6 +117,18 @@ class ProgramDetail(APIView):
                         }
             return Response(response)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class ProgramDetail(RetrieveUpdateDestroyAPIView):
+    def get_object(self, pk):
+        try:
+            return Program.objects.get(pk=pk)
+        except Program.DoesNotExist:
+            raise Http404
+
+    def get(self, request, pk, format=None):
+        program = self.get_object(pk)
+        serializer = ProgramSerializer(program)
+        return Response(serializer.data)
 
     def put(self, request, pk, format=None):
         program = self.get_object(pk)
