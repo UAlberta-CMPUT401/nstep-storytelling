@@ -8,7 +8,7 @@ export default function Forms() {
     <div className="forms">
       <Button variant="contained">
         <Link to="/create" style={{ textDecoration: "none" }}>
-        + Create Form
+          + Create Form
         </Link>
       </Button>
       <ul>
@@ -19,4 +19,3 @@ export default function Forms() {
     </div>
   );
 }
-

@@ -28,3 +28,9 @@ class AddAnswerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Answer
         fields = ['name','description',"content_type",'question']
+
+
+class ProgramSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Program
+        fields = ['name','date','description']
