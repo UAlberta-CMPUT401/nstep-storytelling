@@ -25,6 +25,7 @@ class Answer(models.Model):
 class Questionnaire(models.Model):
     id = models.UUIDField(primary_key = True , auto_created = True , default = uuid.uuid4)
     questions = models.ManyToManyField(Question)
-    url = models.CharField(max_length=200,default='',blank=True,null=True)
+    description = models.CharField(max_length=200,default='',blank=True,null=True)
+    title = models.CharField(max_length=200,default='',blank=True,null=True)
 
 

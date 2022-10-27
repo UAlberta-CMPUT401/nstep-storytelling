@@ -16,6 +16,11 @@ class QuestionSerializer(serializers.ModelSerializer):
 class QuestionnaireSerializer(serializers.ModelSerializer):
     class Meta:
         model = Questionnaire
+        fields = ['questions','url']
+
+class ShowingQuestionnaireSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Questionnaire
         fields = ['id','questions','url']
 
 class AnswerInListSerializer(serializers.ModelSerializer):

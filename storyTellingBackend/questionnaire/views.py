@@ -12,7 +12,7 @@ def questionnaire_list(request, format=None):
     """
     if request.method == 'GET':
         snippets = Questionnaire.objects.all()
-        serializer = QuestionnaireSerializer(snippets, many=True)
+        serializer = ShowingQuestionnaireSerializer(snippets, many=True)
         return Response(serializer.data)
     elif request.method == 'POST':
         serializer = QuestionnaireSerializer(data=request.data)
@@ -46,11 +46,7 @@ class Feedbacks(APIView):
     """
     List all feedbacks, or create a new feedback.
     """
-<<<<<<< HEAD
-    def get(self, request, pk):
-=======
     def get(self, request,pk, format=None):
->>>>>>> 0e96fbe141dd848014d01387d33be16c6140e0d4
         # pk = self.kwargs['pk']
         # question = Question.objects.filter(pk=pk)         
         answers = Answer.objects.filter(question = pk)
