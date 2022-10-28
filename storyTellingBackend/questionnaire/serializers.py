@@ -4,13 +4,13 @@ from questionnaire.models import *
 class AnswerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Answer
-        fields = ['id','name','description']
+        fields = ['name','description',"content_type",'question']
 
 
 class QuestionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Question
-        fields = ['name','description','answers']
+        fields = ['name','description']
 
 
 class QuestionnaireSerializer(serializers.ModelSerializer):
@@ -22,13 +22,6 @@ class AnswerInListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Answer
         fields = ['name','description',"content_type"]
-
-
-class AddAnswerSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Answer
-        fields = ['name','description',"content_type",'question']
-
 
 class ProgramSerializer(serializers.ModelSerializer):
     class Meta:
