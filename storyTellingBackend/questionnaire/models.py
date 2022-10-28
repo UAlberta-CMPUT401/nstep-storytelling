@@ -6,7 +6,6 @@ class Question(models.Model):
     id = models.UUIDField(primary_key = True , auto_created = True , default = uuid.uuid4)
     name = models.CharField(max_length=200)
     description = models.TextField(max_length=1000)
-    url = models.CharField(max_length=200,default='',blank=True,null=True)
 
 class Answer(models.Model):
     class ContentType(models.TextChoices):
@@ -17,7 +16,6 @@ class Answer(models.Model):
     id = models.UUIDField(primary_key = True , auto_created = True , default = uuid.uuid4)
     name = models.CharField(max_length=200)
     description = models.TextField(max_length=1000)
-    url = models.CharField(max_length=200,default='',blank=True,null=True)    
     author = models.ForeignKey(User, on_delete=models.CASCADE,null=True)
     question = models.ForeignKey(Question, on_delete=models.CASCADE,null=True)
     content_type = models.CharField(max_length=20,choices=ContentType.choices , default=ContentType.TEXT)
@@ -25,12 +23,14 @@ class Answer(models.Model):
 class Questionnaire(models.Model):
     id = models.UUIDField(primary_key = True , auto_created = True , default = uuid.uuid4)
     questions = models.ManyToManyField(Question)
-    url = models.CharField(max_length=200,default='',blank=True,null=True)
 
-
+class AnswerList(models.Model):
+    id = models.UUIDField(primary_key = True , auto_created = True , default = uuid.uuid4)
+    Answers = models.ManyToManyField(Answer)
 
 class Program(models.Model):
     id = models.UUIDField(primary_key = True , auto_created = True , default = uuid.uuid4)
     name = models.CharField(max_length=200)
     date = models.CharField(max_length=200)
     description = models.TextField(max_length=1000)
+    questionnaires = models.ManyToManyField(Questionnaire)

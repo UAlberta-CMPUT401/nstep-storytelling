@@ -3,10 +3,11 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 from .models import Questionnaire,Answer,Question
 from .serializers import *
-from rest_framework.views import APIView, ListCreateAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.views import APIView
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from .models import Program, Questionnaire, Question, Answer
-from .serializers import ProgramSerializer, QuestionnaireSerializer, AnswerInListSerializer, AddAnswerSerializer
 from django.http import Http404
+
 
 @api_view(['GET', 'POST'])
 def questionnaire_list(request, format=None):
@@ -45,7 +46,34 @@ def questionnaire_detail(request, pk, format=None):
         snippet.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-class Feedbacks(ListCreateAPIView):
+
+class Questions(APIView):
+    '''
+    List of all the questions available
+    '''
+    def get(self, request, format=None):
+        program = Program.objects.all()
+        serializer = QuestionSerializer(program, many=True)
+        response = {'total': len(serializer.data),
+                    'questions': serializer.data,
+                    }
+
+        return Response(response)
+
+    def post(self, request, format=None):
+        serializer = QuestionSerializer(data=request.data)
+        if serializer.is_valid():
+            result = serializer.save()
+            response = {
+                        "status": 0,
+                        "message": "question created",
+                        "id": result.id,
+                        }
+            return Response(response)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class Feedbacks(APIView):
     """
     List all feedbacks, or create a new feedback.
     """
@@ -93,7 +121,7 @@ class Feedbacks(ListCreateAPIView):
         pass
     
     
-class ProgramList(ListCreateAPIView):
+class ProgramList(APIView):
     '''
     List of all the programs available
     '''
@@ -118,7 +146,7 @@ class ProgramList(ListCreateAPIView):
             return Response(response)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-class ProgramDetail(RetrieveUpdateDestroyAPIView):
+class ProgramDetail(APIView):
     def get_object(self, pk):
         try:
             return Program.objects.get(pk=pk)
