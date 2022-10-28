@@ -31,23 +31,34 @@ def questionnaire_detail(request, pk, format=None):
     """
     try:
         questionnaire = Questionnaire.objects.get(pk=pk)
+        print(questionnaire)
+
     except Questionnaire.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
     if request.method == 'GET':
         serializer = QuestionnaireSerializer(questionnaire)
         return Response(serializer.data)
     elif request.method == 'PUT':
-        question_id = request.data['question']
+        question_id_list = request.data['question']
         try:
-            question = Question.objects.get(pk=question_id)
+            for one_id in question_id_list:
+                question = Question.objects.get(pk=one_id)
         except Question.DoesNotExist:
             return Response(status=status.HTTP_400_BAD_REQUEST)
-        questionnaire["questions"].append(question)
-        serializer = QuestionnaireSerializer(questionnaire)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        try:
+            for one_id in question_id_list:
+                questionnaire.questions.add(one_id)
+        except Exception as e:
+            return Response(e, status=status.HTTP_400_BAD_REQUEST)
+
+        
+        questionnaire = Questionnaire.objects.get(pk=pk)
+        response = {
+            "status": 0,
+            "message": "questionnaire updated"
+            }
+        return Response(response,status=status.HTTP_201_CREATED)
+
     elif request.method == 'DELETE':
         questionnaire.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
