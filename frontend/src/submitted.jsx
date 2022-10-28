@@ -7,11 +7,11 @@ export default function Submitted() {
     <div style={{ textAlign: "center" }}>
       <h1>We received your submission!</h1>
       <h2>...and we cannot wait to view it!</h2>
-      <button>
-        <Link to="/" style={{ textDecoration: "none" }}>
+      <Link to="/" style={{ textDecoration: "none" }}>
+        <button>
           Tell another story
-        </Link>
-      </button>
+        </button>
+      </Link>
       <button>Close browser tab</button>
     </div>
   );

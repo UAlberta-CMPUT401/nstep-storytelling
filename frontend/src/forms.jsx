@@ -6,11 +6,11 @@ import { Link } from "react-router-dom";
 export default function Forms() {
   return (
     <div className="forms">
-      <Button variant="contained">
-        <Link to="/create" style={{ textDecoration: "none", color: "white" }}>
+      <Link to="/create" style={{ textDecoration: "none", color: "white" }}>
+        <Button variant="contained">
           + Create Form
-        </Link>
-      </Button>
+        </Button>
+      </Link>
       <ul>
         <li>Program 1 survey</li>
         <li>Program 2 survey</li>
