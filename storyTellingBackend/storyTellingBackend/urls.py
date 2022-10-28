@@ -48,11 +48,11 @@ urlpatterns = [
     path('api/programs',qv.ProgramList.as_view(),name='ProgramList'),
     re_path(r'api/program/(?P<pk>[(-z)]{36})/', qv.ProgramDetail.as_view(),name='SingleProgram'),
     # path('api/user', uv.UserDetail.as_view(),name='UserList'),
-    re_path(r'api/user/(?P<pk>[(-z)]{36})/', uv.UserDetail.as_view(),name='SingleUser'),
-<<<<<<< HEAD
-    path('api/questionnaires',qv.questionnaire_detail,name='QuestionnaireDetail'),
-=======
->>>>>>> 0e96fbe141dd848014d01387d33be16c6140e0d4
+    re_path(r'api/questions',qv.Questions.as_view(),name='Questions'),
+    re_path(r'api/question/(?P<pk>[(-z)]{36})/',qv.QuestionDetail.as_view(),name='SingleQuestion'),
     re_path(r'api/question/(?P<pk>[(-z)]{36})/feedbacks/',qv.Feedbacks.as_view(),name='Feedbacks'),
+
+    re_path(r'api/user/(?P<pk>[(-z)]{36})/', uv.UserDetail.as_view(),name='SingleUser'),
+
 
 ]
