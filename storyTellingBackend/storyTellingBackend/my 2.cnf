@@ -1,5 +1,0 @@
-[client]
-database = "nstep_database"
-user = "Jayden"
-password = "Dragon123!"
-default-character-set = utf8
