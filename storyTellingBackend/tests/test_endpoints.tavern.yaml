@@ -286,7 +286,7 @@ stages:
 
 
 ---
-test_name: Endpoints _ 1. Add New Program
+test_name: Endpoints _ 7. Add New Program
 
 includes:
   - !include includes.yaml
@@ -328,7 +328,7 @@ stages:
         message: "program deleted"
 
 ---
-test_name: Endpoints _ 2. Fetch New Program
+test_name: Endpoints _ 8. Fetch New Program
 
 includes:
   - !include includes.yaml
@@ -382,7 +382,7 @@ stages:
         message: "program deleted"
 
 ---
-test_name: Endpoints _ 4. Update program
+test_name: Endpoints _ 9. Update program
 
 includes:
   - !include includes.yaml
@@ -455,7 +455,7 @@ stages:
         message: "program deleted"
 
 ---
-test_name: Endpoints _ 5. Modify program
+test_name: Endpoints _ 10. Modify program
 
 includes:
   - !include includes.yaml
@@ -525,7 +525,7 @@ stages:
         message: "program deleted"
 
 ---
-test_name: Endpoints _ 6. Delete program
+test_name: Endpoints _ 11. Delete program
 
 includes:
   - !include includes.yaml
