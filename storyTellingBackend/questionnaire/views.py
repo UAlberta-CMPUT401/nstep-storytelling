@@ -34,10 +34,21 @@ class Questions(APIView):
     List of all the questions available
     '''
     def get(self, request, pk, format=None):
+        questionnaire = Questionnaire.objects.get(id=pk)
         questions = Question.objects.all()
-        serializer = QuestionSerializer(questions, many=True)
-        response = {'total': len(serializer.data),
-                    'questions': serializer.data,
+        questionData = QuestionSerializer(questions, many=True).data
+        questionnaireData = QuestionnaireSerializer(questionnaire).data
+        myQuestions = []
+        comparedList = [str(questionnaireData['questions'][i]) for i in range(len(questionnaireData['questions']))]
+
+        for element in questionData:
+            print(element['id'])
+            print(comparedList)
+            if element['id'] in comparedList:
+                myQuestions.append(element['id'])
+                
+        response = {'total': len(myQuestions),
+                    'questions': myQuestions,
                     }
 
         return Response(response)
