@@ -103,12 +103,12 @@ Estimated sprint velocity: **16**
 | Video feedback | US 3.03 | Mohammed, Jayden |  |
 | Text feedback | US 3.01 | Théo, Mohammed |  |
 | JSX/CSS for creating questionnaires | US 1.02 | Jason, Favour |  |
-| Create unique URL endpoint | US 1.03 | | |
-| Create unique URL view | US 1.03 | | |
+| Create unique URL endpoint | US 1.03 | Jason | |
+| Create unique URL view | US 1.03 | Jason | |
 | Delete accounts | US 2.02 | | |
-| Authentications for User/Admin/anonymous | US 3.05 | | |
+| Authentication for Admins | US 3.05 | | |
 | Page to create admin accounts | US 2.01 | Théa | |
-| translation tool for feedbacks | US 1.07 | | |
+| Translation tool for feedback | US 1.07 | | |
 
 ### Sprint 5
 
