@@ -97,18 +97,17 @@ Estimated sprint velocity: **16**
 
 | **Task** | **Related US** | **Assigned To** | **Due Date** |
 | --- | --- | --- | --- |
-| Search for stories by program | US 1.06 | Jason, Asad |  |
-| Search for stories by time | US 1.06 | Jayden, Favour |  |
-| Audio feedback | US 3.02 | Théo, Asad |  |
-| Video feedback | US 3.03 | Mohammed, Jayden |  |
-| Text feedback | US 3.01 | Théo, Mohammed |  |
-| JSX/CSS for creating questionnaires | US 1.02 | Jason, Favour |  |
-| Create unique URL endpoint | US 1.03 | Jason | |
-| Create unique URL view | US 1.03 | Jason | |
-| Delete accounts | US 2.02 | | |
-| Authentication for Admins | US 3.05 | | |
-| Page to create admin accounts | US 2.01 | Théa | |
-| Translation tool for feedback | US 1.07 | | |
+| Search for stories by program | US 1.06 | Jason, Asad | Nov 3 |
+| Search for stories by time | US 1.06 | Jayden, Favour | Nov 3 |
+| Audio feedback | US 3.02 | Théo, Asad | Nov 3 |
+| Video feedback | US 3.03 | Mohammed, Jayden | Nov 3 |
+| Text feedback | US 3.01 | Théo, Mohammed | Nov 3 |
+| Create unique URL endpoint | US 1.03 | Jason,Mo | Nov 13 |
+| Create unique URL view | US 1.03 | Jason,Favour | Nov 11 |
+| Delete accounts | US 2.02 | Jayden,Asad | Nov 11 |
+| Authentication for Admins | US 3.05 | Jayden,Asad | Nov 11 |
+| Page to create admin accounts | US 2.01 | Théa | Nov 11 |
+| Translation tool for feedback | US 1.07 | Jayden,Favour,Mo,Théa | Nov 11 |
 
 ### Sprint 5
 

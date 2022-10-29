@@ -5,11 +5,12 @@ import Button from '@mui/material/Button';
 import ElementSelector from "./components/ElementSelector";
 import Navbar from "./components/Navbar";
 import TextInput from "./components/TextInput";
+import { createQuestion } from './service';
 import "./styles/adminCreate.css";
 
 export default function AdminCreate() {
   // const [isToggled, setIsToggled] = React.useState(false);
-  const [questionList, setQuestionList] = React.useState([{ question: "" }]);
+  const [questionList, setQuestionList] = React.useState([]);
   // const [questionCount, setQuestionCount] = React.useState(0);
 
   return (
@@ -27,8 +28,9 @@ export default function AdminCreate() {
           <Button
             variant="text"
             onClick={() => {
+              const res = createQuestion("hi", "hi");
               const newQuestionList = [...questionList];
-              newQuestionList.push({ question: "" });
+              newQuestionList.push(res.data);
               setQuestionList(newQuestionList);
               console.log(questionList);
             }}
