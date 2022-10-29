@@ -102,12 +102,12 @@ Estimated sprint velocity: **16**
 | Audio feedback | US 3.02 | Théo, Asad | Nov 3 |
 | Video feedback | US 3.03 | Mohammed, Jayden | Nov 3 |
 | Text feedback | US 3.01 | Théo, Mohammed | Nov 3 |
-| Create unique URL endpoint | US 1.03 | Jason,Mo | Nov 13 |
-| Create unique URL view | US 1.03 | Jason,Favour | Nov 11 |
-| Delete accounts | US 2.02 | Jayden,Asad | Nov 11 |
-| Authentication for Admins | US 3.05 | Jayden,Asad | Nov 11 |
+| Create unique URL endpoint | US 1.03 | Jason, Mo | Nov 13 |
+| Create unique URL view | US 1.03 | Jason, Favour | Nov 11 |
+| Delete accounts | US 2.02 | Jayden, Asad | Nov 11 |
+| Authentication for Admins | US 3.05 | Jayden, Asad | Nov 11 |
 | Page to create admin accounts | US 2.01 | Théa | Nov 11 |
-| Translation tool for feedback | US 1.07 | Jayden,Favour,Mo,Théa | Nov 11 |
+| Translation tool for feedback | US 1.07 | Jayden, Favour, Mo, Théa | Nov 11 |
 
 ### Sprint 5
 
