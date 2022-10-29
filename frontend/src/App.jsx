@@ -7,6 +7,7 @@ import Dashboard from "./dashboard";
 import AdminCreate from "./adminCreate";
 import UserCreate from "./userCreate";
 import Submitted from "./submitted";
+import WebcamComp from "./Webcam";
 import "./styles/App.css";
 
 export default function App() {
@@ -18,6 +19,7 @@ export default function App() {
       <Route path="/create" element={<AdminCreate />} />
       <Route path="/newForm" element={<UserCreate />} />
       <Route path="/submitted" element={<Submitted />} />
+      <Route path="/Webcamtest" element={<WebcamComp />} />
     </Routes>
   );
 }
