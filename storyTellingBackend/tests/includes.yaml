@@ -2,8 +2,8 @@
 ---
 
 name: Backend Endpoint Test
-description: 
+description: here we test the backend endpoints
 
 variables:
-  host: localhost
-  port: 80
+  host: 127.0.0.1
+  port: 8000

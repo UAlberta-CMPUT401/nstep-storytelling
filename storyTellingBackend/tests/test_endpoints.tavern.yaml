@@ -11,11 +11,11 @@ stages:
   - name: Add new user
 
     request:
-      url: http://{host:s}:{port:d}/api/user
+      url: http://{host:s}:{port:d}/api/users
       follow_redirects: true
       method: POST
       json:
-        name: "New user"
+        username: "testUser12"
 
     response:
       status_code: [200, 201]
@@ -27,7 +27,7 @@ stages:
   - name: Delete the user
 
     request:
-      url: http://{host:s}:{port:d}/api/user/{user_id}
+      url: http://{host:s}:{port:d}/api/user/{user_id}/
       follow_redirects: true
       method: DELETE
       timeout: 1.0
@@ -51,11 +51,11 @@ stages:
   - name: Add new User
 
     request:
-      url: http://{host:s}:{port:d}/api/user
+      url: http://{host:s}:{port:d}/api/users
       follow_redirects: true
       method: POST
       json:
-        name: "New user"
+        username: "testUser14"
 
     response:
       status_code: [200, 201]
@@ -66,7 +66,7 @@ stages:
   - name: Fetch new user
 
     request:
-      url: http://{host:s}:{port:d}/api/user/{user_id}
+      url: http://{host:s}:{port:d}/api/user/{user_id}/
       follow_redirects: true
       method: GET
       timeout: 1.0
@@ -74,12 +74,12 @@ stages:
     response:
       status_code: 200
       json:
-        name: "New user"
+        username: "testUser14"
 
   - name: Delete the user
 
     request:
-      url: http://{host:s}:{port:d}/api/user/{user_id}
+      url: http://{host:s}:{port:d}/api/user/{user_id}/
       follow_redirects: true
       method: DELETE
       timeout: 1.0
@@ -103,11 +103,11 @@ stages:
   - name: Add new user
 
     request:
-      url: http://{host:s}:{port:d}/api/user
+      url: http://{host:s}:{port:d}/api/users
       follow_redirects: true
       method: POST
       json:
-        name: "Test user"
+        username: "testUser11"
 
     response:
       status_code: [200, 201]
@@ -118,11 +118,11 @@ stages:
   - name: Update user
 
     request:
-      url: http://{host:s}:{port:d}/api/user/{user_id}
+      url: http://{host:s}:{port:d}/api/user/{user_id}/
       follow_redirects: true
       method: PUT
       json:
-        name: "Updated test user"
+        username: "testUser Updated"
       timeout: 1.0
 
     response:
@@ -134,7 +134,7 @@ stages:
   - name: Retrieve the updated user
 
     request:
-      url: http://{host:s}:{port:d}/api/user/{user_id}
+      url: http://{host:s}:{port:d}/api/user/{user_id}/
       follow_redirects: true
       method: GET
       timeout: 1.0
@@ -142,12 +142,12 @@ stages:
     response:
       status_code: 200
       json:
-        name: "Updated test user"
+        username: "testUser Updated"
 
   - name: Delete the user
 
     request:
-      url: http://{host:s}:{port:d}/api/user/{user_id}
+      url: http://{host:s}:{port:d}/api/user/{user_id}/
       follow_redirects: true
       method: DELETE
       timeout: 1.0
@@ -171,11 +171,11 @@ stages:
   - name: Add new user
 
     request:
-      url: http://{host:s}:{port:d}/api/user
+      url: http://{host:s}:{port:d}/api/users
       follow_redirects: true
       method: POST
       json:
-        name: "Test user"
+        username: "testUser"
 
     response:
       status_code: [200, 201]
@@ -186,11 +186,11 @@ stages:
   - name: Modify user
 
     request:
-      url: http://{host:s}:{port:d}/api/user/{user_id}
+      url: http://{host:s}:{port:d}/api/user/{user_id}/
       follow_redirects: true
       method: PATCH
       json:
-        name: "Modified user name"
+        username: "ModifiedUserName"
       timeout: 1.0
 
     response:
@@ -202,7 +202,7 @@ stages:
   - name: Retrieve the modified user
 
     request:
-      url: http://{host:s}:{port:d}/api/user/{user_id}
+      url: http://{host:s}:{port:d}/api/user/{user_id}/
       follow_redirects: true
       method: GET
       timeout: 1.0
@@ -210,13 +210,13 @@ stages:
     response:
       status_code: 200
       json:
-        name: "Modified user name"
+        username: "ModifiedUserName"
 
 
   - name: Delete the user
 
     request:
-      url: http://{host:s}:{port:d}/api/user/{user_id}
+      url: http://{host:s}:{port:d}/api/user/{user_id}/
       follow_redirects: true
       method: DELETE
       timeout: 1.0
@@ -240,11 +240,11 @@ stages:
   - name: Add new user
 
     request:
-      url: http://{host:s}:{port:d}/api/user
+      url: http://{host:s}:{port:d}/api/users
       follow_redirects: true
       method: POST
       json:
-        name: "Test user"
+        username: "testUser"
 
     response:
       status_code: [200, 201]
@@ -255,7 +255,7 @@ stages:
   - name: Delete the user
 
     request:
-      url: http://{host:s}:{port:d}/api/user/{user_id}
+      url: http://{host:s}:{port:d}/api/user/{user_id}/
       follow_redirects: true
       method: DELETE
       timeout: 1.0
@@ -269,7 +269,7 @@ stages:
   - name: Retrieve the deleted user
 
     request:
-      url: http://{host:s}:{port:d}/api/user/{user_id}
+      url: http://{host:s}:{port:d}/api/user/{user_id}/
       follow_redirects: true
       method: GET
       timeout: 1.0
@@ -295,14 +295,16 @@ strict:
   - json:off
 
 stages:
-  - name: Add new Program
+  - name: Add new Programs
 
     request:
-      url: http://{host:s}:{port:d}/api/program
+      url: http://{host:s}:{port:d}/api/programs
       follow_redirects: true
       method: POST
       json:
-        name: "New program"
+        name: "Test program"
+        description: "Test description"
+        date: "Test date"
 
     response:
       status_code: [200, 201]
@@ -314,7 +316,7 @@ stages:
   - name: Delete the program
 
     request:
-      url: http://{host:s}:{port:d}/api/program/{program_id}
+      url: http://{host:s}:{port:d}/api/program/{program_id}/
       follow_redirects: true
       method: DELETE
       timeout: 1.0
@@ -323,7 +325,7 @@ stages:
       status_code: [200, 201]
       json:
         status: 0
-        message: "Program deleted"
+        message: "program deleted"
 
 ---
 test_name: Endpoints _ 2. Fetch New Program
@@ -338,12 +340,13 @@ stages:
   - name: Add new Program
 
     request:
-      url: http://{host:s}:{port:d}/api/program
+      url: http://{host:s}:{port:d}/api/programs
       follow_redirects: true
       method: POST
       json:
-        name: "New Program"
-
+        name: "Test program"
+        description: "Test description"
+        date: "Test date"
     response:
       status_code: [200, 201]
       save:
@@ -353,7 +356,7 @@ stages:
   - name: Fetch new Program
 
     request:
-      url: http://{host:s}:{port:d}/api/Program/{program_id}
+      url: http://{host:s}:{port:d}/api/program/{program_id}/
       follow_redirects: true
       method: GET
       timeout: 1.0
@@ -361,12 +364,13 @@ stages:
     response:
       status_code: 200
       json:
-        name: "New program"
-
+        name: "Test program"
+        description: "Test description"
+        date: "Test date"
   - name: Delete the program
 
     request:
-      url: http://{host:s}:{port:d}/api/program/{program_id}
+      url: http://{host:s}:{port:d}/api/program/{program_id}/
       follow_redirects: true
       method: DELETE
       timeout: 1.0
@@ -390,12 +394,13 @@ stages:
   - name: Add new program
 
     request:
-      url: http://{host:s}:{port:d}/api/program
+      url: http://{host:s}:{port:d}/api/programs
       follow_redirects: true
       method: POST
       json:
         name: "Test program"
-
+        description: "Test description"
+        date: "Test date"
     response:
       status_code: [200, 201]
       save:
@@ -405,11 +410,13 @@ stages:
   - name: Update program
 
     request:
-      url: http://{host:s}:{port:d}/api/program/{program_id}
+      url: http://{host:s}:{port:d}/api/program/{program_id}/
       follow_redirects: true
       method: PUT
       json:
         name: "Updated test program"
+        description: "Updated Test description"
+        date: "Updated Test date"
       timeout: 1.0
 
     response:
@@ -421,7 +428,7 @@ stages:
   - name: Retrieve the updated program
 
     request:
-      url: http://{host:s}:{port:d}/api/program/{program_id}
+      url: http://{host:s}:{port:d}/api/program/{program_id}/
       follow_redirects: true
       method: GET
       timeout: 1.0
@@ -430,11 +437,13 @@ stages:
       status_code: 200
       json:
         name: "Updated test program"
+        description: "Updated Test description"
+        date: "Updated Test date"
 
   - name: Delete the program
 
     request:
-      url: http://{host:s}:{port:d}/api/program/{program_id}
+      url: http://{host:s}:{port:d}/api/program/{program_id}/
       follow_redirects: true
       method: DELETE
       timeout: 1.0
@@ -458,12 +467,13 @@ stages:
   - name: Add new program
 
     request:
-      url: http://{host:s}:{port:d}/api/program
+      url: http://{host:s}:{port:d}/api/programs
       follow_redirects: true
       method: POST
       json:
         name: "Test program"
-
+        description: "Test description"
+        date: "Test date"
     response:
       status_code: [200, 201]
       save:
@@ -473,7 +483,7 @@ stages:
   - name: Modify program
 
     request:
-      url: http://{host:s}:{port:d}/api/program/{program_id}
+      url: http://{host:s}:{port:d}/api/program/{program_id}/
       follow_redirects: true
       method: PATCH
       json:
@@ -489,7 +499,7 @@ stages:
   - name: Retrieve the modified program
 
     request:
-      url: http://{host:s}:{port:d}/api/program/{program_id}
+      url: http://{host:s}:{port:d}/api/program/{program_id}/
       follow_redirects: true
       method: GET
       timeout: 1.0
@@ -503,7 +513,7 @@ stages:
   - name: Delete the program
 
     request:
-      url: http://{host:s}:{port:d}/api/program/{program_id}
+      url: http://{host:s}:{port:d}/api/program/{program_id}/
       follow_redirects: true
       method: DELETE
       timeout: 1.0
@@ -527,11 +537,14 @@ stages:
   - name: Add new program
 
     request:
-      url: http://{host:s}:{port:d}/api/program
+      url: http://{host:s}:{port:d}/api/programs
       follow_redirects: true
       method: POST
       json:
         name: "Test program"
+        description: "Test description"
+        date: "Test date"
+
 
     response:
       status_code: [200, 201]
@@ -542,7 +555,7 @@ stages:
   - name: Delete the program
 
     request:
-      url: http://{host:s}:{port:d}/api/program/{program_id}
+      url: http://{host:s}:{port:d}/api/program/{program_id}/
       follow_redirects: true
       method: DELETE
       timeout: 1.0
@@ -556,7 +569,7 @@ stages:
   - name: Retrieve the deleted program
 
     request:
-      url: http://{host:s}:{port:d}/api/program/{program_id}
+      url: http://{host:s}:{port:d}/api/program/{program_id}/
       follow_redirects: true
       method: GET
       timeout: 1.0

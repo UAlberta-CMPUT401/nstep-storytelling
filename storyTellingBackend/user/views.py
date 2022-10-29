@@ -50,17 +50,6 @@ class UserDetail(APIView):
         serializer = UserSerializer(user)
         return Response(serializer.data)
 
-    def post(self, request, pk, format=None):
-        serializer = UserSerializer(data=request.data)
-        if serializer.is_valid():
-            result = serializer.save()
-            response = {
-                        "status": 0,
-                        "message": "User created",
-                        "id": result.id,
-                        }
-            return Response(response)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def put(self, request, pk, format=None):
         user = self.get_object(pk)
