@@ -97,11 +97,17 @@ Estimated sprint velocity: **16**
 
 | **Task** | **Related US** | **Assigned To** | **Due Date** |
 | --- | --- | --- | --- |
+| Search for stories by program | US 1.06 | Jason, Asad |  |
+| Search for stories by time | US 1.06 | Jayden, Favour |  |
+| Audio feedback | US 3.02 | Théo, Asad |  |
+| Video feedback | US 3.03 | Mohammed, Jayden |  |
+| Text feedback | US 3.01 | Théo, Mohammed |  |
+| JSX/CSS for creating questionnaires | US 1.02 | Jason, Favour |  |
 | Create unique URL endpoint | US 1.03 | | |
 | Create unique URL view | US 1.03 | | |
 | Delete accounts | US 2.02 | | |
 | Authentications for User/Admin/anonymous | US 3.05 | | |
-| Page to create admin accounts | US 2.01 | | |
+| Page to create admin accounts | US 2.01 | Théa | |
 | translation tool for feedbacks | US 1.07 | | |
 
 ### Sprint 5
