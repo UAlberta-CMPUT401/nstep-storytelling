@@ -1,0 +1,7 @@
+.text-answer-input {
+   margin: 100px 128px 64px 128px;
+}
+
+.text-answer-input > * {
+    margin-top: 8px;
+}

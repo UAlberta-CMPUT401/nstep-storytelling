@@ -1,0 +1,12 @@
+.delete-button {
+    position: relative;
+    left: 100%;
+}
+
+.text-input {
+    margin-top: 64px;
+}
+
+.text-input > * {
+    margin-top: 8px;
+}

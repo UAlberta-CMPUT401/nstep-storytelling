@@ -1,10 +1,16 @@
 import React from 'react';
-import './styles/App.css';
+import Button from '@mui/material/Button';
+import './styles/Forms.css';
+import { Link } from "react-router-dom";
 
 export default function Forms() {
   return (
-    <div>
-      <button>+ Create Form</button>
+    <div className="forms">
+      <Link to="/create" style={{ textDecoration: "none", color: "white" }}>
+        <Button variant="contained">
+          + Create Form
+        </Button>
+      </Link>
       <ul>
         <li>Program 1 survey</li>
         <li>Program 2 survey</li>

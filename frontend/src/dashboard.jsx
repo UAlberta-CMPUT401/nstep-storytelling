@@ -4,7 +4,7 @@ import { Tabs, Tab } from "@mui/material";
 import Navbar from "./components/Navbar";
 import Forms from "./forms";
 import Feedback from "./feedback";
-import "./styles/App.css";
+import './styles/Dashboard.css';
 
 export default function Dashboard() {
   const [selectedTab, setSelectedTab] = React.useState(0);
@@ -15,11 +15,16 @@ export default function Dashboard() {
 
   return (
     <div>
-      <div>
-        <Navbar />
+      <Navbar />
+      <div className="dashboard">
         <div>
           <Link to="/">
-            <button style={{ float: "right" }}>Logout</button>
+            <button style={{
+              float: "right", marginRight: "12px", marginBottom: "12px", fontSize: "16px",
+            }}
+            >
+              Logout
+            </button>
           </Link>
         </div>
         <Tabs value={selectedTab} onChange={handleChange} centered>
