@@ -44,15 +44,15 @@ urlpatterns = [
     # path('api/programs',qv.ProgramList.as_view(),name='ProgramList'),
     # re_path(r'api/program/(?P<pk>[(-z)]{36})/', qv.ProgramDetail.as_view(),name='SingleProgram'),
     
-    path('api/users',uv.UserList.as_view(),name='UserList'),
-    path('api/questionnaires/', qv.Questionnaire_list.as_view()),
+    path('api/user/',uv.UserList.as_view(),name='UserList'),
+    path('api/questionnaire/', qv.Questionnaire_list.as_view()),
     re_path(r'api/questionnaire/(?P<pk>[(-z)]{36})/question/(?P<pk2>[(-z)]{36})',qv.QuestionDetail.as_view(),name='SingleQuestion'),
 
-    re_path(r'api/questionnaire/(?P<pk>[(-z)]{36})/questions',qv.Questions.as_view(),name='Questions'),
+    re_path(r'api/questionnaire/(?P<pk>[(-z)]{36})/question',qv.Questions.as_view(),name='Questions'),
 
     re_path(r'api/questionnaire/(?P<pk>[(-z)]{36})/', qv.Questionnaire_detail.as_view()),
     # path('api/user', uv.UserDetail.as_view(),name='UserList'),
-    re_path(r'api/question/(?P<pk>[(-z)]{36})/feedbacks/',qv.Feedbacks.as_view(),name='Feedbacks'),
+    re_path(r'api/question/(?P<pk>[(-z)]{36})/feedback/',qv.Feedbacks.as_view(),name='Feedbacks'),
 
     re_path(r'api/user/(?P<pk>[(-z)]{36})/', uv.UserDetail.as_view(),name='SingleUser'),
 
