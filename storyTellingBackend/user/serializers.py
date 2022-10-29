@@ -2,13 +2,14 @@ from django.db.models import fields
 from rest_framework import serializers
 from user.models import *
 
+class AddingUserSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = ['username','profileImage',"email"]
+
+
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['username', 'email',  'profileImage']
-
-
-class UserInListSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = ['id', 'username', 'email', 'profileImage']
+        fields = "__all__"
