@@ -97,7 +97,12 @@ Estimated sprint velocity: **16**
 
 | **Task** | **Related US** | **Assigned To** | **Due Date** |
 | --- | --- | --- | --- |
-| | | | |
+| Create unique URL endpoint | US 1.03 | | |
+| Create unique URL view | US 1.03 | | |
+| Delete accounts | US 2.02 | | |
+| Authentications for User/Admin/anonymous | US 3.05 | | |
+| Page to create admin accounts | US 2.01 | | |
+| translation tool for feedbacks | US 1.07 | | |
 
 ### Sprint 5
 
