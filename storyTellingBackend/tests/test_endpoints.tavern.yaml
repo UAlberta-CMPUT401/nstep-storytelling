@@ -11,23 +11,23 @@ stages:
   - name: Add new user
 
     request:
-      url: http://{host:s}:{port:d}/api/user
+      url: http://{host:s}:{port:d}/api/user/
       follow_redirects: true
       method: POST
       json:
-        name: "New user"
+        username: "testUser123"
 
     response:
       status_code: [200, 201]
       save:
         json:
-          user_id: id
+          id: id
 
 
   - name: Delete the user
 
     request:
-      url: http://{host:s}:{port:d}/api/user/{user_id}
+      url: http://{host:s}:{port:d}/api/user/{id}/
       follow_redirects: true
       method: DELETE
       timeout: 1.0
@@ -51,22 +51,22 @@ stages:
   - name: Add new User
 
     request:
-      url: http://{host:s}:{port:d}/api/user
+      url: http://{host:s}:{port:d}/api/user/
       follow_redirects: true
       method: POST
       json:
-        name: "New user"
+        username: "testUser124"
 
     response:
       status_code: [200, 201]
       save:
         json:
-          user_id: id
+          id: id
 
   - name: Fetch new user
 
     request:
-      url: http://{host:s}:{port:d}/api/user/{user_id}
+      url: http://{host:s}:{port:d}/api/user/{id}/
       follow_redirects: true
       method: GET
       timeout: 1.0
@@ -74,12 +74,12 @@ stages:
     response:
       status_code: 200
       json:
-        name: "New user"
+        username: "testUser124"
 
   - name: Delete the user
 
     request:
-      url: http://{host:s}:{port:d}/api/user/{user_id}
+      url: http://{host:s}:{port:d}/api/user/{id}/
       follow_redirects: true
       method: DELETE
       timeout: 1.0
@@ -91,7 +91,7 @@ stages:
         message: "User deleted"
 
 ---
-test_name: Endpoints _ 4. Update user
+test_name: Endpoints _ 3. Update user
 
 includes:
   - !include includes.yaml
@@ -103,26 +103,27 @@ stages:
   - name: Add new user
 
     request:
-      url: http://{host:s}:{port:d}/api/user
+      url: http://{host:s}:{port:d}/api/user/
       follow_redirects: true
       method: POST
       json:
-        name: "Test user"
+        username: "testUser128"
 
     response:
       status_code: [200, 201]
       save:
         json:
-          user_id: id
+          id: id
 
   - name: Update user
 
     request:
-      url: http://{host:s}:{port:d}/api/user/{user_id}
+      url: http://{host:s}:{port:d}/api/user/{id}/
       follow_redirects: true
       method: PUT
       json:
-        name: "Updated test user"
+        username: "testUser128Updated"
+        password: "1125"
       timeout: 1.0
 
     response:
@@ -134,7 +135,7 @@ stages:
   - name: Retrieve the updated user
 
     request:
-      url: http://{host:s}:{port:d}/api/user/{user_id}
+      url: http://{host:s}:{port:d}/api/user/{id}/
       follow_redirects: true
       method: GET
       timeout: 1.0
@@ -142,12 +143,12 @@ stages:
     response:
       status_code: 200
       json:
-        name: "Updated test user"
+        username: "testUser128Updated"
 
   - name: Delete the user
 
     request:
-      url: http://{host:s}:{port:d}/api/user/{user_id}
+      url: http://{host:s}:{port:d}/api/user/{id}/
       follow_redirects: true
       method: DELETE
       timeout: 1.0
@@ -159,7 +160,7 @@ stages:
         message: "User deleted"
 
 ---
-test_name: Endpoints _ 5. Modify user
+test_name: Endpoints _ 4. Modify user
 
 includes:
   - !include includes.yaml
@@ -171,26 +172,26 @@ stages:
   - name: Add new user
 
     request:
-      url: http://{host:s}:{port:d}/api/user
+      url: http://{host:s}:{port:d}/api/user/
       follow_redirects: true
       method: POST
       json:
-        name: "Test user"
+        username: "testUser126"
 
     response:
       status_code: [200, 201]
       save:
         json:
-          user_id: id
+          id: id
 
   - name: Modify user
 
     request:
-      url: http://{host:s}:{port:d}/api/user/{user_id}
+      url: http://{host:s}:{port:d}/api/user/{id}/
       follow_redirects: true
       method: PATCH
       json:
-        name: "Modified user name"
+        username: "testUser126Modified"
       timeout: 1.0
 
     response:
@@ -202,7 +203,7 @@ stages:
   - name: Retrieve the modified user
 
     request:
-      url: http://{host:s}:{port:d}/api/user/{user_id}
+      url: http://{host:s}:{port:d}/api/user/{id}/
       follow_redirects: true
       method: GET
       timeout: 1.0
@@ -210,13 +211,13 @@ stages:
     response:
       status_code: 200
       json:
-        name: "Modified user name"
+        username: "testUser126Modified"
 
 
   - name: Delete the user
 
     request:
-      url: http://{host:s}:{port:d}/api/user/{user_id}
+      url: http://{host:s}:{port:d}/api/user/{id}/
       follow_redirects: true
       method: DELETE
       timeout: 1.0
@@ -228,7 +229,7 @@ stages:
         message: "User deleted"
 
 ---
-test_name: Endpoints _ 6. Delete user
+test_name: Endpoints _ 5. Delete user
 
 includes:
   - !include includes.yaml
@@ -240,22 +241,22 @@ stages:
   - name: Add new user
 
     request:
-      url: http://{host:s}:{port:d}/api/user
+      url: http://{host:s}:{port:d}/api/user/
       follow_redirects: true
       method: POST
       json:
-        name: "Test user"
+        username: "testUser127"
 
     response:
       status_code: [200, 201]
       save:
         json:
-          user_id: id
+          id: id
 
   - name: Delete the user
 
     request:
-      url: http://{host:s}:{port:d}/api/user/{user_id}
+      url: http://{host:s}:{port:d}/api/user/{id}/
       follow_redirects: true
       method: DELETE
       timeout: 1.0
@@ -269,7 +270,7 @@ stages:
   - name: Retrieve the deleted user
 
     request:
-      url: http://{host:s}:{port:d}/api/user/{user_id}
+      url: http://{host:s}:{port:d}/api/user/{id}/
       follow_redirects: true
       method: GET
       timeout: 1.0
@@ -278,15 +279,8 @@ stages:
       status_code: [404]
 
 
-
-
-
-
-
-
-
 ---
-test_name: Endpoints _ 1. Add New Program
+test_name: Endpoints _ 1. Add New Questionnaire
 
 includes:
   - !include includes.yaml
@@ -295,38 +289,39 @@ strict:
   - json:off
 
 stages:
-  - name: Add new Program
+  - name: Add new Questionnaire
 
     request:
-      url: http://{host:s}:{port:d}/api/program
+      url: http://{host:s}:{port:d}/api/questionnaire/
       follow_redirects: true
       method: POST
       json:
-        name: "New program"
+        title: "test title 123"
+        description: "test description 123"
 
     response:
       status_code: [200, 201]
       save:
         json:
-          program_id: id
+          id: id
 
 
-  - name: Delete the program
+  # - name: Delete the Questionnaire
 
-    request:
-      url: http://{host:s}:{port:d}/api/program/{program_id}
-      follow_redirects: true
-      method: DELETE
-      timeout: 1.0
+  #   request:
+  #     url: http://{host:s}:{port:d}/api/questionnaire/{id}/
+  #     follow_redirects: true
+  #     method: DELETE
+  #     timeout: 1.0
 
-    response:
-      status_code: [200, 201]
-      json:
-        status: 0
-        message: "Program deleted"
+  #   response:
+  #     status_code: [200, 201]
+  #     json:
+  #       status: 0
+  #       message: "Questionnaire deleted"
 
 ---
-test_name: Endpoints _ 2. Fetch New Program
+test_name: Endpoints _ 2. Fetch New Questionnaire
 
 includes:
   - !include includes.yaml
@@ -335,25 +330,26 @@ strict:
   - json:off
 
 stages:
-  - name: Add new Program
+  - name: Add new Questionnaire
 
     request:
-      url: http://{host:s}:{port:d}/api/program
+      url: http://{host:s}:{port:d}/api/questionnaire/
       follow_redirects: true
       method: POST
       json:
-        name: "New Program"
+        title: "test title 124"
+        description: "test description 123"
 
     response:
       status_code: [200, 201]
       save:
         json:
-          program_id: id
+          id: id
 
-  - name: Fetch new Program
+  - name: Fetch new Questionnaire
 
     request:
-      url: http://{host:s}:{port:d}/api/Program/{program_id}
+      url: http://{host:s}:{port:d}/api/questionnaire/{id}/
       follow_redirects: true
       method: GET
       timeout: 1.0
@@ -361,205 +357,566 @@ stages:
     response:
       status_code: 200
       json:
-        name: "New program"
+        title: "test title 124"
+        description: "test description 123"
 
-  - name: Delete the program
+  # - name: Delete the Questionnaire
 
-    request:
-      url: http://{host:s}:{port:d}/api/program/{program_id}
-      follow_redirects: true
-      method: DELETE
-      timeout: 1.0
+  #   request:
+  #     url: http://{host:s}:{port:d}/api/questionnaire/{id}/
+  #     follow_redirects: true
+  #     method: DELETE
+  #     timeout: 1.0
 
-    response:
-      status_code: [200, 201]
-      json:
-        status: 0
-        message: "program deleted"
+  #   response:
+  #     status_code: [200, 201]
+  #     json:
+  #       status: 0
+  #       message: "Questionnaire deleted"
 
----
-test_name: Endpoints _ 4. Update program
+# ---
+# test_name: Endpoints _ 3. Update Questionnaire
 
-includes:
-  - !include includes.yaml
+# includes:
+#   - !include includes.yaml
 
-strict:
-  - json:off
+# strict:
+#   - json:off
 
-stages:
-  - name: Add new program
+# stages:
+#   - name: Add new Questionnaire
 
-    request:
-      url: http://{host:s}:{port:d}/api/program
-      follow_redirects: true
-      method: POST
-      json:
-        name: "Test program"
+#     request:
+#       url: http://{host:s}:{port:d}/api/questionnaire/
+#       follow_redirects: true
+#       method: POST
+#       json:
+#         title: "test title 128"
+#         description: "test description 123"
 
-    response:
-      status_code: [200, 201]
-      save:
-        json:
-          program_id: id
+#     response:
+#       status_code: [200, 201]
+#       save:
+#         json:
+#           id: id
 
-  - name: Update program
+#   - name: Update Questionnaire
 
-    request:
-      url: http://{host:s}:{port:d}/api/program/{program_id}
-      follow_redirects: true
-      method: PUT
-      json:
-        name: "Updated test program"
-      timeout: 1.0
+#     request:
+#       url: http://{host:s}:{port:d}/api/questionnaire/{id}/
+#       follow_redirects: true
+#       method: PUT
+#       json:
+#         title: "test title 128Updated"
+#         description: "test description 123 up"
+#         questions: []
+#       timeout: 1.0
 
-    response:
-      status_code: [200, 201]
-      json:
-        status: 0
-        message: "program updated"
+#     response:
+#       status_code: [200, 201]
+#       json:
+#         status: 0
+#         message: "Questionnaire updated"
 
-  - name: Retrieve the updated program
+#   - name: Retrieve the updated Questionnaire
 
-    request:
-      url: http://{host:s}:{port:d}/api/program/{program_id}
-      follow_redirects: true
-      method: GET
-      timeout: 1.0
+#     request:
+#       url: http://{host:s}:{port:d}/api/questionnaire/{id}/
+#       follow_redirects: true
+#       method: GET
+#       timeout: 1.0
 
-    response:
-      status_code: 200
-      json:
-        name: "Updated test program"
+#     response:
+#       status_code: 200
+#       json:
+#         title: "test title 128Updated"
+#         description: "test description 123 up"
+  # - name: Delete the Questionnaire
 
-  - name: Delete the program
+  #   request:
+  #     url: http://{host:s}:{port:d}/api/questionnaire/{id}/
+  #     follow_redirects: true
+  #     method: DELETE
+  #     timeout: 1.0
 
-    request:
-      url: http://{host:s}:{port:d}/api/program/{program_id}
-      follow_redirects: true
-      method: DELETE
-      timeout: 1.0
+  #   response:
+  #     status_code: [200, 201]
+  #     json:
+  #       status: 0
+  #       message: "Questionnaire deleted"
 
-    response:
-      status_code: [200, 201]
-      json:
-        status: 0
-        message: "program deleted"
+# ---
+# test_name: Endpoints _ 4. Modify Questionnaire
 
----
-test_name: Endpoints _ 5. Modify program
+# includes:
+#   - !include includes.yaml
 
-includes:
-  - !include includes.yaml
+# strict:
+#   - json:off
 
-strict:
-  - json:off
+# stages:
+#   - name: Add new Questionnaire
 
-stages:
-  - name: Add new program
+#     request:
+#       url: http://{host:s}:{port:d}/api/questionnaire/
+#       follow_redirects: true
+#       method: POST
+#       json:
+#         title: "test title 126"
+#         description: "test description 123 up"
 
-    request:
-      url: http://{host:s}:{port:d}/api/program
-      follow_redirects: true
-      method: POST
-      json:
-        name: "Test program"
+#     response:
+#       status_code: [200, 201]
+#       save:
+#         json:
+#           id: id
 
-    response:
-      status_code: [200, 201]
-      save:
-        json:
-          program_id: id
+#   - name: Modify Questionnaire
 
-  - name: Modify program
+#     request:
+#       url: http://{host:s}:{port:d}/api/questionnaire/{id}/
+#       follow_redirects: true
+#       method: PATCH
+#       json:
+#         title: "test title 126Modified"
+#       timeout: 1.0
 
-    request:
-      url: http://{host:s}:{port:d}/api/program/{program_id}
-      follow_redirects: true
-      method: PATCH
-      json:
-        name: "Modified program name"
-      timeout: 1.0
+#     response:
+#       status_code: [200, 201]
+#       json:
+#         status: 0
+#         message: "Questionnaire modified"
 
-    response:
-      status_code: [200, 201]
-      json:
-        status: 0
-        message: "program modified"
+#   - name: Retrieve the modified Questionnaire
 
-  - name: Retrieve the modified program
+#     request:
+#       url: http://{host:s}:{port:d}/api/questionnaire/{id}/
+#       follow_redirects: true
+#       method: GET
+#       timeout: 1.0
 
-    request:
-      url: http://{host:s}:{port:d}/api/program/{program_id}
-      follow_redirects: true
-      method: GET
-      timeout: 1.0
-
-    response:
-      status_code: 200
-      json:
-        name: "Modified program name"
+#     response:
+#       status_code: 200
+#       json:
+#         title: "test title 126Modified"
 
 
-  - name: Delete the program
+  # - name: Delete the Questionnaire
 
-    request:
-      url: http://{host:s}:{port:d}/api/program/{program_id}
-      follow_redirects: true
-      method: DELETE
-      timeout: 1.0
+  #   request:
+  #     url: http://{host:s}:{port:d}/api/questionnaire/{id}/
+  #     follow_redirects: true
+  #     method: DELETE
+  #     timeout: 1.0
 
-    response:
-      status_code: [200, 201]
-      json:
-        status: 0
-        message: "program deleted"
+  #   response:
+  #     status_code: [200, 201]
+  #     json:
+  #       status: 0
+  #       message: "Questionnaire deleted"
 
----
-test_name: Endpoints _ 6. Delete program
+# ---
+# test_name: Endpoints _ 5. Delete Questionnaire
 
-includes:
-  - !include includes.yaml
+# includes:
+#   - !include includes.yaml
 
-strict:
-  - json:off
+# strict:
+#   - json:off
 
-stages:
-  - name: Add new program
+# stages:
+#   - name: Add new Questionnaire
 
-    request:
-      url: http://{host:s}:{port:d}/api/program
-      follow_redirects: true
-      method: POST
-      json:
-        name: "Test program"
+#     request:
+#       url: http://{host:s}:{port:d}/api/questionnaire/
+#       follow_redirects: true
+#       method: POST
+#       json:
+#         title: "test title 127"
+#         description: "test description 123 up"
 
-    response:
-      status_code: [200, 201]
-      save:
-        json:
-          program_id: id
+#     response:
+#       status_code: [200, 201]
+#       save:
+#         json:
+#           id: id
 
-  - name: Delete the program
+#   - name: Delete the Questionnaire
 
-    request:
-      url: http://{host:s}:{port:d}/api/program/{program_id}
-      follow_redirects: true
-      method: DELETE
-      timeout: 1.0
+#     request:
+#       url: http://{host:s}:{port:d}/api/questionnaire/{id}/
+#       follow_redirects: true
+#       method: DELETE
+#       timeout: 1.0
 
-    response:
-      status_code: [200, 201]
-      json:
-        status: 0
-        message: "program deleted"
+#     response:
+#       status_code: [200, 201]
+#       json:
+#         status: 0
+#         message: "Questionnaire deleted"
 
-  - name: Retrieve the deleted program
+  # - name: Retrieve the deleted Questionnaire
 
-    request:
-      url: http://{host:s}:{port:d}/api/program/{program_id}
-      follow_redirects: true
-      method: GET
-      timeout: 1.0
+  #   request:
+  #     url: http://{host:s}:{port:d}/api/questionnaire/{id}/
+  #     follow_redirects: true
+  #     method: GET
+  #     timeout: 1.0
 
-    response:
-      status_code: [404]
+  #   response:
+  #     status_code: [404]
+
+
+
+
+
+
+
+
+
+
+
+
+
+# ---
+# test_name: Endpoints _ 6. Check Total Number of Users
+
+# includes:
+#   - !include includes.yaml
+
+# strict:
+#   - json:off
+
+# stages:
+#   - name: Add new user
+
+#     request:
+#       url: http://{host:s}:{port:d}/users
+#       follow_redirects: true
+#       method: POST
+#       json:
+#         username: "testUser123"
+
+#     response:
+#       status_code: [200, 201]
+#       save:
+#         json:
+#           id: id
+
+#   - name: Check total number of users
+
+#     request:
+#       url: http://{host:s}:{port:d}/users
+#       follow_redirects: true
+#       method: GET
+#       timeout: 1.0
+
+#     response:
+#       status_code: 200
+#       verify_response_with:
+#         function: testing_utils:at_least_one_set
+
+#   - name: Delete the set
+
+#     request:
+#       url: http://{host:s}:{port:d}/users/{id}
+#       follow_redirects: true
+#       method: DELETE
+#       timeout: 1.0
+
+#     response:
+#       status_code: [200, 201]
+#       json:
+#         status: 0
+#         message: "User deleted"
+# ---
+# test_name: Endpoints _ 7. Add New Program
+
+# includes:
+#   - !include includes.yaml
+
+# strict:
+#   - json:off
+
+# stages:
+#   - name: Add new Programs
+
+#     request:
+#       url: http://{host:s}:{port:d}/api/programs
+#       follow_redirects: true
+#       method: POST
+#       json:
+#         name: "Test program"
+#         description: "Test description"
+#         date: "Test date"
+
+#     response:
+#       status_code: [200, 201]
+#       save:
+#         json:
+#           program_id: id
+
+
+#   - name: Delete the program
+
+#     request:
+#       url: http://{host:s}:{port:d}/api/program/{program_id}/
+#       follow_redirects: true
+#       method: DELETE
+#       timeout: 1.0
+
+#     response:
+#       status_code: [200, 201]
+#       json:
+#         status: 0
+#         message: "program deleted"
+
+# ---
+# test_name: Endpoints _ 8. Fetch New Program
+
+# includes:
+#   - !include includes.yaml
+
+# strict:
+#   - json:off
+
+# stages:
+#   - name: Add new Program
+
+#     request:
+#       url: http://{host:s}:{port:d}/api/programs
+#       follow_redirects: true
+#       method: POST
+#       json:
+#         name: "Test program"
+#         description: "Test description"
+#         date: "Test date"
+#     response:
+#       status_code: [200, 201]
+#       save:
+#         json:
+#           program_id: id
+
+#   - name: Fetch new Program
+
+#     request:
+#       url: http://{host:s}:{port:d}/api/program/{program_id}/
+#       follow_redirects: true
+#       method: GET
+#       timeout: 1.0
+
+#     response:
+#       status_code: 200
+#       json:
+#         name: "Test program"
+#         description: "Test description"
+#         date: "Test date"
+#   - name: Delete the program
+
+#     request:
+#       url: http://{host:s}:{port:d}/api/program/{program_id}/
+#       follow_redirects: true
+#       method: DELETE
+#       timeout: 1.0
+
+#     response:
+#       status_code: [200, 201]
+#       json:
+#         status: 0
+#         message: "program deleted"
+
+# ---
+# test_name: Endpoints _ 9. Update program
+
+# includes:
+#   - !include includes.yaml
+
+# strict:
+#   - json:off
+
+# stages:
+#   - name: Add new program
+
+#     request:
+#       url: http://{host:s}:{port:d}/api/programs
+#       follow_redirects: true
+#       method: POST
+#       json:
+#         name: "Test program"
+#         description: "Test description"
+#         date: "Test date"
+#     response:
+#       status_code: [200, 201]
+#       save:
+#         json:
+#           program_id: id
+
+#   - name: Update program
+
+#     request:
+#       url: http://{host:s}:{port:d}/api/program/{program_id}/
+#       follow_redirects: true
+#       method: PUT
+#       json:
+#         name: "Updated test program"
+#         description: "Updated Test description"
+#         date: "Updated Test date"
+#       timeout: 1.0
+
+#     response:
+#       status_code: [200, 201]
+#       json:
+#         status: 0
+#         message: "program updated"
+
+#   - name: Retrieve the updated program
+
+#     request:
+#       url: http://{host:s}:{port:d}/api/program/{program_id}/
+#       follow_redirects: true
+#       method: GET
+#       timeout: 1.0
+
+#     response:
+#       status_code: 200
+#       json:
+#         name: "Updated test program"
+#         description: "Updated Test description"
+#         date: "Updated Test date"
+
+#   - name: Delete the program
+
+#     request:
+#       url: http://{host:s}:{port:d}/api/program/{program_id}/
+#       follow_redirects: true
+#       method: DELETE
+#       timeout: 1.0
+
+#     response:
+#       status_code: [200, 201]
+#       json:
+#         status: 0
+#         message: "program deleted"
+
+# ---
+# test_name: Endpoints _ 10. Modify program
+
+# includes:
+#   - !include includes.yaml
+
+# strict:
+#   - json:off
+
+# stages:
+#   - name: Add new program
+
+#     request:
+#       url: http://{host:s}:{port:d}/api/programs
+#       follow_redirects: true
+#       method: POST
+#       json:
+#         name: "Test program"
+#         description: "Test description"
+#         date: "Test date"
+#     response:
+#       status_code: [200, 201]
+#       save:
+#         json:
+#           program_id: id
+
+#   - name: Modify program
+
+#     request:
+#       url: http://{host:s}:{port:d}/api/program/{program_id}/
+#       follow_redirects: true
+#       method: PATCH
+#       json:
+#         name: "Modified program name"
+#       timeout: 1.0
+
+#     response:
+#       status_code: [200, 201]
+#       json:
+#         status: 0
+#         message: "program modified"
+
+#   - name: Retrieve the modified program
+
+#     request:
+#       url: http://{host:s}:{port:d}/api/program/{program_id}/
+#       follow_redirects: true
+#       method: GET
+#       timeout: 1.0
+
+#     response:
+#       status_code: 200
+#       json:
+#         name: "Modified program name"
+
+
+#   - name: Delete the program
+
+#     request:
+#       url: http://{host:s}:{port:d}/api/program/{program_id}/
+#       follow_redirects: true
+#       method: DELETE
+#       timeout: 1.0
+
+#     response:
+#       status_code: [200, 201]
+#       json:
+#         status: 0
+#         message: "program deleted"
+
+# ---
+# test_name: Endpoints _ 11. Delete program
+
+# includes:
+#   - !include includes.yaml
+
+# strict:
+#   - json:off
+
+# stages:
+#   - name: Add new program
+
+#     request:
+#       url: http://{host:s}:{port:d}/api/programs
+#       follow_redirects: true
+#       method: POST
+#       json:
+#         name: "Test program"
+#         description: "Test description"
+#         date: "Test date"
+
+
+#     response:
+#       status_code: [200, 201]
+#       save:
+#         json:
+#           program_id: id
+
+#   - name: Delete the program
+
+#     request:
+#       url: http://{host:s}:{port:d}/api/program/{program_id}/
+#       follow_redirects: true
+#       method: DELETE
+#       timeout: 1.0
+
+#     response:
+#       status_code: [200, 201]
+#       json:
+#         status: 0
+#         message: "program deleted"
+
+#   - name: Retrieve the deleted program
+
+#     request:
+#       url: http://{host:s}:{port:d}/api/program/{program_id}/
+#       follow_redirects: true
+#       method: GET
+#       timeout: 1.0
+
+#     response:
+#       status_code: [404]
