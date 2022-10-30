@@ -30,9 +30,3 @@ class AnswerList(models.Model):
     questionnaire = models.ForeignKey(Questionnaire, on_delete=models.CASCADE,null=True)
     time = models.DateTimeField(default=timezone.now)
 
-# class Program(models.Model):
-#     id = models.UUIDField(primary_key = True , auto_created = True , default = uuid.uuid4)
-#     name = models.CharField(max_length=200)
-#     date = models.CharField(max_length=200)
-#     description = models.TextField(max_length=1000)
-#     questionnaires = models.ManyToManyField(Questionnaire)
