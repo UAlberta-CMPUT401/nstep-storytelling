@@ -11,7 +11,7 @@ stages:
   - name: Test
 
     request:
-      url: http://{host:s}:{port:d}/api/users
+      url: http://{host:s}:{port:d}/api/user
       follow_redirects: true
       method: GET
       timeout: 1.0
@@ -53,7 +53,7 @@ stages:
   - name: Test
 
     request:
-      url: http://{host:s}:{port:d}/api/users
+      url: http://{host:s}:{port:d}/api/user
       follow_redirects: true
       method: DELETE
       timeout: 1.0

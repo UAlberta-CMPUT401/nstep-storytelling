@@ -11,7 +11,7 @@ stages:
   - name: Add new user
 
     request:
-      url: http://{host:s}:{port:d}/api/users
+      url: http://{host:s}:{port:d}/api/user/
       follow_redirects: true
       method: POST
       json:
@@ -21,13 +21,13 @@ stages:
       status_code: [200, 201]
       save:
         json:
-          user_id: id
+          id: id
 
 
   - name: Delete the user
 
     request:
-      url: http://{host:s}:{port:d}/api/user/{user_id}/
+      url: http://{host:s}:{port:d}/api/user/{id}/
       follow_redirects: true
       method: DELETE
       timeout: 1.0
@@ -51,7 +51,7 @@ stages:
   - name: Add new User
 
     request:
-      url: http://{host:s}:{port:d}/api/users
+      url: http://{host:s}:{port:d}/api/user/
       follow_redirects: true
       method: POST
       json:
@@ -61,12 +61,12 @@ stages:
       status_code: [200, 201]
       save:
         json:
-          user_id: id
+          id: id
 
   - name: Fetch new user
 
     request:
-      url: http://{host:s}:{port:d}/api/user/{user_id}/
+      url: http://{host:s}:{port:d}/api/user/{id}/
       follow_redirects: true
       method: GET
       timeout: 1.0
@@ -79,7 +79,7 @@ stages:
   - name: Delete the user
 
     request:
-      url: http://{host:s}:{port:d}/api/user/{user_id}/
+      url: http://{host:s}:{port:d}/api/user/{id}/
       follow_redirects: true
       method: DELETE
       timeout: 1.0
@@ -103,7 +103,7 @@ stages:
   - name: Add new user
 
     request:
-      url: http://{host:s}:{port:d}/api/users
+      url: http://{host:s}:{port:d}/api/user/
       follow_redirects: true
       method: POST
       json:
@@ -113,12 +113,12 @@ stages:
       status_code: [200, 201]
       save:
         json:
-          user_id: id
+          id: id
 
   - name: Update user
 
     request:
-      url: http://{host:s}:{port:d}/api/user/{user_id}/
+      url: http://{host:s}:{port:d}/api/user/{id}/
       follow_redirects: true
       method: PUT
       json:
@@ -135,7 +135,7 @@ stages:
   - name: Retrieve the updated user
 
     request:
-      url: http://{host:s}:{port:d}/api/user/{user_id}/
+      url: http://{host:s}:{port:d}/api/user/{id}/
       follow_redirects: true
       method: GET
       timeout: 1.0
@@ -148,7 +148,7 @@ stages:
   - name: Delete the user
 
     request:
-      url: http://{host:s}:{port:d}/api/user/{user_id}/
+      url: http://{host:s}:{port:d}/api/user/{id}/
       follow_redirects: true
       method: DELETE
       timeout: 1.0
@@ -172,7 +172,7 @@ stages:
   - name: Add new user
 
     request:
-      url: http://{host:s}:{port:d}/api/users
+      url: http://{host:s}:{port:d}/api/user/
       follow_redirects: true
       method: POST
       json:
@@ -182,12 +182,12 @@ stages:
       status_code: [200, 201]
       save:
         json:
-          user_id: id
+          id: id
 
   - name: Modify user
 
     request:
-      url: http://{host:s}:{port:d}/api/user/{user_id}/
+      url: http://{host:s}:{port:d}/api/user/{id}/
       follow_redirects: true
       method: PATCH
       json:
@@ -203,7 +203,7 @@ stages:
   - name: Retrieve the modified user
 
     request:
-      url: http://{host:s}:{port:d}/api/user/{user_id}/
+      url: http://{host:s}:{port:d}/api/user/{id}/
       follow_redirects: true
       method: GET
       timeout: 1.0
@@ -217,7 +217,7 @@ stages:
   - name: Delete the user
 
     request:
-      url: http://{host:s}:{port:d}/api/user/{user_id}/
+      url: http://{host:s}:{port:d}/api/user/{id}/
       follow_redirects: true
       method: DELETE
       timeout: 1.0
@@ -241,7 +241,7 @@ stages:
   - name: Add new user
 
     request:
-      url: http://{host:s}:{port:d}/api/users
+      url: http://{host:s}:{port:d}/api/user/
       follow_redirects: true
       method: POST
       json:
@@ -251,12 +251,12 @@ stages:
       status_code: [200, 201]
       save:
         json:
-          user_id: id
+          id: id
 
   - name: Delete the user
 
     request:
-      url: http://{host:s}:{port:d}/api/user/{user_id}/
+      url: http://{host:s}:{port:d}/api/user/{id}/
       follow_redirects: true
       method: DELETE
       timeout: 1.0
@@ -270,7 +270,7 @@ stages:
   - name: Retrieve the deleted user
 
     request:
-      url: http://{host:s}:{port:d}/api/user/{user_id}/
+      url: http://{host:s}:{port:d}/api/user/{id}/
       follow_redirects: true
       method: GET
       timeout: 1.0
@@ -316,7 +316,7 @@ stages:
 #       status_code: [200, 201]
 #       save:
 #         json:
-#           user_id: id
+#           id: id
 
 #   - name: Check total number of users
 
@@ -334,7 +334,7 @@ stages:
 #   - name: Delete the set
 
 #     request:
-#       url: http://{host:s}:{port:d}/users/{user_id}
+#       url: http://{host:s}:{port:d}/users/{id}
 #       follow_redirects: true
 #       method: DELETE
 #       timeout: 1.0
