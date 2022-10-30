@@ -279,7 +279,292 @@ stages:
       status_code: [404]
 
 
+---
+test_name: Endpoints _ 1. Add New Questionnaire
 
+includes:
+  - !include includes.yaml
+
+strict:
+  - json:off
+
+stages:
+  - name: Add new Questionnaire
+
+    request:
+      url: http://{host:s}:{port:d}/api/questionnaire/
+      follow_redirects: true
+      method: POST
+      json:
+        title: "test title 123"
+        description: "test description 123"
+
+    response:
+      status_code: [200, 201]
+      save:
+        json:
+          id: id
+
+
+  # - name: Delete the Questionnaire
+
+  #   request:
+  #     url: http://{host:s}:{port:d}/api/questionnaire/{id}/
+  #     follow_redirects: true
+  #     method: DELETE
+  #     timeout: 1.0
+
+  #   response:
+  #     status_code: [200, 201]
+  #     json:
+  #       status: 0
+  #       message: "Questionnaire deleted"
+
+---
+test_name: Endpoints _ 2. Fetch New Questionnaire
+
+includes:
+  - !include includes.yaml
+
+strict:
+  - json:off
+
+stages:
+  - name: Add new Questionnaire
+
+    request:
+      url: http://{host:s}:{port:d}/api/questionnaire/
+      follow_redirects: true
+      method: POST
+      json:
+        title: "test title 124"
+        description: "test description 123"
+
+    response:
+      status_code: [200, 201]
+      save:
+        json:
+          id: id
+
+  - name: Fetch new Questionnaire
+
+    request:
+      url: http://{host:s}:{port:d}/api/questionnaire/{id}/
+      follow_redirects: true
+      method: GET
+      timeout: 1.0
+
+    response:
+      status_code: 200
+      json:
+        title: "test title 124"
+        description: "test description 123"
+
+  # - name: Delete the Questionnaire
+
+  #   request:
+  #     url: http://{host:s}:{port:d}/api/questionnaire/{id}/
+  #     follow_redirects: true
+  #     method: DELETE
+  #     timeout: 1.0
+
+  #   response:
+  #     status_code: [200, 201]
+  #     json:
+  #       status: 0
+  #       message: "Questionnaire deleted"
+
+# ---
+# test_name: Endpoints _ 3. Update Questionnaire
+
+# includes:
+#   - !include includes.yaml
+
+# strict:
+#   - json:off
+
+# stages:
+#   - name: Add new Questionnaire
+
+#     request:
+#       url: http://{host:s}:{port:d}/api/questionnaire/
+#       follow_redirects: true
+#       method: POST
+#       json:
+#         title: "test title 128"
+#         description: "test description 123"
+
+#     response:
+#       status_code: [200, 201]
+#       save:
+#         json:
+#           id: id
+
+#   - name: Update Questionnaire
+
+#     request:
+#       url: http://{host:s}:{port:d}/api/questionnaire/{id}/
+#       follow_redirects: true
+#       method: PUT
+#       json:
+#         title: "test title 128Updated"
+#         description: "test description 123 up"
+#         questions: []
+#       timeout: 1.0
+
+#     response:
+#       status_code: [200, 201]
+#       json:
+#         status: 0
+#         message: "Questionnaire updated"
+
+#   - name: Retrieve the updated Questionnaire
+
+#     request:
+#       url: http://{host:s}:{port:d}/api/questionnaire/{id}/
+#       follow_redirects: true
+#       method: GET
+#       timeout: 1.0
+
+#     response:
+#       status_code: 200
+#       json:
+#         title: "test title 128Updated"
+#         description: "test description 123 up"
+  # - name: Delete the Questionnaire
+
+  #   request:
+  #     url: http://{host:s}:{port:d}/api/questionnaire/{id}/
+  #     follow_redirects: true
+  #     method: DELETE
+  #     timeout: 1.0
+
+  #   response:
+  #     status_code: [200, 201]
+  #     json:
+  #       status: 0
+  #       message: "Questionnaire deleted"
+
+# ---
+# test_name: Endpoints _ 4. Modify Questionnaire
+
+# includes:
+#   - !include includes.yaml
+
+# strict:
+#   - json:off
+
+# stages:
+#   - name: Add new Questionnaire
+
+#     request:
+#       url: http://{host:s}:{port:d}/api/questionnaire/
+#       follow_redirects: true
+#       method: POST
+#       json:
+#         title: "test title 126"
+#         description: "test description 123 up"
+
+#     response:
+#       status_code: [200, 201]
+#       save:
+#         json:
+#           id: id
+
+#   - name: Modify Questionnaire
+
+#     request:
+#       url: http://{host:s}:{port:d}/api/questionnaire/{id}/
+#       follow_redirects: true
+#       method: PATCH
+#       json:
+#         title: "test title 126Modified"
+#       timeout: 1.0
+
+#     response:
+#       status_code: [200, 201]
+#       json:
+#         status: 0
+#         message: "Questionnaire modified"
+
+#   - name: Retrieve the modified Questionnaire
+
+#     request:
+#       url: http://{host:s}:{port:d}/api/questionnaire/{id}/
+#       follow_redirects: true
+#       method: GET
+#       timeout: 1.0
+
+#     response:
+#       status_code: 200
+#       json:
+#         title: "test title 126Modified"
+
+
+  # - name: Delete the Questionnaire
+
+  #   request:
+  #     url: http://{host:s}:{port:d}/api/questionnaire/{id}/
+  #     follow_redirects: true
+  #     method: DELETE
+  #     timeout: 1.0
+
+  #   response:
+  #     status_code: [200, 201]
+  #     json:
+  #       status: 0
+  #       message: "Questionnaire deleted"
+
+# ---
+# test_name: Endpoints _ 5. Delete Questionnaire
+
+# includes:
+#   - !include includes.yaml
+
+# strict:
+#   - json:off
+
+# stages:
+#   - name: Add new Questionnaire
+
+#     request:
+#       url: http://{host:s}:{port:d}/api/questionnaire/
+#       follow_redirects: true
+#       method: POST
+#       json:
+#         title: "test title 127"
+#         description: "test description 123 up"
+
+#     response:
+#       status_code: [200, 201]
+#       save:
+#         json:
+#           id: id
+
+#   - name: Delete the Questionnaire
+
+#     request:
+#       url: http://{host:s}:{port:d}/api/questionnaire/{id}/
+#       follow_redirects: true
+#       method: DELETE
+#       timeout: 1.0
+
+#     response:
+#       status_code: [200, 201]
+#       json:
+#         status: 0
+#         message: "Questionnaire deleted"
+
+  # - name: Retrieve the deleted Questionnaire
+
+  #   request:
+  #     url: http://{host:s}:{port:d}/api/questionnaire/{id}/
+  #     follow_redirects: true
+  #     method: GET
+  #     timeout: 1.0
+
+  #   response:
+  #     status_code: [404]
 
 
 
