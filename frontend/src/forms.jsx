@@ -4,6 +4,15 @@ import './styles/Forms.css';
 import { Link } from "react-router-dom";
 
 export default function Forms() {
+  // const createForm = async () => {
+  //   const res = await createForm("What is your favorite color?", "N/A");
+  //   const newQuestion = { name: "", id: res.id };
+  //   const newQuestionList = [...questionList, newQuestion];
+  //   console.log(newQuestion);
+  //   setQuestionList(newQuestionList);
+  //   console.log(questionList);
+  // };
+
   return (
     <div className="forms">
       <Link to="/create" style={{ textDecoration: "none", color: "white" }}>
