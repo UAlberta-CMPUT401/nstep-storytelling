@@ -24,6 +24,7 @@ from drf_yasg import openapi
 from rest_framework import permissions
 from user import views as uv
 from questionnaire import views as qv
+from event import views as ev
 
 schema_view = get_schema_view(
    openapi.Info(
@@ -43,7 +44,6 @@ urlpatterns = [
     path('docs', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     # path('api/programs',qv.ProgramList.as_view(),name='ProgramList'),
     # re_path(r'api/program/(?P<pk>[(-z)]{36})/', qv.ProgramDetail.as_view(),name='SingleProgram'),
-    
     path('api/user/',uv.UserList.as_view(),name='UserList'),
     path('api/questionnaire/', qv.Questionnaire_list.as_view()),
     re_path(r'api/questionnaire/(?P<pk>[(-z)]{36})/question/(?P<pk2>[(-z)]{36})/$',qv.QuestionDetail.as_view(),name='SingleQuestion'),
@@ -55,6 +55,8 @@ urlpatterns = [
     re_path(r'api/question/(?P<pk>[(-z)]{36})/feedback/$',qv.Feedbacks.as_view(),name='Feedbacks'),
 
     re_path(r'api/user/(?P<pk>[(-z)]{36})/$', uv.UserDetail.as_view(),name='SingleUser'),
-
+    
+    path('api/event/', ev.EventList.as_view()),
+    re_path(r'api/event/(?P<pk>[(-z)]{36})/$', ev.EventDetail.as_view(),name='SingleEvent'),
 
 ]

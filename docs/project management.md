@@ -3,7 +3,7 @@
 This page provides a general overview of the assigned tasks and roles for the duration of five sprints (subject to change).
 
 ## Story Map
-![Storymap](img/storymap_revised.png)
+![Storymap](img/storymap_rerevised.png)
 
 ## Project Plan
 
@@ -86,10 +86,14 @@ Due November 19
 | **User story** | **Story points** |
 | --- | --- |
 | US 1.03 | 2 |
-| US 2.02 | 2 |
-| US 3.05 | 1 |
-| US 2.01 | 3 |
+| US 1.06 | 3 |
 | US 1.07 | 8 |
+| US 2.01 | 3 |
+| US 2.02 | 2 |
+| US 3.01 | 1 |
+| US 3.02 | 5 |
+| US 3.03 | 5 |
+| US 3.05 | 1 |
 
 Estimated sprint velocity: **16**
 
@@ -99,9 +103,9 @@ Estimated sprint velocity: **16**
 | --- | --- | --- | --- |
 | Search for stories by program | US 1.06 | Jason, Asad | Nov 3 |
 | Search for stories by time | US 1.06 | Jayden, Favour | Nov 3 |
-| Audio feedback | US 3.02 | Théo, Asad | Nov 3 |
+| Audio feedback | US 3.02 | Théa, Asad | Nov 3 |
 | Video feedback | US 3.03 | Mohammed, Jayden | Nov 3 |
-| Text feedback | US 3.01 | Théo, Mohammed | Nov 3 |
+| Text feedback | US 3.01 | Théa, Mohammed | Nov 3 |
 | Create unique URL endpoint | US 1.03 | Jason, Mo | Nov 13 |
 | Create unique URL view | US 1.03 | Jason, Favour | Nov 11 |
 | Delete accounts | US 2.02 | Jayden, Asad | Nov 11 |
