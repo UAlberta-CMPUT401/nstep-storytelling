@@ -53,23 +53,21 @@ export default function Selection() {
               <em>None</em>
             </MenuItem>
             <MenuItem value={10}>Program 1</MenuItem>
-            <MenuItem value={21}>Program 2</MenuItem>
-            <MenuItem value={22}>Program 3</MenuItem>
           </Select>
         </FormControl>
-        <Button
-          style={{
-            borderRadius: 25,
-            backgroundColor: '#FDCA00',
-            color: '#414143',
-            fontWeight: 'bold',
-          }}
-          variant="contained"
-        >
-          <Link to="/newForm">
+        <a className="program-select-button" href="/newForm">
+          <Button
+            style={{
+              borderRadius: 25,
+              backgroundColor: '#FDCA00',
+              color: '#414143',
+              fontWeight: 'bold',
+            }}
+            variant="contained"
+          >
             OK
-          </Link>
-        </Button>
+          </Button>
+        </a>
       </div>
     </div>
   );

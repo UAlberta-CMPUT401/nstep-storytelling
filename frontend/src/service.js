@@ -1,30 +1,38 @@
-const path = require('path');
-const google = require('@googleapis/forms');
-const { authenticate } = require('@google-cloud/local-auth');
+import axios from 'axios';
+import 'regenerator-runtime';
 
-async function runSample(query) {
-  const authClient = await authenticate({
-    keyfilePath: path.join(__dirname, 'nstep-storytelling-b013cf86302f.json'),
-    scopes: 'https://www.googleapis.com/auth/drive',
+const api = 'http://localhost:8000/api';
+
+const createQuestion = async (questionnaireId, content) => {
+  const question = await axios.post(`${api}/questionnaire/${questionnaireId}/question/`, {
+    content,
   });
-  const forms = google.forms({
-    version: 'v1',
-    auth: authClient,
-  });
-  const newForm = {
-    info: {
-      title: 'Creating a new form in Node',
-    },
-  };
-  const res = await forms.forms.create({
-    requestBody: newForm,
-  });
-    console.log(res.data);
+  return question.data;
+};
+const deleteQuestion = async (questionnaireId, questionId) => {
+  const res = await axios.delete(`${api}/questionnaire/${questionnaireId}/question/${questionId}/`);
   return res.data;
-}
+};
+const patchQuestion = async (questionnaireId, questionId, content) => {
+  const question = await axios.patch(`${api}/questionnaire/${questionnaireId}/question/${questionId}/`, {
+    content,
+  });
+  return question.data;
+};
+const createQuestionnaire = async (title, description) => {
+  const questionnaire = await axios.post(`${api}/questionnaire/`, {
+    title,
+    description,
+  });
+  return questionnaire.data;
+};
+const patchQuestionnaire = async (questionnaireId, title) => {
+  const questionnaire = await axios.patch(`${api}/questionnaire/${questionnaireId}/`, {
+    title,
+  });
+  return questionnaire.data;
+};
 
-if (module === require.main) {
-  runSample().catch(console.error);
-}
-
-export { runSample };
+export {
+  createQuestion, deleteQuestion, createQuestionnaire, patchQuestionnaire, patchQuestion,
+};

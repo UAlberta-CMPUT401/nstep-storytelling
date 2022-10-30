@@ -15,7 +15,6 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,re_path
-from questionnaire import views
 from user import views as uv
 from questionnaire import views as qv
 from django.conf.urls import include
@@ -25,6 +24,7 @@ from drf_yasg import openapi
 from rest_framework import permissions
 from user import views as uv
 from questionnaire import views as qv
+from event import views as ev
 
 schema_view = get_schema_view(
    openapi.Info(
@@ -41,18 +41,22 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/questionnaire/', views.questionnaire_list),
-    path('api/questionnaire/<int:pk>/', views.questionnaire_detail),
     path('docs', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
-    path('api/users',uv.UserList.as_view(),name='UserList'),
-    path('api/programs',qv.ProgramList.as_view(),name='ProgramList'),
-    re_path(r'api/program/(?P<pk>[(-z)]{36})/', qv.ProgramDetail.as_view(),name='SingleProgram'),
+    # path('api/programs',qv.ProgramList.as_view(),name='ProgramList'),
+    # re_path(r'api/program/(?P<pk>[(-z)]{36})/', qv.ProgramDetail.as_view(),name='SingleProgram'),
+    path('api/user/',uv.UserList.as_view(),name='UserList'),
+    path('api/questionnaire/', qv.Questionnaire_list.as_view()),
+    re_path(r'api/questionnaire/(?P<pk>[(-z)]{36})/question/(?P<pk2>[(-z)]{36})/$',qv.QuestionDetail.as_view(),name='SingleQuestion'),
+
+    re_path(r'api/questionnaire/(?P<pk>[(-z)]{36})/question/$',qv.Questions.as_view(),name='Questions'),
+
+    re_path(r'api/questionnaire/(?P<pk>[(-z)]{36})/$', qv.Questionnaire_detail.as_view()),
     # path('api/user', uv.UserDetail.as_view(),name='UserList'),
-    re_path(r'api/user/(?P<pk>[(-z)]{36})/', uv.UserDetail.as_view(),name='SingleUser'),
-<<<<<<< HEAD
-    path('api/questionnaires',qv.questionnaire_detail,name='QuestionnaireDetail'),
-=======
->>>>>>> 0e96fbe141dd848014d01387d33be16c6140e0d4
-    re_path(r'api/question/(?P<pk>[(-z)]{36})/feedbacks/',qv.Feedbacks.as_view(),name='Feedbacks'),
+    re_path(r'api/question/(?P<pk>[(-z)]{36})/feedback/$',qv.Feedbacks.as_view(),name='Feedbacks'),
+
+    re_path(r'api/user/(?P<pk>[(-z)]{36})/$', uv.UserDetail.as_view(),name='SingleUser'),
+    
+    path('api/event/', ev.EventList.as_view()),
+    re_path(r'api/event/(?P<pk>[(-z)]{36})/$', ev.EventDetail.as_view(),name='SingleEvent'),
 
 ]

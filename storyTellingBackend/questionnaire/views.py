@@ -4,46 +4,84 @@ from rest_framework.decorators import api_view
 from .models import Questionnaire,Answer,Question
 from .serializers import *
 from rest_framework.views import APIView
-from .models import Program, Questionnaire, Question, Answer
-from .serializers import ProgramSerializer, QuestionnaireSerializer, AnswerInListSerializer, AddAnswerSerializer
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
+from .models import *
 from django.http import Http404
 
-@api_view(['GET', 'POST'])
-def questionnaire_list(request, format=None):
-    """
-    List all code snippets, or create a new snippet.
-    """
-    if request.method == 'GET':
-        snippets = Questionnaire.objects.all()
-        serializer = QuestionnaireSerializer(snippets, many=True)
+from rest_framework import generics
+from rest_framework.permissions import *
+
+class Questionnaire_list(generics.ListCreateAPIView):
+    queryset = Questionnaire.objects.all()
+    serializer_class = AddingQuestionnaireSerializer
+    # permission_classes = [IsAdminUser]
+
+    def list(self, request):
+        # Note the use of `get_queryset()` instead of `self.queryset`
+        queryset = self.get_queryset()
+        serializer = QuestionnaireSerializer(queryset, many=True)
         return Response(serializer.data)
-    elif request.method == 'POST':
-        serializer = QuestionnaireSerializer(data=request.data)
+
+    def post(self, request, *args, **kwargs):
+
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        result = serializer.save()
+        questionnaireData = QuestionnaireSerializer(result).data
+
+        return Response(questionnaireData, status=status.HTTP_201_CREATED)
+
+class Questionnaire_detail(generics.RetrieveUpdateDestroyAPIView):
+    # permission_classes = [IsAuthenticated]
+    queryset = Questionnaire.objects.all()
+    lookup_field = 'pk'
+    serializer_class = QuestionnaireSerializer
+
+class Questions(APIView):
+    '''
+    List of all the questions available
+    '''
+    def get(self, request, pk, format=None):
+        questionnaire = Questionnaire.objects.get(id=pk)
+        questions = Question.objects.all()
+        questionData = QuestionSerializer(questions, many=True).data
+        questionnaireData = QuestionnaireSerializer(questionnaire).data
+        myQuestions = []
+        comparedList = [str(questionnaireData['questions'][i]) for i in range(len(questionnaireData['questions']))]
+
+        for element in questionData:
+            print(element['id'])
+            print(comparedList)
+            if element['id'] in comparedList:
+                myQuestions.append(element['id'])
+                
+        response = {'total': len(myQuestions),
+                    'questions': myQuestions,
+                    }
+
+        return Response(response)
+
+    def post(self, request, pk, format=None):
+        serializer = AddingQuestionSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+            result = serializer.save()
+            response = {
+                        "status": 0,
+                        "message": "question created",
+                        "id": result.id,
+                        }
+            questionnaire = Questionnaire.objects.get(id=pk)
+            questionnaire.questions.add(result)
+
+            return Response(response)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-@api_view(['GET', 'PUT', 'DELETE'])
-def questionnaire_detail(request, pk, format=None):
-    """
-    Retrieve, update or delete a code snippet.
-    """
-    try:
-        snippet = Questionnaire.objects.get(pk=pk)
-    except Questionnaire.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
-    if request.method == 'GET':
-        serializer = QuestionnaireSerializer(snippet)
-        return Response(serializer.data)
-    elif request.method == 'PUT':
-        serializer = QuestionnaireSerializer(snippet, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    elif request.method == 'DELETE':
-        snippet.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+
+class QuestionDetail(generics.RetrieveUpdateDestroyAPIView):
+    # permission_classes = [IsAuthenticated]
+    queryset = Question.objects.all()
+    lookup_field = 'id'
+    lookup_url_kwarg = "pk2"
+    serializer_class = QuestionSerializer
 
 class Feedbacks(APIView):
     """
@@ -59,9 +97,8 @@ class Feedbacks(APIView):
         return Response(response)
 
     def post(self, request,pk):
-        question = Question.objects.filter(pk=pk)  
-        request.data['question'] = pk
-
+        question = Question.objects.get(pk=pk)  
+        request.data['question'] = question
         if request.data['content_type'].lower() == "text":
             result,condition = self.post_text(request.data)
         elif request.data['content_type'].lower() == "voice":
@@ -79,7 +116,8 @@ class Feedbacks(APIView):
         return Response(result.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def post_text(self, data):       
-        serializer = AddAnswerSerializer(data=data)
+
+        serializer = AnswerSerializer(data=data)
         if serializer.is_valid():
             result = serializer.save()
 
@@ -91,79 +129,3 @@ class Feedbacks(APIView):
 
     def post_video(self, data):       
         pass
-    
-    
-class ProgramList(APIView):
-    '''
-    List of all the programs available
-    '''
-    def get(self, request, format=None):
-        program = Program.objects.all()
-        serializer = ProgramSerializer(program, many=True)
-        response = {'total': len(serializer.data),
-                    'programs': serializer.data,
-                    }
-
-        return Response(response)
-
-
-class ProgramDetail(APIView):
-    def get_object(self, pk):
-        try:
-            return Program.objects.get(pk=pk)
-        except Program.DoesNotExist:
-            raise Http404
-
-    def get(self, request, pk, format=None):
-        program = self.get_object(pk)
-        serializer = ProgramSerializer(program)
-        return Response(serializer.data)
-
-    def post(self, request, pk, format=None):
-        serializer = ProgramSerializer(data=request.data)
-        if serializer.is_valid():
-            result = serializer.save()
-            response = {
-                        "status": 0,
-                        "message": "program created",
-                        "id": result.id,
-                        }
-            return Response(response)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    def put(self, request, pk, format=None):
-        program = self.get_object(pk)
-        serializer = ProgramSerializer(program, data=request.data)
-
-        if serializer.is_valid():
-            serializer.save()
-            response = {
-                        "status": 0,
-                        "message": "program updated"
-                        }
-            return Response(response)
-        
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    def patch(self, request, pk, format=None):
-        program = self.get_object(pk)
-
-        serializer = ProgramSerializer(program, data=request.data, partial=True)
-        if serializer.is_valid():
-            serializer.save()
-            response = {
-                        "status": 0,
-                        "message": "program modified"
-                        }
-            return Response(response)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-    def delete(self, request, pk, format=None):
-        program = self.get_object(pk)
-        program.delete()
-        response = {
-            "status": 0,
-            "message": "program deleted"
-            }
-        return Response(response)

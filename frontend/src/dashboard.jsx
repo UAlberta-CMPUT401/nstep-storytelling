@@ -19,7 +19,12 @@ export default function Dashboard() {
       <div className="dashboard">
         <div>
           <Link to="/">
-            <button style={{ float: "right", marginRight: "12px", marginBottom: "12px" }}>Logout</button>
+            <button style={{
+              float: "right", marginRight: "12px", marginBottom: "12px", fontSize: "16px",
+            }}
+            >
+              Logout
+            </button>
           </Link>
         </div>
         <Tabs value={selectedTab} onChange={handleChange} centered>
