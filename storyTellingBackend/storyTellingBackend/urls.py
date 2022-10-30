@@ -43,7 +43,6 @@ urlpatterns = [
     path('docs', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     # path('api/programs',qv.ProgramList.as_view(),name='ProgramList'),
     # re_path(r'api/program/(?P<pk>[(-z)]{36})/', qv.ProgramDetail.as_view(),name='SingleProgram'),
-    
     path('api/users',uv.UserList.as_view(),name='UserList'),
     path('api/questionnaires/', qv.Questionnaire_list.as_view()),
     re_path(r'api/questionnaire/(?P<pk>[(-z)]{36})/question/(?P<pk2>[(-z)]{36})',qv.QuestionDetail.as_view(),name='SingleQuestion'),
