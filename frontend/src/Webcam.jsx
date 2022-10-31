@@ -5,6 +5,7 @@ const videoConstraints = {
   width: 640,
   height: 360,
   facingMode: "user",
+  aspectratio: 1.77777777778,
 };
 
 export default function WebcamComp() {
@@ -18,7 +19,7 @@ export default function WebcamComp() {
       <ul>
         <li>Video Feedback Test</li>
       </ul>
-      <Webcam ref={webRef} />
+      <Webcam videoConstraints={videoConstraints} ref={webRef} />
       <button onClick={() => showImg()}>Capture</button>
       <br />
       <img src={img} alt="" />
