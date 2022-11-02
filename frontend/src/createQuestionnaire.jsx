@@ -8,9 +8,9 @@ import TextInput from "./components/TextInput";
 import {
   createQuestion, deleteQuestion, createQuestionnaire, patchQuestionnaire, patchQuestion,
 } from './service';
-import "./styles/adminCreate.css";
+import "./styles/createQuestionnaire.css";
 
-export default function AdminCreate() {
+export default function CreateQuestionnaire() {
   // const [isToggled, setIsToggled] = React.useState(false);
   const [questionList, setQuestionList] = React.useState([]);
   const [qid, setQid] = React.useState("hi");
