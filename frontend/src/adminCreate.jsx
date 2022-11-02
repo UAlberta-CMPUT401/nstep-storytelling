@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import Button from '@mui/material/Button';
 import ElementSelector from "./components/ElementSelector";
@@ -42,15 +42,16 @@ export default function AdminCreate() {
     console.log(questionList);
   };
 
+  const navigate = useNavigate();
   const handleSave = async (e) => {
     const res = await patchQuestionnaire(qid, formTitle);
     console.log(res);
 
-    const newQuestionList = [...questionList];
-    await Promise.all(newQuestionList.map(async (question) => {
-      const q = patchQuestion(qid, question.id, question.content);
+    await Promise.all(questionList.map(async (question) => {
+      const q = await patchQuestion(qid, question.id, question.content);
       console.log(q);
     }));
+    navigate('/dashboard');
   };
 
   const addQuestion = async () => {
@@ -107,9 +108,7 @@ export default function AdminCreate() {
           </Button>
         </div>
         <div style={{ textAlign: "center" }} className="save-and-return">
-          <a href="/dashboard" className="admin-save-button">
-            <Button variant="contained" onClick={handleSave}>Save & Return</Button>
-          </a>
+          <Button variant="contained" onClick={handleSave}>Save & Return</Button>
         </div>
       </div>
     </div>
