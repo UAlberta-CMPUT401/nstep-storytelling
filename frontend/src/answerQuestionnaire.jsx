@@ -7,7 +7,7 @@ import Navbar from "./components/Navbar";
 import TextAnswerInput from "./TextAnswerInput";
 import "./styles/App.css";
 
-export default function UserCreate() {
+export default function AnswerQuestionnaire() {
   return (
     <>
       <Navbar />
