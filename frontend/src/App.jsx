@@ -6,6 +6,7 @@ import Login from "./login";
 import Dashboard from "./dashboard";
 import CreateQuestionnaire from "./createQuestionnaire";
 import AnswerQuestionnaire from "./answerQuestionnaire";
+import CreateAccount from "./createAccount";
 import Submitted from "./submitted";
 import "./styles/App.css";
 
@@ -18,7 +19,7 @@ export default function App() {
       <Route path="/create" element={<CreateQuestionnaire />} />
       <Route path="/newForm" element={<AnswerQuestionnaire />} />
       <Route path="/submitted" element={<Submitted />} />
-      <Route path="/createAdmin" element={<Submitted />} />
+      <Route path="/createAccount" element={<CreateAccount />} />
     </Routes>
   );
 }
