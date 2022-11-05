@@ -1,9 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import Button from '@mui/material/Button';
 import ElementSelector from "./components/ElementSelector";
-import Navbar from "./components/Navbar";
+import AdminNavbar from "./components/AdminNavbar";
 import TextInput from "./components/TextInput";
 import {
   createQuestion, deleteQuestion, createQuestionnaire, patchQuestionnaire, patchQuestion,
@@ -81,7 +80,7 @@ export default function CreateQuestionnaire() {
 
   return (
     <div className="admin-create">
-      <Navbar />
+      <AdminNavbar />
       <div className="admin-create-body">
         <div style={{ textAlign: "center" }}>
           <TextField id="filled-basic" label="Form title" variant="filled" onChange={handleTitle} />
@@ -107,7 +106,7 @@ export default function CreateQuestionnaire() {
           </Button>
         </div>
         <div style={{ textAlign: "center" }} className="save-and-return">
-          <a href="/dashboard" className="admin-save-button">
+          <a href="/home" className="admin-save-button">
             <Button variant="contained" onClick={handleSave}>Save & Return</Button>
           </a>
         </div>

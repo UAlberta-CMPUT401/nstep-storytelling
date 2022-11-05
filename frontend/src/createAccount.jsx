@@ -8,15 +8,15 @@ import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 import ElementSelector from "./components/ElementSelector";
-import Navbar from "./components/Navbar";
+import AdminNavbar from "./components/AdminNavbar";
 import TextAnswerInput from "./TextAnswerInput";
 import "./styles/App.css";
 
 export default function CreateAccount() {
   return (
     <>
-      <Navbar />
-      <div style={{ textAlign: "center" }}>
+      <AdminNavbar />
+      <div style={{ textAlign: "center", marginTop: "50px" }}>
         <h1>Add an administrator account</h1>
         <Box
           component="form"
@@ -50,15 +50,15 @@ export default function CreateAccount() {
             <FormControlLabel control={<Switch defaultUnChecked disableRipple="true" />} label="Download feedback files" />
           </div>
           <div>
-            <FormControlLabel control={<Switch defaultUnChecked disableRipple="true" />} label="Manage admins (superadmin)" color="warning" />
+            <FormControlLabel control={<Switch defaultUnChecked disableRipple="true" />} label="Manage admins (superadmin)" />
           </div>
         </div>
-        <div style={{ textAlign: "center", marginBottom: "32px" }}>
-          <Link to="/submitted" style={{ textDecoration: "none" }}>
-            <Button variant="contained">Save</Button>
+        <div style={{ textAlign: "center", marginTop: "30px", marginBottom: "30px" }}>
+          <Link to="/manage-accounts" style={{ textDecoration: "none" }}>
+            <Button variant="contained">Save & Return</Button>
           </Link>
           <div style={{ paddingTop: "70px" }}>
-            <Link to="/dashboard" style={{ textDecoration: "none" }}>
+            <Link to="/manage-accounts" style={{ textDecoration: "none" }}>
               <Button color="grey" variant="contained">Cancel</Button>
             </Link>
           </div>
