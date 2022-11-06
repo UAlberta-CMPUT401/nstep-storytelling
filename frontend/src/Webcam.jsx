@@ -1,11 +1,21 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import React from 'react';
-import Webcam from 'react-webcam';
-// import 'video.js/dist/video-js.min.css';
-// import 'videojs-record/dist/css/videojs.record.css';
+import React, { useRef, useEffect, useState } from 'react';
+// import Webcam from 'react-webcam';
+import 'video.js/dist/video-js.min.css';
+import 'videojs-record/dist/css/videojs.record.css';
 import videojs from 'video.js';
 import RecordRTC from 'recordrtc';
-// import Record from 'videojs-record/dist/videojs.record.js';
+import Record from 'videojs-record/dist/videojs.record';
+// the following imports are only needed when you're recording
+// audio-only using the videojs-wavesurfer plugin
+import WaveSurfer from 'wavesurfer.js';
+import MicrophonePlugin from 'wavesurfer.js/dist/plugin/wavesurfer.microphone';
+
+// register videojs-wavesurfer plugin
+import 'videojs-wavesurfer/dist/css/videojs.wavesurfer.css';
+import Wavesurfer from 'videojs-wavesurfer/dist/videojs.wavesurfer';
+
+WaveSurfer.microphone = MicrophonePlugin;
 
 // const videoConstraints = {
 //   width: 640,
@@ -42,6 +52,10 @@ export default function WebCamTest() {
     fluid: false,
     width: 320,
     height: 240,
+    // sources: [{
+    //   src: video,
+    //   type: 'video/mp4',
+    // }]
     plugins: {
       // videojs-record plugin options
       record: {
@@ -62,4 +76,10 @@ export default function WebCamTest() {
 
     console.log("videojs-record is ready!");
   });
+  const videoRef = useRef(null);
+  return (
+    <div className="webcam-container">
+      <video ref={videoRef} />
+    </div>
+  );
 }
