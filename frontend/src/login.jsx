@@ -3,6 +3,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 import Navbar from './components/Navbar';
 import './styles/Login.css';
 
@@ -11,6 +12,11 @@ const AdminLoginPage = (props) => {
     <>
       <div className="admin-login-page-container">
         <Navbar />
+        <Link to="/" style={{ marginLeft: "40px" }}>
+          <Button variant="contained">
+            &lt; Go Back
+          </Button>
+        </Link>
         <div className="admin-login-page-body">
           <div className="admin-login-page-container3">
             <span className="admin-login-page-text03">
@@ -42,7 +48,7 @@ const AdminLoginPage = (props) => {
             <br></br>
           </a>
           <div className="admin-login-page-container6">
-            <Link to="/dashboard">
+            <Link to="/home">
               <button className="admin-login-page-button button">Login</button>
             </Link>
           </div>
