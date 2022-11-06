@@ -1,26 +1,30 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import Button from '@mui/material/Button';
 import ElementSelector from "./components/ElementSelector";
 import AdminNavbar from "./components/AdminNavbar";
 import TextInput from "./components/TextInput";
 import {
-  createQuestion, deleteQuestion, createQuestionnaire, patchQuestionnaire, patchQuestion,
+  deleteQuestion, patchQuestionnaire, patchQuestion, getQuestionnaire, getQuestion, createQuestion,
 } from './service';
-import "./styles/createQuestionnaire.css";
 
-export default function CreateQuestionnaire() {
-  // const [isToggled, setIsToggled] = React.useState(false);
+export default function EditForm() {
+  const { id } = useParams();
   const [questionList, setQuestionList] = React.useState([]);
-  const [qid, setQid] = React.useState("hi");
   const [formTitle, setFormTitle] = React.useState("");
 
   React.useEffect(async () => {
-    const res = await createQuestionnaire("Form title", "Form description");
-    console.log(res);
-    setQid(res.id);
-    console.log(qid);
+    const res = await getQuestionnaire(id);
+    setFormTitle(res.title);
+    const newQuestionList = [...questionList];
+    await Promise.all(res.questions.map(async (questionId) => {
+      const q = await getQuestion(id, questionId);
+      console.log(q);
+      newQuestionList.push(q);
+    }));
+    setQuestionList(newQuestionList);
+    console.log(questionList);
   }, []);
 
   const handleTitle = (e) => {
@@ -44,18 +48,18 @@ export default function CreateQuestionnaire() {
 
   const navigate = useNavigate();
   const handleSave = async (e) => {
-    const res = await patchQuestionnaire(qid, formTitle);
+    const res = await patchQuestionnaire(id, formTitle);
     console.log(res);
 
     await Promise.all(questionList.map(async (question) => {
-      const q = await patchQuestion(qid, question.id, question.content);
+      const q = await patchQuestion(id, question.id, question.content);
       console.log(q);
     }));
     navigate('/home');
   };
 
   const addQuestion = async () => {
-    const res = await createQuestion(qid, "Question content");
+    const res = await createQuestion(id, "Question content");
     const newQuestion = { content: "", id: res.id };
     const newQuestionList = [...questionList, newQuestion];
     console.log(newQuestion);
@@ -64,7 +68,7 @@ export default function CreateQuestionnaire() {
   };
 
   const removeQuestion = async (e) => {
-    const res = await deleteQuestion(qid, e.target.value);
+    const res = await deleteQuestion(id, e.target.value);
     console.log(res);
 
     const newQuestionList = [...questionList];
@@ -85,7 +89,7 @@ export default function CreateQuestionnaire() {
       <AdminNavbar />
       <div className="admin-create-body">
         <div style={{ textAlign: "center" }}>
-          <TextField id="filled-basic" label="Form title" variant="filled" onChange={handleTitle} />
+          <TextField id="filled-basic" label="Form title" variant="filled" value={formTitle} onChange={handleTitle} />
         </div>
         <div>
           {questionList.map((question) => (

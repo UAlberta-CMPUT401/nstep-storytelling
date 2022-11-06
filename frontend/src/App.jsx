@@ -8,11 +8,13 @@ import CreateQuestionnaire from "./createQuestionnaire";
 import AnswerQuestionnaire from "./answerQuestionnaire";
 import CreateAccount from "./createAccount";
 import Submitted from "./submitted";
+import Navbar from "./components/Navbar";
 import "./styles/App.css";
 import AccountSettings from "./accountSettings";
 import ManageAccounts from "./manageAccounts";
 import EditAdmin from "./editAdmin";
 import DeleteAccount from "./deleteAccount";
+import EditForm from "./EditForm";
 
 export default function App() {
   return (
@@ -28,6 +30,7 @@ export default function App() {
       <Route path="/manage-accounts" element={<ManageAccounts />} />
       <Route path="/edit-admin" element={<EditAdmin />} />
       <Route path="/delete-account" element={<DeleteAccount />} />
+      <Route path="/questionnaires/:id" element={<EditForm />} />
     </Routes>
   );
 }

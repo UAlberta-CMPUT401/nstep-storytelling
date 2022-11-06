@@ -12,11 +12,6 @@ const AdminLoginPage = (props) => {
     <>
       <div className="admin-login-page-container">
         <Navbar />
-        <Link to="/" style={{ marginLeft: "40px" }}>
-          <Button variant="contained">
-            &lt; Go Back
-          </Button>
-        </Link>
         <div className="admin-login-page-body">
           <div className="admin-login-page-container3">
             <span className="admin-login-page-text03">
