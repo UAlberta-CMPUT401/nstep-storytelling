@@ -2,6 +2,8 @@ import React from 'react';
 import Button from '@mui/material/Button';
 import './styles/Forms.css';
 import { Link } from "react-router-dom";
+import FormItem from './components/FormItem';
+import { getQuestionnaires, deleteQuestionnaire } from './service';
 
 export default function Forms() {
   // const createForm = async () => {
@@ -12,6 +14,22 @@ export default function Forms() {
   //   setQuestionList(newQuestionList);
   //   console.log(questionList);
   // };
+  const [formList, setFormList] = React.useState([]);
+
+  React.useEffect(async () => {
+    const res = await getQuestionnaires();
+    console.log(res);
+    setFormList(res);
+  }, []);
+
+  const removeQuestionnaire = async (e) => {
+    const res = await deleteQuestionnaire(e.target.value);
+    console.log(res);
+
+    const newFormList = await getQuestionnaires();
+    setFormList(newFormList);
+    console.log(formList);
+  };
 
   return (
     <div className="forms">
@@ -20,11 +38,16 @@ export default function Forms() {
           + Create Form
         </Button>
       </Link>
-      <ul>
-        <li>Program 1 survey</li>
-        <li>Program 2 survey</li>
-        <li>Program 3 survey</li>
-      </ul>
+      <div>
+        {formList.map((form) => (
+          <FormItem
+            key={form.id}
+            id={form.id}
+            title={form.title}
+            onClick={removeQuestionnaire}
+          />
+        ))}
+      </div>
     </div>
   );
 }

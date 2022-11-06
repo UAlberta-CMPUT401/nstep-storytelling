@@ -1,0 +1,11 @@
+.form-item {
+    margin: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.form-link {
+    color: black;
+}
+
