@@ -1,9 +1,9 @@
 import React from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import Button from '@mui/material/Button';
 import ElementSelector from "./components/ElementSelector";
-import Navbar from "./components/Navbar";
+import AdminNavbar from "./components/AdminNavbar";
 import TextInput from "./components/TextInput";
 import {
   createQuestion, deleteQuestion, createQuestionnaire, patchQuestionnaire, patchQuestion,
@@ -51,7 +51,7 @@ export default function CreateQuestionnaire() {
       const q = await patchQuestion(qid, question.id, question.content);
       console.log(q);
     }));
-    navigate('/dashboard');
+    navigate('/home');
   };
 
   const addQuestion = async () => {
@@ -82,7 +82,7 @@ export default function CreateQuestionnaire() {
 
   return (
     <div className="admin-create">
-      <Navbar />
+      <AdminNavbar />
       <div className="admin-create-body">
         <div style={{ textAlign: "center" }}>
           <TextField id="filled-basic" label="Form title" variant="filled" onChange={handleTitle} />
