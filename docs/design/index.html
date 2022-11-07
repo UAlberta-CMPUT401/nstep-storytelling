@@ -24,14 +24,24 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/rust.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
-<link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>html.glightbox-open { overflow: initial; height: 100%; }</style><script src="../assets/javascripts/glightbox.min.js"></script></head>
+<link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gdesc-inner { font-size: 0.75rem; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            </style><script src="../assets/javascripts/glightbox.min.js"></script></head>
 <body class="wy-body-for-nav" role="document">
 <div class="wy-grid-for-nav">
 <nav class="wy-nav-side stickynav" data-toggle="wy-nav-shift">
 <div class="wy-side-scroll">
 <div class="wy-side-nav-search">
 <a class="icon icon-home" href=".."> NSTEP-Storytelling Docs
-        </a>
+        </a><div role="search">
+<form action="../search.html" class="wy-form" id="rtd-search-form" method="get">
+<input name="q" placeholder="Search docs" title="Type search term here" type="text"/>
+</form>
+</div>
 </div>
 <div aria-label="Navigation menu" class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation">
 <ul>
@@ -47,6 +57,8 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#sequence-diagrams">Sequence Diagrams</a>
 <ul>
+<li class="toctree-l3"><a class="reference internal" href="#super-admin-sequence">Super Admin Sequence</a>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#admin-sequence">Admin Sequence</a>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#user-sequence">User Sequence</a>
@@ -91,19 +103,21 @@
 <p>This page includes a short description of the overall architecture style of the system, its high-level system components, and their logical (what data they exchange) and control (how they invoke each other) dependencies.</p>
 <h2 id="architecture-diagram">Architecture Diagram</h2>
 <p>This is a short description of the architecture.</p>
-<p><a class="glightbox" href="../img/Architecture.png"><img alt="Architecture" src="../img/Architecture.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../img/Architecture.png"><img alt="Architecture" src="../img/Architecture.png"/></a></p>
 <h2 id="uml-class-diagram">UML Class Diagram</h2>
 <p>This is a short description of logical entities of the domain in a UML diagram.</p>
-<p><a class="glightbox" href="../img/UML.png"><img alt="UML" src="../img/UML.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../img/UML.png"><img alt="UML" src="../img/UML.png"/></a></p>
 <h2 id="sequence-diagrams">Sequence Diagrams</h2>
 <p>Multiple sequence diagrams depicting the most important scenarios.</p>
+<h3 id="super-admin-sequence">Super Admin Sequence</h3>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../img/SuperAdminSequence.png"><img alt="Super Admin Sequence" src="../img/SuperAdminSequence.png"/></a></p>
 <h3 id="admin-sequence">Admin Sequence</h3>
-<p><a class="glightbox" href="../img/Admin%20Sequence.png"><img alt="Admin Sequence" src="../img/Admin%20Sequence.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../img/AdminSequence.png"><img alt="Admin Sequence" src="../img/AdminSequence.png"/></a></p>
 <h3 id="user-sequence">User Sequence</h3>
-<p><a class="glightbox" href="../img/User%20Sequence.png"><img alt="User Sequence" src="../img/User%20Sequence.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../img/UserSequence.png"><img alt="User Sequence" src="../img/UserSequence.png"/></a></p>
 <h2 id="low-fidelity-user-interface">Low-Fidelity User interface</h2>
 <p>At this stage, it’s important to show the overall look and feel of your app, as well as the high-level user-interaction design. Low-fidelity wireframes are usually black and white. Looking at the wireframes, anyone should be able to get an idea of what will be developed.</p>
-<p><a class="glightbox" href="../img/Storyboard.png"><img alt="Storyboard" src="../img/Storyboard.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../img/Storyboard.png"><img alt="Storyboard" src="../img/Storyboard.png"/></a></p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
@@ -133,10 +147,11 @@
 <script>var base_url = '..';</script>
 <script defer="" src="../js/theme_extra.js"></script>
 <script defer="" src="../js/theme.js"></script>
+<script defer="" src="../search/main.js"></script>
 <script defer="">
         window.onload = function () {
             SphinxRtdTheme.Navigation.enable(true);
         };
     </script>
-<script>const lightbox = GLightbox({"touchNavigation": true, "loop": false, "width": "100%", "height": "auto", "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom"});</script></body>
+<script>const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom"});</script></body>
 </html>

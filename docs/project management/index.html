@@ -24,14 +24,24 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/rust.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
-<link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>html.glightbox-open { overflow: initial; height: 100%; }</style><script src="../assets/javascripts/glightbox.min.js"></script></head>
+<link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gdesc-inner { font-size: 0.75rem; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            </style><script src="../assets/javascripts/glightbox.min.js"></script></head>
 <body class="wy-body-for-nav" role="document">
 <div class="wy-grid-for-nav">
 <nav class="wy-nav-side stickynav" data-toggle="wy-nav-shift">
 <div class="wy-side-scroll">
 <div class="wy-side-nav-search">
 <a class="icon icon-home" href=".."> NSTEP-Storytelling Docs
-        </a>
+        </a><div role="search">
+<form action="../search.html" class="wy-form" id="rtd-search-form" method="get">
+<input name="q" placeholder="Search docs" title="Type search term here" type="text"/>
+</form>
+</div>
 </div>
 <div aria-label="Navigation menu" class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation">
 <ul>
@@ -59,15 +69,35 @@
 <ul>
 <li class="toctree-l4"><a class="reference internal" href="#user-stories">User stories</a>
 </li>
-</ul>
+<li class="toctree-l4"><a class="reference internal" href="#tasks_1">Tasks</a>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#sprint-3">Sprint 3</a>
+<li class="toctree-l3"><a class="reference internal" href="#sprint-3">Sprint 3</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#user-stories_1">User stories</a>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#sprint-4">Sprint 4</a>
+<li class="toctree-l4"><a class="reference internal" href="#tasks_2">Tasks</a>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#sprint-5">Sprint 5</a>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#sprint-4">Sprint 4</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#user-stories_2">User stories</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#tasks_3">Tasks</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#sprint-5">Sprint 5</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#user-stories_3">User stories</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#tasks_4">Tasks</a>
+</li>
+</ul>
+</li>
+</ul>
 </li>
 </ul>
 </li>
@@ -100,7 +130,7 @@
 <h1 id="project-management">Project Management</h1>
 <p>This page provides a general overview of the assigned tasks and roles for the duration of five sprints (subject to change).</p>
 <h2 id="story-map">Story Map</h2>
-<p><a class="glightbox" href="../img/Storymap.png"><img alt="Storymap" src="../img/Storymap.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../img/storymap_rerevised.png"><img alt="Storymap" src="../img/storymap_rerevised.png"/></a></p>
 <h2 id="project-plan">Project Plan</h2>
 <h3 id="sprint-1">Sprint 1</h3>
 <p>Due September 24</p>
@@ -177,7 +207,7 @@
 </tbody>
 </table>
 <p>Estimated sprint velocity: <strong>15</strong></p>
-<p><strong>Tasks</strong></p>
+<h4 id="tasks_1"><strong>Tasks</strong></h4>
 <table>
 <thead>
 <tr>
@@ -250,9 +280,9 @@
 </tr>
 </tbody>
 </table>
-<h2 id="sprint-3">Sprint 3</h2>
+<h3 id="sprint-3">Sprint 3</h3>
 <p>Due October 29</p>
-<p><strong>User stories</strong></p>
+<h4 id="user-stories_1"><strong>User stories</strong></h4>
 <table>
 <thead>
 <tr>
@@ -263,7 +293,7 @@
 <tbody>
 <tr>
 <td>US 1.06</td>
-<td>3</td>
+<td>5</td>
 </tr>
 <tr>
 <td>US 3.02</td>
@@ -274,17 +304,13 @@
 <td>5</td>
 </tr>
 <tr>
-<td>US 3.09</td>
-<td>3</td>
-</tr>
-<tr>
 <td>US 3.04</td>
 <td>2</td>
 </tr>
 </tbody>
 </table>
-<p>Estimated sprint velocity: <strong>18</strong></p>
-<p><strong>Tasks</strong></p>
+<p>Estimated sprint velocity: <strong>17</strong></p>
+<h4 id="tasks_2"><strong>Tasks</strong></h4>
 <table>
 <thead>
 <tr>
@@ -296,16 +322,46 @@
 </thead>
 <tbody>
 <tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td>Search for stories by program</td>
+<td>US 1.06</td>
+<td>Jason, Asad</td>
+<td>Oct 27</td>
+</tr>
+<tr>
+<td>Search for stories by time</td>
+<td>US 1.06</td>
+<td>Jayden, Favour</td>
+<td>Oct 27</td>
+</tr>
+<tr>
+<td>Audio feedback</td>
+<td>US 3.02</td>
+<td>Théo, Asad</td>
+<td>Oct 24</td>
+</tr>
+<tr>
+<td>Video feedback</td>
+<td>US 3.03</td>
+<td>Mohammed, Jayden</td>
+<td>Oct 25</td>
+</tr>
+<tr>
+<td>Text feedback</td>
+<td>US 3.01</td>
+<td>Théo, Mohammed</td>
+<td>Oct 23</td>
+</tr>
+<tr>
+<td>JSX/CSS for creating questionnaires</td>
+<td>US 1.02</td>
+<td>Jason, Favour</td>
+<td>Oct 22</td>
 </tr>
 </tbody>
 </table>
-<h2 id="sprint-4">Sprint 4</h2>
+<h3 id="sprint-4">Sprint 4</h3>
 <p>Due November 19</p>
-<p><strong>User stories</strong></p>
+<h4 id="user-stories_2"><strong>User stories</strong></h4>
 <table>
 <thead>
 <tr>
@@ -319,25 +375,41 @@
 <td>2</td>
 </tr>
 <tr>
-<td>US 2.02</td>
-<td>2</td>
-</tr>
-<tr>
-<td>US 3.05</td>
-<td>1</td>
-</tr>
-<tr>
-<td>US 2.01</td>
+<td>US 1.06</td>
 <td>3</td>
 </tr>
 <tr>
 <td>US 1.07</td>
 <td>8</td>
 </tr>
+<tr>
+<td>US 2.01</td>
+<td>3</td>
+</tr>
+<tr>
+<td>US 2.02</td>
+<td>2</td>
+</tr>
+<tr>
+<td>US 3.01</td>
+<td>1</td>
+</tr>
+<tr>
+<td>US 3.02</td>
+<td>5</td>
+</tr>
+<tr>
+<td>US 3.03</td>
+<td>5</td>
+</tr>
+<tr>
+<td>US 3.05</td>
+<td>1</td>
+</tr>
 </tbody>
 </table>
 <p>Estimated sprint velocity: <strong>16</strong></p>
-<p><strong>Tasks</strong></p>
+<h4 id="tasks_3"><strong>Tasks</strong></h4>
 <table>
 <thead>
 <tr>
@@ -349,16 +421,76 @@
 </thead>
 <tbody>
 <tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td>Search for stories by program</td>
+<td>US 1.06</td>
+<td>Jason, Asad</td>
+<td>Nov 3</td>
+</tr>
+<tr>
+<td>Search for stories by time</td>
+<td>US 1.06</td>
+<td>Jayden, Favour</td>
+<td>Nov 3</td>
+</tr>
+<tr>
+<td>Audio feedback</td>
+<td>US 3.02</td>
+<td>Théa, Asad</td>
+<td>Nov 3</td>
+</tr>
+<tr>
+<td>Video feedback</td>
+<td>US 3.03</td>
+<td>Mohammed, Jayden</td>
+<td>Nov 3</td>
+</tr>
+<tr>
+<td>Text feedback</td>
+<td>US 3.01</td>
+<td>Théa, Mohammed</td>
+<td>Nov 3</td>
+</tr>
+<tr>
+<td>Create unique URL endpoint</td>
+<td>US 1.03</td>
+<td>Jason, Mo</td>
+<td>Nov 13</td>
+</tr>
+<tr>
+<td>Create unique URL view</td>
+<td>US 1.03</td>
+<td>Jason, Favour</td>
+<td>Nov 11</td>
+</tr>
+<tr>
+<td>Delete accounts</td>
+<td>US 2.02</td>
+<td>Jayden, Asad</td>
+<td>Nov 11</td>
+</tr>
+<tr>
+<td>Authentication for Admins</td>
+<td>US 3.05</td>
+<td>Jayden, Asad</td>
+<td>Nov 11</td>
+</tr>
+<tr>
+<td>Page to create admin accounts</td>
+<td>US 2.01</td>
+<td>Théa</td>
+<td>Nov 11</td>
+</tr>
+<tr>
+<td>Translation tool for feedback</td>
+<td>US 1.07</td>
+<td>Jayden, Favour, Mo, Théa</td>
+<td>Nov 11</td>
 </tr>
 </tbody>
 </table>
-<h2 id="sprint-5">Sprint 5</h2>
+<h3 id="sprint-5">Sprint 5</h3>
 <p>Due December 3</p>
-<p><strong>User stories</strong></p>
+<h4 id="user-stories_3"><strong>User stories</strong></h4>
 <table>
 <thead>
 <tr>
@@ -386,7 +518,7 @@
 </tbody>
 </table>
 <p>Estimated sprint velocity: <strong>17</strong></p>
-<p><strong>Tasks</strong></p>
+<h4 id="tasks_4"><strong>Tasks</strong></h4>
 <table>
 <thead>
 <tr>
@@ -434,10 +566,11 @@
 <script>var base_url = '..';</script>
 <script defer="" src="../js/theme_extra.js"></script>
 <script defer="" src="../js/theme.js"></script>
+<script defer="" src="../search/main.js"></script>
 <script defer="">
         window.onload = function () {
             SphinxRtdTheme.Navigation.enable(true);
         };
     </script>
-<script>const lightbox = GLightbox({"touchNavigation": true, "loop": false, "width": "100%", "height": "auto", "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom"});</script></body>
+<script>const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom"});</script></body>
 </html>
