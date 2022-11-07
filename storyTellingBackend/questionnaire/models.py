@@ -1,6 +1,5 @@
 from django.db import models
 import uuid
-from user.models import User
 from django.utils import timezone 
 
 class Question(models.Model):
