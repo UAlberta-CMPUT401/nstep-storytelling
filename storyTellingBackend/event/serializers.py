@@ -5,4 +5,9 @@ from event.models import *
 class EventAddingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
-        fields = ['title','content','type','object_id','author']
+        fields = ['title','action','object_id','author']
+
+class EventSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Event
+        fields = "__all__"
