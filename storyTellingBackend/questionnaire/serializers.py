@@ -22,13 +22,6 @@ class AnswerInListSerializer(serializers.ModelSerializer):
         model = Answer
         fields = ['content','description',"content_type"]
 
-# class ProgramSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Program
-#         fields = ['name','date','description']
-
-
-
 class AddingQuestionnaireSerializer(serializers.ModelSerializer):
     class Meta:
         model = Questionnaire
@@ -37,4 +30,14 @@ class AddingQuestionnaireSerializer(serializers.ModelSerializer):
 class QuestionnaireSerializer(serializers.ModelSerializer):
     class Meta:
         model = Questionnaire
+        fields = "__all__"
+
+class AddingAnswerListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AnswerList
+        fields = ["questionnaire"]
+
+class AnswerListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AnswerList
         fields = "__all__"

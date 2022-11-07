@@ -1,12 +1,11 @@
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework.decorators import api_view
-from .models import Questionnaire,Answer,Question
 from .serializers import *
 from rest_framework.views import APIView
-from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from .models import *
-from django.http import Http404
+from django.forms.models import model_to_dict
+import json
+from django.core import serializers
 
 from rest_framework import generics
 from rest_framework.permissions import *
@@ -50,8 +49,7 @@ class Questions(APIView):
         comparedList = [str(questionnaireData['questions'][i]) for i in range(len(questionnaireData['questions']))]
 
         for element in questionData:
-            print(element['id'])
-            print(comparedList)
+     
             if element['id'] in comparedList:
                 myQuestions.append(element['id'])
                 
@@ -87,33 +85,40 @@ class Feedbacks(APIView):
     """
     List all feedbacks, or create a new feedback.
     """
-    def get(self, request,pk, format=None):
-        # pk = self.kwargs['pk']
-        # question = Question.objects.filter(pk=pk)         
-        answers = Answer.objects.filter(question = pk)
-
-        serializer = AnswerInListSerializer(answers, many=True)
+    def get(self, request,pk, format=None):        
+        answers = AnswerList.objects.filter(questionnaire = pk)
+        serializer = AnswerListSerializer(answers, many=True)
         response = serializer.data
         return Response(response)
 
     def post(self, request,pk):
-        question = Question.objects.get(pk=pk)  
-        request.data['question'] = question
-        if request.data['content_type'].lower() == "text":
-            result,condition = self.post_text(request.data)
-        elif request.data['content_type'].lower() == "voice":
-            self.post_voice(request.data)
-        elif request.data['content_type'].lower() == "video":
-            self.post_video(request.data)
 
-        if condition:
-            response = {
-            "status": 0,
-            "message": "added",
-            "id": result.id
-            }
-            return Response(response, status=status.HTTP_201_CREATED)
-        return Response(result.errors, status=status.HTTP_400_BAD_REQUEST)
+        questionnaire = Questionnaire.objects.get(pk=pk)  
+        qnData = {"questionnaire": questionnaire.id}
+
+        answerListSerializer = AddingAnswerListSerializer(data = qnData)
+        if answerListSerializer.is_valid():
+            ansList = answerListSerializer.save()
+
+        requestData = request.data
+        for key in requestData.keys():
+            temp = requestData[key]
+            temp['question'] = key
+            ansSerializer = AnswerSerializer(data =temp)
+            if ansSerializer.is_valid():
+                ans = ansSerializer.save()
+            ansList.answers.add(ans)
+
+        anss = AnswerList.objects.get(pk=ansList.id)  
+        serializer = AnswerListSerializer(anss)
+
+        response = {
+        "status": 0,
+        "message": "added",
+        "answer_list": serializer.data,
+        }
+        return Response(response, status=status.HTTP_201_CREATED)
+        # return Response({"undifined error":"error"}, status=status.HTTP_400_BAD_REQUEST)
 
     def post_text(self, data):       
 

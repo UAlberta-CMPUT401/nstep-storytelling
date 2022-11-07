@@ -21,12 +21,12 @@ class Answer(models.Model):
 class Questionnaire(models.Model):
     id = models.UUIDField(primary_key = True , auto_created = True , default = uuid.uuid4)
     questions = models.ManyToManyField(Question)
-    title = models.CharField(max_length=200)
-    description = models.CharField(max_length=1000)
+    title = models.CharField(max_length=200,null=True)
+    description = models.CharField(max_length=1000,null=True)
 
 class AnswerList(models.Model):
     id = models.UUIDField(primary_key = True , auto_created = True , default = uuid.uuid4)
-    Answers = models.ManyToManyField(Answer)
+    answers = models.ManyToManyField(Answer)
     questionnaire = models.ForeignKey(Questionnaire, on_delete=models.CASCADE,null=True)
     time = models.DateTimeField(default=timezone.now)
 
