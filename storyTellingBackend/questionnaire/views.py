@@ -14,7 +14,7 @@ from rest_framework.permissions import *
 class Questionnaire_list(generics.ListCreateAPIView):
     queryset = Questionnaire.objects.all()
     serializer_class = AddingQuestionnaireSerializer
-    # permission_classes = [IsAdminUser]
+    permission_classes = [IsAuthenticated]
 
     def list(self, request):
         # Note the use of `get_queryset()` instead of `self.queryset`
@@ -36,11 +36,15 @@ class Questionnaire_detail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Questionnaire.objects.all()
     lookup_field = 'pk'
     serializer_class = QuestionnaireSerializer
+    permission_classes = [IsAuthenticated]
 
-class Questions(APIView):
+class Questions(generics.GenericAPIView):
     '''
     List of all the questions available
     '''
+
+    permission_classes = [IsAuthenticated]
+
     def get(self, request, pk, format=None):
         questionnaire = Questionnaire.objects.get(id=pk)
         questions = Question.objects.all()
@@ -76,16 +80,19 @@ class Questions(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class QuestionDetail(generics.RetrieveUpdateDestroyAPIView):
-    # permission_classes = [IsAuthenticated]
     queryset = Question.objects.all()
     lookup_field = 'id'
     lookup_url_kwarg = "pk2"
     serializer_class = QuestionSerializer
+    permission_classes = [IsAuthenticated]
 
-class Feedbacks(APIView):
+
+class Feedbacks(generics.GenericAPIView):
     """
     List all feedbacks, or create a new feedback.
     """
+    permission_classes = [AllowAny]
+
     def get(self, request,pk, format=None):        
         answers = AnswerList.objects.filter(questionnaire = pk)
         serializer = AnswerListSerializer(answers, many=True)
