@@ -55,7 +55,7 @@ export default function Selection() {
             <MenuItem value={10}>Program 1</MenuItem>
           </Select>
         </FormControl>
-        <a className="program-select-button" href="/newForm">
+        <a className="program-select-button" href="/new-form">
           <Button
             style={{
               borderRadius: 25,

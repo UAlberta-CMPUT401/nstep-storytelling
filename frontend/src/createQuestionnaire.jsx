@@ -1,16 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import Button from '@mui/material/Button';
 import ElementSelector from "./components/ElementSelector";
-import Navbar from "./components/Navbar";
+import AdminNavbar from "./components/AdminNavbar";
 import TextInput from "./components/TextInput";
 import {
   createQuestion, deleteQuestion, createQuestionnaire, patchQuestionnaire, patchQuestion,
 } from './service';
-import "./styles/adminCreate.css";
+import "./styles/createQuestionnaire.css";
 
-export default function AdminCreate() {
+export default function CreateQuestionnaire() {
   // const [isToggled, setIsToggled] = React.useState(false);
   const [questionList, setQuestionList] = React.useState([]);
   const [qid, setQid] = React.useState("hi");
@@ -42,15 +42,16 @@ export default function AdminCreate() {
     console.log(questionList);
   };
 
+  const navigate = useNavigate();
   const handleSave = async (e) => {
     const res = await patchQuestionnaire(qid, formTitle);
     console.log(res);
 
-    const newQuestionList = [...questionList];
-    await Promise.all(newQuestionList.map(async (question) => {
-      const q = patchQuestion(qid, question.id, question.content);
+    await Promise.all(questionList.map(async (question) => {
+      const q = await patchQuestion(qid, question.id, question.content);
       console.log(q);
     }));
+    navigate('/home');
   };
 
   const addQuestion = async () => {
@@ -81,7 +82,7 @@ export default function AdminCreate() {
 
   return (
     <div className="admin-create">
-      <Navbar />
+      <AdminNavbar />
       <div className="admin-create-body">
         <div style={{ textAlign: "center" }}>
           <TextField id="filled-basic" label="Form title" variant="filled" onChange={handleTitle} />
@@ -107,9 +108,7 @@ export default function AdminCreate() {
           </Button>
         </div>
         <div style={{ textAlign: "center" }} className="save-and-return">
-          <a href="/dashboard" className="admin-save-button">
-            <Button variant="contained" onClick={handleSave}>Save & Return</Button>
-          </a>
+          <Button variant="contained" onClick={handleSave}>Save & Return</Button>
         </div>
       </div>
     </div>

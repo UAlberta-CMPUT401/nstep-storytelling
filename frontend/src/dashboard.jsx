@@ -1,10 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { Tabs, Tab } from "@mui/material";
-import Navbar from "./components/Navbar";
 import Forms from "./forms";
 import Feedback from "./feedback";
 import './styles/Dashboard.css';
+import AdminNavbar from "./components/AdminNavbar";
 
 export default function Dashboard() {
   const [selectedTab, setSelectedTab] = React.useState(0);
@@ -15,18 +14,8 @@ export default function Dashboard() {
 
   return (
     <div>
-      <Navbar />
+      <AdminNavbar />
       <div className="dashboard">
-        <div>
-          <Link to="/">
-            <button style={{
-              float: "right", marginRight: "12px", marginBottom: "12px", fontSize: "16px",
-            }}
-            >
-              Logout
-            </button>
-          </Link>
-        </div>
         <Tabs value={selectedTab} onChange={handleChange} centered>
           <Tab label="Forms" />
           <Tab label="Feedback" />

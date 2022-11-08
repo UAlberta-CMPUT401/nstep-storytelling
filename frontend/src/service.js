@@ -1,3 +1,4 @@
+import { accordionDetailsClasses } from '@mui/material';
 import axios from 'axios';
 import 'regenerator-runtime';
 
@@ -19,6 +20,10 @@ const patchQuestion = async (questionnaireId, questionId, content) => {
   });
   return question.data;
 };
+const getQuestion = async (questionnaireId, questionId) => {
+  const question = await axios.get(`${api}/questionnaire/${questionnaireId}/question/${questionId}/`);
+  return question.data;
+};
 const createQuestionnaire = async (title, description) => {
   const questionnaire = await axios.post(`${api}/questionnaire/`, {
     title,
@@ -32,7 +37,21 @@ const patchQuestionnaire = async (questionnaireId, title) => {
   });
   return questionnaire.data;
 };
+const getQuestionnaires = async () => {
+  const questionnaires = await axios.get(`${api}/questionnaire/`);
+  return questionnaires.data;
+};
+const deleteQuestionnaire = async (questionnaireId) => {
+  const res = await axios.delete(`${api}/questionnaire/${questionnaireId}/`);
+  return res.data;
+};
+const getQuestionnaire = async (questionnaireId) => {
+  const questionnaire = await axios.get(`${api}/questionnaire/${questionnaireId}/`);
+  return questionnaire.data;
+};
 
 export {
-  createQuestion, deleteQuestion, createQuestionnaire, patchQuestionnaire, patchQuestion,
+  createQuestion, deleteQuestion, createQuestionnaire,
+  patchQuestionnaire, patchQuestion, getQuestionnaires,
+  deleteQuestionnaire, getQuestionnaire, getQuestion,
 };
