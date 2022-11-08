@@ -6,84 +6,47 @@ from django.http import Http404
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework import generics
+from rest_framework import permissions
+from django.contrib.auth import authenticate, login, logout
+from rest_framework.authentication import BaseAuthentication, TokenAuthentication
+from rest_framework.permissions import *
 
 # Create your views here.
 
-class UserList(APIView):
-    """
-    List all users, 
-    """
-    def get(self, request, format=None):
-        users = User.objects.all()
-        serializer = UserSerializer(users, many=True)
-        response = {'total': len(serializer.data),
-                    'users': serializer.data,
-                    }
 
-        return Response(response)
-    
-    def post(self, request, format=None):
-        serializer = AddingUserSerializer(data=request.data)
-        if serializer.is_valid():
-            result = serializer.save()
-            response = {
-                        "status": 0,
-                        "message": "User created",
-                        "id": result.id,
-                        }
-            return Response(response)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+class UserList(generics.ListCreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = AddingUserSerializer
+    permission_classes = [IsAdminUser]
 
-    
-class UserDetail(APIView):
-    """
-    Retrieve, update or delete a User instance.
-    """
-    def get_object(self, pk):
-        try:
-            return User.objects.get(pk=pk)
-        except User.DoesNotExist:
-            raise Http404
-
-    def get(self, request, pk, format=None):
-        user = self.get_object(pk)
-        serializer = UserSerializer(user)
+    def list(self, request):
+        # Note the use of `get_queryset()` instead of `self.queryset`
+        queryset = self.get_queryset()
+        serializer = UserSerializer(queryset, many=True)
         return Response(serializer.data)
 
+class UserDetail(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = [IsAdminUser]
+    queryset = User.objects.all()
+    lookup_field = 'pk'
+    serializer_class = UserSerializer
 
-    def put(self, request, pk, format=None):
-        user = self.get_object(pk)
-        serializer = UserSerializer(user, data=request.data)
-
-        if serializer.is_valid():
-            serializer.save()
+class LoginAPI(generics.GenericAPIView):
+    permission_classes = [permissions.AllowAny]
+    serializer_class = LoginSerializer
+    def post(self, request):
+        username = request.data["username"]
+        password = request.data["password"]
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            login(request,user)
             response = {
-                        "status": 0,
-                        "message": "User updated"
-                        }
-            return Response(response)
-        
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    def patch(self, request, pk, format=None):
-        user = self.get_object(pk)
-
-        serializer = UserSerializer(user, data=request.data, partial=True)
-        if serializer.is_valid():
-            serializer.save()
-            response = {
-                        "status": 0,
-                        "message": "User modified"
-                        }
-            return Response(response)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-    def delete(self, request, pk, format=None):
-        user = self.get_object(pk)
-        user.delete()
-        response = {
-            "status": 0,
-            "message": "User deleted"
+                'message': 'successfully login!',
+                'id': user.id,
+                'token': Token.objects.get_or_create(user=user)[0].key
             }
-        return Response(response)
+            return Response(response, status=status.HTTP_200_OK)
+        else:
+            return Response({'message': 'Incorrect Credentials'},status=status.HTTP_400_BAD_REQUEST)
+

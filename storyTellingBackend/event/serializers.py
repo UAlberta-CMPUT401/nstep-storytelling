@@ -10,4 +10,4 @@ class EventAddingSerializer(serializers.ModelSerializer):
 class EventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
-        fields = "__all__"
+        fields = ['log','title','action','object_id','author']
