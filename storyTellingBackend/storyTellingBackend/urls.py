@@ -45,6 +45,8 @@ urlpatterns = [
     path('api/user/',uv.UserList.as_view(),name='UserList'),
     path('api/questionnaire/', qv.Questionnaire_list.as_view()),
     path('api/event/', ev.EventList.as_view()),
+    path('api/login/', uv.LoginAPI.as_view()),
+    re_path(r'api/user/(?P<pk>[(-z)]{36})/$', uv.UserDetail.as_view(),name='SingleUser'),
 
     re_path(r'api/questionnaire/(?P<pk>[(-z)]{36})/question/(?P<pk2>[(-z)]{36})/$',qv.QuestionDetail.as_view(),name='SingleQuestion'),
 
@@ -54,7 +56,6 @@ urlpatterns = [
     re_path(r'api/questionnaire/(?P<pk>[(-z)]{36})/$', qv.Questionnaire_detail.as_view()),
     re_path(r'api/question/(?P<pk>[(-z)]{36})/feedback/$',qv.Feedbacks.as_view(),name='Feedbacks'),
 
-    re_path(r'api/user/(?P<pk>[(-z)]{36})/$', uv.UserDetail.as_view(),name='SingleUser'),
     
     # re_path(r'api/event/(?P<pk>[(-z)]{36})/$', ev.EventDetail.as_view(),name='SingleEvent'),
 
