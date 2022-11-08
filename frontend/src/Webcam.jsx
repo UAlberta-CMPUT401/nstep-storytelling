@@ -78,12 +78,14 @@ function WebCamTest() {
   //   console.log("videojs-record is ready!");
   // });
   const videoRef = useRef(null);
+  const mediaRecorder = useRef(null);
 
   const getVideo = () => {
     navigator.mediaDevices
-      .getUserMedia({ video: { width: 640, height: 360 } })
+      .getUserMedia({ audio: true, video: { width: 640, height: 360 } })
       .then((stream) => {
         const video = videoRef.current; video.srcObject = stream; video.play();
+        mediaRecorder.current = new MediaRecorder(stream);
       })
       .catch((err) => {
         console.log(err);
@@ -93,21 +95,30 @@ function WebCamTest() {
     getVideo();
   }, [videoRef]);
 
-  const recordVideo = () => {
-    const width = 640;
-    const height = width / (16 / 9);
-    const video = videoRef.current;
-    const stream = video.srcObject;
-    const options = {
-      mimeType: 'video/webm;codecs=vp9',
-      audioBitsPerSecond: 4410,
-      videoBitsPerSecond: 9000,
-    };
+  // const recordVideo = () => {
+  //   const width = 640;
+  //   const height = width / (16 / 9);
+  //   const video = videoRef.current;
+  //   const stream = video.srcObject;
+  //   const options = {
+  //     mimeType: 'video/webm;codecs=vp9',
+  //     audioBitsPerSecond: 4410,
+  //     videoBitsPerSecond: 9000,
+  //   };
+  // };
+
+  const record = () => {
+    mediaRecorder.start();
+    console.log(mediaRecorder.state);
+    console.log("recorder started");
+    record.style.background = "red";
+    record.style.color = "black";
   };
+
   return (
     <div className="webcam-container">
       <video ref={videoRef} />
-      <button>RECORD!</button>
+      <button onClick={record}>RECORD!</button>
     </div>
   );
 }
