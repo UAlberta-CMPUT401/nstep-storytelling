@@ -33,7 +33,6 @@ class Questionnaire_list(generics.ListCreateAPIView):
         return Response(questionnaireData, status=status.HTTP_201_CREATED)
 
 class Questionnaire_detail(generics.RetrieveUpdateDestroyAPIView):
-    # permission_classes = [IsAuthenticated]
     queryset = Questionnaire.objects.all()
     lookup_field = 'pk'
     serializer_class = QuestionnaireSerializer
