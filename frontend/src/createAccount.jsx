@@ -36,7 +36,7 @@ export default function CreateAccount() {
           </div>
         </Box>
         <div style={{ textAlign: "center" }}>
-          <FormControlLabel control={<Checkbox defaultChecked disableRipple="true" />} label="Send a copy of these credentials to this person&#39;s email" />
+          <FormControlLabel control={<Checkbox defaultChecked disableRipple="true" />} label="Send a copy of these credentials to you and this person&#39;s email" />
         </div>
         <div style={{ textAlign: "center" }}>
           <h1>Permissions</h1>
