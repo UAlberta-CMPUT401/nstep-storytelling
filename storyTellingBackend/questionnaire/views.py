@@ -14,9 +14,10 @@ from rest_framework.permissions import *
 class Questionnaire_list(generics.ListCreateAPIView):
     queryset = Questionnaire.objects.all()
     serializer_class = AddingQuestionnaireSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
     def list(self, request):
+
         # Note the use of `get_queryset()` instead of `self.queryset`
         queryset = self.get_queryset()
         serializer = QuestionnaireSerializer(queryset, many=True)
@@ -43,7 +44,7 @@ class Questions(generics.GenericAPIView):
     List of all the questions available
     '''
 
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
     def get(self, request, pk, format=None):
         questionnaire = Questionnaire.objects.get(id=pk)
