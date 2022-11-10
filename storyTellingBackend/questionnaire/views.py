@@ -36,7 +36,7 @@ class Questionnaire_detail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Questionnaire.objects.all()
     lookup_field = 'pk'
     serializer_class = QuestionnaireSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
 class Questions(generics.GenericAPIView):
     '''
@@ -84,7 +84,7 @@ class QuestionDetail(generics.RetrieveUpdateDestroyAPIView):
     lookup_field = 'id'
     lookup_url_kwarg = "pk2"
     serializer_class = QuestionSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
 
 class Feedbacks(generics.GenericAPIView):
