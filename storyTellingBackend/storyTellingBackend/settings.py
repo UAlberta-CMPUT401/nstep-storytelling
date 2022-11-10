@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'user',
     'event',
     'corsheaders',
+    'auditlog',
 
 ]
 
@@ -74,6 +75,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
+    'auditlog.middleware.AuditlogMiddleware',
 ]
 
 ROOT_URLCONF = 'storyTellingBackend.urls'
@@ -106,7 +108,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'nstep_database',
         'USER': 'root',
-        'PASSWORD': 'Dragon123!',
+        'PASSWORD': 'mypassword',
         'HOST': 'localhost',
         'PORT': '',
     }

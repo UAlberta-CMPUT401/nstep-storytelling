@@ -44,7 +44,11 @@ urlpatterns = [
     path('docs', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('api/user/',uv.UserList.as_view(),name='UserList'),
     path('api/questionnaire/', qv.Questionnaire_list.as_view()),
-    path('api/event/', ev.EventList.as_view()),
+    path('api/logs/', ev.LogList.as_view()),
+    re_path(r'api/logs/user/(?P<pk>[(-z)]{36})/$', ev.UserLogList.as_view(),name='UserLog'),
+    re_path(r'api/logs/(?P<pk>[(-z)]{36})/$', ev.ObjectLogList.as_view(),name='ObjectLog'),
+
+
     path('api/login/', uv.LoginAPI.as_view()),
     re_path(r'api/user/(?P<pk>[(-z)]{36})/$', uv.UserDetail.as_view(),name='SingleUser'),
 
@@ -55,8 +59,6 @@ urlpatterns = [
 
     re_path(r'api/questionnaire/(?P<pk>[(-z)]{36})/$', qv.Questionnaire_detail.as_view()),
     re_path(r'api/question/(?P<pk>[(-z)]{36})/feedback/$',qv.Feedbacks.as_view(),name='Feedbacks'),
-
-    
     # re_path(r'api/event/(?P<pk>[(-z)]{36})/$', ev.EventDetail.as_view(),name='SingleEvent'),
 
 ]
