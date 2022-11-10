@@ -5,19 +5,53 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import generics
+from auditlog.models import LogEntry
 
+
+# ---------------------------------------------------------------------------------------
 # Create your views here.
-
-class EventList(generics.ListCreateAPIView):
-    queryset = Event.objects.all()
-    serializer_class = EventAddingSerializer
+class LogList(generics.ListCreateAPIView):
+    queryset = LogEntry.objects.all()
+    serializer_class = LogEntrySerializer
     # permission_classes = [IsAdminUser]
-
     def list(self, request):
         # Note the use of `get_queryset()` instead of `self.queryset`
         queryset = self.get_queryset()
-        serializer = EventSerializer(queryset, many=True)
+        serializer = LogEntrySerializer(queryset, many=True)
         return Response(serializer.data)
+    
+class UserLogList(generics.ListCreateAPIView):
+    queryset = LogEntry.objects.all()
+    serializer_class = LogEntrySerializer
+    def list(self, request, pk, format=None):
+        # Note the use of `get_queryset()` instead of `self.queryset`
+        queryset = self.get_queryset()
+        # filter queryset by pk
+        queryset = queryset.filter(actor=pk)
+        serializer = LogEntrySerializer(queryset, many=True)
+        return Response(serializer.data)
+    
+class ObjectLogList(generics.ListCreateAPIView):
+    queryset = LogEntry.objects.all()
+    serializer_class = LogEntrySerializer
+    def list(self, request, pk, format=None):
+        # Note the use of `get_queryset()` instead of `self.queryset`
+        queryset = self.get_queryset()
+        # filter queryset by pk
+        queryset = queryset.filter(object_pk=pk)
+        serializer = LogEntrySerializer(queryset, many=True)
+        return Response(serializer.data)
+# ---------------------------------------------------------------------------------------
+# class EventsList(generics.ListCreateAPIView):
+#     queryset = Event.objects.all()
+#     serializer_class = EventAddingSerializer
+#     # permission_classes = [IsAdminUser]
+
+#     def list(self, request):
+#         # Note the use of `get_queryset()` instead of `self.queryset`
+#         queryset = self.get_queryset()
+#         serializer = EventSerializer(queryset, many=True)
+#         return Response(serializer.data)
 
 # class EventDetail(APIView):
 #     """
