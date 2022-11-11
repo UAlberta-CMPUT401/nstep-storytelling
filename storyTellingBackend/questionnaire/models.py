@@ -1,6 +1,7 @@
 from django.db import models
 import uuid
 from django.utils import timezone 
+from auditlog.registry import auditlog
 
 class Question(models.Model):
     id = models.UUIDField(primary_key = True , auto_created = True , default = uuid.uuid4)
@@ -29,3 +30,8 @@ class AnswerList(models.Model):
     questionnaire = models.ForeignKey(Questionnaire, on_delete=models.CASCADE,null=True)
     time = models.DateTimeField(default=timezone.now)
 
+
+auditlog.register(Question)
+auditlog.register(Answer)
+auditlog.register(Questionnaire)
+auditlog.register(AnswerList)
