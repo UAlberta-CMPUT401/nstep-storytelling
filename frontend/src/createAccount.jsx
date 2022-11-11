@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React from "react";
 import { Link } from "react-router-dom";
 import TextField from '@mui/material/TextField';
@@ -11,8 +12,22 @@ import ElementSelector from "./components/ElementSelector";
 import AdminNavbar from "./components/AdminNavbar";
 import TextAnswerInput from "./TextAnswerInput";
 import "./styles/App.css";
+import { createUser } from "./service";
 
 export default function CreateAccount() {
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [confirmPassword, setConfirmPassword] = React.useState("");
+  const [errorText, setErrorText] = React.useState("");
+
+  const handlePassword = (e) => {
+    if (e.target.value.match(password)) {
+      createUser(email, password);
+    } else {
+      setErrorText("Passwords do not match");
+    }
+  };
+
   return (
     <>
       <AdminNavbar />
@@ -26,14 +41,18 @@ export default function CreateAccount() {
           autoComplete="off"
         >
           <div>
-            <TextField id="email" label="email" type="email" />
+            <TextField id="email" label="email" type="email" onChange={(e) => { setEmail(e.target.value); }} />
           </div>
           <div>
-            <TextField id="password" label="password" type="password" />
+            <TextField id="password" label="password" type="password" onChange={(e) => { setPassword(e.target.value); }} />
           </div>
-          <div>
-            <TextField id="confirm-password" label="confirm password" type="password" />
-          </div>
+          {/* <div>
+            <TextField id="confirm-password" label="confirm password" type="password" onChange={handlePassword} />
+          </div> */}
+
+          {/* check that passwords are the same */}
+
+          {createUser(email, password)}
         </Box>
         <div style={{ textAlign: "center" }}>
           <FormControlLabel control={<Checkbox defaultChecked disableRipple="true" />} label="Send a copy of these credentials to you and this person&#39;s email" />
