@@ -28,6 +28,10 @@ export default function CreateAccount() {
     }
   };
 
+  const setAccount = async () => {
+    await createUser(email, password);
+  };
+
   return (
     <>
       <AdminNavbar />
@@ -52,7 +56,6 @@ export default function CreateAccount() {
 
           {/* check that passwords are the same */}
 
-          {createUser(email, password)}
         </Box>
         <div style={{ textAlign: "center" }}>
           <FormControlLabel control={<Checkbox defaultChecked disableRipple="true" />} label="Send a copy of these credentials to you and this person&#39;s email" />
@@ -74,7 +77,7 @@ export default function CreateAccount() {
         </div>
         <div style={{ textAlign: "center", marginTop: "30px", marginBottom: "30px" }}>
           <Link to="/manage-accounts" style={{ textDecoration: "none" }}>
-            <Button variant="contained">Save & Return</Button>
+            <Button variant="contained" onClick={setAccount}>Save & Return</Button>
           </Link>
           <div style={{ paddingTop: "70px" }}>
             <Link to="/manage-accounts" style={{ textDecoration: "none" }}>
