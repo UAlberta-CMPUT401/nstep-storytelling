@@ -59,6 +59,8 @@ export default function CreateAccount() {
       setPasswordFilled(false);
       setPasswordFilledError("Please enter a password");
     } else {
+      setPassword(e.target.value); // for testing purposes. to be removed
+      setPasswordFilled(true);
       if (validatePassword(e.target.value)) {
         setPassword(e.target.value);
         setPasswordValid(true);
