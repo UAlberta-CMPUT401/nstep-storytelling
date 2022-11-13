@@ -120,15 +120,17 @@ class Feedbacks(generics.GenericAPIView):
             ansSerializer = AnswerSerializer(data =temp)
             if ansSerializer.is_valid():
                 ans = ansSerializer.save()
-            ansList.answers.add(ans)
+                ansList.answers.add(ans)
+            else:
+                print(ansSerializer.errors)
 
         anss = AnswerList.objects.get(pk=ansList.id)  
         serializer = AnswerListSerializer(anss)
 
         response = {
-        "status": 0,
-        "message": "added",
-        "answer_list": serializer.data,
+            "status": 0,
+            "message": "added",
+            "answer_list": serializer.data,
         }
         return Response(response, status=status.HTTP_201_CREATED)
         # return Response({"undifined error":"error"}, status=status.HTTP_400_BAD_REQUEST)
