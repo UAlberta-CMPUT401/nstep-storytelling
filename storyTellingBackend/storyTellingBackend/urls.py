@@ -58,6 +58,10 @@ urlpatterns = [
     re_path(r'api/questionnaire/(?P<pk>[(-z)]{36})/feedback/$', qv.Feedbacks.as_view()),
 
     re_path(r'api/questionnaire/(?P<pk>[(-z)]{36})/$', qv.Questionnaire_detail.as_view()),
+
+    path('api/feedback/', qv.AllAnswerlist.as_view()),
+    re_path(r'api/feedback/(?P<pk>[(-z)]{36})/$', qv.OneAnswerlist.as_view()),
+
     # re_path(r'api/question/(?P<pk>[(-z)]{36})/feedback/$',qv.Feedbacks.as_view(),name='Feedbacks'),
     # re_path(r'api/event/(?P<pk>[(-z)]{36})/$', ev.EventDetail.as_view(),name='SingleEvent'),
 
