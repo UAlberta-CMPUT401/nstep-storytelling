@@ -16,14 +16,7 @@ export default function AnswerQuestionnaire() {
   React.useEffect(async () => {
     const res = await getQuestionnaire(id);
     setFormTitle(res.title);
-    const newQuestionList = [...questionList];
-    await Promise.all(res.questions.map(async (questionId) => {
-      const q = await getQuestion(id, questionId);
-      q.answer = "";
-      console.log(q);
-      newQuestionList.push(q);
-    }));
-    setQuestionList(newQuestionList);
+    setQuestionList(res.questions);
     console.log(questionList);
   }, []);
 
