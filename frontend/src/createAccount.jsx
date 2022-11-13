@@ -1,3 +1,4 @@
+/* eslint-disable no-lonely-if */
 /* eslint-disable max-len */
 import React from "react";
 import { Link } from "react-router-dom";
@@ -8,6 +9,7 @@ import Box from '@mui/material/Box';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
+import validator from "validator";
 import ElementSelector from "./components/ElementSelector";
 import AdminNavbar from "./components/AdminNavbar";
 import TextAnswerInput from "./TextAnswerInput";
@@ -22,7 +24,7 @@ export default function CreateAccount() {
   const [emailFilled, setEmailFilled] = React.useState(false);
   const [emailValid, setEmailValid] = React.useState(false);
   const [passwordFilled, setPasswordFilled] = React.useState(false);
-  const [passwordFilledError, setPasswordFilledError] = React.useState(false);
+  const [passwordFilledError, setPasswordFilledError] = React.useState("");
   const [passwordValid, setPasswordValid] = React.useState(false);
   const [emailFilledError, setEmailFilledError] = React.useState(false);
   const checkAllFields = emailFilled && passwordFilled && passwordsMatch;
@@ -42,14 +44,28 @@ export default function CreateAccount() {
     await createUser(email, password);
   };
 
+  const validatePassword = (value) => {
+    console.log("made it to validate password");
+    if (validator.isStrongPassword(value, {
+      minLength: 8, minLowercase: 1, minUppercase: 1, minNumbers: 1, minSymbols: 1,
+    })) {
+      return true;
+    }
+    return false;
+  };
+
   const handlePassword = (e) => {
     if (e.target.value === "") {
       setPasswordFilled(false);
       setPasswordFilledError("Please enter a password");
     } else {
-      setPassword(e.target.value);
-      setPasswordFilled(true);
-      setPasswordFilledError("");
+      if (validatePassword(e.target.value)) {
+        setPassword(e.target.value);
+        setPasswordValid(true);
+        setPasswordFilledError("");
+      } else {
+        setPasswordFilledError("Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one symbol");
+      }
     }
   };
 
