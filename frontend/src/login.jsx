@@ -4,6 +4,8 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
 import Link from '@mui/material/Link';
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -13,8 +15,8 @@ import Navbar from './components/Navbar';
 // import Alert from "@mui/material/Alert";
 
 export default function Login() {
-  // const BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8080';
-  const BASE_URL = 'http://localhost:8080';
+  // const BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000/api';
+  const BASE_URL = 'http://localhost:8000/api';
 
   const history = useNavigate();
   const [username, setUsername] = useState("");
@@ -27,10 +29,6 @@ export default function Login() {
 
   const [openSuccessAlert, setOpenSuccessAlert] = useState(false);
   const [openFailureAlert, setOpenFailureAlert] = useState(false);
-
-  const navigateHome = () => {
-    history("/home");
-  };
 
   const handleClick = (success) => {
     if (success) {
@@ -92,29 +90,32 @@ export default function Login() {
   //     </Button>
   //   );
   // }
+  function timeout(delay) {
+    return new Promise((res) => setTimeout(res, delay));
+  }
 
-  function handleLogin() {
+  const handleLogin = () => {
     axios
       .post(`${BASE_URL}/login/`, {
         username,
         password,
       })
-      .then((res) => {
+      .then(async (res) => {
         console.log(res.data);
         console.log(res.data.token);
         localStorage.setItem("jwtToken", res.data.token);
         localStorage.setItem("userID", res.data.id);
-
-        // const imb = localStorage.getItem('jwtToken')
-        // console.log(imb)
+        console.log(localStorage.getItem('jwtToken'));
+        console.log(localStorage.getItem('userID'));
         handleClick(true);
-        history.navigate("/main/");
+        await timeout(1000);
+        history("/home/");
       })
       .catch((e) => {
         handleClick(false);
         console.log(e);
       });
-  }
+  };
 
   return (
   // <CssVarsProvider>
@@ -138,25 +139,85 @@ export default function Login() {
         }}
         variant="outlined"
       >
-        <div>
-          <Typography level="h4" component="h1">
-            <b>Welcome!</b>
+        <Box sx={{ mb: 0 }}>
+          <Typography
+            color="textPrimary"
+            variant="h6"
+            align="center"
+            fontFamily="Arial"
+          >
+            Admin Login
           </Typography>
-          <Typography level="body2">Sign in to continue.</Typography>
-        </div>
+          <br />
+        </Box>
         <TextField
-            // html input attribute
-          name="username"
-          type="username"
-            // pass down to FormLabel as children
+          id="username"
+          fullWidth
           label="Username"
+          variant="outlined"
+          onChange={(e) => {
+            setUsername(e.target.value);
+          }}
+          onKeyPress={(ev) => {
+            if (ev.key === "Enter") {
+              ev.preventDefault();
+              handleLogin();
+            }
+          }}
+          error={usernameError}
+          helperText={usernameHelper}
+          onBlur={(e) => handleUsernameBlur()}
         />
+
         <TextField
-          name="password"
-          type="password"
+          id="password"
+          fullWidth
           label="Password"
+          type="password"
+          variant="outlined"
+          margin="normal"
+          onChange={(e) => {
+            setPassword(e.target.value);
+          }}
+          onKeyPress={(ev) => {
+            if (ev.key === "Enter") {
+              ev.preventDefault();
+              handleLogin();
+            }
+          }}
+          error={passwordError}
+          helperText={passwordHelper}
+          onBlur={(e) => handlePasswordBlur()}
         />
-        <Button onClick={navigateHome} variant="contained" sx={{ mt: 1, width: "30%", alignSelf: "center" }}>Log in</Button>
+        <Button onClick={handleLogin} variant="contained" sx={{ mt: 1, width: "30%", alignSelf: "center" }}>Log in</Button>
+
+        <Snackbar
+          open={openSuccessAlert}
+          autoHideDuration={1500}
+          onClose={handleCloseAlert}
+        >
+          <Alert
+            onClose={handleCloseAlert}
+            severity="success"
+            sx={{ width: "100%" }}
+          >
+            Successful Login!
+          </Alert>
+        </Snackbar>
+
+        <Snackbar
+          open={openFailureAlert}
+          autoHideDuration={1500}
+          onClose={handleCloseAlert}
+        >
+          <Alert
+            onClose={handleCloseAlert}
+            severity="error"
+            sx={{ width: "100%" }}
+          >
+            Incorrect Credentials
+          </Alert>
+        </Snackbar>
         {/* <Typography
             endDecorator={<Link href="/sign-up">Sign up</Link>}
             fontSize="sm"
