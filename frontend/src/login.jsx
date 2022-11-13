@@ -8,7 +8,9 @@ import Link from '@mui/material/Link';
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import Alert from "@mui/material/Alert";
+import Navbar from './components/Navbar';
+
+// import Alert from "@mui/material/Alert";
 
 export default function Login() {
   // const BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8080';
@@ -117,6 +119,7 @@ export default function Login() {
   return (
   // <CssVarsProvider>
     <main>
+      <Navbar />
       {/* <ModeToggle /> */}
       <Box
         sx={{
