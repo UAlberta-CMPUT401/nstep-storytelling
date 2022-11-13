@@ -38,12 +38,13 @@ class Questionnaire_detail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = QuestionnaireSerializer
     permission_classes = [AllowAny]
 
-class Questions(generics.GenericAPIView):
+class Questions(APIView):
     '''
     List of all the questions available
     '''
 
     permission_classes = [AllowAny]
+    serializer_class = QuestionSerializer
 
     def get(self, request, pk, format=None):
         questionnaire = Questionnaire.objects.get(id=pk)
@@ -92,6 +93,10 @@ class Feedbacks(generics.GenericAPIView):
     List all feedbacks, or create a new feedback.
     """
     permission_classes = [AllowAny]
+    serializer_class = AnswerListSerializer
+    lookup_field = 'questionnaire'
+    lookup_url_kwarg = "pk"
+    queryset = AnswerList.objects.all()
 
     def get(self, request,pk, format=None):        
         answers = AnswerList.objects.filter(questionnaire = pk)
