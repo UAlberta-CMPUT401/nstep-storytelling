@@ -15,7 +15,7 @@ class Answer(models.Model):
         VIDEO='VIDEO'
 
     id = models.UUIDField(primary_key = True , auto_created = True , default = uuid.uuid4)
-    content = models.CharField(max_length=1000,null=True)
+    content = models.CharField(max_length=1000,null=True,blank=True)
     content_type = models.CharField(max_length=20,choices=ContentType.choices , default=ContentType.TEXT)
     question = models.ForeignKey(Question, on_delete=models.CASCADE,null=True)
 
