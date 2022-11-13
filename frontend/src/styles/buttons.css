@@ -1,6 +1,6 @@
 .NSTEPbutton{
   width: 25px;
-  margin-left: 30px;
+  padding: 24px;
 }
 
 .NSTEPbutton:hover{
