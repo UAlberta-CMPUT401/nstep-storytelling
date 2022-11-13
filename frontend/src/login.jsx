@@ -28,9 +28,9 @@ export default function Login() {
   const [openSuccessAlert, setOpenSuccessAlert] = useState(false);
   const [openFailureAlert, setOpenFailureAlert] = useState(false);
 
-  function handleSignup() {
-    history.navigate("/signup");
-  }
+  const navigateHome = () => {
+    history("/home");
+  };
 
   const handleClick = (success) => {
     if (success) {
@@ -129,6 +129,8 @@ export default function Login() {
           py: 3, // padding top & bottom
           px: 2, // padding left & right
           display: 'flex',
+          justifyContent: 'center',
+          minHeight: '600px',
           flexDirection: 'column',
           gap: 2,
           borderRadius: 'sm',
@@ -146,17 +148,15 @@ export default function Login() {
             // html input attribute
           name="username"
           type="username"
-          placeholder="username"
             // pass down to FormLabel as children
-          label="username"
+          label="Username"
         />
         <TextField
           name="password"
           type="password"
-          placeholder="password"
-          label="password"
+          label="Password"
         />
-        <Button sx={{ mt: 1 /* margin top */ }}>Log in</Button>
+        <Button onClick={navigateHome} variant="contained" sx={{ mt: 1, width: "30%", alignSelf: "center" }}>Log in</Button>
         {/* <Typography
             endDecorator={<Link href="/sign-up">Sign up</Link>}
             fontSize="sm"
