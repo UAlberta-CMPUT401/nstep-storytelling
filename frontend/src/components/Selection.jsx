@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from "react-router-dom";
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -7,13 +8,24 @@ import Button from '@mui/material/Button';
 import '../styles/Selection.css';
 import { styled } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
-import { Link } from "react-router-dom";
+import { getQuestionnaires } from '../service';
 
 export default function Selection() {
-  const [age, setAge] = React.useState('');
+  const [id, setId] = React.useState('');
+  const [formList, setFormList] = React.useState([]);
+
+  React.useEffect(async () => {
+    const res = await getQuestionnaires();
+    setFormList(res);
+  }, []);
 
   const handleChange = (event) => {
-    setAge(event.target.value);
+    setId(event.target.value);
+  };
+
+  const navigate = useNavigate();
+  const handleClick = () => {
+    if (id !== '') { navigate(`/questionnaire/${id}`); }
   };
 
   const BootstrapInput = styled(InputBase)(({ theme }) => ({
@@ -44,30 +56,28 @@ export default function Selection() {
           <Select
             labelId="demo-simple-select-autowidth-label"
             id="demo-simple-select-autowidth"
-            value={age}
+            value={id}
             onChange={handleChange}
             label="Program"
             input={<BootstrapInput />}
           >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            <MenuItem value={10}>Program 1</MenuItem>
+            {formList.map((form) => (
+              <MenuItem key={form.id} value={form.id}>{form.title}</MenuItem>
+            ))}
           </Select>
         </FormControl>
-        <a className="program-select-button" href="/new-form">
-          <Button
-            style={{
-              borderRadius: 25,
-              backgroundColor: '#FDCA00',
-              color: '#414143',
-              fontWeight: 'bold',
-            }}
-            variant="contained"
-          >
-            OK
-          </Button>
-        </a>
+        <Button
+          style={{
+            borderRadius: 25,
+            backgroundColor: '#FDCA00',
+            color: '#414143',
+            fontWeight: 'bold',
+          }}
+          variant="contained"
+          onClick={handleClick}
+        >
+          OK
+        </Button>
       </div>
     </div>
   );
