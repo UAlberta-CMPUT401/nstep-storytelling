@@ -17,19 +17,50 @@ import { createUser } from "./service";
 export default function CreateAccount() {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
-  const [confirmPassword, setConfirmPassword] = React.useState("");
   const [errorText, setErrorText] = React.useState("");
+  const [passwordsMatch, setPasswordsMatch] = React.useState(false);
+  const [emailFilled, setEmailFilled] = React.useState(false);
+  const [emailValid, setEmailValid] = React.useState(false);
+  const [passwordFilled, setPasswordFilled] = React.useState(false);
+  const [passwordFilledError, setPasswordFilledError] = React.useState(false);
+  const [passwordValid, setPasswordValid] = React.useState(false);
+  const [emailFilledError, setEmailFilledError] = React.useState(false);
+  const checkAllFields = emailFilled && passwordFilled && passwordsMatch;
 
-  const handlePassword = (e) => {
-    if (e.target.value.match(password)) {
-      createUser(email, password);
+  const handleEmail = (e) => {
+    if (e.target.value === "") {
+      setEmailFilled(false);
+      setEmailFilledError("Please enter an email");
     } else {
-      setErrorText("Passwords do not match");
+      setEmail(e.target.value);
+      setEmailFilled(true);
+      setEmailFilledError("");
     }
   };
 
   const setAccount = async () => {
     await createUser(email, password);
+  };
+
+  const handlePassword = (e) => {
+    if (e.target.value === "") {
+      setPasswordFilled(false);
+      setPasswordFilledError("Please enter a password");
+    } else {
+      setPassword(e.target.value);
+      setPasswordFilled(true);
+      setPasswordFilledError("");
+    }
+  };
+
+  const handleConfirmPassword = (e) => {
+    if (e.target.value.match(password)) {
+      setPasswordsMatch(true);
+      setErrorText("Passwords match!");
+    } else {
+      setErrorText("Passwords do not match");
+      setPasswordsMatch(false);
+    }
   };
 
   return (
@@ -45,16 +76,14 @@ export default function CreateAccount() {
           autoComplete="off"
         >
           <div>
-            <TextField id="email" label="email" type="email" onChange={(e) => { setEmail(e.target.value); }} />
+            <TextField id="email" label="email" type="email" error={!emailFilled} helperText={emailFilledError} onChange={handleEmail} />
           </div>
           <div>
-            <TextField id="password" label="password" type="password" onChange={(e) => { setPassword(e.target.value); }} />
+            <TextField id="password" label="password" type="password" error={!passwordFilled} helperText={passwordFilledError} onChange={handlePassword} />
           </div>
-          {/* <div>
-            <TextField id="confirm-password" label="confirm password" type="password" onChange={handlePassword} />
-          </div> */}
-
-          {/* check that passwords are the same */}
+          <div>
+            <TextField id="confirm-password" label="confirm password" error={!passwordsMatch} type="password" helperText={errorText} onChange={handleConfirmPassword} />
+          </div>
 
         </Box>
         <div style={{ textAlign: "center" }}>
@@ -63,13 +92,13 @@ export default function CreateAccount() {
         <div style={{ textAlign: "center" }}>
           <h1>Permissions</h1>
           <div>
-            <FormControlLabel control={<Switch defaultUnChecked disableRipple="true" />} label="Create questionnaires" />
+            <FormControlLabel control={<Switch defaultChecked={false} disableRipple="true" />} label="Create questionnaires" />
           </div>
           <div>
-            <FormControlLabel control={<Switch defaultUnChecked disableRipple="true" />} label="Edit others&#39; questionnaires" />
+            <FormControlLabel control={<Switch defaultChecked={false} disableRipple="true" />} label="Edit others&#39; questionnaires" />
           </div>
           <div>
-            <FormControlLabel control={<Switch defaultUnChecked disableRipple="true" />} label="Download feedback files" />
+            <FormControlLabel control={<Switch defaultChecked={false} disableRipple="true" />} label="Download feedback files" />
           </div>
           <div>
             <FormControlLabel control={<Switch defaultUnChecked disableRipple="true" />} label="Manage admins (superadmin)" />
@@ -77,7 +106,7 @@ export default function CreateAccount() {
         </div>
         <div style={{ textAlign: "center", marginTop: "30px", marginBottom: "30px" }}>
           <Link to="/manage-accounts" style={{ textDecoration: "none" }}>
-            <Button variant="contained" onClick={setAccount}>Save & Return</Button>
+            <Button variant="contained" disabled={!checkAllFields} onClick={setAccount}>Save & Return</Button>
           </Link>
           <div style={{ paddingTop: "70px" }}>
             <Link to="/manage-accounts" style={{ textDecoration: "none" }}>
