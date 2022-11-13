@@ -144,7 +144,7 @@ export default function Login() {
             color="textPrimary"
             variant="h6"
             align="center"
-            fontFamily="Arial"
+            fontWeight="bold"
           >
             Admin Login
           </Typography>
@@ -215,7 +215,7 @@ export default function Login() {
             severity="error"
             sx={{ width: "100%" }}
           >
-            Incorrect Credentials
+            Invalid Credentials
           </Alert>
         </Snackbar>
         {/* <Typography
