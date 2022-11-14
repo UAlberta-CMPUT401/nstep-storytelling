@@ -16,14 +16,9 @@ export default function EditForm() {
 
   React.useEffect(async () => {
     const res = await getQuestionnaire(id);
+    console.log(res);
     setFormTitle(res.title);
-    const newQuestionList = [...questionList];
-    await Promise.all(res.questions.map(async (questionId) => {
-      const q = await getQuestion(id, questionId);
-      console.log(q);
-      newQuestionList.push(q);
-    }));
-    setQuestionList(newQuestionList);
+    setQuestionList(res.questions);
     console.log(questionList);
   }, []);
 

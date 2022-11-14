@@ -8,6 +8,7 @@ import CreateQuestionnaire from "./createQuestionnaire";
 import AnswerQuestionnaire from "./answerQuestionnaire";
 import CreateAccount from "./createAccount";
 import Submitted from "./submitted";
+import WebcamComp from "./Webcam";
 import Navbar from "./components/Navbar";
 import "./styles/App.css";
 import AccountSettings from "./accountSettings";
@@ -23,14 +24,15 @@ export default function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/home" element={<Dashboard />} />
       <Route path="/create" element={<CreateQuestionnaire />} />
-      <Route path="/new-form" element={<AnswerQuestionnaire />} />
       <Route path="/submitted" element={<Submitted />} />
+      <Route path="/Webcamtest" element={<WebcamComp />} />
       <Route path="/account" element={<AccountSettings />} />
       <Route path="/create-account" element={<CreateAccount />} />
       <Route path="/manage-accounts" element={<ManageAccounts />} />
       <Route path="/edit-admin" element={<EditAdmin />} />
       <Route path="/delete-account" element={<DeleteAccount />} />
-      <Route path="/questionnaires/:id" element={<EditForm />} />
+      <Route path="/admin/questionnaire/:id" element={<EditForm />} />
+      <Route path="/questionnaire/:id" element={<AnswerQuestionnaire />} />
     </Routes>
   );
 }

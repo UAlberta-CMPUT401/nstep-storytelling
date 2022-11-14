@@ -22,7 +22,8 @@ export default function TextAnswerInput(props) {
       </div>
       <div>
         <TextField
-          id="answer-field"
+          id={props.id}
+          onChange={props.onChange}
           placeholder="Answer"
           multiline
           fullWidth
