@@ -3,7 +3,7 @@
 import React, {
   useRef, useEffect, useState,
 } from 'react';
-import { useReactMediaRecorder } from "react-media-recorder";
+import { ReactMediaRecorder, useReactMediaRecorder } from "react-media-recorder";
 
 // const [hasCameraPermission, setHasCameraPermission] = useState();
 // const [hasMicrohonePermission, setHasMicrophonePermission] = useState();
@@ -49,13 +49,22 @@ function WebCamTest() {
   //   <video ref={videoRef} />
   // </div>
 
+  // <div>
+  //   hello world
+  //   <ReactMediaRecorder
+  //     video
+  //     render={({
+  //       status, startRecording, stopRecording, mediaBlobUrl,
+  //     }) => (
     <div>
-      hello world
       <p>{status}</p>
       <button onClick={startRecording}>Start Recording</button>
       <button onClick={stopRecording}>Stop Recording</button>
       <video src={mediaBlobUrl} controls autoPlay loop />
     </div>
+  // )}
+  //   />
+  // </div>
   );
 }
 
