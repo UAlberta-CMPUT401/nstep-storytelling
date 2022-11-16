@@ -5,7 +5,7 @@ class AnswerSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Answer
-        fields = ['content',"content_type",'question']
+        fields = ['content',"content_type",'question', 'content_video', 'content_audio']
 
 
 class AddingQuestionSerializer(serializers.ModelSerializer):

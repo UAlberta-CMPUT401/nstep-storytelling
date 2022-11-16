@@ -25,6 +25,8 @@ from rest_framework import permissions
 from user import views as uv
 from questionnaire import views as qv
 from event import views as ev
+from django.conf import settings
+from django.conf.urls.static import static
 
 schema_view = get_schema_view(
    openapi.Info(
@@ -65,4 +67,4 @@ urlpatterns = [
     # re_path(r'api/question/(?P<pk>[(-z)]{36})/feedback/$',qv.Feedbacks.as_view(),name='Feedbacks'),
     # re_path(r'api/event/(?P<pk>[(-z)]{36})/$', ev.EventDetail.as_view(),name='SingleEvent'),
 
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
