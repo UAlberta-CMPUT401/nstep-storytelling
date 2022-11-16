@@ -23,7 +23,9 @@ import { useReactMediaRecorder } from "react-media-recorder";
 function WebCamTest() {
   const {
     status, startRecording, stopRecording, mediaBlobUrl,
-  } = useReactMediaRecorder({ video: true, audio: true });
+  } = useReactMediaRecorder({
+    video: true, width: 640, height: 360, audio: true,
+  });
   // const videoRef = useRef(null);
   // const mediaRecorder = useRef(null);
 
@@ -56,5 +58,20 @@ function WebCamTest() {
     </div>
   );
 }
+
+// const WebCamTest = () => {
+//   const {
+//     status, startRecording, stopRecording, mediaBlobUrl,
+//   } = useReactMediaRecorder({ video: true });
+
+//   return (
+//     <div>
+//       <p>{status}</p>
+//       <button onClick={startRecording}>Start Recording</button>
+//       <button onClick={stopRecording}>Stop Recording</button>
+//       <video src={mediaBlobUrl} controls autoPlay loop />
+//     </div>
+//   );
+// };
 
 export default WebCamTest;
