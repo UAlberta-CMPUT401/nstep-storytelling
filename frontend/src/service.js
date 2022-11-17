@@ -49,6 +49,10 @@ const getQuestionnaire = async (questionnaireId) => {
   const questionnaire = await axios.get(`${api}/questionnaire/${questionnaireId}/`);
   return questionnaire.data;
 };
+const createFeedback = async (questionnaireId, answers) => {
+  const feedback = await axios.post(`${api}/questionnaire/${questionnaireId}/feedback/`, answers);
+  return feedback.data;
+};
 
 const createUser = async (username, password, email) => {
   const user = await axios.post(`${api}/user/`, {
@@ -64,4 +68,5 @@ export {
   patchQuestionnaire, patchQuestion, getQuestionnaires,
   deleteQuestionnaire, getQuestionnaire, getQuestion,
   createUser,
+  createFeedback,
 };

@@ -38,12 +38,13 @@ class Questionnaire_detail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = QuestionnaireSerializer
     permission_classes = [AllowAny]
 
-class Questions(generics.GenericAPIView):
+class Questions(APIView):
     '''
     List of all the questions available
     '''
 
     permission_classes = [AllowAny]
+    serializer_class = QuestionSerializer
 
     def get(self, request, pk, format=None):
         questionnaire = Questionnaire.objects.get(id=pk)
@@ -92,6 +93,10 @@ class Feedbacks(generics.GenericAPIView):
     List all feedbacks, or create a new feedback.
     """
     permission_classes = [AllowAny]
+    serializer_class = AnswerListSerializer
+    lookup_field = 'questionnaire'
+    lookup_url_kwarg = "pk"
+    queryset = AnswerList.objects.all()
 
     def get(self, request,pk, format=None):        
         answers = AnswerList.objects.filter(questionnaire = pk)
@@ -115,15 +120,17 @@ class Feedbacks(generics.GenericAPIView):
             ansSerializer = AnswerSerializer(data =temp)
             if ansSerializer.is_valid():
                 ans = ansSerializer.save()
-            ansList.answers.add(ans)
+                ansList.answers.add(ans)
+            else:
+                print(ansSerializer.errors)
 
         anss = AnswerList.objects.get(pk=ansList.id)  
         serializer = AnswerListSerializer(anss)
 
         response = {
-        "status": 0,
-        "message": "added",
-        "answer_list": serializer.data,
+            "status": 0,
+            "message": "added",
+            "answer_list": serializer.data,
         }
         return Response(response, status=status.HTTP_201_CREATED)
         # return Response({"undifined error":"error"}, status=status.HTTP_400_BAD_REQUEST)
@@ -142,3 +149,15 @@ class Feedbacks(generics.GenericAPIView):
 
     def post_video(self, data):       
         pass
+
+class OneAnswerlist(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = [AllowAny]
+    queryset = AnswerList.objects.all()
+    lookup_field = 'id'
+    lookup_url_kwarg = "pk"
+    serializer_class = AnswerListSerializer
+
+class AllAnswerlist(generics.ListCreateAPIView):
+    queryset = AnswerList.objects.all()
+    serializer_class = AnswerListSerializer
+    permission_classes = [AllowAny]

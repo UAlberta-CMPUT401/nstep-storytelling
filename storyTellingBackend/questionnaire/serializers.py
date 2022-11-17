@@ -2,9 +2,10 @@ from rest_framework import serializers
 from questionnaire.models import *
 
 class AnswerSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = Answer
-        fields = ['content',"content_type",'question']
+        fields = ['content',"content_type",'question', 'content_video', 'content_audio']
 
 
 class AddingQuestionSerializer(serializers.ModelSerializer):
@@ -28,6 +29,7 @@ class AddingQuestionnaireSerializer(serializers.ModelSerializer):
         fields = ["title","description"]
 
 class QuestionnaireSerializer(serializers.ModelSerializer):
+    questions = QuestionSerializer(many=True)
     class Meta:
         model = Questionnaire
         fields = "__all__"
@@ -37,7 +39,15 @@ class AddingAnswerListSerializer(serializers.ModelSerializer):
         model = AnswerList
         fields = ["questionnaire"]
 
+
+class AnswerSerializerAllFields(serializers.ModelSerializer):
+    class Meta:
+        model = Answer
+        fields = "__all__"
+        
 class AnswerListSerializer(serializers.ModelSerializer):
+    answers = AnswerSerializerAllFields(many=True)
+    questionnaire = QuestionnaireSerializer()
     class Meta:
         model = AnswerList
         fields = "__all__"

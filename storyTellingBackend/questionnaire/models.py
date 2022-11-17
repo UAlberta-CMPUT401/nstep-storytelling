@@ -1,3 +1,4 @@
+from re import T
 from django.db import models
 import uuid
 from django.utils import timezone 
@@ -14,9 +15,12 @@ class Answer(models.Model):
         VIDEO='VIDEO'
 
     id = models.UUIDField(primary_key = True , auto_created = True , default = uuid.uuid4)
-    content = models.CharField(max_length=1000)
+    content = models.CharField(max_length=1000,null=True,blank=True)
     content_type = models.CharField(max_length=20,choices=ContentType.choices , default=ContentType.TEXT)
     question = models.ForeignKey(Question, on_delete=models.CASCADE,null=True)
+    # set content_video to have a default value of null
+    content_video = models.FileField(upload_to='uploads/videoFiles/',null=True, blank=True)
+    content_audio = models.FileField(upload_to='uploads/audioFiles/',null=True, blank=True)
 
 class Questionnaire(models.Model):
     id = models.UUIDField(primary_key = True , auto_created = True , default = uuid.uuid4)
