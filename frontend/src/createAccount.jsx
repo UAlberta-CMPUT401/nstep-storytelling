@@ -19,6 +19,7 @@ import { createUser } from "./service";
 export default function CreateAccount() {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const [confirmPassword, setConfirmPassword] = React.useState("");
   const [errorText, setErrorText] = React.useState("");
   const [passwordsMatch, setPasswordsMatch] = React.useState(false);
   const [emailFilled, setEmailFilled] = React.useState(false);
@@ -54,30 +55,46 @@ export default function CreateAccount() {
     return false;
   };
 
-  const handlePassword = (e) => {
-    if (e.target.value === "") {
-      setPasswordFilled(false);
-      setPasswordFilledError("Please enter a password");
-    } else {
-      setPassword(e.target.value); // for testing purposes. to be removed
-      setPasswordFilled(true);
-      if (validatePassword(e.target.value)) {
-        setPassword(e.target.value);
-        setPasswordValid(true);
-        setPasswordFilledError("");
-      } else {
-        setPasswordFilledError("Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one symbol");
-      }
-    }
-  };
-
   const handleConfirmPassword = (e) => {
-    if (e.target.value.match(password)) {
+    setConfirmPassword(e.target.value);
+
+    if (e.target.value === "") {
+      setErrorText("Please confirm your password");
+      setPasswordsMatch(false);
+    } else if (e.target.value.match(password)) {
       setPasswordsMatch(true);
       setErrorText("Passwords match!");
     } else {
       setErrorText("Passwords do not match");
       setPasswordsMatch(false);
+    }
+  };
+
+  const handlePassword = (e) => {
+    if (e.target.value === "") {
+      setPasswordFilled(false);
+      setPasswordFilledError("Please enter a password");
+    } else {
+      setPassword(e.target.value);
+      setErrorText("Passwords do not match");
+      if (confirmPassword !== "") {
+        if (e.target.value.match(confirmPassword)) {
+          setPasswordsMatch(true);
+          setErrorText("Passwords match!");
+        } else {
+          setPasswordsMatch(false);
+        }
+      } else {
+        setErrorText("");
+      }
+      setPasswordFilledError("");
+      setPasswordFilled(true);
+      if (validatePassword(e.target.value)) {
+        setPasswordValid(true);
+      } else {
+        setPasswordFilledError("Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one symbol");
+        setPasswordValid(false);
+      }
     }
   };
 
@@ -97,7 +114,7 @@ export default function CreateAccount() {
             <TextField id="email" label="email" type="email" error={!emailFilled} helperText={emailFilledError} onChange={handleEmail} />
           </div>
           <div>
-            <TextField id="password" label="password" type="password" error={!passwordFilled} helperText={passwordFilledError} onChange={handlePassword} />
+            <TextField id="password" label="password" type="password" error={!passwordValid} helperText={passwordFilledError} onChange={handlePassword} />
           </div>
           <div>
             <TextField id="confirm-password" label="confirm password" error={!passwordsMatch} type="password" helperText={errorText} onChange={handleConfirmPassword} />
