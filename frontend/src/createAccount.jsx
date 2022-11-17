@@ -57,7 +57,7 @@ export default function CreateAccount() {
   };
 
   const setAccount = async () => {
-    await createUser(email, password);
+    await createUser(email, password, email); // username === email
   };
 
   const validatePassword = (value) => {

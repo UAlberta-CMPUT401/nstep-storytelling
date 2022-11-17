@@ -50,10 +50,11 @@ const getQuestionnaire = async (questionnaireId) => {
   return questionnaire.data;
 };
 
-const createUser = async (username, password) => {
+const createUser = async (username, password, email) => {
   const user = await axios.post(`${api}/user/`, {
     username,
     password,
+    email,
   });
   return user.data;
 };
