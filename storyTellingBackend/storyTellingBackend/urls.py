@@ -25,6 +25,8 @@ from rest_framework import permissions
 from user import views as uv
 from questionnaire import views as qv
 from event import views as ev
+from django.conf import settings
+from django.conf.urls.static import static
 
 schema_view = get_schema_view(
    openapi.Info(
@@ -47,6 +49,7 @@ urlpatterns = [
     path('api/logs/', ev.LogList.as_view()),
     re_path(r'api/logs/user/(?P<pk>[(-z)]{36})/$', ev.UserLogList.as_view(),name='UserLog'),
     re_path(r'api/logs/(?P<pk>[(-z)]{36})/$', ev.ObjectLogList.as_view(),name='ObjectLog'),
+    re_path(r'api/logs/action/(?P<pk>[(-z)]{36})/$', ev.ActionLogList.as_view(),name='ActionLog'),
 
 
     path('api/login/', uv.LoginAPI.as_view()),
@@ -65,4 +68,4 @@ urlpatterns = [
     # re_path(r'api/question/(?P<pk>[(-z)]{36})/feedback/$',qv.Feedbacks.as_view(),name='Feedbacks'),
     # re_path(r'api/event/(?P<pk>[(-z)]{36})/$', ev.EventDetail.as_view(),name='SingleEvent'),
 
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
