@@ -1,6 +1,6 @@
 .delete-button {
     position: relative;
-    left: 100%;
+    left: 3%;
 }
 
 .text-input {
@@ -9,4 +9,9 @@
 
 .text-input > * {
     margin-top: 8px;
+}
+
+.text-input-options {
+    display: flex;
+    justify-content: space-between;
 }
