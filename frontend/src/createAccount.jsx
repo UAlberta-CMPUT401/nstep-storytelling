@@ -30,6 +30,12 @@ export default function CreateAccount() {
   const [passwordFilledError, setPasswordFilledError] = React.useState("");
   const [passwordValid, setPasswordValid] = React.useState(false);
   const [emailFilledError, setEmailFilledError] = React.useState(false);
+  const [isSuperadmin, setIsSuperadmin] = React.useState(false);
+  const [canEditSurvey, setCanEditSurvey] = React.useState(false);
+  const [canDeleteSurvey, setCanDeleteSurvey] = React.useState(false);
+  const [canCreateSurvey, setCanCreateSurvey] = React.useState(false);
+  const [canExportData, setCanExportData] = React.useState(false);
+  const [viewOnly, setViewOnly] = React.useState(false);
   const checkAllFields = emailValid && passwordValid && passwordsMatch;
 
   const validateEmail = (value) => {
@@ -141,7 +147,9 @@ export default function CreateAccount() {
         <div style={{ textAlign: "center" }}>
           <h1>Permissions</h1>
           <div>
-            <FormControlLabel control={<Switch defaultChecked={false} disableRipple="true" />} label="Create questionnaires" />
+            <FormControlLabel control={<Switch defaultChecked={false} disableRipple="true" />} label="Create questionnaires" onChange={!canCreateSurvey} />
+            {console.log("test")}
+            {console.log(canCreateSurvey)}
           </div>
           <div>
             <FormControlLabel control={<Switch defaultChecked={false} disableRipple="true" />} label="Edit others&#39; questionnaires" />
