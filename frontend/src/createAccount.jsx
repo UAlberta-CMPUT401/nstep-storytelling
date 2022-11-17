@@ -1,5 +1,7 @@
 /* eslint-disable no-lonely-if */
 /* eslint-disable max-len */
+// https://www.geeksforgeeks.org/how-to-validate-password-is-strong-or-not-in-reactjs/
+// https://www.geeksforgeeks.org/how-to-validate-an-email-in-reactjs/
 import React from "react";
 import { Link } from "react-router-dom";
 import TextField from '@mui/material/TextField';
@@ -28,7 +30,14 @@ export default function CreateAccount() {
   const [passwordFilledError, setPasswordFilledError] = React.useState("");
   const [passwordValid, setPasswordValid] = React.useState(false);
   const [emailFilledError, setEmailFilledError] = React.useState(false);
-  const checkAllFields = emailFilled && passwordFilled && passwordsMatch;
+  const checkAllFields = emailValid && passwordValid && passwordsMatch;
+
+  const validateEmail = (value) => {
+    if (validator.isEmail(value)) {
+      return true;
+    }
+    return false;
+  };
 
   const handleEmail = (e) => {
     if (e.target.value === "") {
@@ -37,7 +46,13 @@ export default function CreateAccount() {
     } else {
       setEmail(e.target.value);
       setEmailFilled(true);
-      setEmailFilledError("");
+      if (validateEmail(e.target.value)) {
+        setEmailValid(true);
+        setEmailFilledError("");
+      } else {
+        setEmailValid(false);
+        setEmailFilledError("Please enter a valid email address");
+      }
     }
   };
 
@@ -46,7 +61,6 @@ export default function CreateAccount() {
   };
 
   const validatePassword = (value) => {
-    console.log("made it to validate password");
     if (validator.isStrongPassword(value, {
       minLength: 8, minLowercase: 1, minUppercase: 1, minNumbers: 1, minSymbols: 1,
     })) {
