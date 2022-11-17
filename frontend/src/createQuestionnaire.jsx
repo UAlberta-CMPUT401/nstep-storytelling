@@ -42,13 +42,27 @@ export default function CreateQuestionnaire() {
     console.log(questionList);
   };
 
+  const handleToggle = (e) => {
+    const newQuestionList = [...questionList];
+    newQuestionList.forEach((question) => {
+      if (question.id === e.target.value) {
+        const newDict = { ...question };
+        newDict.allow_recording = e.target.checked;
+        Object.assign(question, newDict);
+        console.log(question);
+      }
+    });
+    setQuestionList(newQuestionList);
+    console.log(questionList);
+  };
+
   const navigate = useNavigate();
   const handleSave = async (e) => {
     const res = await patchQuestionnaire(qid, formTitle);
     console.log(res);
 
     await Promise.all(questionList.map(async (question) => {
-      const q = await patchQuestion(qid, question.id, question.content);
+      const q = await patchQuestion(qid, question.id, question.content, question.allow_recording);
       console.log(q);
     }));
     navigate('/home');
@@ -56,7 +70,7 @@ export default function CreateQuestionnaire() {
 
   const addQuestion = async () => {
     const res = await createQuestion(qid, "Question content");
-    const newQuestion = { content: "", id: res.id };
+    const newQuestion = { content: "", id: res.id, allow_recording: false };
     const newQuestionList = [...questionList, newQuestion];
     console.log(newQuestion);
     setQuestionList(newQuestionList);
@@ -95,6 +109,8 @@ export default function CreateQuestionnaire() {
               value={question.content}
               onChange={handleChange}
               onClick={removeQuestion}
+              isChecked={question.allow_recording}
+              handleToggle={handleToggle}
             />
           ))}
         </div>

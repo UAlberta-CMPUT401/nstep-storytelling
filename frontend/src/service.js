@@ -14,9 +14,10 @@ const deleteQuestion = async (questionnaireId, questionId) => {
   const res = await axios.delete(`${api}/questionnaire/${questionnaireId}/question/${questionId}/`);
   return res.data;
 };
-const patchQuestion = async (questionnaireId, questionId, content) => {
+const patchQuestion = async (questionnaireId, questionId, content, allowRecording) => {
   const question = await axios.patch(`${api}/questionnaire/${questionnaireId}/question/${questionId}/`, {
-    content,
+    content: content,
+    allow_recording: allowRecording,
   });
   return question.data;
 };
