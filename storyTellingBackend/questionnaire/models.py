@@ -7,6 +7,7 @@ from auditlog.registry import auditlog
 class Question(models.Model):
     id = models.UUIDField(primary_key = True , auto_created = True , default = uuid.uuid4)
     content = models.CharField(max_length=1000,null=True)
+    allow_recording = models.BooleanField(default=False)
 
 class Answer(models.Model):
     class ContentType(models.TextChoices):

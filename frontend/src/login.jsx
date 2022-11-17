@@ -109,7 +109,7 @@ export default function Login() {
         console.log(localStorage.getItem('userID'));
         handleClick(true);
         await timeout(1000);
-        history("/home/");
+        history("/home");
       })
       .catch((e) => {
         handleClick(false);
