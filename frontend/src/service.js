@@ -64,10 +64,14 @@ const createUser = async (username, password, email) => {
   return user.data;
 };
 
+const getUsers = async () => {
+  const users = await axios.get(`${api}/user/`);
+  return users.data;
+};
+
 export {
   createQuestion, deleteQuestion, createQuestionnaire,
   patchQuestionnaire, patchQuestion, getQuestionnaires,
   deleteQuestionnaire, getQuestionnaire, getQuestion,
-  createUser,
-  createFeedback,
+  createUser, createFeedback, getUsers,
 };
