@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-boolean-value */
 /* eslint-disable no-lonely-if */
 /* eslint-disable max-len */
 // https://www.geeksforgeeks.org/how-to-validate-password-is-strong-or-not-in-reactjs/
@@ -118,6 +119,10 @@ export default function CreateAccount() {
     }
   };
 
+  const handleCreate = () => {
+    setCanCreateSurvey(true);
+  };
+
   return (
     <>
       <AdminNavbar />
@@ -142,23 +147,21 @@ export default function CreateAccount() {
 
         </Box>
         <div style={{ textAlign: "center" }}>
-          <FormControlLabel control={<Checkbox defaultChecked disableRipple="true" />} label="Send a copy of these credentials to you and this person&#39;s email" />
+          <FormControlLabel control={<Checkbox defaultChecked disableRipple={true} />} label="Send a copy of these credentials to you and this person&#39;s email" />
         </div>
         <div style={{ textAlign: "center" }}>
           <h1>Permissions</h1>
           <div>
-            <FormControlLabel control={<Switch defaultChecked={false} disableRipple="true" />} label="Create questionnaires" onChange={!canCreateSurvey} />
-            {console.log("test")}
-            {console.log(canCreateSurvey)}
+            <FormControlLabel control={<Switch defaultChecked={false} disableRipple={true} onChange={handleCreate} />} label="Create questionnaires" />
           </div>
           <div>
-            <FormControlLabel control={<Switch defaultChecked={false} disableRipple="true" />} label="Edit others&#39; questionnaires" />
+            <FormControlLabel control={<Switch defaultChecked={false} disableRipple={true} />} label="Edit others&#39; questionnaires" />
           </div>
           <div>
-            <FormControlLabel control={<Switch defaultChecked={false} disableRipple="true" />} label="Download feedback files" />
+            <FormControlLabel control={<Switch defaultChecked={false} disableRipple={true} />} label="Download feedback files" />
           </div>
           <div>
-            <FormControlLabel control={<Switch defaultUnChecked disableRipple="true" />} label="Manage admins (superadmin)" />
+            <FormControlLabel control={<Switch defaultChecked={false} disableRipple={true} />} label="Manage admins (superadmin)" />
           </div>
         </div>
         <div style={{ textAlign: "center", marginTop: "30px", marginBottom: "30px" }}>
