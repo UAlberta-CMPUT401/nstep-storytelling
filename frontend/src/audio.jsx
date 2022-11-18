@@ -5,11 +5,11 @@ import React, {
 } from 'react';
 import { ReactMediaRecorder, useReactMediaRecorder } from "react-media-recorder";
 
-function WebCamTest() {
+function AudioTest() {
   const {
     status, startRecording, stopRecording, mediaBlobUrl,
   } = useReactMediaRecorder({
-    video: true, width: 640, height: 360, audio: true,
+    audio: true, video: false,
   });
 
   return (
@@ -17,10 +17,9 @@ function WebCamTest() {
       <p>{status}</p>
       <button onClick={startRecording}>Start Recording</button>
       <button onClick={stopRecording}>Stop Recording</button>
-      <video src={mediaBlobUrl} controls autoPlay loop />
+      <audio src={mediaBlobUrl} controls autoPlay loop />
     </div>
-
   );
 }
 
-export default WebCamTest;
+export default AudioTest;
