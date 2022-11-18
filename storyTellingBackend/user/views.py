@@ -26,6 +26,26 @@ class UserList(generics.ListCreateAPIView):
         serializer = UserSerializer(queryset, many=True)
         return Response(serializer.data)
 
+    def post(self, request, *args, **kwargs):
+
+        myData = request.data
+
+        user = User.objects.create(
+            username=myData['username'],
+            email=myData['email']
+        )
+
+        user.set_password(myData['password'])
+        user.save()
+        # serializer = self.get_serializer(data=myData)
+        # serializer.is_valid(raise_exception=True)
+        # result = serializer.save()
+        # new_author = User.objects.get(username=myData['username'])
+        # new_author.set_password(myData['password'])
+        # new_author.save()
+
+        return Response({"Successfully create a new user!"}, status=status.HTTP_201_CREATED)
+
 class UserDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [AllowAny]
     queryset = User.objects.all()
@@ -36,9 +56,11 @@ class LoginAPI(generics.GenericAPIView):
     permission_classes = [AllowAny]
     serializer_class = LoginSerializer
     def post(self, request):
+        print(request.data)
         username = request.data["username"]
         password = request.data["password"]
         user = authenticate(username=username, password=password)
+        print(user)
         if user is not None:
             login(request,user)
             response = {
