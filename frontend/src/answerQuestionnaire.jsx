@@ -34,6 +34,20 @@ export default function AnswerQuestionnaire() {
     console.log(questionList);
   };
 
+  const clickVideo = (e) => {
+    const newQuestionList = [...questionList];
+    newQuestionList.forEach((question) => {
+      if (question.id === e.target.value) {
+        const newDict = { ...question };
+        newDict.video_selected = true;
+        Object.assign(question, newDict);
+        console.log(question);
+      }
+    });
+    setQuestionList(newQuestionList);
+    console.log(questionList);
+  };
+
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
     const feedback = {};
@@ -60,6 +74,9 @@ export default function AnswerQuestionnaire() {
               id={question.id}
               question={question.content}
               onChange={handleChange}
+              allowRecording={question.allow_recording}
+              clickVideo={clickVideo}
+              videoSelected={question.video_selected}
             />
           ))}
         </div>

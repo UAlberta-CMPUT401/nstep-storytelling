@@ -3,6 +3,8 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import VideocamIcon from '@mui/icons-material/Videocam';
 import './styles/TextAnswerInput.css';
 
 export default function TextAnswerInput(props) {
@@ -29,6 +31,15 @@ export default function TextAnswerInput(props) {
           fullWidth
         />
       </div>
+
+      {props.allowRecording
+      && (
+      <div>
+        <IconButton aria-label="video" onClick={props.clickVideo} value={props.id}>
+          <VideocamIcon />
+        </IconButton>
+      </div>
+      )}
     </div>
   );
 }

@@ -15,9 +15,11 @@ function AudioTest() {
   return (
     <div>
       <p>{status}</p>
-      <button onClick={startRecording}>Start Recording</button>
-      <button onClick={stopRecording}>Stop Recording</button>
       <audio src={mediaBlobUrl} controls autoPlay loop />
+      <div>
+        <button onClick={startRecording}>Start Recording</button>
+        <button onClick={stopRecording}>Stop Recording</button>
+      </div>
     </div>
   );
 }
