@@ -8,8 +8,18 @@ import Button from '@mui/material/Button';
 import AdminNavbar from "./components/AdminNavbar";
 import "./styles/App.css";
 import pencil from "../assets/pencil.png";
+import AdminItem from "./components/AdminItem";
+import { getUsers } from "./service";
 
 export default function ManageAccounts() {
+  const [accountList, setAccountList] = React.useState([]);
+
+  React.useEffect(async () => {
+    const res = await getUsers();
+    console.log(res);
+    setAccountList(res);
+  }, []);
+
   const drawEditButton = () => {
     return (
       <Link to="/edit-admin">
@@ -23,7 +33,14 @@ export default function ManageAccounts() {
       <div style={{ textAlign: "center", marginTop: "50px" }}>
         <h1>Manage administrators</h1>
         <div style={{ fontSize: "25px", paddingTop: "60px" }}>
-          johndoe@nstep.ca
+          {accountList.map((account) => (
+            <AdminItem
+              key={account.id}
+              id={account.id}
+              title={account.username}
+            />
+          ))}
+          {/* johndoe@nstep.ca
           {drawEditButton()}
           <div>
             jane.f@nstep.ca
@@ -40,7 +57,7 @@ export default function ManageAccounts() {
           <div>
             marissasantos@nstep.ca
             {drawEditButton()}
-          </div>
+          </div> */}
         </div>
       </div>
       <Link to="/create-account">
