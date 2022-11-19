@@ -1,3 +1,4 @@
+/* eslint-disable prefer-template */
 /* eslint-disable react/jsx-boolean-value */
 /* eslint-disable no-lonely-if */
 /* eslint-disable max-len */
@@ -17,7 +18,7 @@ import ElementSelector from "./components/ElementSelector";
 import AdminNavbar from "./components/AdminNavbar";
 import TextAnswerInput from "./TextAnswerInput";
 import "./styles/App.css";
-import { createUser } from "./service";
+import { getUser, createUser } from "./service";
 
 export default function CreateAccount() {
   const [email, setEmail] = React.useState("");
@@ -37,7 +38,12 @@ export default function CreateAccount() {
   const [canCreateSurvey, setCanCreateSurvey] = React.useState(false);
   const [canExportData, setCanExportData] = React.useState(false);
   const [viewOnly, setViewOnly] = React.useState(false);
+  const [wantForward, setWantForward] = React.useState(true);
   const checkAllFields = emailValid && passwordValid && passwordsMatch;
+  const permissions = [];
+  const permissionsVisual = [canCreateSurvey, canEditSurvey, canDeleteSurvey, canExportData, viewOnly];
+  const userID = localStorage.getItem("userID");
+  const [isSuperuser, setIsSuperuser] = React.useState(false);
 
   const validateEmail = (value) => {
     if (validator.isEmail(value)) {
@@ -61,10 +67,6 @@ export default function CreateAccount() {
         setEmailFilledError("Please enter a valid email address");
       }
     }
-  };
-
-  const setAccount = async () => {
-    await createUser(email, password, email); // username === email
   };
 
   const validatePassword = (value) => {
@@ -119,62 +121,131 @@ export default function CreateAccount() {
     }
   };
 
-  const handleCreate = () => {
-    setCanCreateSurvey(true);
+  // permissions = [canCreateSurvey, canEditSurvey, canDeleteSurvey, canExportData, viewOnly]
+  // permissions = [37, 38, 39, ?, ?] <= permission codes
+
+  const convertPermissions = () => {
+    if (canCreateSurvey) {
+      permissions.push(37);
+    }
+    if (canEditSurvey) {
+      permissions.push(38);
+    }
+    if (canDeleteSurvey) {
+      permissions.push(39);
+    }
+    console.log(permissionsVisual);
+    console.log(permissions);
   };
 
-  return (
-    <>
-      <AdminNavbar />
-      <div style={{ textAlign: "center", marginTop: "50px" }}>
-        <h1>Add an administrator account</h1>
-        <Box
-          component="form"
-          sx={{
-            '& .MuiTextField-root': { m: 1, width: '25ch' },
-          }}
-          autoComplete="off"
-        >
-          <div>
-            <TextField id="email" label="email" type="email" error={!emailFilled} helperText={emailFilledError} onChange={handleEmail} />
-          </div>
-          <div>
-            <TextField id="password" label="password" type="password" error={!passwordValid} helperText={passwordFilledError} onChange={handlePassword} />
-          </div>
-          <div>
-            <TextField id="confirm-password" label="confirm password" error={!passwordsMatch} type="password" helperText={errorText} onChange={handleConfirmPassword} />
-          </div>
+  const setAccount = async () => {
+    convertPermissions();
+    await createUser(email, password, email, isSuperadmin); // username === email
+  };
 
-        </Box>
-        <div style={{ textAlign: "center" }}>
-          <FormControlLabel control={<Checkbox defaultChecked disableRipple={true} />} label="Send a copy of these credentials to you and this person&#39;s email" />
-        </div>
-        <div style={{ textAlign: "center" }}>
-          <h1>Permissions</h1>
-          <div>
-            <FormControlLabel control={<Switch defaultChecked={false} disableRipple={true} onChange={handleCreate} />} label="Create questionnaires" />
+  const handleForward = () => {
+    setWantForward(!wantForward);
+  };
+
+  const handleSuper = () => {
+    setIsSuperadmin(!isSuperadmin);
+  };
+
+  const handleCreate = () => {
+    setCanCreateSurvey(!canCreateSurvey);
+  };
+
+  const handleEdit = () => {
+    setCanEditSurvey(!canEditSurvey);
+  };
+
+  const handleDelete = () => {
+    setCanDeleteSurvey(!canDeleteSurvey);
+  };
+
+  const handleExport = () => {
+    setCanExportData(!canExportData);
+  };
+
+  const handleView = () => {
+    setViewOnly(!viewOnly);
+  };
+
+  const viewVariables = () => {
+    convertPermissions();
+    console.log("wantForward = " + wantForward);
+  };
+
+  // check if superadmin
+  React.useEffect(async () => {
+    const res = await getUser(userID);
+    if (res.is_superuser) {
+      setIsSuperuser(true);
+    }
+  }, []);
+
+  if (isSuperuser) {
+    return (
+      <>
+        <AdminNavbar />
+        <div style={{ textAlign: "center", marginTop: "50px" }}>
+          <h1>Add an administrator account</h1>
+          <Box
+            component="form"
+            sx={{
+              '& .MuiTextField-root': { m: 1, width: '25ch' },
+            }}
+            autoComplete="off"
+          >
+            <div>
+              <TextField id="email" label="email" type="email" error={!emailFilled} helperText={emailFilledError} onChange={handleEmail} />
+            </div>
+            <div>
+              <TextField id="password" label="password" type="password" error={!passwordValid} helperText={passwordFilledError} onChange={handlePassword} />
+            </div>
+            <div>
+              <TextField id="confirm-password" label="confirm password" error={!passwordsMatch} type="password" helperText={errorText} onChange={handleConfirmPassword} />
+            </div>
+
+          </Box>
+          <div style={{ textAlign: "center" }}>
+            <FormControlLabel control={<Checkbox defaultChecked disableRipple={true} onChange={handleForward} />} label="Send a copy of these credentials to you and this person&#39;s email" />
           </div>
-          <div>
-            <FormControlLabel control={<Switch defaultChecked={false} disableRipple={true} />} label="Edit others&#39; questionnaires" />
+          <div style={{ textAlign: "center" }}>
+            <h1>Permissions</h1>
+            <div>
+              <FormControlLabel control={<Switch defaultChecked={false} disableRipple={true} onChange={handleSuper} />} label="Manage admins (superadmin)" />
+            </div>
+            <div>
+              <FormControlLabel control={<Switch defaultChecked={false} disableRipple={true} onChange={handleCreate} />} label="Create questionnaires" />
+            </div>
+            <div>
+              <FormControlLabel control={<Switch defaultChecked={false} disableRipple={true} onChange={handleEdit} />} label="Edit others&#39; questionnaires" />
+            </div>
+            <div>
+              <FormControlLabel control={<Switch defaultChecked={false} disableRipple={true} onChange={handleDelete} />} label="Delete questionnaires" />
+            </div>
+            <div>
+              <FormControlLabel control={<Switch defaultChecked={false} disableRipple={true} onChange={handleExport} />} label="Export data" />
+            </div>
+            <div>
+              <FormControlLabel control={<Switch defaultChecked={false} disableRipple={true} onChange={handleView} />} label="View only" />
+            </div>
+            <Button onClick={viewVariables}>console</Button>
           </div>
-          <div>
-            <FormControlLabel control={<Switch defaultChecked={false} disableRipple={true} />} label="Download feedback files" />
-          </div>
-          <div>
-            <FormControlLabel control={<Switch defaultChecked={false} disableRipple={true} />} label="Manage admins (superadmin)" />
-          </div>
-        </div>
-        <div style={{ textAlign: "center", marginTop: "30px", marginBottom: "30px" }}>
-          <Link to="/manage-accounts" style={{ textDecoration: "none" }}>
-            <Button variant="contained" disabled={!checkAllFields} onClick={setAccount}>Save & Return</Button>
-          </Link>
-          <div style={{ paddingTop: "70px" }}>
+          <div style={{ textAlign: "center", marginTop: "30px", marginBottom: "30px" }}>
             <Link to="/manage-accounts" style={{ textDecoration: "none" }}>
-              <Button color="grey" variant="contained">Cancel</Button>
+              <Button variant="contained" disabled={!checkAllFields} onClick={setAccount}>Save & Return</Button>
             </Link>
+            <div style={{ paddingTop: "70px" }}>
+              <Link to="/manage-accounts" style={{ textDecoration: "none" }}>
+                <Button color="grey" variant="contained">Cancel</Button>
+              </Link>
+            </div>
           </div>
         </div>
-      </div>
-    </>
-  );
+      </>
+    );
+  }
+  return (<h1>You do not have access to this page.</h1>);
 }

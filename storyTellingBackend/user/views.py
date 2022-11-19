@@ -32,7 +32,8 @@ class UserList(generics.ListCreateAPIView):
 
         user = User.objects.create(
             username=myData['username'],
-            email=myData['email']
+            email=myData['email'],
+            is_superuser=myData['is_superuser']
         )
 
         user.set_password(myData['password'])

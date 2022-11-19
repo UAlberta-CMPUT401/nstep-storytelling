@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import { accordionDetailsClasses } from '@mui/material';
 import axios from 'axios';
 import 'regenerator-runtime';
@@ -55,12 +56,14 @@ const createFeedback = async (questionnaireId, answers) => {
   return feedback.data;
 };
 
-const createUser = async (username, password, email) => {
+const createUser = async (username, password, email, is_superuser) => {
   const user = await axios.post(`${api}/user/`, {
     username,
     password,
     email,
+    is_superuser,
   });
+  console.log(user.data);
   return user.data;
 };
 
@@ -69,9 +72,14 @@ const getUsers = async () => {
   return users.data;
 };
 
+const getUser = async (userId) => {
+  const user = await axios.get(`${api}/user/${userId}/`);
+  return user.data;
+};
+
 export {
   createQuestion, deleteQuestion, createQuestionnaire,
   patchQuestionnaire, patchQuestion, getQuestionnaires,
   deleteQuestionnaire, getQuestionnaire, getQuestion,
-  createUser, createFeedback, getUsers,
+  createUser, createFeedback, getUsers, getUser,
 };
