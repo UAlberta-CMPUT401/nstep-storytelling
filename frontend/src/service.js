@@ -71,9 +71,14 @@ const getUsers = async () => {
   return users.data;
 };
 
+const getAllFeedback = async () => {
+  const feedback = await axios.get(`${api}/feedback/`);
+  return feedback.data;
+};
+
 export {
   createQuestion, deleteQuestion, createQuestionnaire,
   patchQuestionnaire, patchQuestion, getQuestionnaires,
   deleteQuestionnaire, getQuestionnaire, getQuestion,
-  createUser, createFeedback, getUsers, getFeedback,
+  createUser, createFeedback, getUsers, getFeedback, getAllFeedback,
 };
