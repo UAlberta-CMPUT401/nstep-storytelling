@@ -49,6 +49,7 @@ urlpatterns = [
     path('api/logs/', ev.LogList.as_view()),
     re_path(r'api/logs/user/(?P<pk>[(-z)]{36})/$', ev.UserLogList.as_view(),name='UserLog'),
     re_path(r'api/logs/(?P<pk>[(-z)]{36})/$', ev.ObjectLogList.as_view(),name='ObjectLog'),
+    re_path(r'api/logs/action/(?P<pk>[(-z)]{36})/$', ev.ActionLogList.as_view(),name='ActionLog'),
 
 
     path('api/login/', uv.LoginAPI.as_view()),
