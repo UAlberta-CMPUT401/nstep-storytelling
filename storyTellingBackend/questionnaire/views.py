@@ -6,7 +6,6 @@ from .models import *
 from django.forms.models import model_to_dict
 import json
 from django.core import serializers
-
 from rest_framework import generics
 from rest_framework.permissions import *
     
@@ -105,7 +104,6 @@ class Feedbacks(generics.GenericAPIView):
         return Response(response)
 
     def post(self, request,pk):
-
         questionnaire = Questionnaire.objects.get(pk=pk)  
         qnData = {"questionnaire": questionnaire.id}
 
@@ -116,13 +114,14 @@ class Feedbacks(generics.GenericAPIView):
         requestData = request.data
         for key in requestData.keys():
             temp = requestData[key]
-            temp['question'] = key
+            temp["question"] = key
             ansSerializer = AnswerSerializer(data =temp)
             if ansSerializer.is_valid():
                 ans = ansSerializer.save()
                 ansList.answers.add(ans)
             else:
                 print(ansSerializer.errors)
+                print("hi")
 
         anss = AnswerList.objects.get(pk=ansList.id)  
         serializer = AnswerListSerializer(anss)
