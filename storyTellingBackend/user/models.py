@@ -16,7 +16,6 @@ class User(AbstractUser):
 
 
 
-
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
 def created_auth_token(sender, instance=None, created=False, **kwargs):
     # Create Token whenever a user is created
