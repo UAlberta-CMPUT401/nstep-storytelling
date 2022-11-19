@@ -20,8 +20,8 @@ class Answer(models.Model):
     content_type = models.CharField(max_length=20,choices=ContentType.choices , default=ContentType.TEXT)
     question = models.ForeignKey(Question, on_delete=models.CASCADE,null=True)
     # set content_video to have a default value of null
-    content_video = models.FileField(upload_to='uploads/videoFiles/',null=True, blank=True)
-    content_audio = models.FileField(upload_to='uploads/audioFiles/',null=True, blank=True)
+    content_video = models.TextField(blank=True, null=True, max_length=999999999999)
+    content_audio = models.TextField(blank=True, null=True, max_length=999999999999)
 
 class Questionnaire(models.Model):
     id = models.UUIDField(primary_key = True , auto_created = True , default = uuid.uuid4)

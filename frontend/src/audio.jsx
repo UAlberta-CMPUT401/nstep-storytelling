@@ -5,7 +5,7 @@ import React, {
 } from 'react';
 import { ReactMediaRecorder, useReactMediaRecorder } from "react-media-recorder";
 
-function WebCamTest() {
+function AudioTest() {
   const {
     status, startRecording, stopRecording, mediaBlobUrl,
   } = useReactMediaRecorder({
@@ -21,8 +21,7 @@ function WebCamTest() {
         <button onClick={stopRecording}>Stop Recording</button>
       </div>
     </div>
-
   );
 }
 
-export default WebCamTest;
+export default AudioTest;
