@@ -9,13 +9,13 @@ function WebCamTest() {
   const {
     status, startRecording, stopRecording, mediaBlobUrl,
   } = useReactMediaRecorder({
-    video: true, audio: true,
+    audio: true,
   });
 
   return (
     <div>
       <p>{status}</p>
-      <video src={mediaBlobUrl} width={320} height={180} controls autoPlay loop />
+      <audio src={mediaBlobUrl} controls autoPlay loop />
       <div>
         <button onClick={startRecording}>Start Recording</button>
         <button onClick={stopRecording}>Stop Recording</button>

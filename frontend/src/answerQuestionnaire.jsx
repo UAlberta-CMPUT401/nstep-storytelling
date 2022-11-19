@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { ReactMediaRecorder, useReactMediaRecorder } from "react-media-recorder";
 import TextField from "@mui/material/TextField";
 import Button from '@mui/material/Button';
 import Navbar from "./components/Navbar";
@@ -34,12 +35,12 @@ export default function AnswerQuestionnaire() {
     console.log(questionList);
   };
 
-  const clickVideo = (e) => {
+  const saveAudio = (qid, audioFile) => {
     const newQuestionList = [...questionList];
     newQuestionList.forEach((question) => {
-      if (question.id === e.target.value) {
+      if (question.id === qid) {
         const newDict = { ...question };
-        newDict.video_selected = true;
+        newDict.content_audio = audioFile;
         Object.assign(question, newDict);
         console.log(question);
       }
@@ -55,6 +56,7 @@ export default function AnswerQuestionnaire() {
       const newDict = {};
       newDict.content_type = "TEXT";
       newDict.content = question.answer;
+      newDict.content_audio = question.content_audio;
       feedback[question.id] = newDict;
     });
     console.log(feedback);
@@ -75,8 +77,7 @@ export default function AnswerQuestionnaire() {
               question={question.content}
               onChange={handleChange}
               allowRecording={question.allow_recording}
-              clickVideo={clickVideo}
-              videoSelected={question.video_selected}
+              saveAudio={saveAudio}
             />
           ))}
         </div>

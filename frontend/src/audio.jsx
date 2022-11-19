@@ -9,7 +9,7 @@ function AudioTest() {
   const {
     status, startRecording, stopRecording, mediaBlobUrl,
   } = useReactMediaRecorder({
-    audio: true, video: false,
+    audio: true,
   });
 
   return (
