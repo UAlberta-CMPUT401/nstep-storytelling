@@ -55,8 +55,6 @@ INSTALLED_APPS = [
 
 
 REST_FRAMEWORK = {
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 5,
     'DEFAULT_PERMISSION_CLASSES':
     ['rest_framework.permissions.IsAuthenticated'],
     'DEFAULT_AUTHENTICATION_CLASSES': [
@@ -109,7 +107,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'nstep_database',
         'USER': 'root',
-        'PASSWORD': 'mypassword',
+        'PASSWORD': 'Callmemicrosoft123',
         'HOST': 'localhost',
         'PORT': '',
     }
