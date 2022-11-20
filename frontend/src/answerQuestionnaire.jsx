@@ -49,14 +49,53 @@ export default function AnswerQuestionnaire() {
     console.log(questionList);
   };
 
+  const saveVideo = (qid, videoFile) => {
+    const newQuestionList = [...questionList];
+    newQuestionList.forEach((question) => {
+      if (question.id === qid) {
+        const newDict = { ...question };
+        newDict.content_video = videoFile;
+        Object.assign(question, newDict);
+        console.log(question);
+      }
+    });
+    setQuestionList(newQuestionList);
+    console.log(questionList);
+  };
+
+  const clearRecordings = (qid) => {
+    const newQuestionList = [...questionList];
+    newQuestionList.forEach((question) => {
+      if (question.id === qid) {
+        const newDict = { ...question };
+        newDict.content_video = null;
+        newDict.content_audio = null;
+        Object.assign(question, newDict);
+        console.log(question);
+      }
+    });
+    setQuestionList(newQuestionList);
+    console.log(questionList);
+  };
+
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
+    let empty = false;
+    questionList.forEach((question) => {
+      if (!question.answer && !question.content_audio && !question.content_video) {
+        empty = true;
+      }
+    });
+    if (empty) {
+      return;
+    }
     const feedback = {};
     questionList.forEach((question) => {
       const newDict = {};
       newDict.content_type = "TEXT";
       newDict.content = question.answer;
       newDict.content_audio = question.content_audio;
+      newDict.content_video = question.content_video;
       feedback[question.id] = newDict;
     });
     console.log(feedback);
@@ -78,6 +117,8 @@ export default function AnswerQuestionnaire() {
               onChange={handleChange}
               allowRecording={question.allow_recording}
               saveAudio={saveAudio}
+              saveVideo={saveVideo}
+              clearRecordings={clearRecordings}
             />
           ))}
         </div>
