@@ -1,9 +1,0 @@
-# includes.yaml
----
-
-name: Backend Endpoint Test
-description: here we test the backend endpoints
-
-variables:
-  host: 127.0.0.1
-  port: 8000

@@ -16,6 +16,7 @@ import EditAdmin from "./editAdmin";
 import DeleteAccount from "./deleteAccount";
 import EditForm from "./EditForm";
 import WebCamTest from "./Webcam";
+import ViewAnswer from "./ViewAnswer";
 
 export default function App() {
   return (
@@ -33,6 +34,7 @@ export default function App() {
       <Route path="/questionnaire/:id" element={<AnswerQuestionnaire />} />
       <Route path="/edit-admin/:id" element={<EditAdmin />} />
       <Route path="/delete-account/:id" element={<DeleteAccount />} />
+      <Route path="/feedback/:id" element={<ViewAnswer />} />
     </Routes>
   );
 }

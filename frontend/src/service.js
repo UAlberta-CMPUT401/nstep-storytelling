@@ -56,6 +56,10 @@ const createFeedback = async (questionnaireId, answers) => {
   return feedback.data;
 };
 
+const getFeedback = async (feedbackId) => {
+  const feedback = await axios.get(`${api}/feedback/${feedbackId}/`);
+  return feedback.data;
+};
 const createUser = async (username, password, email, is_superuser, user_permissions) => {
   const user = await axios.post(`${api}/user/`, {
     username,
@@ -66,7 +70,6 @@ const createUser = async (username, password, email, is_superuser, user_permissi
   });
   return user.data;
 };
-
 const getUsers = async () => {
   const users = await axios.get(`${api}/user/`);
   return users.data;
@@ -80,11 +83,16 @@ const getUser = async (userId) => {
 const deleteUser = async (userId) => {
   const res = await axios.delete(`${api}/user/${userId}/`);
   return res.data;
+
+const getAllFeedback = async () => {
+  const feedback = await axios.get(`${api}/feedback/`);
+  return feedback.data;
 };
 
 export {
   createQuestion, deleteQuestion, createQuestionnaire,
   patchQuestionnaire, patchQuestion, getQuestionnaires,
   deleteQuestionnaire, getQuestionnaire, getQuestion,
-  createUser, createFeedback, getUsers, getUser, deleteUser,
+  createUser, createFeedback, getUsers, getUser, deleteUser, 
+  getFeedback, getAllFeedback,
 };
