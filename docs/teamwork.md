@@ -118,11 +118,13 @@ Scrum Master: Favour
 Product Owner: Mohammed  
 Scrum Master: Jason
 
-**Sprint 4**
+**Sprint 4**  
 Product Owner: Mohammed  
 Scrum Master: Jinglong
 
 **Sprint 5**  
+Product Owner: Théa  
+Scrum Master: Jinglong
 
 ## **Meeting Minutes**
 
