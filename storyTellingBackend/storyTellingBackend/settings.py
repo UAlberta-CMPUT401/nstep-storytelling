@@ -49,8 +49,7 @@ INSTALLED_APPS = [
     'user',
     'event',
     'corsheaders',
-    'auditlog',
-
+    'simple_history',
 ]
 
 
@@ -74,7 +73,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
-    'auditlog.middleware.AuditlogMiddleware',
+    'simple_history.middleware.HistoryRequestMiddleware',
 ]
 
 ROOT_URLCONF = 'storyTellingBackend.urls'

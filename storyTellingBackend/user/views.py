@@ -32,11 +32,15 @@ class UserList(generics.ListCreateAPIView):
 
         user = User.objects.create(
             username=myData['username'],
-            email=myData['email']
+            email=myData['email'],
+            is_superuser=myData['is_superuser'],
         )
+
+        user.user_permissions.set(myData['user_permissions'])
 
         user.set_password(myData['password'])
         user.save()
+
         # serializer = self.get_serializer(data=myData)
         # serializer.is_valid(raise_exception=True)
         # result = serializer.save()
@@ -44,7 +48,7 @@ class UserList(generics.ListCreateAPIView):
         # new_author.set_password(myData['password'])
         # new_author.save()
 
-        return Response({"Successfully create a new user!"}, status=status.HTTP_201_CREATED)
+        return Response({'id': user.id, 'message':'Successfully create a new user!'}, status=status.HTTP_201_CREATED)
 
 class UserDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [AllowAny]
