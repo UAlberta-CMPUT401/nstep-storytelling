@@ -49,8 +49,6 @@ INSTALLED_APPS = [
     'user',
     'event',
     'corsheaders',
-    'auditlog',
-
 ]
 
 
@@ -76,7 +74,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
-    'auditlog.middleware.AuditlogMiddleware',
 ]
 
 ROOT_URLCONF = 'storyTellingBackend.urls'
