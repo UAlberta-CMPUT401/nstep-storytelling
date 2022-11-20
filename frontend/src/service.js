@@ -77,9 +77,14 @@ const getUser = async (userId) => {
   return user.data;
 };
 
+const deleteUser = async (userId) => {
+  const res = await axios.delete(`${api}/user/${userId}/`);
+  return res.data;
+};
+
 export {
   createQuestion, deleteQuestion, createQuestionnaire,
   patchQuestionnaire, patchQuestion, getQuestionnaires,
   deleteQuestionnaire, getQuestionnaire, getQuestion,
-  createUser, createFeedback, getUsers, getUser,
+  createUser, createFeedback, getUsers, getUser, deleteUser,
 };

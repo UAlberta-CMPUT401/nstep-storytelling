@@ -3,7 +3,7 @@
 /* renderer reference: https://stackoverflow.com/a/70809777 */
 /* conditional rendering ref: https://www.pluralsight.com/guides/how-to-show-components-conditionally-react */
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Button from '@mui/material/Button';
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
@@ -15,9 +15,11 @@ export default function EditAdmin() {
   const [isSuperuser, setIsSuperuser] = React.useState(false);
   const userID = localStorage.getItem("userID");
 
-  // TODO: get info of user to which this page is dedicated
+  // get info of user to which this page is dedicated
+  const selectedUserId = useParams().id;
+  console.log(selectedUserId);
 
-  // check if superadmin
+  // check if user accessing the page is a superadmin
   React.useEffect(async () => {
     const res = await getUser(userID);
     if (res.is_superuser) {
@@ -63,7 +65,7 @@ export default function EditAdmin() {
             </Button>
           </Link>
           <div style={{ paddingTop: "180px" }}>
-            <Link to="/delete-account">
+            <Link to={`/delete-account/${selectedUserId}`}>
               Delete this account
             </Link>
           </div>

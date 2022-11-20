@@ -3,18 +3,25 @@
 /* renderer reference: https://stackoverflow.com/a/70809777 */
 /* conditional rendering ref: https://www.pluralsight.com/guides/how-to-show-components-conditionally-react */
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import Button from '@mui/material/Button';
 import AdminNavbar from "./components/AdminNavbar";
 import "./styles/App.css";
-import { getUser } from "./service";
+import { getUser, deleteUser } from "./service";
 
 export default function DeleteAccount() {
   const [state, setState] = React.useState(false);
+  const [email, setEmail] = React.useState("");
   const userID = localStorage.getItem("userID");
   const [isSuperuser, setIsSuperuser] = React.useState(false);
+
+  const selectedUserId = useParams().id;
+
+  const backendDelete = async () => {
+    await deleteUser(selectedUserId);
+  };
 
   const handleChange = () => {
     setState(!state);
@@ -22,12 +29,11 @@ export default function DeleteAccount() {
   const enableDelete = () => {
     return (
       <Link to="/manage-accounts">
-        <Button variant="contained">
+        <Button variant="contained" onClick={backendDelete}>
           Delete
         </Button>
       </Link>
-      // TODO: delete in backend
-      // have short-duration message shown on new page to confirm deleted
+      // TODO: have short-duration message shown on new page to confirm deleted
     );
   };
   const disableDelete = () => {
@@ -46,6 +52,11 @@ export default function DeleteAccount() {
     }
   }, []);
 
+  React.useEffect(async () => {
+    const res = await getUser(selectedUserId);
+    setEmail(res.email);
+  }, []);
+
   if (isSuperuser) {
     return (
       <div>
@@ -62,7 +73,7 @@ export default function DeleteAccount() {
             <br />
           </h2>
           <div style={{ fontSize: "25px", paddingTop: "60px" }}>
-            johndoe@nstep.ca
+            {email}
           </div>
           <Link to="/edit-admin">
             <Button variant="contained" style={{ marginTop: "50px" }}>
