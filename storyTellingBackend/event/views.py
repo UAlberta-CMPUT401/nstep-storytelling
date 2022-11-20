@@ -6,66 +6,78 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import generics
-from auditlog.models import LogEntry
+from user.models import HistoricalUser
 
 
 # ---------------------------------------------------------------------------------------
-# delete any log older than 60 days
-def delete_old_logs():
-    # get all logs
-    logs = LogEntry.objects.all()
-    # get all logs older than 60 days
-    logs = logs.filter(timestamp__lte=timezone.now() - timedelta(days=60))
-    # delete all logs
-    logs.delete()
-    
-# Create your views here.
-class LogList(generics.ListCreateAPIView):
-    queryset = LogEntry.objects.all()
-    serializer_class = LogEntrySerializer
-    # permission_classes = [IsAdminUser]
-    delete_old_logs()
+# get all the data from SimpleHistoryAdmin
+class UserHistoryList(generics.ListCreateAPIView): 
+    queryset = HistoricalUser.objects.all()
+    serializer_class = HistoricalUserSerializer
     def list(self, request):
         # Note the use of `get_queryset()` instead of `self.queryset`
         queryset = self.get_queryset()
-        serializer = LogEntrySerializer(queryset, many=True)
-        return Response(serializer.data)
+        serializer = HistoricalUserSerializer(queryset, many=True)
+        return Response(serializer.data) 
+
+
+# get 
+# delete any log older than 60 days
+# def delete_old_logs():
+#     # get all logs
+#     logs = LogEntry.objects.all()
+#     # get all logs older than 60 days
+#     logs = logs.filter(timestamp__lte=timezone.now() - timedelta(days=60))
+#     # delete all logs
+#     logs.delete()
     
-class UserLogList(generics.ListCreateAPIView):
-    queryset = LogEntry.objects.all()
-    serializer_class = LogEntrySerializer
-    delete_old_logs()
-    def list(self, request, pk, format=None):
-        # Note the use of `get_queryset()` instead of `self.queryset`
-        queryset = self.get_queryset()
-        # filter queryset by pk
-        queryset = queryset.filter(actor=pk)
-        serializer = LogEntrySerializer(queryset, many=True)
-        return Response(serializer.data)
+# # Create your views here.
+# class LogList(generics.ListCreateAPIView):
+#     queryset = LogEntry.objects.all()
+#     serializer_class = LogEntrySerializer
+#     # permission_classes = [IsAdminUser]
+#     delete_old_logs()
+#     def list(self, request):
+#         # Note the use of `get_queryset()` instead of `self.queryset`
+#         queryset = self.get_queryset()
+#         serializer = LogEntrySerializer(queryset, many=True)
+#         return Response(serializer.data)
     
-class ObjectLogList(generics.ListCreateAPIView):
-    queryset = LogEntry.objects.all()
-    serializer_class = LogEntrySerializer
-    delete_old_logs()    
-    def list(self, request, pk, format=None):
-        # Note the use of `get_queryset()` instead of `self.queryset`
-        queryset = self.get_queryset()
-        # filter queryset by pk
-        queryset = queryset.filter(object_pk=pk)
-        serializer = LogEntrySerializer(queryset, many=True)
-        return Response(serializer.data)
+# class UserLogList(generics.ListCreateAPIView):
+#     queryset = LogEntry.objects.all()
+#     serializer_class = LogEntrySerializer
+#     delete_old_logs()
+#     def list(self, request, pk, format=None):
+#         # Note the use of `get_queryset()` instead of `self.queryset`
+#         queryset = self.get_queryset()
+#         # filter queryset by pk
+#         queryset = queryset.filter(actor=pk)
+#         serializer = LogEntrySerializer(queryset, many=True)
+#         return Response(serializer.data)
     
-# get logs by action type
-class ActionLogList(generics.ListCreateAPIView):
-    queryset = LogEntry.objects.all()
-    serializer_class = LogEntrySerializer
-    def list(self, request, pk, format=None):
-        # Note the use of `get_queryset()` instead of `self.queryset`
-        queryset = self.get_queryset()
-        # filter queryset by pk
-        queryset = queryset.filter(action=pk)
-        serializer = LogEntrySerializer(queryset, many=True)
-        return Response(serializer.data)
+# class ObjectLogList(generics.ListCreateAPIView):
+#     queryset = LogEntry.objects.all()
+#     serializer_class = LogEntrySerializer
+#     delete_old_logs()    
+#     def list(self, request, pk, format=None):
+#         # Note the use of `get_queryset()` instead of `self.queryset`
+#         queryset = self.get_queryset()
+#         # filter queryset by pk
+#         queryset = queryset.filter(object_pk=pk)
+#         serializer = LogEntrySerializer(queryset, many=True)
+#         return Response(serializer.data)
+    
+# # get logs by action type
+# class ActionLogList(generics.ListCreateAPIView):
+#     queryset = LogEntry.objects.all()
+#     serializer_class = LogEntrySerializer
+#     def list(self, request, pk, format=None):
+#         # Note the use of `get_queryset()` instead of `self.queryset`
+#         queryset = self.get_queryset()
+#         # filter queryset by pk
+#         queryset = queryset.filter(action=pk)
+#         serializer = LogEntrySerializer(queryset, many=True)
+#         return Response(serializer.data)
     
     
     

@@ -4,7 +4,7 @@ from django.dispatch import receiver
 from django.db.models.signals import post_save
 from django.conf import settings
 from rest_framework.authtoken.models import Token
-from auditlog.registry import auditlog
+from simple_history.models import HistoricalRecords
 
 import uuid
 
@@ -13,7 +13,7 @@ class User(AbstractUser):
     id = models.UUIDField(primary_key = True , auto_created = True , default = uuid.uuid4)
     username = models.CharField(max_length=30, blank=False,unique=True)
     email = models.EmailField(max_length=254, blank=True, null = True)
-
+    history = HistoricalRecords()
 
 
 
@@ -24,4 +24,3 @@ def created_auth_token(sender, instance=None, created=False, **kwargs):
         Token.objects.create(user=instance)
         
         
-auditlog.register(User)
