@@ -5,6 +5,10 @@
     color: #414143;
 }
 
+.navbar-name:hover {
+    color: #009131;
+}
+
 .navbar-logo {
     width: 160px;
 }

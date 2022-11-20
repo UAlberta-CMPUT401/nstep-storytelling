@@ -106,7 +106,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'nstep_database',
         'USER': 'root',
-        'PASSWORD': 'Callmemicrosoft123',
+        'PASSWORD': 'password',
         'HOST': 'localhost',
         'PORT': '',
     }
