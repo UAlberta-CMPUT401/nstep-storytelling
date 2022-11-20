@@ -97,6 +97,19 @@ class UserTests(TestCase):
         self.assertEqual(len(users), 1)
         
         
+    def test_user_wrong_method(self):
+        response = self.client.put(reverse(self.url), kwargs={'id': self.user.id})
+        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
+        
+    def test_user_wrong_method1(self):
+        response = self.client.patch(reverse(self.url), kwargs={'id': self.user.id})
+        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
+        
+    def test_user_wrong_method2(self):
+        response = self.client.delete(reverse(self.url), kwargs={'id': self.user.id})
+        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
+        
+        
 # Test multiple users with different email addresses and passwords 
 class UserTestsList(TestCase):
     def setUp(self):
@@ -104,9 +117,9 @@ class UserTestsList(TestCase):
         self.user2 = User.objects.create(username="user2", password="user2", email="user2@gmail.com")
         self.user3 = User.objects.create(username="user3", password="user3", email="user3@gmail.com")
         self.user4 = User.objects.create(username="user4", password="user4", email="user4@gmail.com")
-        
+        self.url = "UserList"
     def test_user_list(self):
-        response = client.get(reverse('UserList'))
+        response = client.get(reverse(self.url))
         # get data from db
         users = User.objects.all()
         self.assertEqual(len(users), 4)
@@ -115,3 +128,14 @@ class UserTestsList(TestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         
         
+    def test_userlist_wrong_method(self):
+        response = self.client.put(reverse(self.url), kwargs={'id': self.user1.id})
+        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
+        
+    def test_userlist_wrong_method1(self):
+        response = self.client.patch(reverse(self.url), kwargs={'id': self.user1.id})
+        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
+        
+    def test_userlist_wrong_method2(self):
+        response = self.client.delete(reverse(self.url), kwargs={'id': self.user1.id})
+        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
