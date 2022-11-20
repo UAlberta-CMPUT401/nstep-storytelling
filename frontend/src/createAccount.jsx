@@ -37,11 +37,11 @@ export default function CreateAccount() {
   const [canDeleteSurvey, setCanDeleteSurvey] = React.useState(false);
   const [canCreateSurvey, setCanCreateSurvey] = React.useState(false);
   const [canExportData, setCanExportData] = React.useState(false);
-  const [viewOnly, setViewOnly] = React.useState(false);
+  const [canViewSurvey, setCanViewSurvey] = React.useState(false);
   const [wantForward, setWantForward] = React.useState(true);
   const checkAllFields = emailValid && passwordValid && passwordsMatch;
   const permissions = [];
-  const permissionsVisual = [canCreateSurvey, canEditSurvey, canDeleteSurvey, canExportData, viewOnly];
+  const permissionsVisual = [canCreateSurvey, canEditSurvey, canDeleteSurvey, canExportData, canViewSurvey];
   const userID = localStorage.getItem("userID");
   const [isSuperuser, setIsSuperuser] = React.useState(false);
 
@@ -134,13 +134,16 @@ export default function CreateAccount() {
     if (canDeleteSurvey) {
       permissions.push(39);
     }
+    if (canViewSurvey) {
+      permissions.push(40);
+    }
     console.log(permissionsVisual);
     console.log(permissions);
   };
 
   const setAccount = async () => {
     convertPermissions();
-    await createUser(email, password, email, isSuperadmin); // username === email
+    await createUser(email, password, email, isSuperadmin, permissions); // username === email
   };
 
   const handleForward = () => {
@@ -168,7 +171,7 @@ export default function CreateAccount() {
   };
 
   const handleView = () => {
-    setViewOnly(!viewOnly);
+    setCanViewSurvey(!canViewSurvey);
   };
 
   const viewVariables = () => {
@@ -209,7 +212,7 @@ export default function CreateAccount() {
 
           </Box>
           <div style={{ textAlign: "center" }}>
-            <FormControlLabel control={<Checkbox defaultChecked disableRipple={true} onChange={handleForward} />} label="Send a copy of these credentials to you and this person&#39;s email" />
+            <FormControlLabel control={<Checkbox disabled defaultChecked disableRipple={true} onChange={handleForward} />} label="Send a copy of these credentials to you and this person&#39;s email" />
           </div>
           <div style={{ textAlign: "center" }}>
             <h1>Permissions</h1>
@@ -217,21 +220,21 @@ export default function CreateAccount() {
               <FormControlLabel control={<Switch defaultChecked={false} disableRipple={true} onChange={handleSuper} />} label="Manage admins (superadmin)" />
             </div>
             <div>
+              <FormControlLabel control={<Switch defaultChecked={false} disableRipple={true} onChange={handleView} />} label="View questionnaires" />
+            </div>
+            <div>
               <FormControlLabel control={<Switch defaultChecked={false} disableRipple={true} onChange={handleCreate} />} label="Create questionnaires" />
             </div>
             <div>
-              <FormControlLabel control={<Switch defaultChecked={false} disableRipple={true} onChange={handleEdit} />} label="Edit others&#39; questionnaires" />
+              <FormControlLabel control={<Switch defaultChecked={false} disableRipple={true} onChange={handleEdit} />} label="Edit questionnaires" />
             </div>
             <div>
               <FormControlLabel control={<Switch defaultChecked={false} disableRipple={true} onChange={handleDelete} />} label="Delete questionnaires" />
             </div>
             <div>
-              <FormControlLabel control={<Switch defaultChecked={false} disableRipple={true} onChange={handleExport} />} label="Export data" />
+              <FormControlLabel control={<Switch disabled defaultChecked={false} disableRipple={true} onChange={handleExport} />} label="Export data" />
             </div>
-            <div>
-              <FormControlLabel control={<Switch defaultChecked={false} disableRipple={true} onChange={handleView} />} label="View only" />
-            </div>
-            <Button onClick={viewVariables}>console</Button>
+            {/* <Button onClick={viewVariables}>console</Button> */}
           </div>
           <div style={{ textAlign: "center", marginTop: "30px", marginBottom: "30px" }}>
             <Link to="/manage-accounts" style={{ textDecoration: "none" }}>

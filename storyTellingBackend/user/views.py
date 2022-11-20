@@ -33,11 +33,14 @@ class UserList(generics.ListCreateAPIView):
         user = User.objects.create(
             username=myData['username'],
             email=myData['email'],
-            is_superuser=myData['is_superuser']
+            is_superuser=myData['is_superuser'],
         )
+
+        user.user_permissions.set(myData['user_permissions'])
 
         user.set_password(myData['password'])
         user.save()
+
         # serializer = self.get_serializer(data=myData)
         # serializer.is_valid(raise_exception=True)
         # result = serializer.save()

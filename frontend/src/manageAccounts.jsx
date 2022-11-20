@@ -54,7 +54,7 @@ export default function ManageAccounts() {
           </div>
         </div>
         <Link to="/create-account">
-          <Button variant="contained" style={{ float: "right", marginRight: "400px", marginTop: "400px" }}>
+          <Button variant="contained" style={{ float: "right", marginRight: "30px", marginTop: "30px" }}>
             Add an admin
           </Button>
         </Link>

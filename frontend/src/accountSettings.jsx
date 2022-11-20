@@ -1,3 +1,5 @@
+/* eslint-disable no-plusplus */
+/* eslint-disable prefer-template */
 /* eslint-disable consistent-return */
 /* eslint-disable brace-style */
 /* eslint-disable no-else-return */
@@ -29,6 +31,11 @@ export default function AccountSettings() {
   const [isSuperuser, setIsSuperuser] = React.useState(false);
   const [emailOpen, setEmailOpen] = React.useState(false);
   const [passwordOpen, setPasswordOpen] = React.useState(false);
+  const [hasCreatePermission, setHasCreatePermission] = React.useState(false);
+  const [hasEditPermission, setHasEditPermission] = React.useState(false);
+  const [hasDeletePermission, setHasDeletePermission] = React.useState(false);
+  const [hasViewPermission, setHasViewPermission] = React.useState(false);
+  const [hasExportPermission, setHasExportPermission] = React.useState(false);
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const userID = localStorage.getItem("userID");
@@ -37,6 +44,20 @@ export default function AccountSettings() {
     const res = await getUser(userID);
     if (res.is_superuser) {
       setIsSuperuser(true);
+    }
+    setEmail(res.email);
+
+    for (let i = 0; i < res.user_permissions.length; i++) {
+      console.log(res.user_permissions[i]);
+      if (res.user_permissions[i] === 37) {
+        setHasCreatePermission(true);
+      } if (res.user_permissions[i] === 38) {
+        setHasEditPermission(true);
+      } if (res.user_permissions[i] === 39) {
+        setHasDeletePermission(true);
+      } if (res.user_permissions[i] === 40) {
+        setHasViewPermission(true);
+      } // TODO: add export permission
     }
   }, []);
 
@@ -117,13 +138,57 @@ export default function AccountSettings() {
     );
   };
 
+  function renderViewPermission() {
+    if (hasViewPermission) {
+      return (
+        <div>
+          <img alt="checked checkbox" src={check} style={{ width: "30px", height: "30px", marginLeft: "30px" }} />
+          View questionnaires
+        </div>
+      );
+    }
+  }
+
+  function renderCreatePermission() {
+    if (hasCreatePermission) {
+      return (
+        <div>
+          <img alt="checked checkbox" src={check} style={{ width: "30px", height: "30px", marginLeft: "30px" }} />
+          Create questionnaires
+        </div>
+      );
+    }
+  }
+
+  function renderEditPermission() {
+    if (hasEditPermission) {
+      return (
+        <div>
+          <img alt="checked checkbox" src={check} style={{ width: "30px", height: "30px", marginLeft: "30px" }} />
+          Edit questionnaires
+        </div>
+      );
+    }
+  }
+
+  function renderDeletePermission() {
+    if (hasDeletePermission) {
+      return (
+        <div>
+          <img alt="checked checkbox" src={check} style={{ width: "30px", height: "30px", marginLeft: "30px" }} />
+          Delete questionnaires
+        </div>
+      );
+    }
+  }
+
   return (
     <div>
       <AdminNavbar />
       <div style={{ textAlign: "center", marginTop: "50px" }}>
         <h1>Account settings</h1>
         <div style={{ fontSize: "25px", paddingTop: "60px" }}>
-          email: pat.c@nstep.ca
+          {"email: " + email}
           {showEditButton()}
           <div>
             password: ********
@@ -160,12 +225,10 @@ export default function AccountSettings() {
         <div style={{ textAlign: "center", paddingTop: "60px" }}>
           <h1 style={{ paddingBottom: "60px" }}>Permissions</h1>
           <div style={{ fontSize: "25px" }}>
-            <img alt="checked checkbox" src={check} style={{ width: "30px", height: "30px", marginLeft: "30px" }} />
-            Create questionnaires
-            <div>
-              <img alt="checked checkbox" src={check} style={{ width: "30px", height: "30px", marginLeft: "30px" }} />
-              Edit others&#39; questionnaires
-            </div>
+            {renderViewPermission()}
+            {renderCreatePermission()}
+            {renderEditPermission()}
+            {renderDeletePermission()}
           </div>
         </div>
         <div>

@@ -56,14 +56,14 @@ const createFeedback = async (questionnaireId, answers) => {
   return feedback.data;
 };
 
-const createUser = async (username, password, email, is_superuser) => {
+const createUser = async (username, password, email, is_superuser, user_permissions) => {
   const user = await axios.post(`${api}/user/`, {
     username,
     password,
     email,
     is_superuser,
+    user_permissions,
   });
-  console.log(user.data);
   return user.data;
 };
 
