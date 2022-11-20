@@ -4,7 +4,7 @@ from django.dispatch import receiver
 from django.db.models.signals import post_save
 from django.conf import settings
 from rest_framework.authtoken.models import Token
-from auditlog.registry import auditlog
+# from auditlog.registry import auditlog
 
 import uuid
 
@@ -23,4 +23,4 @@ def created_auth_token(sender, instance=None, created=False, **kwargs):
         Token.objects.create(user=instance)
         
         
-auditlog.register(User)
+# auditlog.register(User)
