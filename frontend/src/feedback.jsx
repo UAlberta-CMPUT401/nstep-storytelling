@@ -1,4 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable max-classes-per-file */
 import React from 'react';
 import TextField from '@mui/material/TextField';
 import './styles/Feedback.css';
