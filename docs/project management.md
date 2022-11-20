@@ -132,4 +132,8 @@ Estimated sprint velocity: **17**
 
 | **Task** | **Related US** | **Assigned To** | **Due Date** |
 | --- | --- | --- | --- |
-| | | | |
+| Video Feedback | US 3.03 | Jason, Mo | Nov 28 |
+| Debugging | US 9.01 | Jayden | Dec 2 |
+| Upgrade UI | US 9.02 | Jason, Jayden, Favour, Théa | Dec 3 |
+| Deployment | US 9.03 | Asad, Théa | Dec 4 |
+| Installation Docs | US 9.03 | Théa, Jayden | Dec 5 |
