@@ -24,7 +24,7 @@ from drf_yasg import openapi
 from rest_framework import permissions
 from user import views as uv
 from questionnaire import views as qv
-# from event import views as ev
+from event import views as ev
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -45,6 +45,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('docs/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('api/user/',uv.UserList.as_view(),name='UserList'),
+    path('api/user/history',ev.UserHistoryList.as_view(),name='UserHistoryList'),
+    
     path('api/questionnaire/', qv.Questionnaire_list.as_view(), name="Questionnaire_list"),
     # path('api/logs/', ev.LogList.as_view()),
     # re_path(r'api/logs/user/(?P<pk>[(-z)]{36})/$', ev.UserLogList.as_view(),name='UserLog'),

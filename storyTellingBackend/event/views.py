@@ -6,10 +6,22 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import generics
-# from auditlog.models import LogEntry
+from user.models import HistoricalUser
 
 
 # ---------------------------------------------------------------------------------------
+# get all the data from SimpleHistoryAdmin
+class UserHistoryList(generics.ListCreateAPIView): 
+    queryset = HistoricalUser.objects.all()
+    serializer_class = HistoricalUserSerializer
+    def list(self, request):
+        # Note the use of `get_queryset()` instead of `self.queryset`
+        queryset = self.get_queryset()
+        serializer = HistoricalUserSerializer(queryset, many=True)
+        return Response(serializer.data) 
+
+
+# get 
 # delete any log older than 60 days
 # def delete_old_logs():
 #     # get all logs
