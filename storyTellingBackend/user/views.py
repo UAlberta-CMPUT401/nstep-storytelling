@@ -44,7 +44,7 @@ class UserList(generics.ListCreateAPIView):
         # new_author.set_password(myData['password'])
         # new_author.save()
 
-        return Response({'Successfully create a new user!'}, status=status.HTTP_201_CREATED)
+        return Response({'id': user.id, 'message':'Successfully create a new user!'}, status=status.HTTP_201_CREATED)
 
 class UserDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [AllowAny]

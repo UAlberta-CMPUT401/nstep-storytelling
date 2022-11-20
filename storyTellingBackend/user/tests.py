@@ -4,6 +4,7 @@ from rest_framework import status
 from .models import User
 from rest_framework.test import APIClient
 from django.urls import reverse
+import json
 
 client = APIClient()
 # write all the tests for User models here
@@ -14,36 +15,79 @@ class UserTests(TestCase):
     
     def setUp(self):
         self.user = User.objects.create(username=self.username, password=self.password, email=self.email)
+        self.url = "UserList"
         
     def test_user_creation(self):
-        self.assertEqual(self.user.username, self.username)
-        self.assertEqual(self.user.password, self.password)
-        self.assertEqual(self.user.email, self.email)
+        response = self.client.get(reverse(self.url), kwargs={'id': self.user.id})
+        
+        user = User.objects.get(id=self.user.id)
+        serializer = UserSerializer(user)
+        
+        data = {}
+        for d in response.data:
+            data = dict(d)
+ 
+        self.assertEquals(data, serializer.data)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+
+    def test_user_post(self):
+        payload = {"username": "newUser", "password": "newPassword", "email": "a@gmail.com"}
+        response = client.post(
+            reverse('UserList'),
+            data=json.dumps(payload),
+            content_type='application/json'
+        )
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         
 
     # set test for put request 
-    def test_user_put(self):        
-        self.user.username  = "newUsername"
-        self.user.password = "newPassword"
-        self.user.email = "newEmail@gmail.com"
-        self.user.save()
+    def test_user_put(self):   
+        payload = {"username": "newPutUser", "password": "newPassword", "email": "newEmail@gmail.com"}  
         
-        self.assertEqual(self.user.username, "newUsername")
-        self.assertEqual(self.user.password, "newPassword")
-        self.assertEqual(self.user.email, "newEmail@gmail.com")
+        response = client.put(
+            f'/api/user/{self.user.id}/',
+            data=json.dumps(payload),
+            content_type='application/json'
+        )
+        
+        response = self.client.get(reverse(self.url), kwargs={'id': self.user.id})
+        user = User.objects.get(id=self.user.id)
+        serializer = UserSerializer(user)
+        
+        data = {}
+        for d in response.data:
+            data = dict(d)
+ 
+        self.assertEquals(data, serializer.data)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        
+        
         
     # test patch request here
     def test_user_patch(self):
         self.user.username  = "newUsername"
         self.user.save()
         
-        self.assertEqual(self.user.username, "newUsername")
-        self.assertEqual(self.user.password, self.password)
-        self.assertEqual(self.user.email, self.email)
+        response = self.client.get(reverse(self.url), kwargs={'id': self.user.id})
+        
+        user = User.objects.get(id=self.user.id)
+        serializer = UserSerializer(user)
+        
+        data = {}
+        for d in response.data:
+            data = dict(d)
+ 
+        self.assertEquals(data, serializer.data)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
         
     # test delete request here
     def test_user_delete(self):
-        self.user.delete()
+        response = client.delete(
+            f'/api/user/{self.user.id}/',
+        )
+        
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         self.assertEqual(User.objects.count(), 0)
         
     def test_get_invalid_single_user(self):        

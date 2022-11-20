@@ -45,7 +45,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('docs/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('api/user/',uv.UserList.as_view(),name='UserList'),
-    path('api/questionnaire/', qv.Questionnaire_list.as_view()),
+    path('api/questionnaire/', qv.Questionnaire_list.as_view(), name="Questionnaire_list"),
     path('api/logs/', ev.LogList.as_view()),
     re_path(r'api/logs/user/(?P<pk>[(-z)]{36})/$', ev.UserLogList.as_view(),name='UserLog'),
     re_path(r'api/logs/(?P<pk>[(-z)]{36})/$', ev.ObjectLogList.as_view(),name='ObjectLog'),
