@@ -125,7 +125,7 @@ export default class Feedback extends React.Component {
 
   async componentDidMount() {
     const response = await getAllFeedback();
-    const myData = response.results;
+    const myData = response;
     this.setState({ data: myData });
     this.setState({ current: myData });
     const myKeys = [];
