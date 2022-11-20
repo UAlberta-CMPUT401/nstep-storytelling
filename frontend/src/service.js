@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import { accordionDetailsClasses } from '@mui/material';
 import axios from 'axios';
 import 'regenerator-runtime';
@@ -54,15 +55,18 @@ const createFeedback = async (questionnaireId, answers) => {
   const feedback = await axios.post(`${api}/questionnaire/${questionnaireId}/feedback/`, answers);
   return feedback.data;
 };
+
 const getFeedback = async (feedbackId) => {
   const feedback = await axios.get(`${api}/feedback/${feedbackId}/`);
   return feedback.data;
 };
-const createUser = async (username, password, email) => {
+const createUser = async (username, password, email, is_superuser, user_permissions) => {
   const user = await axios.post(`${api}/user/`, {
     username,
     password,
     email,
+    is_superuser,
+    user_permissions,
   });
   return user.data;
 };
@@ -70,6 +74,15 @@ const getUsers = async () => {
   const users = await axios.get(`${api}/user/`);
   return users.data;
 };
+
+const getUser = async (userId) => {
+  const user = await axios.get(`${api}/user/${userId}/`);
+  return user.data;
+};
+
+const deleteUser = async (userId) => {
+  const res = await axios.delete(`${api}/user/${userId}/`);
+  return res.data;
 
 const getAllFeedback = async () => {
   const feedback = await axios.get(`${api}/feedback/`);
@@ -80,5 +93,6 @@ export {
   createQuestion, deleteQuestion, createQuestionnaire,
   patchQuestionnaire, patchQuestion, getQuestionnaires,
   deleteQuestionnaire, getQuestionnaire, getQuestion,
-  createUser, createFeedback, getUsers, getFeedback, getAllFeedback,
+  createUser, createFeedback, getUsers, getUser, deleteUser, 
+  getFeedback, getAllFeedback,
 };

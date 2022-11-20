@@ -30,10 +30,10 @@ export default function App() {
       <Route path="/account" element={<AccountSettings />} />
       <Route path="/create-account" element={<CreateAccount />} />
       <Route path="/manage-accounts" element={<ManageAccounts />} />
-      <Route path="/delete-account" element={<DeleteAccount />} />
       <Route path="/admin/questionnaire/:id" element={<EditForm />} />
       <Route path="/questionnaire/:id" element={<AnswerQuestionnaire />} />
       <Route path="/edit-admin/:id" element={<EditAdmin />} />
+      <Route path="/delete-account/:id" element={<DeleteAccount />} />
       <Route path="/feedback/:id" element={<ViewAnswer />} />
     </Routes>
   );
