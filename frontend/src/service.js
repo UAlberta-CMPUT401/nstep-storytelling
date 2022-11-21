@@ -4,22 +4,30 @@ import axios from 'axios';
 import 'regenerator-runtime';
 
 const api = 'http://localhost:8000/api';
+const token = localStorage.getItem('jwtToken');
+const id = localStorage.getItem('userID');
+
+const header = {
+  headers: {
+    Authorization: `Token ${token}`,
+  },
+};
 
 const createQuestion = async (questionnaireId, content) => {
   const question = await axios.post(`${api}/questionnaire/${questionnaireId}/question/`, {
     content,
-  });
+  }, header);
   return question.data;
 };
 const deleteQuestion = async (questionnaireId, questionId) => {
-  const res = await axios.delete(`${api}/questionnaire/${questionnaireId}/question/${questionId}/`);
+  const res = await axios.delete(`${api}/questionnaire/${questionnaireId}/question/${questionId}/`, header);
   return res.data;
 };
 const patchQuestion = async (questionnaireId, questionId, content, allowRecording) => {
   const question = await axios.patch(`${api}/questionnaire/${questionnaireId}/question/${questionId}/`, {
     content: content,
     allow_recording: allowRecording,
-  });
+  }, header);
   return question.data;
 };
 const getQuestion = async (questionnaireId, questionId) => {
@@ -30,13 +38,13 @@ const createQuestionnaire = async (title, description) => {
   const questionnaire = await axios.post(`${api}/questionnaire/`, {
     title,
     description,
-  });
+  }, header);
   return questionnaire.data;
 };
 const patchQuestionnaire = async (questionnaireId, title) => {
   const questionnaire = await axios.patch(`${api}/questionnaire/${questionnaireId}/`, {
     title,
-  });
+  }, header);
   return questionnaire.data;
 };
 const getQuestionnaires = async () => {
@@ -44,7 +52,7 @@ const getQuestionnaires = async () => {
   return questionnaires.data;
 };
 const deleteQuestionnaire = async (questionnaireId) => {
-  const res = await axios.delete(`${api}/questionnaire/${questionnaireId}/`);
+  const res = await axios.delete(`${api}/questionnaire/${questionnaireId}/`, header);
   return res.data;
 };
 const getQuestionnaire = async (questionnaireId) => {
@@ -57,7 +65,7 @@ const createFeedback = async (questionnaireId, answers) => {
 };
 
 const getFeedback = async (feedbackId) => {
-  const feedback = await axios.get(`${api}/feedback/${feedbackId}/`);
+  const feedback = await axios.get(`${api}/feedback/${feedbackId}/`, header);
   return feedback.data;
 };
 const createUser = async (username, password, email, is_superuser, user_permissions) => {
@@ -67,26 +75,26 @@ const createUser = async (username, password, email, is_superuser, user_permissi
     email,
     is_superuser,
     user_permissions,
-  });
+  }, header);
   return user.data;
 };
 const getUsers = async () => {
-  const users = await axios.get(`${api}/user/`);
+  const users = await axios.get(`${api}/user/`, header);
   return users.data;
 };
 
 const getUser = async (userId) => {
-  const user = await axios.get(`${api}/user/${userId}/`);
+  const user = await axios.get(`${api}/user/${userId}/`, header);
   return user.data;
 };
 
 const deleteUser = async (userId) => {
-  const res = await axios.delete(`${api}/user/${userId}/`);
+  const res = await axios.delete(`${api}/user/${userId}/`, header);
   return res.data;
 };
 
 const getAllFeedback = async () => {
-  const feedback = await axios.get(`${api}/feedback/`);
+  const feedback = await axios.get(`${api}/feedback/`, header);
   return feedback.data;
 };
 
