@@ -18,7 +18,7 @@ from rest_framework.permissions import *
 class UserList(generics.ListCreateAPIView):
     queryset = User.objects.all()
     serializer_class = AddingUserSerializer
-    permission_classes = [AllowAny]
+    permission_classes = [IsAdminUser]
 
     def list(self, request):
         # Note the use of `get_queryset()` instead of `self.queryset`
@@ -51,7 +51,7 @@ class UserList(generics.ListCreateAPIView):
         return Response({'id': user.id, 'message':'Successfully create a new user!'}, status=status.HTTP_201_CREATED)
 
 class UserDetail(generics.RetrieveUpdateDestroyAPIView):
-    permission_classes = [AllowAny]
+    permission_classes = [IsAdminUser]
     queryset = User.objects.all()
     lookup_field = 'pk'
     serializer_class = UserSerializer

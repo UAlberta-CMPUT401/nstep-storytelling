@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable max-classes-per-file */
+/* eslint-disable prefer-destructuring */
 import React from 'react';
 import TextField from '@mui/material/TextField';
 import './styles/Feedback.css';
@@ -27,10 +28,12 @@ class OneFeedback extends React.Component {
     super(props);
     console.log("props");
     console.log(props);
+    const time = this.props.data.time;
+    const newTime = time.slice(0, 19);
     this.state = {
       id: this.props.data.id,
       title: this.props.data.questionnaire.title,
-      time: this.props.data.time,
+      time: newTime,
     };
     // this.getInfo();
   }
@@ -50,10 +53,10 @@ class OneFeedback extends React.Component {
     return (
       <Link href={`/feedback/${this.state.id}/`}>
         <li>
-          {this.state.id}
+          {/* {this.state.id}
           {' '}
           -
-          {' '}
+          {' '} */}
           {this.state.title}
           {' '}
           -
