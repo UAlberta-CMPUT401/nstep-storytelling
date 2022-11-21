@@ -145,10 +145,11 @@ export default function TextAnswerInput(props) {
           video
           onStop={stopVideo}
           render={({
-            status, startRecording, stopRecording, mediaBlobUrl,
+            previewStream, status, startRecording, stopRecording, mediaBlobUrl,
           }) => (
             <div>
               <p>{status}</p>
+              <VideoPreview stream={previewStream} />
               <video src={mediaBlobUrl} width={320} height={180} controls autoPlay>
                 <track kind="captions" />
               </video>
