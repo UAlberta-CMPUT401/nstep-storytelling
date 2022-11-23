@@ -1,8 +1,20 @@
+/* eslint-disable brace-style */
+/* eslint-disable keyword-spacing */
+/* eslint-disable no-else-return */
+/* eslint-disable no-lone-blocks */
+/* eslint-disable react/jsx-boolean-value */
+/* eslint-disable react/jsx-no-bind */
+/* eslint-disable react/jsx-one-expression-per-line */
 import * as React from 'react';
 // import { CssVarsProvider, useColorScheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
@@ -29,6 +41,9 @@ export default function Login() {
 
   const [openSuccessAlert, setOpenSuccessAlert] = useState(false);
   const [openFailureAlert, setOpenFailureAlert] = useState(false);
+
+  const [dialogOpen, setDialogOpen] = useState(true);
+  const [logoutSuccess, setLogoutSuccess] = useState(false);
 
   const handleClick = (success) => {
     if (success) {
@@ -97,11 +112,59 @@ export default function Login() {
     return <Button onClick={handleLogin} variant="contained" sx={{ mt: 1, width: "30%", alignSelf: "center" }}>Log in</Button>;
   }
 
+  function handleGoBack() {
+    history("/home");
+  }
+
+  function handleLogout() {
+    localStorage.setItem("jwtToken", "null");
+    localStorage.setItem("userID", "null");
+    setDialogOpen(false);
+    setLogoutSuccess(true);
+  }
+
+  function checkIfLoggedIn() {
+    { console.log(localStorage.getItem('jwtToken')); }
+    if (localStorage.getItem("jwtToken") !== "null" && openSuccessAlert === false && openFailureAlert === false) {
+      console.log("logged in");
+      return (
+        <div>
+          <Dialog
+            open={dialogOpen}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
+          >
+            <DialogTitle id="alert-dialog-title">
+              Already logged in
+            </DialogTitle>
+            <DialogContent>
+              <DialogContentText id="alert-dialog-description">
+                Do you want to log out?
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleLogout}>
+                Yes
+              </Button>
+              <Button onClick={handleGoBack}>
+                No, go back
+              </Button>
+            </DialogActions>
+          </Dialog>
+        </div>
+      );
+    }
+    return null;
+  }
+
   return (
   // <CssVarsProvider>
     <main>
       <Navbar />
       {/* <ModeToggle /> */}
+      {console.log(localStorage.getItem("jwtToken"))};
+      {console.log(localStorage.getItem("userID"))};
+      {checkIfLoggedIn()}
       <Box
         sx={{
           width: 300,
