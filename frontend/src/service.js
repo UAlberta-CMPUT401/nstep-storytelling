@@ -63,6 +63,10 @@ const createFeedback = async (questionnaireId, answers) => {
   const feedback = await axios.post(`${api}/questionnaire/${questionnaireId}/feedback/`, answers);
   return feedback.data;
 };
+const deleteFeedback = async (feedbackId) => {
+  const res = await axios.delete(`${api}/feedback/${feedbackId}/`, header);
+  return res.data;
+};
 
 const getFeedback = async (feedbackId) => {
   const feedback = await axios.get(`${api}/feedback/${feedbackId}/`, header);
@@ -103,5 +107,5 @@ export {
   patchQuestionnaire, patchQuestion, getQuestionnaires,
   deleteQuestionnaire, getQuestionnaire, getQuestion,
   createUser, createFeedback, getUsers, getUser, deleteUser,
-  getFeedback, getAllFeedback,
+  getFeedback, getAllFeedback, deleteFeedback,
 };

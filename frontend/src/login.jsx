@@ -169,7 +169,7 @@ export default function Login() {
           helperText={passwordHelper}
           onBlur={(e) => handlePasswordBlur()}
         />
-        {renderButton}
+        {renderButton()}
         <Snackbar
           open={openSuccessAlert}
           autoHideDuration={1500}
