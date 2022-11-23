@@ -130,7 +130,6 @@ const getUsers = async () => {
 
 const getUser = async (userId) => {
   const token = localStorage.getItem('jwtToken');
-  console.log(token);
   const user = await axios.get(`${api}/user/${userId}/`, {
     headers: {
       Authorization: `Token ${token}`,
