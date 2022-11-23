@@ -8,7 +8,9 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
 export default function AlertDialog(props) {
-  const { open, handleClose, handleAgree } = props;
+  const {
+    open, handleClose, handleAgree, message,
+  } = props;
   return (
     <Dialog
       open={open}
@@ -17,12 +19,12 @@ export default function AlertDialog(props) {
       aria-describedby="alert-dialog-description"
     >
       <DialogTitle id="alert-dialog-title">
-        are you sure you want to exit?
+        {message}
       </DialogTitle>
       <DialogActions>
         <Button onClick={handleClose}>Cancel</Button>
         <Button onClick={handleAgree} autoFocus>
-          Confrim
+          Confirm
         </Button>
       </DialogActions>
     </Dialog>
