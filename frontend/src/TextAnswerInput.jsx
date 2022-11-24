@@ -1,5 +1,5 @@
 /* eslint-disable react/void-dom-elements-no-children */
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from "react-router-dom";
 import { ReactMediaRecorder, useReactMediaRecorder } from "react-media-recorder";
 import TextField from '@mui/material/TextField';
@@ -76,6 +76,24 @@ export default function TextAnswerInput(props) {
       .catch((err) => {
         console.log(err);
       });
+  };
+
+  const VideoPreview = ({ stream }: { stream: MediaStream | null }) => {
+    const videoRef = useRef<HTMLVideoElement>(null);
+
+    useEffect(() => {
+      if (videoRef.current && stream) {
+        videoRef.current.srcObject = stream;
+      }
+    }, [stream]);
+    if (!stream) {
+      return null;
+    }
+    return (
+      <video ref={videoRef} width={480} height={360} autoPlay controls>
+        <track kind="captions" />
+      </video>
+    );
   };
 
   return (
