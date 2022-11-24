@@ -121,21 +121,27 @@ export default function CreateAccount() {
     }
   };
 
-  // permissions = [canCreateSurvey, canEditSurvey, canDeleteSurvey, canExportData, viewOnly]
-  // permissions = [37, 38, 39, ?, ?] <= permission codes
-
+  // specific codes are used to represent specific permissions.
+  // see source code for "User permissions" field on django admin site for their translations
   const convertPermissions = () => {
+    // if a user is a superadmin they will automatically get these permissions
     if (canCreateSurvey) {
-      permissions.push(37);
+      permissions.push(33); // "can add question"
+      permissions.push(37); // "can add questionnaire"
     }
     if (canEditSurvey) {
-      permissions.push(38);
+      permissions.push(34); // "can change question"
+      permissions.push(38); // "can change questionnaire"
     }
     if (canDeleteSurvey) {
-      permissions.push(39);
+      permissions.push(31); // "can delete answer"
+      permissions.push(35); // "can delete question"
+      permissions.push(39); // "can delete questionnaire"
     }
     if (canViewSurvey) {
-      permissions.push(40);
+      permissions.push(32); // "can view answer"
+      permissions.push(36); // "can view question"
+      permissions.push(40); // "can view questionnaire"
     }
     console.log(permissionsVisual);
     console.log(permissions);
@@ -180,75 +186,72 @@ export default function CreateAccount() {
   };
 
   // check if superadmin
-  React.useEffect(async () => {
-    const res = await getUser(userID);
-    if (res.is_superuser) {
-      setIsSuperuser(true);
-    }
-  }, []);
+  // React.useEffect(async () => {
+  //   const res = await getUser(userID);
+  //   if (res.is_superuser) {
+  //     setIsSuperuser(true);
+  //   }
+  // }, []);
 
-  if (isSuperuser) {
-    return (
-      <>
-        <AdminNavbar />
-        <div style={{ textAlign: "center", marginTop: "50px" }}>
-          <h1>Add an administrator account</h1>
-          <Box
-            component="form"
-            sx={{
-              '& .MuiTextField-root': { m: 1, width: '25ch' },
-            }}
-            autoComplete="off"
-          >
-            <div>
-              <TextField id="email" label="email" type="email" error={!emailFilled} helperText={emailFilledError} onChange={handleEmail} />
-            </div>
-            <div>
-              <TextField id="password" label="password" type="password" error={!passwordValid} helperText={passwordFilledError} onChange={handlePassword} />
-            </div>
-            <div>
-              <TextField id="confirm-password" label="confirm password" error={!passwordsMatch} type="password" helperText={errorText} onChange={handleConfirmPassword} />
-            </div>
+  return (
+    <>
+      <AdminNavbar />
+      <div style={{ textAlign: "center", marginTop: "50px" }}>
+        <h1>Add an administrator account</h1>
+        <Box
+          component="form"
+          sx={{
+            '& .MuiTextField-root': { m: 1, width: '25ch' },
+          }}
+          autoComplete="off"
+        >
+          <div>
+            <TextField id="email" label="email" type="email" error={!emailFilled} helperText={emailFilledError} onChange={handleEmail} />
+          </div>
+          <div>
+            <TextField id="password" label="password" type="password" error={!passwordValid} helperText={passwordFilledError} onChange={handlePassword} />
+          </div>
+          <div>
+            <TextField id="confirm-password" label="confirm password" error={!passwordsMatch} type="password" helperText={errorText} onChange={handleConfirmPassword} />
+          </div>
 
-          </Box>
-          <div style={{ textAlign: "center" }}>
-            <FormControlLabel control={<Checkbox disabled defaultChecked disableRipple={true} onChange={handleForward} />} label="Send a copy of these credentials to you and this person&#39;s email" />
+        </Box>
+        <div style={{ textAlign: "center" }}>
+          <FormControlLabel control={<Checkbox disabled defaultChecked disableRipple={true} onChange={handleForward} />} label="Send a copy of these credentials to you and this person&#39;s email" />
+        </div>
+        <div style={{ textAlign: "center" }}>
+          <h1>Permissions</h1>
+          <div>
+            <FormControlLabel control={<Switch defaultChecked={false} disableRipple={true} onChange={handleSuper} />} label="Manage admins (superadmin)" />
           </div>
-          <div style={{ textAlign: "center" }}>
-            <h1>Permissions</h1>
-            <div>
-              <FormControlLabel control={<Switch defaultChecked={false} disableRipple={true} onChange={handleSuper} />} label="Manage admins (superadmin)" />
-            </div>
-            <div>
-              <FormControlLabel control={<Switch defaultChecked={false} disableRipple={true} onChange={handleView} />} label="View questionnaires" />
-            </div>
-            <div>
-              <FormControlLabel control={<Switch defaultChecked={false} disableRipple={true} onChange={handleCreate} />} label="Create questionnaires" />
-            </div>
-            <div>
-              <FormControlLabel control={<Switch defaultChecked={false} disableRipple={true} onChange={handleEdit} />} label="Edit questionnaires" />
-            </div>
-            <div>
-              <FormControlLabel control={<Switch defaultChecked={false} disableRipple={true} onChange={handleDelete} />} label="Delete questionnaires" />
-            </div>
-            <div>
-              <FormControlLabel control={<Switch disabled defaultChecked={false} disableRipple={true} onChange={handleExport} />} label="Export data" />
-            </div>
-            {/* <Button onClick={viewVariables}>console</Button> */}
+          <div>
+            <FormControlLabel control={<Switch defaultChecked={false} disableRipple={true} onChange={handleView} />} label="View questionnaires" />
           </div>
-          <div style={{ textAlign: "center", marginTop: "30px", marginBottom: "30px" }}>
+          <div>
+            <FormControlLabel control={<Switch defaultChecked={false} disableRipple={true} onChange={handleCreate} />} label="Create questionnaires" />
+          </div>
+          <div>
+            <FormControlLabel control={<Switch defaultChecked={false} disableRipple={true} onChange={handleEdit} />} label="Edit questionnaires" />
+          </div>
+          <div>
+            <FormControlLabel control={<Switch defaultChecked={false} disableRipple={true} onChange={handleDelete} />} label="Delete questionnaires" />
+          </div>
+          <div>
+            <FormControlLabel control={<Switch disabled defaultChecked={false} disableRipple={true} onChange={handleExport} />} label="Export data" />
+          </div>
+          {/* <Button onClick={viewVariables}>console</Button> */}
+        </div>
+        <div style={{ textAlign: "center", marginTop: "30px", marginBottom: "30px" }}>
+          <Link to="/manage-accounts" style={{ textDecoration: "none" }}>
+            <Button variant="contained" disabled={!checkAllFields} onClick={setAccount}>Save & Return</Button>
+          </Link>
+          <div style={{ paddingTop: "70px" }}>
             <Link to="/manage-accounts" style={{ textDecoration: "none" }}>
-              <Button variant="contained" disabled={!checkAllFields} onClick={setAccount}>Save & Return</Button>
+              <Button color="grey" variant="contained">Cancel</Button>
             </Link>
-            <div style={{ paddingTop: "70px" }}>
-              <Link to="/manage-accounts" style={{ textDecoration: "none" }}>
-                <Button color="grey" variant="contained">Cancel</Button>
-              </Link>
-            </div>
           </div>
         </div>
-      </>
-    );
-  }
-  return (<h1>You do not have access to this page.</h1>);
+      </div>
+    </>
+  );
 }
