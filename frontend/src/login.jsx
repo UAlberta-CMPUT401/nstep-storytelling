@@ -66,30 +66,6 @@ export default function Login() {
     }
   };
 
-  // function ModeToggle() {
-  //   const { mode, setMode } = useColorScheme();
-  //   const [mounted, setMounted] = React.useState(false);
-
-  //   // necessary for server-side rendering
-  //   // because mode is undefined on the server
-  //   React.useEffect(() => {
-  //     setMounted(true);
-  //   }, []);
-  //   if (!mounted) {
-  //     return null;
-  //   }
-
-  //   return (
-  //     <Button
-  //       variant="outlined"
-  //       onClick={() => {
-  //         setMode(mode === 'light' ? 'dark' : 'light');
-  //       }}
-  //     >
-  //       {mode === 'light' ? 'Turn dark' : 'Turn light'}
-  //     </Button>
-  //   );
-  // }
   function timeout(delay) {
     return new Promise((res) => setTimeout(res, delay));
   }
@@ -116,6 +92,10 @@ export default function Login() {
         console.log(e);
       });
   };
+
+  function renderButton() {
+    return <Button onClick={handleLogin} variant="contained" sx={{ mt: 1, width: "30%", alignSelf: "center" }}>Log in</Button>;
+  }
 
   return (
   // <CssVarsProvider>
@@ -189,8 +169,7 @@ export default function Login() {
           helperText={passwordHelper}
           onBlur={(e) => handlePasswordBlur()}
         />
-        <Button onClick={handleLogin} variant="contained" sx={{ mt: 1, width: "30%", alignSelf: "center" }}>Log in</Button>
-
+        {renderButton()}
         <Snackbar
           open={openSuccessAlert}
           autoHideDuration={1500}
