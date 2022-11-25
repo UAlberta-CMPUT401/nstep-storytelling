@@ -92,7 +92,7 @@ export default function EditAdmin() {
 
   const updateAccount = async () => {
     convertPermissions();
-    await patchUser(email, isSuperuser, permissions); // username === email
+    await patchUser(selectedUserId, email, isSuperuser, permissions); // username === email
   };
 
   return (
