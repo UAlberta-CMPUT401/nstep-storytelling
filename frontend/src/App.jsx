@@ -15,7 +15,6 @@ import ManageAccounts from "./manageAccounts";
 import EditAdmin from "./editAdmin";
 import DeleteAccount from "./deleteAccount";
 import EditForm from "./EditForm";
-import WebCamTest from "./Webcam";
 import ViewAnswer from "./ViewAnswer";
 
 export default function App() {
@@ -26,7 +25,6 @@ export default function App() {
       <Route path="/home" element={<Dashboard />} />
       <Route path="/create" element={<CreateQuestionnaire />} />
       <Route path="/submitted" element={<Submitted />} />
-      <Route path="/Webcamtest" element={<WebCamTest />} />
       <Route path="/account" element={<AccountSettings />} />
       <Route path="/create-account" element={<CreateAccount />} />
       <Route path="/manage-accounts" element={<ManageAccounts />} />

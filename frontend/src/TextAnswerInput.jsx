@@ -78,7 +78,7 @@ export default function TextAnswerInput(props) {
       });
   };
 
-  const VideoPreview = ({ stream }: { stream: MediaStream | null }) => {
+  const VideoPreview = (stream = { stream: MediaStream || null }) => {
     const videoRef = useRef<HTMLVideoElement>(null);
 
     useEffect(() => {
@@ -90,7 +90,7 @@ export default function TextAnswerInput(props) {
       return null;
     }
     return (
-      <video ref={videoRef} width={480} height={360} autoPlay controls>
+      <video ref={videoRef} width={320} height={180} autoPlay controls>
         <track kind="captions" />
       </video>
     );
