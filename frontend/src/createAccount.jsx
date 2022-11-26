@@ -180,19 +180,6 @@ export default function CreateAccount() {
     setCanViewSurvey(!canViewSurvey);
   };
 
-  const viewVariables = () => {
-    convertPermissions();
-    console.log("wantForward = " + wantForward);
-  };
-
-  // check if superadmin
-  // React.useEffect(async () => {
-  //   const res = await getUser(userID);
-  //   if (res.is_superuser) {
-  //     setIsSuperuser(true);
-  //   }
-  // }, []);
-
   return (
     <>
       <AdminNavbar />
