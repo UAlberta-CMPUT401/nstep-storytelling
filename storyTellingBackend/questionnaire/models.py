@@ -9,6 +9,9 @@ class Question(models.Model):
     content = models.CharField(max_length=1000,null=True)
     allow_recording = models.BooleanField(default=False)
     history = HistoricalRecords()
+    time = models.DateTimeField(default=timezone.now)
+    class Meta:
+        ordering = ["time"]
 
 class Answer(models.Model):
     class ContentType(models.TextChoices):
@@ -38,4 +41,5 @@ class AnswerList(models.Model):
     questionnaire = models.ForeignKey(Questionnaire, on_delete=models.CASCADE,null=True)
     time = models.DateTimeField(default=timezone.now)
     history = HistoricalRecords()
-
+    class Meta:
+        ordering = ["-time"]
