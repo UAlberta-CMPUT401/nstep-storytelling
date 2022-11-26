@@ -39,7 +39,6 @@ export default function Dashboard() {
     <div>
       <AdminNavbar />
       {console.log("localStorage result: " + localStorage.getItem("userID"))}
-      {renderTheThing()}
       <div className="dashboard">
         <Tabs value={selectedTab} onChange={handleChange} centered>
           <Tab label="Forms" />

@@ -96,34 +96,47 @@ export default function EditForm() {
   return (
     <div className="admin-create">
       <AdminNavbar />
-      <div className="admin-create-body">
-        <div style={{ textAlign: "center" }}>
-          <TextField id="filled-basic" label="Form title" variant="filled" value={formTitle} onChange={handleTitle} />
-        </div>
-        <div>
-          {questionList.map((question) => (
-            <TextInput
-              key={question.id}
-              id={question.id}
-              value={question.content}
-              onChange={handleChange}
-              onClick={removeQuestion}
-              isChecked={question.allow_recording}
-              handleToggle={handleToggle}
-            />
-          ))}
-        </div>
-        {/* {isToggled && <ElementSelector />} */}
-        <div className="add-element">
-          <Button
-            variant="text"
-            onClick={addQuestion}
-          >
-            + Add form element
-          </Button>
-        </div>
-        <div style={{ textAlign: "center" }} className="save-and-return">
-          <Button variant="contained" onClick={handleSave}>Save & Return</Button>
+      <div className="admin-create-body-wrapper">
+        <div className="admin-create-body">
+          <div style={{ textAlign: "center" }}>
+            <TextField id="filled-basic" label="Form title" variant="filled" value={formTitle} onChange={handleTitle} />
+          </div>
+          <div>
+            {questionList.map((question) => (
+              <TextInput
+                key={question.id}
+                id={question.id}
+                value={question.content}
+                onChange={handleChange}
+                onClick={removeQuestion}
+                isChecked={question.allow_recording}
+                handleToggle={handleToggle}
+              />
+            ))}
+          </div>
+          {/* {isToggled && <ElementSelector />} */}
+          <div className="add-element">
+            <Button
+              variant="text"
+              onClick={addQuestion}
+            >
+              + Add form element
+            </Button>
+          </div>
+          <div style={{ textAlign: "center" }} className="save-and-return">
+            <Button
+              style={{
+                borderRadius: 25,
+                backgroundColor: '#FDCA00',
+                color: '#414143',
+                fontWeight: 'bold',
+              }}
+              variant="contained"
+              onClick={handleSave}
+            >
+              Save & Return
+            </Button>
+          </div>
         </div>
       </div>
     </div>

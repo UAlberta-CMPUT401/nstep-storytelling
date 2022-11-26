@@ -107,23 +107,36 @@ export default function AnswerQuestionnaire() {
   return (
     <div className="admin-create">
       <Navbar />
-      <div className="admin-create-body">
-        <div>
-          {questionList.map((question) => (
-            <TextAnswerInput
-              key={question.id}
-              id={question.id}
-              question={question.content}
-              onChange={handleChange}
-              allowRecording={question.allow_recording}
-              saveAudio={saveAudio}
-              saveVideo={saveVideo}
-              clearRecordings={clearRecordings}
-            />
-          ))}
-        </div>
-        <div style={{ textAlign: "center" }} className="save-and-return">
-          <Button variant="contained" onClick={handleSubmit}>Submit</Button>
+      <div className="admin-create-body-wrapper">
+        <div className="admin-create-body">
+          <div>
+            {questionList.map((question) => (
+              <TextAnswerInput
+                key={question.id}
+                id={question.id}
+                question={question.content}
+                onChange={handleChange}
+                allowRecording={question.allow_recording}
+                saveAudio={saveAudio}
+                saveVideo={saveVideo}
+                clearRecordings={clearRecordings}
+              />
+            ))}
+          </div>
+          <div style={{ textAlign: "center" }} className="save-and-return">
+            <Button
+              style={{
+                borderRadius: 25,
+                backgroundColor: '#FDCA00',
+                color: '#414143',
+                fontWeight: 'bold',
+              }}
+              variant="contained"
+              onClick={handleSubmit}
+            >
+              Submit
+            </Button>
+          </div>
         </div>
       </div>
     </div>
