@@ -42,7 +42,7 @@ class Questions(APIView):
     List of all the questions available
     '''
 
-    permission_classes = [DjangoModelPermissionsOrAnonReadOnly]
+    permission_classes = [IsAuthenticatedOrReadOnly]
     serializer_class = QuestionSerializer
 
     def get(self, request, pk, format=None):
