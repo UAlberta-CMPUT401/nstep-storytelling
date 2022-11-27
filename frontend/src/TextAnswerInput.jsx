@@ -1,3 +1,4 @@
+/* eslint-disable no-sequences */
 /* eslint-disable react/void-dom-elements-no-children */
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from "react-router-dom";
@@ -8,6 +9,7 @@ import IconButton from '@mui/material/IconButton';
 import VideocamIcon from '@mui/icons-material/Videocam';
 import MicIcon from '@mui/icons-material/Mic';
 import './styles/TextAnswerInput.css';
+import useTimeout from './TimeLimit';
 
 export default function TextAnswerInput(props) {
   const [audioSelected, setAudioSelected] = useState(false);
@@ -147,7 +149,12 @@ export default function TextAnswerInput(props) {
                 <track kind="captions" />
               </audio>
               <div>
-                <button onClick={startRecording}>Start Recording</button>
+                <button onClick={startRecording,
+                useTimeout(() => stopRecording, 1200000)}
+                >
+                  Start Recording
+
+                </button>
                 <button onClick={stopRecording}>Stop Recording</button>
               </div>
             </div>
@@ -172,7 +179,12 @@ export default function TextAnswerInput(props) {
                 <track kind="captions" />
               </video>
               <div>
-                <button onClick={startRecording}>Start Recording</button>
+                <button onClick={startRecording,
+                useTimeout(() => stopRecording, 600000)}
+                >
+                  Start Recording
+
+                </button>
                 <button onClick={stopRecording}>Stop Recording</button>
               </div>
             </div>
