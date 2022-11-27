@@ -158,10 +158,25 @@ const getAllFeedback = async () => {
   return feedback.data;
 };
 
+const patchUser = async (selectedUserID, email, is_superuser, user_permissions) => {
+  const token = localStorage.getItem('jwtToken');
+  const res = await axios.patch(`${api}/user/${selectedUserID}/`, {
+    email,
+    is_superuser,
+    user_permissions,
+  }, {
+    headers: {
+      Authorization: `Token ${token}`,
+      // Cookie: `csrftoken=${token}`, <-- in case of a 403
+    },
+  });
+  return res.data;
+};
+
 export {
   createQuestion, deleteQuestion, createQuestionnaire,
   patchQuestionnaire, patchQuestion, getQuestionnaires,
   deleteQuestionnaire, getQuestionnaire, getQuestion,
   createUser, createFeedback, getUsers, getUser, deleteUser,
-  getFeedback, getAllFeedback, deleteFeedback,
+  getFeedback, getAllFeedback, deleteFeedback, patchUser,
 };
