@@ -88,7 +88,7 @@ export default function ViewAnswer() {
 
   const navigate = useNavigate();
   const handleSave = (e) => {
-    navigate('/home');
+    navigate('/home/feedback');
   };
 
   const deleteHandle = () => {
@@ -102,7 +102,7 @@ export default function ViewAnswer() {
   const handleAgree = async () => {
     setDeleteOpen(false);
     const res = await deleteFeedback(id);
-    navigate('/home');
+    navigate('/home/feedback');
   };
 
   return (
@@ -133,7 +133,17 @@ export default function ViewAnswer() {
             ))}
           </div>
           <div style={{ textAlign: "center" }} className="save-and-return">
-            <Button variant="contained" onClick={handleSave}>Go Back</Button>
+            <Button
+              style={{
+                backgroundColor: '#FDCA00',
+                color: '#414143',
+                fontWeight: 'bold',
+              }}
+              variant="contained"
+              onClick={handleSave}
+            >
+              Go Back
+            </Button>
           </div>
           <div style={{ textAlign: "center", margin: "24px" }}>
             <Button onClick={deleteHandle} variant="outlined" color="error" startIcon={<DeleteIcon />}>

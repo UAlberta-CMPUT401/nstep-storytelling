@@ -3,6 +3,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { ReactMediaRecorder, useReactMediaRecorder } from "react-media-recorder";
 import TextField from "@mui/material/TextField";
 import Button from '@mui/material/Button';
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
 import Navbar from "./components/Navbar";
 import TextAnswerInput from "./TextAnswerInput";
 import {
@@ -13,6 +15,8 @@ export default function AnswerQuestionnaire() {
   const { id } = useParams();
   const [questionList, setQuestionList] = React.useState([]);
   const [formTitle, setFormTitle] = React.useState("");
+  const [openSuccessAlert, setOpenSuccessAlert] = React.useState(false);
+  const [openFailureAlert, setOpenFailureAlert] = React.useState(false);
 
   React.useEffect(async () => {
     const res = await getQuestionnaire(id);
@@ -20,6 +24,26 @@ export default function AnswerQuestionnaire() {
     setQuestionList(res.questions);
     console.log(questionList);
   }, []);
+
+  function timeout(delay) {
+    return new Promise((res) => setTimeout(res, delay));
+  }
+
+  const handleClick = (success) => {
+    if (success) {
+      setOpenSuccessAlert(true);
+    } else {
+      setOpenFailureAlert(true);
+    }
+  };
+
+  const handleCloseAlert = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpenSuccessAlert(false);
+    setOpenFailureAlert(false);
+  };
 
   const handleChange = (e) => {
     const newQuestionList = [...questionList];
@@ -87,6 +111,7 @@ export default function AnswerQuestionnaire() {
       }
     });
     if (empty) {
+      handleClick(false);
       return;
     }
     const feedback = {};
@@ -101,7 +126,9 @@ export default function AnswerQuestionnaire() {
     console.log(feedback);
     const res = await createFeedback(id, feedback);
     console.log(res);
-    navigate('/submitted');
+    handleClick(true);
+    await timeout(1000);
+    navigate('/');
   };
 
   return (
@@ -139,6 +166,33 @@ export default function AnswerQuestionnaire() {
           </div>
         </div>
       </div>
+      <Snackbar
+        open={openSuccessAlert}
+        autoHideDuration={1500}
+        onClose={handleCloseAlert}
+      >
+        <Alert
+          onClose={handleCloseAlert}
+          severity="success"
+          sx={{ width: "100%" }}
+        >
+          Submitted!
+        </Alert>
+      </Snackbar>
+
+      <Snackbar
+        open={openFailureAlert}
+        autoHideDuration={1500}
+        onClose={handleCloseAlert}
+      >
+        <Alert
+          onClose={handleCloseAlert}
+          severity="error"
+          sx={{ width: "100%" }}
+        >
+          Incomplete Response
+        </Alert>
+      </Snackbar>
     </div>
   );
 }

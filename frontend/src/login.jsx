@@ -94,7 +94,22 @@ export default function Login() {
   };
 
   function renderButton() {
-    return <Button onClick={handleLogin} variant="contained" sx={{ mt: 1, width: "30%", alignSelf: "center" }}>Log in</Button>;
+    return (
+      <Button
+        style={{
+          borderRadius: 25,
+          backgroundColor: '#FDCA00',
+          color: '#414143',
+          fontWeight: 'bold',
+          width: '100px',
+          alignSelf: 'center',
+        }}
+        variant="contained"
+        onClick={handleLogin}
+      >
+        Login
+      </Button>
+    );
   }
 
   return (
@@ -104,14 +119,13 @@ export default function Login() {
       {/* <ModeToggle /> */}
       <Box
         sx={{
-          width: 300,
           mx: 'auto', // margin left & right
-          my: 4, // margin top & botom
           py: 3, // padding top & bottom
           px: 2, // padding left & right
           display: 'flex',
           justifyContent: 'center',
-          minHeight: '600px',
+          minHeight: '800px',
+          backgroundColor: '#FAF9F6',
           flexDirection: 'column',
           gap: 2,
           borderRadius: 'sm',
@@ -135,6 +149,10 @@ export default function Login() {
           fullWidth
           label="Username"
           variant="outlined"
+          style={{
+            width: 300,
+            alignSelf: 'center',
+          }}
           onChange={(e) => {
             setUsername(e.target.value);
           }}
@@ -156,6 +174,10 @@ export default function Login() {
           type="password"
           variant="outlined"
           margin="normal"
+          style={{
+            width: 300,
+            alignSelf: 'center',
+          }}
           onChange={(e) => {
             setPassword(e.target.value);
           }}
