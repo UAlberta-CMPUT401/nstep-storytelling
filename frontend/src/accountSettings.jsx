@@ -42,22 +42,26 @@ export default function AccountSettings() {
 
   React.useEffect(async () => {
     const res = await getUser(userID);
+    setEmail(res.email);
     if (res.is_superuser) {
       setIsSuperuser(true);
-    }
-    setEmail(res.email);
-
-    for (let i = 0; i < res.user_permissions.length; i++) {
-      console.log(res.user_permissions[i]);
-      if (res.user_permissions[i] === 37) {
-        setHasCreatePermission(true);
-      } if (res.user_permissions[i] === 38) {
-        setHasEditPermission(true);
-      } if (res.user_permissions[i] === 39) {
-        setHasDeletePermission(true);
-      } if (res.user_permissions[i] === 40) {
-        setHasViewPermission(true);
-      } // TODO: add export permission
+      setHasCreatePermission(true);
+      setHasEditPermission(true);
+      setHasDeletePermission(true);
+      setHasViewPermission(true);
+    } else {
+      for (let i = 0; i < res.user_permissions.length; i++) {
+        console.log(res.user_permissions[i]);
+        if (res.user_permissions[i] === 37) {
+          setHasCreatePermission(true);
+        } if (res.user_permissions[i] === 38) {
+          setHasEditPermission(true);
+        } if (res.user_permissions[i] === 39) {
+          setHasDeletePermission(true);
+        } if (res.user_permissions[i] === 40) {
+          setHasViewPermission(true);
+        } // later on: add export permission
+      }
     }
   }, []);
 
