@@ -129,8 +129,8 @@ export default function TextAnswerInput(props) {
                 <track kind="captions" />
               </audio>
               <div>
-                <button onClick={startRecording}>Start Recording</button>
-                <button onClick={stopRecording}>Stop Recording</button>
+                <Button variant="contained" onClick={startRecording}>Start Recording</Button>
+                <Button variant="text" onClick={stopRecording}>Stop Recording</Button>
               </div>
             </div>
           )}
@@ -153,8 +153,8 @@ export default function TextAnswerInput(props) {
                 <track kind="captions" />
               </video>
               <div>
-                <button onClick={startRecording}>Start Recording</button>
-                <button onClick={stopRecording}>Stop Recording</button>
+                <Button variant="contained" onClick={startRecording}>Start Recording</Button>
+                <Button variant="text" onClick={stopRecording}>Stop Recording</Button>
               </div>
             </div>
           )}

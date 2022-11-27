@@ -17,6 +17,7 @@ import DeleteAccount from "./deleteAccount";
 import EditForm from "./EditForm";
 import WebCamTest from "./Webcam";
 import ViewAnswer from "./ViewAnswer";
+import DashboardFeedback from "./DashboardFeedback";
 
 export default function App() {
   return (
@@ -24,9 +25,8 @@ export default function App() {
       <Route path="/" element={<Welcome />} />
       <Route path="/login" element={<Login />} />
       <Route path="/home" element={<Dashboard />} />
+      <Route path="/home/feedback" element={<DashboardFeedback />} />
       <Route path="/create" element={<CreateQuestionnaire />} />
-      <Route path="/submitted" element={<Submitted />} />
-      <Route path="/Webcamtest" element={<WebCamTest />} />
       <Route path="/account" element={<AccountSettings />} />
       <Route path="/create-account" element={<CreateAccount />} />
       <Route path="/manage-accounts" element={<ManageAccounts />} />

@@ -1,0 +1,20 @@
+.welcome-footer {
+    background-color: #414143;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    min-height: 75px;
+}
+
+.admin-login-link {
+    text-decoration: none;
+    color: white;
+}
+
+.legal {
+    text-align: center;
+    padding: 8px;
+    font-size: 14px;
+    background-color: #1B1B1B;
+    color: #414143;
+}

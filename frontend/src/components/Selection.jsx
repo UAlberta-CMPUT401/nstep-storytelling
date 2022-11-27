@@ -30,7 +30,7 @@ export default function Selection() {
 
   const BootstrapInput = styled(InputBase)(({ theme }) => ({
     'label + &': {
-      marginTop: theme.spacing(0.8),
+      marginTop: theme.spacing(0.7),
     },
     '& .MuiInputBase-input': {
       borderRadius: 4,
