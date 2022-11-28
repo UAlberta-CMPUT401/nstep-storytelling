@@ -243,12 +243,12 @@ export default function CreateAccount() {
           <div>
             <TextField id="email" label="email" type="email" error={!emailFilled} helperText={emailFilledError} onChange={handleEmail} />
           </div>
-          {/* <div>
+          <div>
             <TextField id="password" label="password" type="password" error={!passwordValid} helperText={passwordFilledError} onChange={handlePassword} />
           </div>
           <div>
             <TextField id="confirm-password" label="confirm password" error={!passwordsMatch} type="password" helperText={errorText} onChange={handleConfirmPassword} />
-          </div> */}
+          </div>
 
         </Box>
         <div style={{ textAlign: "center" }}>
