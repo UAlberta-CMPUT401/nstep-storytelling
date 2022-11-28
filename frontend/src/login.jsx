@@ -176,9 +176,6 @@ export default function Login() {
   // <CssVarsProvider>
     <main>
       <Navbar />
-      {/* <ModeToggle /> */}
-      {console.log(localStorage.getItem("jwtToken"))};
-      {console.log(localStorage.getItem("userID"))};
       {checkIfLoggedIn()}
       <Box
         sx={{
