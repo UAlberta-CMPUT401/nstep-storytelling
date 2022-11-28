@@ -162,7 +162,7 @@ export default function Login() {
                 Yes
               </Button>
               <Button onClick={handleGoBack}>
-                No, go back
+                No, continue
               </Button>
             </DialogActions>
           </Dialog>
