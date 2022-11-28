@@ -1,4 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable max-classes-per-file */
+/* eslint-disable prefer-destructuring */
 import React from 'react';
 import TextField from '@mui/material/TextField';
 import './styles/Feedback.css';
@@ -26,10 +28,12 @@ class OneFeedback extends React.Component {
     super(props);
     console.log("props");
     console.log(props);
+    const time = this.props.data.time;
+    const newTime = time.slice(0, 19);
     this.state = {
       id: this.props.data.id,
       title: this.props.data.questionnaire.title,
-      time: this.props.data.time,
+      time: newTime,
     };
     // this.getInfo();
   }
@@ -47,12 +51,12 @@ class OneFeedback extends React.Component {
 
   render() {
     return (
-      <Link href={`/feedback/${this.state.id}/`}>
+      <Link href={`/feedback/${this.state.id}`}>
         <li>
-          {this.state.id}
+          {/* {this.state.id}
           {' '}
           -
-          {' '}
+          {' '} */}
           {this.state.title}
           {' '}
           -
@@ -80,7 +84,7 @@ class FeedbackList extends React.Component {
       console.log("myList");
       console.log(myList);
       return myList.length === 0
-        ? "NoFeedbacks"
+        ? ""
         : (myList?.map((item) => (
           <ListItem key={item.id}>
             <OneFeedback data={item} />
@@ -116,7 +120,7 @@ export default class Feedback extends React.Component {
       data: [],
       current: [],
       keys: [],
-      title: "1",
+      title: "",
     };
     this.handleForm = this.handleForm.bind(this);
     this.search = this.search.bind(this);
@@ -124,7 +128,7 @@ export default class Feedback extends React.Component {
 
   async componentDidMount() {
     const response = await getAllFeedback();
-    const myData = response.results;
+    const myData = response;
     this.setState({ data: myData });
     this.setState({ current: myData });
     const myKeys = [];
@@ -144,7 +148,7 @@ export default class Feedback extends React.Component {
     this.setState({
       title: e.target.value,
     });
-    this.search(this.state.title);
+    this.search(e.target.value);
   }
 
   search(keyword) {
@@ -168,6 +172,7 @@ export default class Feedback extends React.Component {
           my: 4, // margin top & botom
           py: 3, // padding top & bottom
           px: 2, // padding left & right
+          minWidth: 375,
           display: 'flex',
           justifyContent: 'center',
           flexDirection: 'column',
@@ -175,34 +180,20 @@ export default class Feedback extends React.Component {
           borderRadius: 'sm',
           boxShadow: 'md',
           alignSelf: 'center',
+          alignItems: 'center',
         }}
         variant="outlined"
         component="form"
       >
         <Grid className="feedback">
-          <Autocomplete
-            freeSolo
-            id="free-solo-2-demo"
-            disableClearable
-            options={this.state.keys}
-            getOptionLabel={(option) => option.title || ""}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                label="title"
-                InputProps={{
-                  ...params.InputProps,
-                  type: 'search',
-                }}
-                name="title"
-                value={title}
-                onChange={this.handleForm}
-              />
-            )}
+          <TextField
+            label="Search"
+            InputProps={{
+              type: 'search',
+            }}
+            name="title"
+            onChange={this.handleForm}
           />
-          <IconButton type="button" sx={{ p: '10px', display: "inline-block" }} aria-label="search">
-            <SearchIcon />
-          </IconButton>
         </Grid>
         <FeedbackList feedbacklist={this.state.current} />
       </Paper>

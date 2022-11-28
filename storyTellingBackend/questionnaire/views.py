@@ -13,7 +13,7 @@ from rest_framework.permissions import *
 class Questionnaire_list(generics.ListCreateAPIView):
     queryset = Questionnaire.objects.all()
     serializer_class = AddingQuestionnaireSerializer
-    permission_classes = [AllowAny]
+    permission_classes = [DjangoModelPermissionsOrAnonReadOnly]
 
     def list(self, request):
 
@@ -35,14 +35,14 @@ class Questionnaire_detail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Questionnaire.objects.all()
     lookup_field = 'pk'
     serializer_class = QuestionnaireSerializer
-    permission_classes = [AllowAny]
+    permission_classes = [DjangoModelPermissionsOrAnonReadOnly]
 
 class Questions(APIView):
     '''
     List of all the questions available
     '''
 
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticatedOrReadOnly]
     serializer_class = QuestionSerializer
 
     def get(self, request, pk, format=None):
@@ -84,7 +84,7 @@ class QuestionDetail(generics.RetrieveUpdateDestroyAPIView):
     lookup_field = 'id'
     lookup_url_kwarg = "pk2"
     serializer_class = QuestionSerializer
-    permission_classes = [AllowAny]
+    permission_classes = [DjangoModelPermissionsOrAnonReadOnly]
 
 
 class Feedbacks(generics.GenericAPIView):
@@ -143,14 +143,8 @@ class Feedbacks(generics.GenericAPIView):
             return result,True
         return serializer,False
 
-    def post_voice(self, data):       
-        pass
-
-    def post_video(self, data):       
-        pass
-
 class OneAnswerlist(generics.RetrieveUpdateDestroyAPIView):
-    permission_classes = [AllowAny]
+    permission_classes = [DjangoModelPermissionsOrAnonReadOnly]
     queryset = AnswerList.objects.all()
     lookup_field = 'id'
     lookup_url_kwarg = "pk"
@@ -159,4 +153,4 @@ class OneAnswerlist(generics.RetrieveUpdateDestroyAPIView):
 class AllAnswerlist(generics.ListCreateAPIView):
     queryset = AnswerList.objects.all()
     serializer_class = AnswerListSerializer
-    permission_classes = [AllowAny]
+    permission_classes = [DjangoModelPermissionsOrAnonReadOnly]

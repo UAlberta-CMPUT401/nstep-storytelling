@@ -1,8 +1,20 @@
+/* eslint-disable brace-style */
+/* eslint-disable keyword-spacing */
+/* eslint-disable no-else-return */
+/* eslint-disable no-lone-blocks */
+/* eslint-disable react/jsx-boolean-value */
+/* eslint-disable react/jsx-no-bind */
+/* eslint-disable react/jsx-one-expression-per-line */
 import * as React from 'react';
 // import { CssVarsProvider, useColorScheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
@@ -29,6 +41,9 @@ export default function Login() {
 
   const [openSuccessAlert, setOpenSuccessAlert] = useState(false);
   const [openFailureAlert, setOpenFailureAlert] = useState(false);
+
+  const [dialogOpen, setDialogOpen] = useState(true);
+  const [logoutSuccess, setLogoutSuccess] = useState(false);
 
   const handleClick = (success) => {
     if (success) {
@@ -66,30 +81,6 @@ export default function Login() {
     }
   };
 
-  // function ModeToggle() {
-  //   const { mode, setMode } = useColorScheme();
-  //   const [mounted, setMounted] = React.useState(false);
-
-  //   // necessary for server-side rendering
-  //   // because mode is undefined on the server
-  //   React.useEffect(() => {
-  //     setMounted(true);
-  //   }, []);
-  //   if (!mounted) {
-  //     return null;
-  //   }
-
-  //   return (
-  //     <Button
-  //       variant="outlined"
-  //       onClick={() => {
-  //         setMode(mode === 'light' ? 'dark' : 'light');
-  //       }}
-  //     >
-  //       {mode === 'light' ? 'Turn dark' : 'Turn light'}
-  //     </Button>
-  //   );
-  // }
   function timeout(delay) {
     return new Promise((res) => setTimeout(res, delay));
   }
@@ -117,21 +108,87 @@ export default function Login() {
       });
   };
 
+  function renderButton() {
+    return (
+      <Button
+        style={{
+          borderRadius: 25,
+          backgroundColor: '#FDCA00',
+          color: '#414143',
+          fontWeight: 'bold',
+          width: '100px',
+          alignSelf: 'center',
+        }}
+        variant="contained"
+        onClick={handleLogin}
+      >
+        Login
+      </Button>
+    );
+  }
+
+  function handleGoBack() {
+    history("/home");
+  }
+
+  function handleLogout() {
+    localStorage.setItem("jwtToken", "null");
+    localStorage.setItem("userID", "null");
+    setDialogOpen(false);
+    setLogoutSuccess(true);
+  }
+
+  function checkIfLoggedIn() {
+    { console.log(localStorage.getItem('jwtToken')); }
+    if (localStorage.getItem("jwtToken") !== "null" && openSuccessAlert === false && openFailureAlert === false) {
+      console.log("logged in");
+      return (
+        <div>
+          <Dialog
+            open={dialogOpen}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
+          >
+            <DialogTitle id="alert-dialog-title">
+              Already logged in
+            </DialogTitle>
+            <DialogContent>
+              <DialogContentText id="alert-dialog-description">
+                Do you want to log out?
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleLogout}>
+                Yes
+              </Button>
+              <Button onClick={handleGoBack}>
+                No, go back
+              </Button>
+            </DialogActions>
+          </Dialog>
+        </div>
+      );
+    }
+    return null;
+  }
+
   return (
   // <CssVarsProvider>
     <main>
       <Navbar />
       {/* <ModeToggle /> */}
+      {console.log(localStorage.getItem("jwtToken"))};
+      {console.log(localStorage.getItem("userID"))};
+      {checkIfLoggedIn()}
       <Box
         sx={{
-          width: 300,
           mx: 'auto', // margin left & right
-          my: 4, // margin top & botom
           py: 3, // padding top & bottom
           px: 2, // padding left & right
           display: 'flex',
           justifyContent: 'center',
-          minHeight: '600px',
+          minHeight: '800px',
+          backgroundColor: '#FAF9F6',
           flexDirection: 'column',
           gap: 2,
           borderRadius: 'sm',
@@ -155,6 +212,10 @@ export default function Login() {
           fullWidth
           label="Username"
           variant="outlined"
+          style={{
+            width: 300,
+            alignSelf: 'center',
+          }}
           onChange={(e) => {
             setUsername(e.target.value);
           }}
@@ -176,6 +237,10 @@ export default function Login() {
           type="password"
           variant="outlined"
           margin="normal"
+          style={{
+            width: 300,
+            alignSelf: 'center',
+          }}
           onChange={(e) => {
             setPassword(e.target.value);
           }}
@@ -189,8 +254,7 @@ export default function Login() {
           helperText={passwordHelper}
           onBlur={(e) => handlePasswordBlur()}
         />
-        <Button onClick={handleLogin} variant="contained" sx={{ mt: 1, width: "30%", alignSelf: "center" }}>Log in</Button>
-
+        {renderButton()}
         <Snackbar
           open={openSuccessAlert}
           autoHideDuration={1500}

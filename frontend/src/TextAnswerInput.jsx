@@ -11,9 +11,21 @@ import './styles/TextAnswerInput.css';
 
 export default function TextAnswerInput(props) {
   const [audioSelected, setAudioSelected] = useState(false);
+  const [videoSelected, setVideoSelected] = useState(false);
 
   const clickMic = (e) => {
+    if (videoSelected) {
+      setVideoSelected(false);
+    }
+    props.clearRecordings(props.id);
     setAudioSelected(!audioSelected);
+  };
+  const clickVideocam = (e) => {
+    if (audioSelected) {
+      setAudioSelected(false);
+    }
+    props.clearRecordings(props.id);
+    setVideoSelected(!videoSelected);
   };
 
   function getBase64(file) {
@@ -52,6 +64,20 @@ export default function TextAnswerInput(props) {
       });
   };
 
+  const stopVideo = (blobUrl, blob) => {
+    console.log(blobUrl);
+    console.log(blob);
+    const videoFile = new File([blob], 'video.mp4', { type: 'video/mp4' });
+    console.log(videoFile);
+    getBase64(videoFile)
+      .then((result) => {
+        props.saveVideo(props.id, result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <div className="text-answer-input">
       <div className="user-question-field">
@@ -82,6 +108,9 @@ export default function TextAnswerInput(props) {
         <IconButton aria-label="audio" onClick={clickMic} value={props.id}>
           <MicIcon />
         </IconButton>
+        <IconButton aria-label="audio" onClick={clickVideocam} value={props.id}>
+          <VideocamIcon />
+        </IconButton>
       </div>
       )}
 
@@ -100,8 +129,32 @@ export default function TextAnswerInput(props) {
                 <track kind="captions" />
               </audio>
               <div>
-                <button onClick={startRecording}>Start Recording</button>
-                <button onClick={stopRecording}>Stop Recording</button>
+                <Button variant="contained" onClick={startRecording}>Start Recording</Button>
+                <Button variant="text" onClick={stopRecording}>Stop Recording</Button>
+              </div>
+            </div>
+          )}
+        />
+      </div>
+      )}
+
+      {videoSelected
+      && (
+      <div>
+        <ReactMediaRecorder
+          video
+          onStop={stopVideo}
+          render={({
+            status, startRecording, stopRecording, mediaBlobUrl,
+          }) => (
+            <div>
+              <p>{status}</p>
+              <video src={mediaBlobUrl} width={320} height={180} controls autoPlay>
+                <track kind="captions" />
+              </video>
+              <div>
+                <Button variant="contained" onClick={startRecording}>Start Recording</Button>
+                <Button variant="text" onClick={stopRecording}>Stop Recording</Button>
               </div>
             </div>
           )}

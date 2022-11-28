@@ -1,6 +1,8 @@
+/* eslint-disable prefer-template */
 /* eslint-disable react/jsx-boolean-value */
 /* eslint-disable no-lonely-if */
 /* eslint-disable max-len */
+/* eslint-disable react/jsx-no-bind */
 // https://www.geeksforgeeks.org/how-to-validate-password-is-strong-or-not-in-reactjs/
 // https://www.geeksforgeeks.org/how-to-validate-an-email-in-reactjs/
 import React from "react";
@@ -17,7 +19,7 @@ import ElementSelector from "./components/ElementSelector";
 import AdminNavbar from "./components/AdminNavbar";
 import TextAnswerInput from "./TextAnswerInput";
 import "./styles/App.css";
-import { createUser } from "./service";
+import { getUser, createUser } from "./service";
 
 export default function CreateAccount() {
   const [email, setEmail] = React.useState("");
@@ -36,8 +38,13 @@ export default function CreateAccount() {
   const [canDeleteSurvey, setCanDeleteSurvey] = React.useState(false);
   const [canCreateSurvey, setCanCreateSurvey] = React.useState(false);
   const [canExportData, setCanExportData] = React.useState(false);
-  const [viewOnly, setViewOnly] = React.useState(false);
+  const [canViewSurvey, setCanViewSurvey] = React.useState(false);
+  const [wantForward, setWantForward] = React.useState(true);
   const checkAllFields = emailValid && passwordValid && passwordsMatch;
+  const permissions = [];
+  const permissionsVisual = [canCreateSurvey, canEditSurvey, canDeleteSurvey, canExportData, canViewSurvey];
+  const userID = localStorage.getItem("userID");
+  const [isSuperuser, setIsSuperuser] = React.useState(false);
 
   const validateEmail = (value) => {
     if (validator.isEmail(value)) {
@@ -61,10 +68,6 @@ export default function CreateAccount() {
         setEmailFilledError("Please enter a valid email address");
       }
     }
-  };
-
-  const setAccount = async () => {
-    await createUser(email, password, email); // username === email
   };
 
   const validatePassword = (value) => {
@@ -119,8 +122,110 @@ export default function CreateAccount() {
     }
   };
 
+  // specific codes are used to represent specific permissions.
+  // see source code for "User permissions" field on django admin site for their translations
+  const convertPermissions = () => {
+    // if a user is a superadmin they will automatically get these permissions
+    if (canCreateSurvey) {
+      permissions.push(33); // "can add question"
+      permissions.push(37); // "can add questionnaire"
+    }
+    if (canEditSurvey) {
+      permissions.push(34); // "can change question"
+      permissions.push(38); // "can change questionnaire"
+    }
+    if (canDeleteSurvey) {
+      permissions.push(31); // "can delete answer"
+      permissions.push(35); // "can delete question"
+      permissions.push(39); // "can delete questionnaire"
+    }
+    if (canViewSurvey) {
+      permissions.push(32); // "can view answer"
+      permissions.push(36); // "can view question"
+      permissions.push(40); // "can view questionnaire"
+    }
+    console.log(permissionsVisual);
+    console.log(permissions);
+  };
+
+  const setAccount = async () => {
+    convertPermissions();
+    await createUser(email, password, email, isSuperadmin, permissions); // username === email
+  };
+
+  const handleForward = () => {
+    setWantForward(!wantForward);
+  };
+
+  const isManualSuperadmin = (canCreateSurvey === true && isSuperadmin === false && canViewSurvey === true && canEditSurvey === true && canDeleteSurvey === true);
+
+  const checkManualSuperadmin = () => {
+    if (isManualSuperadmin) {
+      setIsSuperadmin(true);
+    }
+  };
+
   const handleCreate = () => {
-    setCanCreateSurvey(true);
+    if (canCreateSurvey === false && isSuperadmin === false && canViewSurvey === true && canEditSurvey === true && canDeleteSurvey === true) {
+      setIsSuperadmin(true);
+    }
+    checkManualSuperadmin(); // checks if user set the superadmin permissions manually
+    setCanCreateSurvey(!canCreateSurvey);
+    if (canCreateSurvey === true && isSuperadmin === true) {
+      setIsSuperadmin(false);
+    }
+  };
+
+  const handleEdit = () => {
+    if (canEditSurvey === false && isSuperadmin === false && canCreateSurvey === true && canViewSurvey === true && canDeleteSurvey === true) {
+      setIsSuperadmin(true);
+    }
+    checkManualSuperadmin(); // checks if user set the superadmin permissions manually
+    setCanEditSurvey(!canEditSurvey);
+    if (canEditSurvey === true && isSuperadmin === true) {
+      setIsSuperadmin(false);
+    }
+  };
+
+  const handleDelete = () => {
+    if (canDeleteSurvey === false && isSuperadmin === false && canCreateSurvey === true && canEditSurvey === true && canViewSurvey === true) {
+      setIsSuperadmin(true);
+    }
+    checkManualSuperadmin(); // checks if user set the superadmin permissions manually
+    setCanDeleteSurvey(!canDeleteSurvey);
+    if (canDeleteSurvey === true && isSuperadmin === true) {
+      setIsSuperadmin(false);
+    }
+  };
+
+  // const handleExport = () => {
+  //   setCanExportData(!canExportData);
+  // };
+
+  const handleView = () => {
+    if (canViewSurvey === false && isSuperadmin === false && canCreateSurvey === true && canEditSurvey === true && canDeleteSurvey === true) {
+      setIsSuperadmin(true);
+    }
+    checkManualSuperadmin(); // checks if user set the superadmin permissions manually
+    setCanViewSurvey(!canViewSurvey);
+    if (canViewSurvey === true && isSuperadmin === true) {
+      setIsSuperadmin(false);
+    }
+  };
+
+  const handleSuper = () => {
+    setIsSuperadmin(!isSuperadmin);
+    if (isSuperadmin === true) {
+      setCanCreateSurvey(false);
+      setCanEditSurvey(false);
+      setCanDeleteSurvey(false);
+      setCanViewSurvey(false);
+    } else if (isSuperadmin === false) {
+      setCanCreateSurvey(true);
+      setCanEditSurvey(true);
+      setCanDeleteSurvey(true);
+      setCanViewSurvey(true);
+    }
   };
 
   return (
@@ -147,22 +252,30 @@ export default function CreateAccount() {
 
         </Box>
         <div style={{ textAlign: "center" }}>
-          <FormControlLabel control={<Checkbox defaultChecked disableRipple={true} />} label="Send a copy of these credentials to you and this person&#39;s email" />
+          <FormControlLabel control={<Checkbox checked={wantForward} disableRipple={true} onChange={handleForward} />} label="Send me an email confirming this account creation" />
         </div>
+        <div>A temporary random password will be sent to the new user via the email address you submit.</div>
         <div style={{ textAlign: "center" }}>
           <h1>Permissions</h1>
           <div>
-            <FormControlLabel control={<Switch defaultChecked={false} disableRipple={true} onChange={handleCreate} />} label="Create questionnaires" />
+            <FormControlLabel control={<Switch checked={isSuperadmin} disableRipple={true} onChange={handleSuper} />} label="Manage admins (superadmin)" />
           </div>
           <div>
-            <FormControlLabel control={<Switch defaultChecked={false} disableRipple={true} />} label="Edit others&#39; questionnaires" />
+            <FormControlLabel control={<Switch checked={canViewSurvey} disableRipple={true} onChange={handleView} />} label="View questionnaires" />
           </div>
           <div>
-            <FormControlLabel control={<Switch defaultChecked={false} disableRipple={true} />} label="Download feedback files" />
+            <FormControlLabel control={<Switch checked={canCreateSurvey} disableRipple={true} onChange={handleCreate} />} label="Create questionnaires" />
           </div>
           <div>
-            <FormControlLabel control={<Switch defaultChecked={false} disableRipple={true} />} label="Manage admins (superadmin)" />
+            <FormControlLabel control={<Switch checked={canEditSurvey} disableRipple={true} onChange={handleEdit} />} label="Edit questionnaires" />
           </div>
+          <div>
+            <FormControlLabel control={<Switch checked={canDeleteSurvey} disableRipple={true} onChange={handleDelete} />} label="Delete questionnaires" />
+          </div>
+          <div>
+            {/* <FormControlLabel control={<Switch disableRipple={true} onChange={handleExport} />} label="Export data" /> */}
+          </div>
+          {/* <Button onClick={viewVariables}>console</Button> */}
         </div>
         <div style={{ textAlign: "center", marginTop: "30px", marginBottom: "30px" }}>
           <Link to="/manage-accounts" style={{ textDecoration: "none" }}>

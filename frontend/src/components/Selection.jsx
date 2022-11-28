@@ -30,7 +30,7 @@ export default function Selection() {
 
   const BootstrapInput = styled(InputBase)(({ theme }) => ({
     'label + &': {
-      marginTop: theme.spacing(0.8),
+      marginTop: theme.spacing(0.7),
     },
     '& .MuiInputBase-input': {
       borderRadius: 4,
@@ -51,8 +51,8 @@ export default function Selection() {
   return (
     <div className="selection-bg">
       <div className="selection">
-        <FormControl sx={{ m: 1, width: '35%' }}>
-          <InputLabel id="selection-label">Program</InputLabel>
+        <FormControl sx={{ m: 1, width: '45%' }}>
+          <InputLabel id="selection-label">Select a program</InputLabel>
           <Select
             labelId="demo-simple-select-autowidth-label"
             id="demo-simple-select-autowidth"
