@@ -2,6 +2,7 @@
 /* eslint-disable react/jsx-boolean-value */
 /* eslint-disable no-lonely-if */
 /* eslint-disable max-len */
+/* eslint-disable react/jsx-no-bind */
 // https://www.geeksforgeeks.org/how-to-validate-password-is-strong-or-not-in-reactjs/
 // https://www.geeksforgeeks.org/how-to-validate-an-email-in-reactjs/
 import React from "react";
@@ -156,28 +157,75 @@ export default function CreateAccount() {
     setWantForward(!wantForward);
   };
 
-  const handleSuper = () => {
-    setIsSuperadmin(!isSuperadmin);
+  const isManualSuperadmin = (canCreateSurvey === true && isSuperadmin === false && canViewSurvey === true && canEditSurvey === true && canDeleteSurvey === true);
+
+  const checkManualSuperadmin = () => {
+    if (isManualSuperadmin) {
+      setIsSuperadmin(true);
+    }
   };
 
   const handleCreate = () => {
+    if (canCreateSurvey === false && isSuperadmin === false && canViewSurvey === true && canEditSurvey === true && canDeleteSurvey === true) {
+      setIsSuperadmin(true);
+    }
+    checkManualSuperadmin(); // checks if user set the superadmin permissions manually
     setCanCreateSurvey(!canCreateSurvey);
+    if (canCreateSurvey === true && isSuperadmin === true) {
+      setIsSuperadmin(false);
+    }
   };
 
   const handleEdit = () => {
+    if (canEditSurvey === false && isSuperadmin === false && canCreateSurvey === true && canViewSurvey === true && canDeleteSurvey === true) {
+      setIsSuperadmin(true);
+    }
+    checkManualSuperadmin(); // checks if user set the superadmin permissions manually
     setCanEditSurvey(!canEditSurvey);
+    if (canEditSurvey === true && isSuperadmin === true) {
+      setIsSuperadmin(false);
+    }
   };
 
   const handleDelete = () => {
+    if (canDeleteSurvey === false && isSuperadmin === false && canCreateSurvey === true && canEditSurvey === true && canViewSurvey === true) {
+      setIsSuperadmin(true);
+    }
+    checkManualSuperadmin(); // checks if user set the superadmin permissions manually
     setCanDeleteSurvey(!canDeleteSurvey);
+    if (canDeleteSurvey === true && isSuperadmin === true) {
+      setIsSuperadmin(false);
+    }
   };
 
-  const handleExport = () => {
-    setCanExportData(!canExportData);
-  };
+  // const handleExport = () => {
+  //   setCanExportData(!canExportData);
+  // };
 
   const handleView = () => {
+    if (canViewSurvey === false && isSuperadmin === false && canCreateSurvey === true && canEditSurvey === true && canDeleteSurvey === true) {
+      setIsSuperadmin(true);
+    }
+    checkManualSuperadmin(); // checks if user set the superadmin permissions manually
     setCanViewSurvey(!canViewSurvey);
+    if (canViewSurvey === true && isSuperadmin === true) {
+      setIsSuperadmin(false);
+    }
+  };
+
+  const handleSuper = () => {
+    setIsSuperadmin(!isSuperadmin);
+    if (isSuperadmin === true) {
+      setCanCreateSurvey(false);
+      setCanEditSurvey(false);
+      setCanDeleteSurvey(false);
+      setCanViewSurvey(false);
+    } else if (isSuperadmin === false) {
+      setCanCreateSurvey(true);
+      setCanEditSurvey(true);
+      setCanDeleteSurvey(true);
+      setCanViewSurvey(true);
+    }
   };
 
   return (
@@ -201,6 +249,7 @@ export default function CreateAccount() {
           <div>
             <TextField id="confirm-password" label="confirm password" error={!passwordsMatch} type="password" helperText={errorText} onChange={handleConfirmPassword} />
           </div>
+          {console.log(isSuperadmin, canCreateSurvey, canEditSurvey, canDeleteSurvey, canViewSurvey)}
 
         </Box>
         <div style={{ textAlign: "center" }}>
@@ -209,22 +258,22 @@ export default function CreateAccount() {
         <div style={{ textAlign: "center" }}>
           <h1>Permissions</h1>
           <div>
-            <FormControlLabel control={<Switch defaultChecked={false} disableRipple={true} onChange={handleSuper} />} label="Manage admins (superadmin)" />
+            <FormControlLabel control={<Switch checked={isSuperadmin} disableRipple={true} onChange={handleSuper} />} label="Manage admins (superadmin)" />
           </div>
           <div>
-            <FormControlLabel control={<Switch defaultChecked={false} disableRipple={true} onChange={handleView} />} label="View questionnaires" />
+            <FormControlLabel control={<Switch checked={canViewSurvey} disableRipple={true} onChange={handleView} />} label="View questionnaires" />
           </div>
           <div>
-            <FormControlLabel control={<Switch defaultChecked={false} disableRipple={true} onChange={handleCreate} />} label="Create questionnaires" />
+            <FormControlLabel control={<Switch checked={canCreateSurvey} disableRipple={true} onChange={handleCreate} />} label="Create questionnaires" />
           </div>
           <div>
-            <FormControlLabel control={<Switch defaultChecked={false} disableRipple={true} onChange={handleEdit} />} label="Edit questionnaires" />
+            <FormControlLabel control={<Switch checked={canEditSurvey} disableRipple={true} onChange={handleEdit} />} label="Edit questionnaires" />
           </div>
           <div>
-            <FormControlLabel control={<Switch defaultChecked={false} disableRipple={true} onChange={handleDelete} />} label="Delete questionnaires" />
+            <FormControlLabel control={<Switch checked={canDeleteSurvey} disableRipple={true} onChange={handleDelete} />} label="Delete questionnaires" />
           </div>
           <div>
-            <FormControlLabel control={<Switch disabled defaultChecked={false} disableRipple={true} onChange={handleExport} />} label="Export data" />
+            {/* <FormControlLabel control={<Switch disableRipple={true} onChange={handleExport} />} label="Export data" /> */}
           </div>
           {/* <Button onClick={viewVariables}>console</Button> */}
         </div>

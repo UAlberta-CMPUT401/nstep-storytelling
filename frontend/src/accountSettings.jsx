@@ -142,6 +142,17 @@ export default function AccountSettings() {
     );
   };
 
+  function renderManagePermission() {
+    if (isSuperuser) {
+      return (
+        <div>
+          <img alt="checked checkbox" src={check} style={{ width: "30px", height: "30px", marginLeft: "30px" }} />
+          Manage admins
+        </div>
+      );
+    }
+  }
+
   function renderViewPermission() {
     if (hasViewPermission) {
       return (
@@ -229,6 +240,7 @@ export default function AccountSettings() {
         <div style={{ textAlign: "center", paddingTop: "60px" }}>
           <h1 style={{ paddingBottom: "60px" }}>Permissions</h1>
           <div style={{ fontSize: "25px" }}>
+            {renderManagePermission()}
             {renderViewPermission()}
             {renderCreatePermission()}
             {renderEditPermission()}
