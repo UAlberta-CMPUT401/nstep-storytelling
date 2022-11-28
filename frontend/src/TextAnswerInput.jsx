@@ -80,6 +80,11 @@ export default function TextAnswerInput(props) {
       });
   };
 
+  const timedRecording = (render, time) => {
+    render.startRecording();
+    useTimeout(() => render.stopRecording(), time);
+  };
+
   const VideoPreview = (stream = { stream: MediaStream || null }) => {
     const videoRef = useRef<HTMLVideoElement>(null);
 
