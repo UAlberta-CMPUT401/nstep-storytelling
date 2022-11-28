@@ -243,18 +243,18 @@ export default function CreateAccount() {
           <div>
             <TextField id="email" label="email" type="email" error={!emailFilled} helperText={emailFilledError} onChange={handleEmail} />
           </div>
-          <div>
+          {/* <div>
             <TextField id="password" label="password" type="password" error={!passwordValid} helperText={passwordFilledError} onChange={handlePassword} />
           </div>
           <div>
             <TextField id="confirm-password" label="confirm password" error={!passwordsMatch} type="password" helperText={errorText} onChange={handleConfirmPassword} />
-          </div>
-          {console.log(isSuperadmin, canCreateSurvey, canEditSurvey, canDeleteSurvey, canViewSurvey)}
+          </div> */}
 
         </Box>
         <div style={{ textAlign: "center" }}>
-          <FormControlLabel control={<Checkbox disabled defaultChecked disableRipple={true} onChange={handleForward} />} label="Send a copy of these credentials to you and this person&#39;s email" />
+          <FormControlLabel control={<Checkbox checked={wantForward} disableRipple={true} onChange={handleForward} />} label="Send me an email confirming this account creation" />
         </div>
+        <div>A temporary random password will be sent to the new user via the email address you submit.</div>
         <div style={{ textAlign: "center" }}>
           <h1>Permissions</h1>
           <div>
