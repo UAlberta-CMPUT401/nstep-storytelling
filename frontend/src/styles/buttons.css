@@ -1,8 +1,3 @@
 .NSTEPbutton{
   width: 25px;
-  padding: 24px;
-}
-
-.NSTEPbutton:hover{
-  width: 26px;
 }

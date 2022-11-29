@@ -15,7 +15,6 @@ import ManageAccounts from "./manageAccounts";
 import EditAdmin from "./editAdmin";
 import DeleteAccount from "./deleteAccount";
 import EditForm from "./EditForm";
-import WebCamTest from "./Webcam";
 import ViewAnswer from "./ViewAnswer";
 import DashboardFeedback from "./DashboardFeedback";
 

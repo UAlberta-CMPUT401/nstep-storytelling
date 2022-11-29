@@ -12,13 +12,15 @@
 /* renderer reference: https://stackoverflow.com/a/70809777 */
 /* conditional rendering ref: https://www.pluralsight.com/guides/how-to-show-components-conditionally-react */
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from '@mui/material/Button';
 import AdminNavbar from "./components/AdminNavbar";
 import "./styles/App.css";
 import check from "../assets/check.png";
 import cross from "../assets/cross.png";
 import TextField from '@mui/material/TextField';
+import IconButton from '@mui/material/IconButton';
+import EditIcon from '@mui/icons-material/Edit';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -38,6 +40,7 @@ export default function AccountSettings() {
   const [hasExportPermission, setHasExportPermission] = React.useState(false);
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const navigate = useNavigate();
   const userID = localStorage.getItem("userID");
 
   React.useEffect(async () => {
@@ -64,6 +67,10 @@ export default function AccountSettings() {
       }
     }
   }, []);
+
+  const handleManageButton = () => {
+    navigate("/manage-accounts");
+  };
 
   const handleClickEmailOpen = () => {
     setEmailOpen(true);
@@ -93,11 +100,19 @@ export default function AccountSettings() {
 
   const showManageButton = () => {
     return (
-      <Link to="/manage-accounts">
-        <Button variant="contained" style={{ marginTop: "200px" }}>
-          Manage admins
-        </Button>
-      </Link>
+      <Button
+        style={{
+          backgroundColor: '#FDCA00',
+          color: '#414143',
+          fontWeight: 'bold',
+          margin: '100px',
+        }}
+        variant="contained"
+        onClick={handleManageButton}
+      >
+        Manage Admins
+      </Button>
+
     );
   };
 
@@ -111,7 +126,6 @@ export default function AccountSettings() {
             <TextField
               autoFocus
               margin="dense"
-              id="name"
               label="New email address"
               type="email"
               fullWidth
@@ -146,7 +160,7 @@ export default function AccountSettings() {
     if (isSuperuser) {
       return (
         <div>
-          <img alt="checked checkbox" src={check} style={{ width: "30px", height: "30px", marginLeft: "30px" }} />
+          <img alt="checked checkbox" src={check} style={{ width: "20px", marginRight: "10px" }} />
           Manage admins
         </div>
       );
@@ -157,7 +171,7 @@ export default function AccountSettings() {
     if (hasViewPermission) {
       return (
         <div>
-          <img alt="checked checkbox" src={check} style={{ width: "30px", height: "30px", marginLeft: "30px" }} />
+          <img alt="checked checkbox" src={check} style={{ width: "20px", marginRight: "10px" }} />
           View questionnaires
         </div>
       );
@@ -168,7 +182,7 @@ export default function AccountSettings() {
     if (hasCreatePermission) {
       return (
         <div>
-          <img alt="checked checkbox" src={check} style={{ width: "30px", height: "30px", marginLeft: "30px" }} />
+          <img alt="checked checkbox" src={check} style={{ width: "20px", marginRight: "10px" }} />
           Create questionnaires
         </div>
       );
@@ -179,7 +193,7 @@ export default function AccountSettings() {
     if (hasEditPermission) {
       return (
         <div>
-          <img alt="checked checkbox" src={check} style={{ width: "30px", height: "30px", marginLeft: "30px" }} />
+          <img alt="checked checkbox" src={check} style={{ width: "20px", marginRight: "10px" }} />
           Edit questionnaires
         </div>
       );
@@ -190,7 +204,7 @@ export default function AccountSettings() {
     if (hasDeletePermission) {
       return (
         <div>
-          <img alt="checked checkbox" src={check} style={{ width: "30px", height: "30px", marginLeft: "30px" }} />
+          <img alt="checked checkbox" src={check} style={{ width: "20px", marginRight: "10px" }} />
           Delete questionnaires
         </div>
       );
@@ -200,21 +214,22 @@ export default function AccountSettings() {
   return (
     <div>
       <AdminNavbar />
-      <div style={{ textAlign: "center", marginTop: "50px" }}>
+      <div style={{ textAlign: "center", paddingTop: "50px", backgroundColor: "#FAF9F6" }}>
         <h1>Account settings</h1>
-        <div style={{ fontSize: "25px", paddingTop: "60px" }}>
-          {"email: " + email}
+        <div style={{ fontSize: "25px", marginTop: "30px" }}>
+          {"Email: " + email}
           {showEditButton()}
           <div>
-            password: ********
-            <Button style={{ marginLeft: "30px" }} onClick={handleClickPasswordOpen} startIcon={<img className="NSTEPbutton" alt="pencil" src={pencil} />} />
+            Password: ********
+            <IconButton sx={{ marginLeft: "30px" }} onClick={handleClickPasswordOpen}>
+              <EditIcon />
+            </IconButton>
             <Dialog open={passwordOpen} onClose={handleClosePassword}>
               <DialogTitle>Edit password</DialogTitle>
               <DialogContent>
                 <TextField
                   autoFocus
                   margin="dense"
-                  id="name"
                   label="New password"
                   type="password"
                   fullWidth
@@ -222,7 +237,6 @@ export default function AccountSettings() {
                 />
                 <TextField
                   margin="dense"
-                  id="name"
                   label="Confirm new password"
                   type="password"
                   fullWidth
@@ -237,8 +251,8 @@ export default function AccountSettings() {
           </div>
         </div>
         {/* turn the below into a component at some point */}
-        <div style={{ textAlign: "center", paddingTop: "60px" }}>
-          <h1 style={{ paddingBottom: "60px" }}>Permissions</h1>
+        <div style={{ textAlign: "center", marginTop: "60px" }}>
+          <h1 style={{ marginBottom: "30px" }}>Permissions</h1>
           <div style={{ fontSize: "25px" }}>
             {renderManagePermission()}
             {renderViewPermission()}

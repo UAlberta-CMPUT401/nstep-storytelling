@@ -162,7 +162,7 @@ export default function Login() {
                 Yes
               </Button>
               <Button onClick={handleGoBack}>
-                No, go back
+                No, continue
               </Button>
             </DialogActions>
           </Dialog>
@@ -176,9 +176,6 @@ export default function Login() {
   // <CssVarsProvider>
     <main>
       <Navbar />
-      {/* <ModeToggle /> */}
-      {console.log(localStorage.getItem("jwtToken"))};
-      {console.log(localStorage.getItem("userID"))};
       {checkIfLoggedIn()}
       <Box
         sx={{

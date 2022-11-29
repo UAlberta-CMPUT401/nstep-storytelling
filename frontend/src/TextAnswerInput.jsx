@@ -1,5 +1,6 @@
+/* eslint-disable no-sequences */
 /* eslint-disable react/void-dom-elements-no-children */
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from "react-router-dom";
 import { ReactMediaRecorder, useReactMediaRecorder } from "react-media-recorder";
 import TextField from '@mui/material/TextField';
@@ -8,10 +9,13 @@ import IconButton from '@mui/material/IconButton';
 import VideocamIcon from '@mui/icons-material/Videocam';
 import MicIcon from '@mui/icons-material/Mic';
 import './styles/TextAnswerInput.css';
+import useTimeout from './TimeLimit';
 
 export default function TextAnswerInput(props) {
   const [audioSelected, setAudioSelected] = useState(false);
   const [videoSelected, setVideoSelected] = useState(false);
+  const [audioT, setAudioT] = useState(null);
+  const [videoT, setVideoT] = useState(null);
 
   const clickMic = (e) => {
     if (videoSelected) {
@@ -78,6 +82,22 @@ export default function TextAnswerInput(props) {
       });
   };
 
+  const timedAudioRecording = (startRecording, stopRecording, time) => {
+    clearTimeout(audioT);
+    startRecording();
+    const tick = () => stopRecording();
+    const timeout = setTimeout(tick, time);
+    setAudioT(timeout);
+  };
+
+  const timedVideoRecording = (startRecording, stopRecording, time) => {
+    clearTimeout(videoT);
+    startRecording();
+    const tick = () => stopRecording();
+    const timeout = setTimeout(tick, time);
+    setVideoT(timeout);
+  };
+
   return (
     <div className="text-answer-input">
       <div className="user-question-field">
@@ -129,7 +149,7 @@ export default function TextAnswerInput(props) {
                 <track kind="captions" />
               </audio>
               <div>
-                <Button variant="contained" onClick={startRecording}>Start Recording</Button>
+                <Button variant="contained" onClick={() => timedAudioRecording(startRecording, stopRecording, 120000)}>Start Recording</Button>
                 <Button variant="text" onClick={stopRecording}>Stop Recording</Button>
               </div>
             </div>
@@ -153,7 +173,7 @@ export default function TextAnswerInput(props) {
                 <track kind="captions" />
               </video>
               <div>
-                <Button variant="contained" onClick={startRecording}>Start Recording</Button>
+                <Button variant="contained" onClick={() => timedVideoRecording(startRecording, stopRecording, 60000)}>Start Recording</Button>
                 <Button variant="text" onClick={stopRecording}>Stop Recording</Button>
               </div>
             </div>
