@@ -27,4 +27,7 @@
     .admin-create-body-wrapper {
         border: solid 40px #380867;
     }
+    .admin-create-body {
+        min-height: 1850px;  
+    }
 }

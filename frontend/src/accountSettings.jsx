@@ -214,7 +214,7 @@ export default function AccountSettings() {
   return (
     <div>
       <AdminNavbar />
-      <div style={{ textAlign: "center", paddingTop: "50px", backgroundColor: "#FAF9F6" }}>
+      <div className="account-settings-body" style={{ textAlign: "center", backgroundColor: "#FAF9F6" }}>
         <h1>Account settings</h1>
         <div style={{ fontSize: "25px", marginTop: "30px" }}>
           {"Email: " + email}

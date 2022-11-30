@@ -5,3 +5,9 @@
     padding: 12px;
     min-height: 825px;
 }
+
+@media (max-width: 1280px) {
+    .dashboard {
+        min-height: 1980px;
+    }
+}

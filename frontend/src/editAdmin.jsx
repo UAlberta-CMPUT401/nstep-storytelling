@@ -6,8 +6,9 @@
 /* renderer reference: https://stackoverflow.com/a/70809777 */
 /* conditional rendering ref: https://www.pluralsight.com/guides/how-to-show-components-conditionally-react */
 import React from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import Button from '@mui/material/Button';
+import DeleteIcon from '@mui/icons-material/Delete';
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
 import AdminNavbar from "./components/AdminNavbar";
@@ -25,6 +26,7 @@ export default function EditAdmin() {
 
   // get info of user to which this page is dedicated
   const selectedUserId = useParams().id;
+  const navigate = useNavigate();
 
   React.useEffect(async () => {
     const res = await getUser(selectedUserId);
@@ -93,15 +95,21 @@ export default function EditAdmin() {
   const updateAccount = async () => {
     convertPermissions();
     await patchUser(selectedUserId, email, isSuperuser, permissions); // username === email
+    navigate('/manage-accounts');
   };
 
   return (
     <div>
       <AdminNavbar />
-      <div style={{ textAlign: "center", marginTop: "50px" }}>
+      <div
+        className="edit-admin-body"
+        style={{
+          textAlign: "center", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center",
+        }}
+      >
         <h1>Account</h1>
-        <div style={{ fontSize: "25px", paddingTop: "60px" }}>
-          email: {email}
+        <div style={{ fontSize: "25px", marginTop: "40px" }}>
+          Email: {email}
           <Button variant="contained" color="secondary" style={{ marginLeft: "30px" }}>
             edit
           </Button>
@@ -110,7 +118,7 @@ export default function EditAdmin() {
           <h1>
             Permissions
           </h1>
-          <div style={{ fontSize: "15px", paddingBottom: "60px" }}>
+          <div style={{ fontSize: "15px", marginBottom: "40px" }}>
             Only editable by you
           </div>
           <div>
@@ -132,15 +140,13 @@ export default function EditAdmin() {
             <FormControlLabel control={<Switch disabled defaultChecked={false} disableRipple onChange={handleExport} />} label="Export data" />
           </div> */}
         </div>
-        <Link to="/manage-accounts">
-          <Button variant="contained" style={{ marginTop: "50px" }} onClick={updateAccount}>
-            Save & Return
-          </Button>
-        </Link>
+        <Button variant="contained" style={{ marginTop: "50px" }} onClick={updateAccount}>
+          Save & Return
+        </Button>
         <div style={{ paddingTop: "180px" }}>
-          <Link to={`/delete-account/${selectedUserId}`}>
-            Delete this account
-          </Link>
+          <Button onClick={() => navigate(`/delete-account/${selectedUserId}`)} variant="outlined" color="error" startIcon={<DeleteIcon />}>
+            Delete
+          </Button>
         </div>
       </div>
     </div>

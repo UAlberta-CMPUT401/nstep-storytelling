@@ -1,7 +1,7 @@
 /* eslint-disable no-constant-condition */
 /* eslint-disable no-self-compare */
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from '@mui/material/Button';
 import AdminNavbar from "./components/AdminNavbar";
 import "./styles/App.css";
@@ -11,6 +11,7 @@ import { getUsers } from "./service";
 export default function ManageAccounts() {
   const [accountList, setAccountList] = React.useState([]);
   const userID = localStorage.getItem("userID");
+  const navigate = useNavigate();
 
   // preparing the list of accounts
   React.useEffect(async () => {
@@ -28,7 +29,12 @@ export default function ManageAccounts() {
   return (
     <div>
       <AdminNavbar />
-      <div style={{ textAlign: "center", marginTop: "50px" }}>
+      <div
+        className="manage-accounts-body"
+        style={{
+          textAlign: "center", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center",
+        }}
+      >
         <h1>Manage administrators</h1>
         <div style={{ fontSize: "25px", paddingTop: "60px" }}>
           {accountList.map((account) => (
@@ -39,12 +45,19 @@ export default function ManageAccounts() {
             />
           ))}
         </div>
-      </div>
-      <Link to="/create-account">
-        <Button variant="contained" style={{ float: "right", marginRight: "30px", marginTop: "30px" }}>
+        <Button
+          style={{
+            backgroundColor: '#FDCA00',
+            color: '#414143',
+            fontWeight: 'bold',
+            margin: '100px',
+          }}
+          variant="contained"
+          onClick={() => navigate('/create-account')}
+        >
           Add an admin
         </Button>
-      </Link>
+      </div>
     </div>
   );
 }

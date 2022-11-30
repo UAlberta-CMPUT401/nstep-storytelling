@@ -178,13 +178,13 @@ export default function Login() {
       <Navbar />
       {checkIfLoggedIn()}
       <Box
+        className="login-box"
         sx={{
           mx: 'auto', // margin left & right
           py: 3, // padding top & bottom
           px: 2, // padding left & right
           display: 'flex',
           justifyContent: 'center',
-          minHeight: '800px',
           backgroundColor: '#FAF9F6',
           flexDirection: 'column',
           gap: 2,

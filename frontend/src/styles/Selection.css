@@ -24,3 +24,52 @@
     text-decoration: none;
 }
 
+.login-box {
+    min-height: 800px;
+}
+.account-settings-body {
+    min-height: 850px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.create-account-body {
+    min-height: 850px;
+}
+.manage-accounts-body {
+    background-color: #FAF9F6;
+    min-height: 850px;
+}
+.edit-admin-body {
+    background-color: #FAF9F6;
+    min-height: 850px;
+}
+.delete-account-body {
+    background-color: #FAF9F6;
+    min-height: 850px;
+}
+
+@media (max-width: 1280px) {
+    .selection {
+        min-height: 1920px;
+    }
+    .login-box {
+        min-height: 1950px;
+    }
+    .account-settings-body {
+        min-height: 2000px;
+    }
+    .create-account-body {
+        min-height: 2000px;
+    }
+    .manage-accounts-body {
+        min-height: 2000px;
+    }
+    .edit-admin-body {
+        min-height: 2000px;
+    }
+    .delete-account-body {
+        min-height: 2000px;
+    }
+}
+
