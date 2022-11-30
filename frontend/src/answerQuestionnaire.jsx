@@ -22,7 +22,6 @@ export default function AnswerQuestionnaire() {
     const res = await getQuestionnaire(id);
     setFormTitle(res.title);
     setQuestionList(res.questions);
-    console.log(questionList);
   }, []);
 
   function timeout(delay) {
@@ -52,11 +51,9 @@ export default function AnswerQuestionnaire() {
         const newDict = { ...question };
         newDict.answer = e.target.value;
         Object.assign(question, newDict);
-        console.log(question);
       }
     });
     setQuestionList(newQuestionList);
-    console.log(questionList);
   };
 
   const saveAudio = (qid, audioFile) => {
@@ -66,11 +63,9 @@ export default function AnswerQuestionnaire() {
         const newDict = { ...question };
         newDict.content_audio = audioFile;
         Object.assign(question, newDict);
-        console.log(question);
       }
     });
     setQuestionList(newQuestionList);
-    console.log(questionList);
   };
 
   const saveVideo = (qid, videoFile) => {
@@ -80,11 +75,9 @@ export default function AnswerQuestionnaire() {
         const newDict = { ...question };
         newDict.content_video = videoFile;
         Object.assign(question, newDict);
-        console.log(question);
       }
     });
     setQuestionList(newQuestionList);
-    console.log(questionList);
   };
 
   const clearRecordings = (qid) => {
@@ -95,11 +88,9 @@ export default function AnswerQuestionnaire() {
         newDict.content_video = null;
         newDict.content_audio = null;
         Object.assign(question, newDict);
-        console.log(question);
       }
     });
     setQuestionList(newQuestionList);
-    console.log(questionList);
   };
 
   const navigate = useNavigate();
@@ -123,9 +114,7 @@ export default function AnswerQuestionnaire() {
       newDict.content_video = question.content_video;
       feedback[question.id] = newDict;
     });
-    console.log(feedback);
     const res = await createFeedback(id, feedback);
-    console.log(res);
     handleClick(true);
     await timeout(1000);
     navigate('/');

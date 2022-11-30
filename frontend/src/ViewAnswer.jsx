@@ -23,18 +23,8 @@ export default function ViewAnswer() {
 
   React.useEffect(async () => {
     const res = await getFeedback(id);
-    console.log(res);
     setFormTitle(res.questionnaire.title);
     setAnswerList(res.answers);
-    // const newAnswerList = [...res.answers];
-    // await Promise.all(newAnswerList.map(async (answer) => {
-    //     const q = await getQuestion(res.questionnaire.id, answer.question);
-    //     const newDict = { ...answer };
-    //     newDict.question_content = q.content;
-    //     Object.assign(answer, newDict);
-    //     console.log(answer);
-    //   }));
-    // setAnswerList(newAnswerList);
     const newQuestionList = [...res.questionnaire.questions];
     newQuestionList.forEach((question) => {
       res.answers.forEach((answer) => {
@@ -45,17 +35,14 @@ export default function ViewAnswer() {
           newDict.content_audio = answer.content_audio;
           newDict.content_video = answer.content_video;
           Object.assign(question, newDict);
-          console.log(question);
         }
       });
     });
-    console.log(newQuestionList);
     setQuestionList(newQuestionList);
   }, []);
 
   const handleTitle = (e) => {
     setFormTitle(e.target.value);
-    console.log(formTitle);
   };
 
   const handleChange = (e) => {
@@ -65,11 +52,9 @@ export default function ViewAnswer() {
         const newDict = { ...question };
         newDict.content = e.target.value;
         Object.assign(question, newDict);
-        console.log(question);
       }
     });
     setQuestionList(newQuestionList);
-    console.log(questionList);
   };
 
   const handleToggle = (e) => {
@@ -79,11 +64,9 @@ export default function ViewAnswer() {
         const newDict = { ...question };
         newDict.allow_recording = e.target.checked;
         Object.assign(question, newDict);
-        console.log(question);
       }
     });
     setQuestionList(newQuestionList);
-    console.log(questionList);
   };
 
   const navigate = useNavigate();

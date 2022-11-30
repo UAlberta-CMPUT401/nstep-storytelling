@@ -18,17 +18,14 @@ export default function Forms() {
 
   React.useEffect(async () => {
     const res = await getQuestionnaires();
-    console.log(res);
     setFormList(res);
   }, []);
 
   const removeQuestionnaire = async (id) => {
     const res = await deleteQuestionnaire(id);
-    console.log(res);
 
     const newFormList = await getQuestionnaires();
     setFormList(newFormList);
-    console.log(formList);
   };
 
   return (

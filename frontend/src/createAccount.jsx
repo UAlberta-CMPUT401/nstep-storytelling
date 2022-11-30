@@ -145,8 +145,6 @@ export default function CreateAccount() {
       permissions.push(36); // "can view question"
       permissions.push(40); // "can view questionnaire"
     }
-    console.log(permissionsVisual);
-    console.log(permissions);
   };
 
   const setAccount = async () => {

@@ -54,7 +54,6 @@ export default function AccountSettings() {
       setHasViewPermission(true);
     } else {
       for (let i = 0; i < res.user_permissions.length; i++) {
-        console.log(res.user_permissions[i]);
         if (res.user_permissions[i] === 37) {
           setHasCreatePermission(true);
         } if (res.user_permissions[i] === 38) {
@@ -151,7 +150,7 @@ export default function AccountSettings() {
   const showInfo = () => {
     return (
       <p style={{ paddingTop: "290px" }}>
-        Please contact your account manager to request email or Permissions changes, or to delete your account.
+        Please contact your account manager to request email or permissions changes, or to delete your account.
       </p>
     );
   };

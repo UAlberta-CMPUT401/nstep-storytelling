@@ -92,19 +92,14 @@ export default function Login() {
         password,
       })
       .then(async (res) => {
-        console.log(res.data);
-        console.log(res.data.token);
         localStorage.setItem("jwtToken", res.data.token);
         localStorage.setItem("userID", res.data.id);
-        console.log(localStorage.getItem('jwtToken'));
-        console.log(localStorage.getItem('userID'));
         handleClick(true);
         await timeout(1000);
         history("/home");
       })
       .catch((e) => {
         handleClick(false);
-        console.log(e);
       });
   };
 
@@ -139,9 +134,7 @@ export default function Login() {
   }
 
   function checkIfLoggedIn() {
-    { console.log(localStorage.getItem('jwtToken')); }
     if (localStorage.getItem("jwtToken") !== "null" && openSuccessAlert === false && openFailureAlert === false) {
-      console.log("logged in");
       return (
         <div>
           <Dialog

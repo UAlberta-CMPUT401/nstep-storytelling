@@ -89,7 +89,6 @@ export default function EditAdmin() {
       permissions.splice(permissions.indexOf(36), 1); // can no longer view question
       permissions.splice(permissions.indexOf(40), 1); // can no longer view questionnaire
     }
-    console.log(permissions);
   };
 
   const updateAccount = async () => {

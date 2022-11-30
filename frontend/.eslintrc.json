@@ -28,10 +28,11 @@
         "no-unused-vars":0,
         "react/button-has-type":0,
         "quotes":0,
-        "no-console":0,
         "import/prefer-default-export":0,
         "object-shorthand":0,
-        "max-classes-per-file":0
+        "max-classes-per-file":0,
+        "no-useless-constructor":0,
+        "react/no-unused-state":0
     },
     "overrides": [
     {

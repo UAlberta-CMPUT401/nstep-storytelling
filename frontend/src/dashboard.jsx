@@ -27,10 +27,8 @@ export default function Dashboard() {
 
   const renderTheThing = () => {
     if (showTheThing) {
-      console.log("is superadmin");
       return (<h1>the thing</h1>);
     } else {
-      console.log("not superadmin");
       return null;
     }
   };
@@ -38,7 +36,6 @@ export default function Dashboard() {
   return (
     <div>
       <AdminNavbar />
-      {console.log("localStorage result: " + localStorage.getItem("userID"))}
       <div className="dashboard">
         <Tabs value={selectedTab} onChange={handleChange} centered>
           <Tab label="Forms" />
