@@ -54,7 +54,6 @@ export default function AccountSettings() {
       setHasViewPermission(true);
     } else {
       for (let i = 0; i < res.user_permissions.length; i++) {
-        console.log(res.user_permissions[i]);
         if (res.user_permissions[i] === 37) {
           setHasCreatePermission(true);
         } if (res.user_permissions[i] === 38) {
@@ -151,7 +150,7 @@ export default function AccountSettings() {
   const showInfo = () => {
     return (
       <p style={{ paddingTop: "290px" }}>
-        Please contact your account manager to request email or Permissions changes, or to delete your account.
+        Please contact your account manager to request email or permissions changes, or to delete your account.
       </p>
     );
   };
@@ -214,7 +213,7 @@ export default function AccountSettings() {
   return (
     <div>
       <AdminNavbar />
-      <div style={{ textAlign: "center", paddingTop: "50px", backgroundColor: "#FAF9F6" }}>
+      <div className="account-settings-body" style={{ textAlign: "center", backgroundColor: "#FAF9F6" }}>
         <h1>Account settings</h1>
         <div style={{ fontSize: "25px", marginTop: "30px" }}>
           {"Email: " + email}

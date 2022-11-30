@@ -3,7 +3,7 @@
 /* renderer reference: https://stackoverflow.com/a/70809777 */
 /* conditional rendering ref: https://www.pluralsight.com/guides/how-to-show-components-conditionally-react */
 import React from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import Button from '@mui/material/Button';
@@ -16,11 +16,13 @@ export default function DeleteAccount() {
   const [email, setEmail] = React.useState("");
   const userID = localStorage.getItem("userID");
   const [isSuperuser, setIsSuperuser] = React.useState(false);
+  const navigate = useNavigate();
 
   const selectedUserId = useParams().id;
 
   const backendDelete = async () => {
     await deleteUser(selectedUserId);
+    navigate('/manage-accounts');
   };
 
   const handleChange = () => {
@@ -28,11 +30,9 @@ export default function DeleteAccount() {
   };
   const enableDelete = () => {
     return (
-      <Link to="/manage-accounts">
-        <Button variant="contained" onClick={backendDelete}>
-          Delete
-        </Button>
-      </Link>
+      <Button color="error" variant="contained" onClick={backendDelete}>
+        Delete
+      </Button>
       // TODO: have short-duration message shown on new page to confirm deleted
     );
   };
@@ -61,7 +61,12 @@ export default function DeleteAccount() {
     return (
       <div>
         <AdminNavbar />
-        <div style={{ textAlign: "center", marginTop: "50px" }}>
+        <div
+          className="delete-account-body"
+          style={{
+            textAlign: "center", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center",
+          }}
+        >
           <h2>
             Are you sure you
             <br />
@@ -75,13 +80,11 @@ export default function DeleteAccount() {
           <div style={{ fontSize: "25px", paddingTop: "60px" }}>
             {email}
           </div>
-          <Link to="/edit-admin">
-            <Button variant="contained" style={{ marginTop: "50px" }}>
-              <b>No, go back.</b>
-            </Button>
-          </Link>
-          <div style={{ paddingTop: "250px" }}>
-            <FormControlLabel control={<Checkbox disableRipple="true" onChange={handleChange} />} label="Yes, I'm sure." />
+          <Button variant="contained" onClick={() => navigate(`/edit-admin/${selectedUserId}`)} style={{ marginTop: "100px" }}>
+            <b>No, go back</b>
+          </Button>
+          <div style={{ marginTop: "100px" }}>
+            <FormControlLabel control={<Checkbox disableRipple onChange={handleChange} />} label="Yes, I'm sure." />
           </div>
           <div>
             {(() => {

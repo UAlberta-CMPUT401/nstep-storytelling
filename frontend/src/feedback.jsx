@@ -26,8 +26,6 @@ import { getAllFeedback } from './service';
 class OneFeedback extends React.Component {
   constructor(props) {
     super(props);
-    console.log("props");
-    console.log(props);
     const time = this.props.data.time;
     const newTime = time.slice(0, 19);
     this.state = {
@@ -71,7 +69,6 @@ class OneFeedback extends React.Component {
 class FeedbackList extends React.Component {
   constructor(props) {
     super(props);
-    console.log(this.props);
   }
 
   renderList() {
@@ -81,8 +78,6 @@ class FeedbackList extends React.Component {
         return null;
       }
       const myList = Object.values(feedbacklist);
-      console.log("myList");
-      console.log(myList);
       return myList.length === 0
         ? ""
         : (myList?.map((item) => (
@@ -91,7 +86,6 @@ class FeedbackList extends React.Component {
           </ListItem>
         )));
     } catch (e) {
-      console.log(e);
       return (<CircularProgress />);
     }
   }
@@ -133,18 +127,12 @@ export default class Feedback extends React.Component {
     this.setState({ current: myData });
     const myKeys = [];
     myData.forEach((item) => {
-      console.log("item.questionnaire.title");
-      console.log(item.questionnaire.title);
       myKeys.push({ title: item.questionnaire.title });
     });
     this.setState({ keys: myKeys });
-    console.log("this.state");
-    console.log(this.state);
   }
 
   handleForm(e) {
-    console.log(e);
-    console.log(e.target.value);
     this.setState({
       title: e.target.value,
     });

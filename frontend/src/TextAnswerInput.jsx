@@ -45,40 +45,29 @@ export default function TextAnswerInput(props) {
       // on reader load somthing...
       reader.onload = () => {
         // Make a fileInfo Object
-        console.log("Called", reader);
         baseURL = reader.result;
-        console.log(baseURL);
         resolve(baseURL);
       };
-      console.log(fileInfo);
     });
   }
 
   const stopMic = (blobUrl, blob) => {
-    console.log(blobUrl);
-    console.log(blob);
     const audioFile = new File([blob], 'voice.wav', { type: 'audio/wav' });
-    console.log(audioFile);
     getBase64(audioFile)
       .then((result) => {
         props.saveAudio(props.id, result);
       })
       .catch((err) => {
-        console.log(err);
       });
   };
 
   const stopVideo = (blobUrl, blob) => {
-    console.log(blobUrl);
-    console.log(blob);
     const videoFile = new File([blob], 'video.mp4', { type: 'video/mp4' });
-    console.log(videoFile);
     getBase64(videoFile)
       .then((result) => {
         props.saveVideo(props.id, result);
       })
       .catch((err) => {
-        console.log(err);
       });
   };
 

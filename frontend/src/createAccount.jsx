@@ -6,7 +6,7 @@
 // https://www.geeksforgeeks.org/how-to-validate-password-is-strong-or-not-in-reactjs/
 // https://www.geeksforgeeks.org/how-to-validate-an-email-in-reactjs/
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import TextField from '@mui/material/TextField';
 import Checkbox from '@mui/material/Checkbox';
 import Button from '@mui/material/Button';
@@ -45,6 +45,7 @@ export default function CreateAccount() {
   const permissionsVisual = [canCreateSurvey, canEditSurvey, canDeleteSurvey, canExportData, canViewSurvey];
   const userID = localStorage.getItem("userID");
   const [isSuperuser, setIsSuperuser] = React.useState(false);
+  const navigate = useNavigate();
 
   const validateEmail = (value) => {
     if (validator.isEmail(value)) {
@@ -144,13 +145,12 @@ export default function CreateAccount() {
       permissions.push(36); // "can view question"
       permissions.push(40); // "can view questionnaire"
     }
-    console.log(permissionsVisual);
-    console.log(permissions);
   };
 
   const setAccount = async () => {
     convertPermissions();
     await createUser(email, password, email, isSuperadmin, permissions); // username === email
+    navigate('/manage-accounts');
   };
 
   const handleForward = () => {
@@ -231,7 +231,12 @@ export default function CreateAccount() {
   return (
     <>
       <AdminNavbar />
-      <div style={{ textAlign: "center", marginTop: "50px" }}>
+      <div
+        style={{
+          textAlign: "center", display: "flex", flexDirection: "column", justifyContent: "center", backgroundColor: "#FAF9F6",
+        }}
+        className="create-account-body"
+      >
         <h1>Add an administrator account</h1>
         <Box
           component="form"
@@ -241,13 +246,13 @@ export default function CreateAccount() {
           autoComplete="off"
         >
           <div>
-            <TextField id="email" label="email" type="email" error={!emailFilled} helperText={emailFilledError} onChange={handleEmail} />
+            <TextField id="email" label="Email" type="email" error={!emailFilled} helperText={emailFilledError} onChange={handleEmail} />
           </div>
           <div>
-            <TextField id="password" label="password" type="password" error={!passwordValid} helperText={passwordFilledError} onChange={handlePassword} />
+            <TextField id="password" label="Password" type="password" error={!passwordValid} helperText={passwordFilledError} onChange={handlePassword} />
           </div>
           <div>
-            <TextField id="confirm-password" label="confirm password" error={!passwordsMatch} type="password" helperText={errorText} onChange={handleConfirmPassword} />
+            <TextField id="confirm-password" label="Confirm password" error={!passwordsMatch} type="password" helperText={errorText} onChange={handleConfirmPassword} />
           </div>
 
         </Box>
@@ -255,7 +260,7 @@ export default function CreateAccount() {
           <FormControlLabel control={<Checkbox checked={wantForward} disableRipple={true} onChange={handleForward} />} label="Send me an email confirming this account creation" />
         </div>
         <div>A temporary random password will be sent to the new user via the email address you submit.</div>
-        <div style={{ textAlign: "center" }}>
+        <div style={{ textAlign: "center", marginTop: "50px" }}>
           <h1>Permissions</h1>
           <div>
             <FormControlLabel control={<Switch checked={isSuperadmin} disableRipple={true} onChange={handleSuper} />} label="Manage admins (superadmin)" />
@@ -278,12 +283,10 @@ export default function CreateAccount() {
           {/* <Button onClick={viewVariables}>console</Button> */}
         </div>
         <div style={{ textAlign: "center", marginTop: "30px", marginBottom: "30px" }}>
-          <Link to="/manage-accounts" style={{ textDecoration: "none" }}>
-            <Button variant="contained" disabled={!checkAllFields} onClick={setAccount}>Save & Return</Button>
-          </Link>
+          <Button variant="contained" disabled={!checkAllFields} onClick={setAccount}>Save & Return</Button>
           <div style={{ paddingTop: "70px" }}>
             <Link to="/manage-accounts" style={{ textDecoration: "none" }}>
-              <Button color="grey" variant="contained">Cancel</Button>
+              <Button variant="text">Cancel</Button>
             </Link>
           </div>
         </div>
