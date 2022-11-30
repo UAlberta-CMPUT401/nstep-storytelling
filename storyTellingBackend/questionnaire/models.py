@@ -41,5 +41,6 @@ class AnswerList(models.Model):
     questionnaire = models.ForeignKey(Questionnaire, on_delete=models.CASCADE,null=True)
     time = models.DateTimeField(default=timezone.now)
     history = HistoricalRecords()
+
     class Meta:
         ordering = ["-time"]

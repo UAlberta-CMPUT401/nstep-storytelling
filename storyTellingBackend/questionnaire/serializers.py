@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from questionnaire.models import *
+import simple_history.models 
 
 class AnswerSerializer(serializers.ModelSerializer):
 
@@ -51,3 +52,5 @@ class AnswerListSerializer(serializers.ModelSerializer):
     class Meta:
         model = AnswerList
         fields = "__all__"
+        
+        
