@@ -133,43 +133,26 @@ export default function Login() {
     setLogoutSuccess(true);
   }
 
-  function checkIfLoggedIn() {
-    if (localStorage.getItem("jwtToken") !== "null" && openSuccessAlert === false && openFailureAlert === false) {
-      return (
-        <div>
-          <Dialog
-            open={dialogOpen}
-            aria-labelledby="alert-dialog-title"
-            aria-describedby="alert-dialog-description"
-          >
-            <DialogTitle id="alert-dialog-title">
-              Already logged in
-            </DialogTitle>
-            <DialogContent>
-              <DialogContentText id="alert-dialog-description">
-                Do you want to log out?
-              </DialogContentText>
-            </DialogContent>
-            <DialogActions>
-              <Button onClick={handleLogout}>
-                Yes
-              </Button>
-              <Button onClick={handleGoBack}>
-                No, continue
-              </Button>
-            </DialogActions>
-          </Dialog>
-        </div>
-      );
+  React.useEffect(async () => {
+    if (localStorage.getItem("userID") !== "null" && localStorage.getItem("jwtToken") !== "null" && openSuccessAlert === false && openFailureAlert === false) {
+      axios
+        .get(`${BASE_URL}/user/${localStorage.getItem("userID")}/`, {
+          headers: {
+            Authorization: `Token ${localStorage.getItem("jwtToken")}`,
+          },
+        })
+        .then(async (res) => {
+          history("/home");
+        })
+        .catch((e) => {
+        });
     }
-    return null;
-  }
+  }, []);
 
   return (
   // <CssVarsProvider>
     <main>
       <Navbar />
-      {checkIfLoggedIn()}
       <Box
         className="login-box"
         sx={{
