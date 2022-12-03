@@ -27,8 +27,9 @@ import Navbar from './components/Navbar';
 // import Alert from "@mui/material/Alert";
 
 export default function Login() {
-  const BASE_URL = "http://[2605:fd00:4:1001:f816:3eff:febc:abdc]/api";
+  // const BASE_URL = "http://[2605:fd00:4:1001:f816:3eff:febc:abdc]/api";
   // const BASE_URL = 'http://localhost:8000/api';
+  const BASE_URL = "https://30696.yeg.rac.sh/api";
 
   const history = useNavigate();
   const [username, setUsername] = useState("");
