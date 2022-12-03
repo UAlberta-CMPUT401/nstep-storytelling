@@ -22,8 +22,8 @@ export default function Forms() {
     setFormList(res);
   }, []);
 
-  const removeQuestionnaire = async (e) => {
-    const res = await deleteQuestionnaire(e.target.value);
+  const removeQuestionnaire = async (id) => {
+    const res = await deleteQuestionnaire(id);
     console.log(res);
 
     const newFormList = await getQuestionnaires();

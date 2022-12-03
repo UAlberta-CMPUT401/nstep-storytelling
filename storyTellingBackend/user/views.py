@@ -11,6 +11,7 @@ from rest_framework import permissions
 from django.contrib.auth import authenticate, login, logout
 from rest_framework.authentication import BaseAuthentication, TokenAuthentication
 from rest_framework.permissions import *
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 
@@ -18,7 +19,7 @@ from rest_framework.permissions import *
 class UserList(generics.ListCreateAPIView):
     queryset = User.objects.all()
     serializer_class = AddingUserSerializer
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
 
     def list(self, request):
         # Note the use of `get_queryset()` instead of `self.queryset`
@@ -32,11 +33,15 @@ class UserList(generics.ListCreateAPIView):
 
         user = User.objects.create(
             username=myData['username'],
-            email=myData['email']
+            email=myData['email'],
+            is_superuser=myData['is_superuser'],
         )
+
+        user.user_permissions.set(myData['user_permissions'])
 
         user.set_password(myData['password'])
         user.save()
+
         # serializer = self.get_serializer(data=myData)
         # serializer.is_valid(raise_exception=True)
         # result = serializer.save()
@@ -47,7 +52,7 @@ class UserList(generics.ListCreateAPIView):
         return Response({'id': user.id, 'message':'Successfully create a new user!'}, status=status.HTTP_201_CREATED)
 
 class UserDetail(generics.RetrieveUpdateDestroyAPIView):
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
     queryset = User.objects.all()
     lookup_field = 'pk'
     serializer_class = UserSerializer
