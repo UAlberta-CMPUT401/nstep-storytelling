@@ -2,9 +2,9 @@
 import axios from 'axios';
 import 'regenerator-runtime';
 
-const api = "http://[2605:fd00:4:1001:f816:3eff:febc:abdc]/api";
-
+// const api = "http://[2605:fd00:4:1001:f816:3eff:febc:abdc]/api";
 // const api = 'http://localhost:8000/api';
+const api = "https://30696.yeg.rac.sh/api";
 
 const createQuestion = async (questionnaireId, content) => {
   const token = localStorage.getItem('jwtToken');
