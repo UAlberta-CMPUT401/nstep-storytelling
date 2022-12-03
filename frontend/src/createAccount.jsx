@@ -256,10 +256,10 @@ export default function CreateAccount() {
           </div>
 
         </Box>
-        <div style={{ textAlign: "center" }}>
+        {/* <div style={{ textAlign: "center" }}>
           <FormControlLabel control={<Checkbox checked={wantForward} disableRipple={true} onChange={handleForward} />} label="Send me an email confirming this account creation" />
         </div>
-        <div>A temporary random password will be sent to the new user via the email address you submit.</div>
+        <div>A temporary random password will be sent to the new user via the email address you submit.</div> */}
         <div style={{ textAlign: "center", marginTop: "50px" }}>
           <h1>Permissions</h1>
           <div>

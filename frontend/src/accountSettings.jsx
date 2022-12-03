@@ -220,9 +220,9 @@ export default function AccountSettings() {
           {showEditButton()}
           <div>
             Password: ********
-            <IconButton sx={{ marginLeft: "30px" }} onClick={handleClickPasswordOpen}>
+            {/* <IconButton sx={{ marginLeft: "30px" }} onClick={handleClickPasswordOpen}>
               <EditIcon />
-            </IconButton>
+            </IconButton> */}
             <Dialog open={passwordOpen} onClose={handleClosePassword}>
               <DialogTitle>Edit password</DialogTitle>
               <DialogContent>
