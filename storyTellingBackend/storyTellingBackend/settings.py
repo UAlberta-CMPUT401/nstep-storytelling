@@ -26,7 +26,8 @@ SECRET_KEY = 'django-insecure-0)*+e6s#%bxm+2hr$smk=asx3+xro@pnj-%mrz_$x7lx%us47o
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['10.2.12.61','10.2.14.208','[2605:fd00:4:1001:f816:3eff:febc:abdc]', '[2605:fd00:4:1001:f816:3eff:fe9d:f7d9]','localhost','127.0.0.1']
+ALLOWED_HOSTS = ['10.2.12.61','10.2.14.208','[2605:fd00:4:1001:f816:3eff:febc:abdc]', '[2605:fd00:4:1001:f816:3eff:fe9d:f7d9]','localhost','127.0.0.1','30696.yeg.rac.sh
+','30692.yeg.rac.sh']
 
 AUTH_USER_MODEL ='user.User'
 
