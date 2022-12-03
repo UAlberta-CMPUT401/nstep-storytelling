@@ -109,9 +109,9 @@ export default function EditAdmin() {
         <h1>Account</h1>
         <div style={{ fontSize: "25px", marginTop: "40px" }}>
           Email: {email}
-          <Button variant="contained" color="secondary" style={{ marginLeft: "30px" }}>
+          {/* <Button variant="contained" color="secondary" style={{ marginLeft: "30px" }}>
             edit
-          </Button>
+          </Button> */}
         </div>
         <div style={{ textAlign: "center", paddingTop: "60px" }}>
           <h1>
