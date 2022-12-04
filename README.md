@@ -31,3 +31,7 @@ From the account details page, you can click the "manage admins" button to see a
 To create an admin account, click the "add an admin" button on the manage administrators page, and enter your desired credentials. Select the permissions you would like for this account to have and save.  
 #### Editing an admin account
 To edit an admin account, click the edit icon beside the email associated with the account on the manage administrators page, adjust the permissions as you see fit, and save. If you would like to remove the account, click the "delete" button at the bottom of the page and confirm your intention.  
+
+## Deployment Instructions
+
+[https://docs.google.com/document/d/1pVpG-PI6NaU49UxfYyOhHlFKZedx4cKS25AJKp6kQPk/edit?usp=sharing](https://docs.google.com/document/d/1pVpG-PI6NaU49UxfYyOhHlFKZedx4cKS25AJKp6kQPk/edit?usp=sharing)  
