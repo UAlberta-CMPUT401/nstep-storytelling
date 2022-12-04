@@ -1,6 +1,6 @@
 describe('The Dashboard Page', () => {
   it('successfully loads', () => {
-    cy.visit('/dashboard');
+    cy.visit('/home');
 
     cy.contains('Forms').click();
 
