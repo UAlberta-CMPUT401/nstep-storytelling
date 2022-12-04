@@ -1,6 +1,12 @@
 # nstep-storytelling
 Storytelling App (NSTEP) [CSL]
 
+## Demo links
+
+[Frontend](https://30692.yeg.rac.sh/)
+
+[Backend](http://30696.yeg.rac.sh/)
+
 ## User Manual
 
 ### NSTEP Clients
