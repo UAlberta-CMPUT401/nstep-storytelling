@@ -5,7 +5,7 @@ Storytelling App (NSTEP) [CSL]
 
 [Frontend](https://30692.yeg.rac.sh/)
 
-[Backend](http://30696.yeg.rac.sh/)
+[Backend](https://30696.yeg.rac.sh/)
 
 ## User Manual
 
