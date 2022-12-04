@@ -89,7 +89,7 @@ class QuestionnaireTests(TestCase):
         response = self.client.patch(reverse(self.url), kwargs={'id': self.questionnaire.id})
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
         
-    def test_questionnaire_wrong_method2(self):          
+    def test_questionnaire_wrong_auth(self):          
         response = self.client.delete(reverse(self.url), kwargs={'id': self.questionnaire.id})
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)    
         
@@ -208,7 +208,7 @@ class QuestionTests(TestCase):
         response = self.client.patch(self.url, kwargs={'id': self.questionnaire.id}) 
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
-    def test_question_wrong_method3(self):
+    def test_question_wrong_auth(self):
         response = self.client.delete(self.url, kwargs={'id': self.questionnaire.id}) 
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
         
@@ -329,7 +329,7 @@ class TestAnswers(TestCase):
         response = self.client.patch(self.url2, kwargs={'id': self.questionnaire.id}) 
         self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
 
-    def test_answer_wrong_method3(self):
+    def test_answer_wrong_auth(self):
         response = self.client.delete(self.url2, kwargs={'id': self.questionnaire.id}) 
         self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
         

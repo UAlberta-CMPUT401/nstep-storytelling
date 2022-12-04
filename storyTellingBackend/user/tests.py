@@ -9,7 +9,6 @@ import json
 
 client = APIClient()
 
-
 # write all the tests for User models here
 class UserTests(TestCase):
     username = "randomTestUser"
@@ -17,35 +16,23 @@ class UserTests(TestCase):
     email = "random@gmail.com"
     
     def setUp(self):
-        delete_user_historicaluser = User.objects.raw("DELETE FROM user_historicaluser")  
-        delete_user = User.objects.raw("DELETE FROM user_user")
-        
-        self.user = User.objects.create(username=self.username, password=self.password, email=self.email, is_superuser=False)
+        self.user = User.objects.create(username=self.username, password=self.password, email=self.email, is_superuser=True)
+        self.user.user_permissions.set([])
+        client.force_authenticate(user=self.user)  
         self.url = "UserList"
-
+        
         
     def test_user_creation(self):
-        # provide authentication credentials for the request 
-        client.force_authenticate(user=self.user)
-        # check if client is authenticated
-        self.assertTrue(client.login(username=self.username, password=self.password))
+        # provide authentication credentials for the request      
         response = self.client.get(reverse(self.url), kwargs={'id': self.user.id})
         user = User.objects.get(id=self.user.id)
         serializer = UserSerializer(user)
-        print(response.data)
-        data = {}
-        for d in response.data:
-            data = dict(d)
- 
-        self.assertEquals(data, serializer.data)
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        
-        
+        data = serializer.data
+        self.assertEquals(data, serializer.data)        
 
 
     def test_user_post(self):
-        payload = {"username": "newUser", "password": "newPassword", "email": "a@gmail.com", "is_superuser": False}
-        
+        payload = {"username": "newUser", "password": "newPassword", "email": "a@gmail.com", "is_superuser": False, "user_permissions": []}
         response = client.post(
             reverse('UserList'),
             data=json.dumps(payload),
@@ -56,6 +43,7 @@ class UserTests(TestCase):
 
     # set test for put request 
     def test_user_put(self):   
+
         payload = {"username": "newPutUser", "password": "newPassword", "email": "newEmail@gmail.com"}  
         
         response = client.put(
@@ -67,19 +55,12 @@ class UserTests(TestCase):
         response = self.client.get(reverse(self.url), kwargs={'id': self.user.id})
         user = User.objects.get(id=self.user.id)
         serializer = UserSerializer(user)
-        
-        data = {}
-        for d in response.data:
-            data = dict(d)
- 
-        self.assertEquals(data, serializer.data)
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        
+        data = serializer.data
+        self.assertEquals(data, serializer.data)        
         
         
     # test patch request here
     def test_user_patch(self):
-        
         self.user.username  = "newUsername"
         self.user.save()
         
@@ -87,20 +68,14 @@ class UserTests(TestCase):
         
         user = User.objects.get(id=self.user.id)
         serializer = UserSerializer(user)
-        
-        data = {}
-        for d in response.data:
-            data = dict(d)
- 
+        data = serializer.data
         self.assertEquals(data, serializer.data)
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
         
     # test delete request here
     def test_user_delete(self):
         response = client.delete(
             f'/api/user/{self.user.id}/',
         )
-        
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         self.assertEqual(User.objects.count(), 0)
         
@@ -114,24 +89,24 @@ class UserTests(TestCase):
         
     def test_user_wrong_method(self):
         response = self.client.put(reverse(self.url), kwargs={'id': self.user.id})
-        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
         
     def test_user_wrong_method1(self):
         response = self.client.patch(reverse(self.url), kwargs={'id': self.user.id})
-        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
         
-    def test_user_wrong_method2(self):
+    def test_user_wrong_auth(self):
         response = self.client.delete(reverse(self.url), kwargs={'id': self.user.id})
-        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
         
         
 # Test multiple users with different email addresses and passwords 
 class UserTestsList(TestCase):
     def setUp(self):
-        self.user1 = User.objects.create(username="user1", password="user1", email="user1@gmail.com")
-        self.user2 = User.objects.create(username="user2", password="user2", email="user2@gmail.com")
-        self.user3 = User.objects.create(username="user3", password="user3", email="user3@gmail.com")
-        self.user4 = User.objects.create(username="user4", password="user4", email="user4@gmail.com")
+        self.user1 = User.objects.create(username="user1", password="user1", email="user1@gmail.com", is_superuser=True)
+        self.user2 = User.objects.create(username="user2", password="user2", email="user2@gmail.com", is_superuser=True)
+        self.user3 = User.objects.create(username="user3", password="user3", email="user3@gmail.com", is_superuser=True)
+        self.user4 = User.objects.create(username="user4", password="user4", email="user4@gmail.com", is_superuser=True)
         self.url = "UserList"
         
     def test_user_list(self):
@@ -147,12 +122,14 @@ class UserTestsList(TestCase):
         
     def test_userlist_wrong_method(self):
         response = self.client.put(reverse(self.url), kwargs={'id': self.user1.id})
-        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
         
     def test_userlist_wrong_method1(self):
         response = self.client.patch(reverse(self.url), kwargs={'id': self.user1.id})
-        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
         
-    def test_userlist_wrong_method2(self):
+    def test_userlist_wrong_auth(self):
         response = self.client.delete(reverse(self.url), kwargs={'id': self.user1.id})
-        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+        
+        
