@@ -103,6 +103,9 @@ WSGI_APPLICATION = 'storyTellingBackend.wsgi.application'
 # settings.py
 DATABASES = {
     'default': {
+        'OPTIONS': {
+         "init_command": "SET foreign_key_checks = 0;",
+        },
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'nstep_database',
         'USER': 'root',

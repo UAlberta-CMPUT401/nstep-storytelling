@@ -5,11 +5,15 @@ from .models import *
 from rest_framework.test import APIClient
 from django.urls import reverse
 import json
-
+from user.models import User
 
 
 client = APIClient()
-
+username = "randomTestUser"
+password = "randomTestPassword"
+email = "random@gmail.com"
+user = User.objects.create(username=username, password=password, email=email, is_superuser=True)
+client.force_authenticate(user=user)
 # write all the tests for Questionnaire models here
 class QuestionnaireTests(TestCase):
     title = "randomTestTitle"
@@ -18,7 +22,7 @@ class QuestionnaireTests(TestCase):
     def setUp(self):
         self.questionnaire = Questionnaire.objects.create(title=self.title, description=self.description)
         self.url = "Questionnaire_list"
-    
+
     def test_questionnaire_creation(self):
         response = self.client.get(reverse(self.url), kwargs={'id': self.questionnaire.id})
         questionnaire = Questionnaire.objects.get(id=self.questionnaire.id)
@@ -79,15 +83,15 @@ class QuestionnaireTests(TestCase):
         
     def test_questionnaire_wrong_method(self):
         response = self.client.put(reverse(self.url), kwargs={'id': self.questionnaire.id})
-        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
     
     def test_questionnaire_wrong_method1(self):
         response = self.client.patch(reverse(self.url), kwargs={'id': self.questionnaire.id})
-        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
         
-    def test_questionnaire_wrong_method2(self):
+    def test_questionnaire_wrong_auth(self):          
         response = self.client.delete(reverse(self.url), kwargs={'id': self.questionnaire.id})
-        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)    
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)    
         
         
 # test question model here
@@ -98,13 +102,12 @@ class QuestionTests(TestCase):
     descriptionQuestionnaire = "randomTestDescription"
     dissallow_recording = False
     
-    
     def setUp(self):
         self.questionnaire = Questionnaire.objects.create(title=self.titleQuestionnaire, description=self.descriptionQuestionnaire)
         self.url = f'/api/questionnaire/{self.questionnaire.id}/question/'
 
-
     def test_question_creation(self):
+        
         payload = {"content": self.content, "allow_recording": self.allow_recording, "questionnaire": str(self.questionnaire.id)}
         
         response = client.post(
@@ -197,17 +200,17 @@ class QuestionTests(TestCase):
         
 
         
-    def test_questionnaire_wrong_method(self):
+    def test_question_wrong_method(self):  
         response = self.client.put(self.url, kwargs={'id': self.questionnaire.id}) 
-        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
-    def test_questionnaire_wrong_method2(self):
+    def test_question_wrong_method2(self):
         response = self.client.patch(self.url, kwargs={'id': self.questionnaire.id}) 
-        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
-    def test_questionnaire_wrong_method3(self):
+    def test_question_wrong_auth(self):
         response = self.client.delete(self.url, kwargs={'id': self.questionnaire.id}) 
-        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
         
         
 # test answer model here
@@ -216,14 +219,15 @@ class TestAnswers(TestCase):
     allow_recording = True
     titleQuestionnaire = "randomTestTitle"
     descriptionQuestionnaire = "randomTestDescription"
-    dissallow_recording = False
+    dissallow_recording = False    
+    
     
     def setUp(self):
         self.questionnaire = Questionnaire.objects.create(title=self.titleQuestionnaire, description=self.descriptionQuestionnaire)
         self.url = f'/api/questionnaire/{self.questionnaire.id}/question/'
         self.question = Question.objects.create(content=self.content, allow_recording=self.allow_recording, questionnaire=self.questionnaire)
         self.url2 = f'/api/questionnaire/{self.questionnaire.id}/feedback/'
-        
+
     def test_post_answer(self):
         answerPayload = {"content": self.content,  "questionnaire": str(self.questionnaire.id)}
         response = client.post(
@@ -325,7 +329,12 @@ class TestAnswers(TestCase):
         response = self.client.patch(self.url2, kwargs={'id': self.questionnaire.id}) 
         self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
 
-    def test_answer_wrong_method3(self):
+    def test_answer_wrong_auth(self):
         response = self.client.delete(self.url2, kwargs={'id': self.questionnaire.id}) 
         self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
         
+        
+        
+response = client.delete(
+    f'/api/user/{user.id}/',
+)
