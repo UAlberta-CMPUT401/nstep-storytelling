@@ -8,8 +8,8 @@ import './styles/Dashboard.css';
 import AdminNavbar from "./components/AdminNavbar";
 import { getUser } from "./service";
 
-export default function Dashboard() {
-  const [selectedTab, setSelectedTab] = React.useState(0);
+export default function DashboardFeedback() {
+  const [selectedTab, setSelectedTab] = React.useState(1);
   const [isSuperadmin, setIsSuperadmin] = React.useState(false);
   const [showTheThing, setShowTheThing] = React.useState(false);
   const userID = localStorage.getItem("userID");

@@ -1,5 +1,7 @@
 .dashboard {
     display: flex;
     flex-direction: column;
-    margin-top: 48px;
+    background-color: #FAF9F6;
+    padding: 12px;
+    min-height: 825px;
 }

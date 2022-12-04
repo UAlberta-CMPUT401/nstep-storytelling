@@ -1,5 +1,14 @@
 .admin-create-body {
-    margin: 128px;
+    border-radius: 10px;
+    background-color: white;
+    min-height: 600px;
+    padding: 48px;
+    
+}
+
+.admin-create-body-wrapper {
+    border: solid 80px #380867;
+    background-color: #380867;
 }
 
 .add-element {
@@ -12,4 +21,10 @@
 
 .save-and-return {
     margin-top: 48px;
+}
+
+@media (max-width: 1280px) {
+    .admin-create-body-wrapper {
+        border: solid 40px #380867;
+    }
 }

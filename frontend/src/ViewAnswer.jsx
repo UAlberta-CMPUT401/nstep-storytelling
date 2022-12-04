@@ -88,7 +88,7 @@ export default function ViewAnswer() {
 
   const navigate = useNavigate();
   const handleSave = (e) => {
-    navigate('/home');
+    navigate('/home/feedback');
   };
 
   const deleteHandle = () => {
@@ -102,45 +102,57 @@ export default function ViewAnswer() {
   const handleAgree = async () => {
     setDeleteOpen(false);
     const res = await deleteFeedback(id);
-    navigate('/home');
+    navigate('/home/feedback');
   };
 
   return (
     <div className="admin-create">
       <AdminNavbar />
-      <div className="admin-create-body">
-        <div style={{ textAlign: "center" }}>
-          <TextField
-            id="filled-basic"
-            label="Form title"
-            variant="filled"
-            InputProps={{
-              readOnly: true,
-            }}
-            value={formTitle}
-          />
-        </div>
-        <div>
-          {questionList.map((question) => (
-            <DisplayAnswerElement
-              key={question.id}
-              question={question.content}
-              answer={question.answer_content}
-              contentAudio={question.content_audio}
-              contentVideo={question.content_video}
+      <div className="admin-create-body-wrapper">
+        <div className="admin-create-body">
+          <div style={{ textAlign: "center" }}>
+            <TextField
+              id="filled-basic"
+              label="Form title"
+              variant="filled"
+              InputProps={{
+                readOnly: true,
+              }}
+              value={formTitle}
             />
-          ))}
+          </div>
+          <div>
+            {questionList.map((question) => (
+              <DisplayAnswerElement
+                key={question.id}
+                question={question.content}
+                answer={question.answer_content}
+                contentAudio={question.content_audio}
+                contentVideo={question.content_video}
+              />
+            ))}
+          </div>
+          <div style={{ textAlign: "center" }} className="save-and-return">
+            <Button
+              style={{
+                backgroundColor: '#FDCA00',
+                color: '#414143',
+                fontWeight: 'bold',
+              }}
+              variant="contained"
+              onClick={handleSave}
+            >
+              Go Back
+            </Button>
+          </div>
+          <div style={{ textAlign: "center", margin: "24px" }}>
+            <Button onClick={deleteHandle} variant="outlined" color="error" startIcon={<DeleteIcon />}>
+              Delete
+            </Button>
+          </div>
         </div>
-        <div style={{ textAlign: "center" }} className="save-and-return">
-          <Button variant="contained" onClick={handleSave}>Go Back</Button>
-        </div>
-        <div style={{ textAlign: "center", margin: "24px" }}>
-          <Button onClick={deleteHandle} variant="outlined" color="error" startIcon={<DeleteIcon />}>
-            Delete
-          </Button>
-        </div>
+        <AlertDialog open={deleteOpen} handleAgree={handleAgree} handleClose={deleteClose} message="Are you sure you want to delete this response?" />
       </div>
-      <AlertDialog open={deleteOpen} handleAgree={handleAgree} handleClose={deleteClose} message="Are you sure you want to delete this response?" />
     </div>
   );
 }
