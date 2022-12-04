@@ -6,7 +6,10 @@ from rest_framework.test import APIClient
 from django.urls import reverse
 import json
 
+
 client = APIClient()
+
+
 # write all the tests for User models here
 class UserTests(TestCase):
     username = "randomTestUser"
@@ -14,25 +17,35 @@ class UserTests(TestCase):
     email = "random@gmail.com"
     
     def setUp(self):
-        self.user = User.objects.create(username=self.username, password=self.password, email=self.email)
+        delete_user_historicaluser = User.objects.raw("DELETE FROM user_historicaluser")  
+        delete_user = User.objects.raw("DELETE FROM user_user")
+        
+        self.user = User.objects.create(username=self.username, password=self.password, email=self.email, is_superuser=False)
         self.url = "UserList"
+
         
     def test_user_creation(self):
+        # provide authentication credentials for the request 
+        client.force_authenticate(user=self.user)
+        # check if client is authenticated
+        self.assertTrue(client.login(username=self.username, password=self.password))
         response = self.client.get(reverse(self.url), kwargs={'id': self.user.id})
-        
         user = User.objects.get(id=self.user.id)
         serializer = UserSerializer(user)
-        
+        print(response.data)
         data = {}
         for d in response.data:
             data = dict(d)
  
         self.assertEquals(data, serializer.data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+        
+        
 
 
     def test_user_post(self):
-        payload = {"username": "newUser", "password": "newPassword", "email": "a@gmail.com"}
+        payload = {"username": "newUser", "password": "newPassword", "email": "a@gmail.com", "is_superuser": False}
+        
         response = client.post(
             reverse('UserList'),
             data=json.dumps(payload),
@@ -66,6 +79,7 @@ class UserTests(TestCase):
         
     # test patch request here
     def test_user_patch(self):
+        
         self.user.username  = "newUsername"
         self.user.save()
         
@@ -90,7 +104,8 @@ class UserTests(TestCase):
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         self.assertEqual(User.objects.count(), 0)
         
-    def test_get_invalid_single_user(self):        
+    def test_get_invalid_single_user(self):    
+            
         users = User.objects.all()
         for user in users:
             self.assertNotEqual(user.username, "invalidUsername")
@@ -118,7 +133,9 @@ class UserTestsList(TestCase):
         self.user3 = User.objects.create(username="user3", password="user3", email="user3@gmail.com")
         self.user4 = User.objects.create(username="user4", password="user4", email="user4@gmail.com")
         self.url = "UserList"
+        
     def test_user_list(self):
+        
         response = client.get(reverse(self.url))
         # get data from db
         users = User.objects.all()
